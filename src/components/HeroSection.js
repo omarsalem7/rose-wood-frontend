@@ -172,7 +172,7 @@ const HeroSection = () => {
       )}
 
       {/* Hero Content - Updated text color to black */}
-      <div className="relative z-10 flex items-center justify-center min-h-[80vh] px-6">
+      <div className="relative z-10 flex items-center justify-center min-h-[70vh] px-6">
         <div className="text-center max-w-4xl">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-black">
             جودة طبيعية... لأدوات مطبخ صحية

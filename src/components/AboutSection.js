@@ -29,8 +29,7 @@ export default function AboutSection() {
 
             {/* Features List */}
             <div className="space-y-4 mb-8">
-              <div className="flex items-center justify-end gap-3">
-                <span className="text-gray-700">أكثر من 120 منتج متنوع</span>
+              <div className="flex items-center gap-3">
                 <div className="bg-[#E5FFE9] rounded-full p-1">
                   <Image
                     width={16}
@@ -40,12 +39,26 @@ export default function AboutSection() {
                     className="text-white"
                   />
                 </div>
+                <span className="text-gray-700">أكثر من 120 منتج متنوع</span>
               </div>
 
-              <div className="flex items-center justify-end gap-3">
+              <div className="flex items-center gap-3">
+                <div className="bg-[#E5FFE9] rounded-full p-1">
+                  <Image
+                    width={16}
+                    height={16}
+                    src="/icons/check.svg"
+                    alt="check icon"
+                    className="text-white"
+                  />
+                </div>
                 <span className="text-gray-700">
                   تصنيع بكميات كبيرة للتجار والمطاعم
                 </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                {" "}
                 <div className="bg-[#E5FFE9] rounded-full p-1">
                   <Image
                     width={16}
@@ -55,26 +68,14 @@ export default function AboutSection() {
                     className="text-white"
                   />
                 </div>
-              </div>
-
-              <div className="flex items-center justify-end gap-3">
                 <span className="text-gray-700">
                   تخصيص المقاسات، الألوان، النقائش والشعارات حسب الطلب
                 </span>
-                <div className="bg-[#E5FFE9] rounded-full p-1">
-                  <Image
-                    width={16}
-                    height={16}
-                    src="/icons/check.svg"
-                    alt="check icon"
-                    className="text-white"
-                  />
-                </div>
               </div>
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-4 justify-end">
+            <div className="flex gap-4">
               <button className="bg-amber-800 text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
                 عرض كل المنتجات
               </button>
