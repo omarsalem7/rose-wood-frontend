@@ -1,5 +1,6 @@
 import AboutSection from "@/components/AboutSection";
 import HeroSection from "@/components/HeroSection";
+import FeatureSection from "@/components/FeatureSection";
 
 export const metadata = {
   title: "Rosewood Kitchenware",
@@ -10,6 +11,7 @@ export default function Home() {
     <div>
       <HeroSection />
       <AboutSection />
+      <FeatureSection />
     </div>
   );
 }

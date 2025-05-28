@@ -11,7 +11,7 @@ const Header = ({ onMenuClick }) => (
         className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
         aria-label="Toggle menu"
       >
-        <Menu size={24} className="text-gray-800" />
+        <Menu size={30} className="text-gray-800" />
       </button>
       {/* Center - Logo using the provided image */}
       <div className="flex items-center">
