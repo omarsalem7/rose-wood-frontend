@@ -25,12 +25,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="ar"
-      dir="rtl"
-      className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}
-    >
-      <body>{children}</body>
+    <html lang="ar" dir="rtl">
+      <body className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}>{children}</body>
     </html>
   );
 }

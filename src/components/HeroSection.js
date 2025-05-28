@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
+import Image from "next/image";
 
 const HeroSection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,14 +16,14 @@ const HeroSection = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png)`,
+          backgroundImage: `url(/assets/hero-bg.png)`,
         }}
       >
         {/* Removed the opacity overlay to match the design */}
       </div>
 
       {/* Navigation Header */}
-      <header className="relative z-20 p-6">
+      <header className="relative z-20 p-6 bg-white">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           {/* Left side - Contact button and search */}
           <div className="flex items-center gap-4">
@@ -35,10 +37,11 @@ const HeroSection = () => {
 
           {/* Center - Logo using the provided image */}
           <div className="flex items-center">
-            <img
-              src="/lovable-uploads/91cdd0f1-bb5d-4353-bb11-ec58a2aa1433.png"
+            <Image
+              src="/assets/rose-h-logo.png"
               alt="Rosewood Logo"
-              className="h-16 w-auto"
+              width={200}
+              height={50}
             />
           </div>
 
@@ -62,10 +65,11 @@ const HeroSection = () => {
         <div className="p-6">
           {/* Header with logo and close button */}
           <div className="flex justify-between items-center mb-8">
-            <img
-              src="/lovable-uploads/91cdd0f1-bb5d-4353-bb11-ec58a2aa1433.png"
+            <Image
+              src="/assets/rose-h-logo.png"
               alt="Rosewood Logo"
-              className="h-12 w-auto"
+              width={200}
+              height={100}
             />
             <button
               onClick={toggleMenu}
@@ -179,17 +183,6 @@ const HeroSection = () => {
             الجودة العالية والتصميم العصري.
           </p>
         </div>
-      </div>
-
-      {/* Decorative wooden elements scattered around */}
-      <div className="absolute top-20 left-10 w-16 h-16 opacity-20">
-        <div className="w-full h-full bg-amber-600 rounded-full"></div>
-      </div>
-      <div className="absolute bottom-40 right-20 w-12 h-12 opacity-20">
-        <div className="w-full h-full bg-amber-700 rounded-full"></div>
-      </div>
-      <div className="absolute top-1/2 left-1/4 w-8 h-8 opacity-20">
-        <div className="w-full h-full bg-amber-800 rounded-full"></div>
       </div>
     </div>
   );
