@@ -1,6 +1,7 @@
 import AboutSection from "@/components/AboutSection";
 import HeroSection from "@/components/HeroSection";
 import FeatureSection from "@/components/FeatureSection";
+import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
 
 export const metadata = {
   title: "Rosewood Kitchenware",
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <FeatureSection />
+      <WhyChooseRosewoodSection />
     </div>
   );
 }
