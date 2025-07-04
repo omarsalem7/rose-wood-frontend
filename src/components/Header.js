@@ -1,5 +1,7 @@
 "use client";
 import { Menu, Search } from "lucide-react";
+import Link from "next/link";
+
 import Image from "next/image";
 
 const Header = ({ onMenuClick }) => (
@@ -14,14 +16,15 @@ const Header = ({ onMenuClick }) => (
         <Menu size={35} className="text-[#5F361F]" />
       </button>
       {/* Center - Logo using the provided image */}
-      <div className="flex items-center">
+      <Link href="/" className="flex items-center">
         <Image
+          className="w-auto h-auto"
           src="/assets/rose-h-logo.png"
           alt="Rosewood Logo"
           width={200}
           height={50}
         />
-      </div>
+      </Link>
       {/* Left side - Contact button and search */}
       <div className="flex items-center gap-4">
         <button className="p-2 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
