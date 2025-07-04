@@ -34,6 +34,7 @@ const SideNav = ({ isOpen, onClose }) => (
       {/* Navigation menu items with icons like in the design */}
       <nav className="space-y-4">
         <Link
+          href="/"
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
           onClick={onClose}
         >
