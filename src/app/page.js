@@ -5,9 +5,7 @@ import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
 import ProductCarouselSection from "@/components/ProductCarouselSection";
 import VideoSection from "@/components/VideoSection";
 import ArticlesSection from "@/components/ArticlesSection";
-import { Contact } from "lucide-react";
 import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
 import KitchenHeroSection from "@/components/KitchenHeroSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
@@ -30,7 +28,6 @@ export default function Home() {
       <ArticlesSection />
       <ContactSection />
       <KitchenHeroSection />
-      <Footer />
     </div>
   );
 }
