@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FeatureSection from "@/components/FeatureSection";
 import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
 import ProductCarouselSection from "@/components/ProductCarouselSection";
+import VideoSection from "@/components/VideoSection";
 
 export const metadata = {
   title: "Rosewood Kitchenware",
@@ -16,6 +17,7 @@ export default function Home() {
       <FeatureSection />
       <WhyChooseRosewoodSection />
       <ProductCarouselSection />
+      <VideoSection />
     </div>
   );
 }
