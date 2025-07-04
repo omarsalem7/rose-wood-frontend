@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --font-alexandria: var(--font-alexandria);
-  --font-ibm-plex-arabic: var(--font-ibm-plex-arabic);
-}
-
 .font-alexandria {
   font-family: var(--font-alexandria), sans-serif;
 }
@@ -14,7 +9,7 @@
 }
 
 body {
-  font-family: var(--font-ibm-plex-arabic), sans-serif;
+  font-family: var(--font-alexandria), var(--font-ibm-plex-arabic), sans-serif;
   background-color: #fff;
   color: #171717;
 }

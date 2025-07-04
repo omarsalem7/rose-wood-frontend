@@ -2,6 +2,7 @@ import "./globals.css";
 import { Alexandria } from "next/font/google";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import SharedLayout from "@/components/SharedLayout";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // Configure Alexandria font
 const alexandria = Alexandria({
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
     >
       <body>
         <SharedLayout>{children}</SharedLayout>
+        <SpeedInsights debug={process.env.NODE_ENV === "development"} />
       </body>
     </html>
   );
