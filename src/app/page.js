@@ -10,6 +10,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import KitchenHeroSection from "@/components/KitchenHeroSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
+import ProductsSection from "@/components/ProductsSection";
 
 export const metadata = {
   title: "Rosewood Kitchenware",
@@ -21,6 +22,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <FeatureSection />
+      <ProductsSection />
       <BulkOrderSection />
       <ProductCarouselSection />
       <VideoSection />

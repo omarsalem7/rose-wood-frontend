@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="py-24 px-6 bg-white font-alexandria">
+    <section className="py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
@@ -56,7 +56,6 @@ export default function AboutSection() {
               </div>
 
               <div className="flex items-center gap-3">
-                {" "}
                 <div className="bg-[#E5FFE9] rounded-full p-1">
                   <Image
                     width={16}

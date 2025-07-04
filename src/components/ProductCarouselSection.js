@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, X, Plus, Move } from "lucide-react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, X, Plus } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -23,7 +24,7 @@ const ProductCarouselSection = () => {
       title: "طبق خشبي",
       description: "متوفر تيكات تبدأ من 100 قطعة",
       features: "متاح تصنيع حسب المقاس / اللون / التشطيب",
-      image: "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
+      image: "/lovable-uploads/cdead82f-785e-45b4-9366-a2dc6818c380.png",
       gallery: [
         "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
         "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
@@ -59,9 +60,9 @@ const ProductCarouselSection = () => {
       title: "صندوق تخزين خشبي",
       description: "صندوق أنيق للتخزين والتنظيم",
       features: "مصنوع من خشب طبيعي عالي الجودة",
-      image: "/lovable-uploads/91cdd0f1-bb5d-4353-bb11-ec58a2aa1433.png",
+      image: "/assets/product1.png",
       gallery: [
-        "/lovable-uploads/91cdd0f1-bb5d-4353-bb11-ec58a2aa1433.png",
+        "/assets/product1.png",
         "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
         "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
       ],
@@ -207,15 +208,17 @@ const ProductCarouselSection = () => {
                     onClick={() => openModal(product)}
                   >
                     <div className="aspect-[7/5] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
-                      <img
+                      <Image
                         src={product.image}
                         alt={product.title}
+                        width={500}
+                        height={250}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       {/* Plus icon overlay */}
-                      <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
+                      {/* <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
                         <Plus size={16} className="text-gray-600" />
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </CarouselItem>
@@ -243,8 +246,14 @@ const ProductCarouselSection = () => {
 
       {/* Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-[#000000b5] bg-opacity-70 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+        <div
+          className="fixed inset-0 bg-[#000000b5] bg-opacity-70 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex">
               {/* Image Section */}
               <div className="flex-1 relative">
@@ -269,9 +278,9 @@ const ProductCarouselSection = () => {
                 </button>
 
                 {/* Plus icon */}
-                <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                {/* <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
                   <Plus size={16} className="text-gray-600" />
-                </div>
+                </div> */}
               </div>
 
               {/* Content Section */}

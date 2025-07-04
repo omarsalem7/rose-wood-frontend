@@ -1,14 +1,14 @@
 "use client";
-import { X } from "lucide-react";
 import Image from "next/image";
+import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
 
 const SideNav = ({ isOpen, onClose }) => (
   <div
-    className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out ${
+    className={`fixed top-0 right-0 h-full w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out ${
       isOpen ? "translate-x-0" : "translate-x-full"
     }`}
   >
-    <div className="p-6">
+    <div className="p-6 ">
       {/* Header with logo and close button */}
       <div className="flex justify-between items-center mb-8">
         <Image
@@ -26,42 +26,84 @@ const SideNav = ({ isOpen, onClose }) => (
         </button>
       </div>
       {/* Navigation menu items with icons like in the design */}
-      <nav className="space-y-6">
+      <nav className="space-y-4">
         <a
           href="#"
-          className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+          className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
-          <span className="text-amber-800">🏠</span> من نحن
+          <Image
+            width={25}
+            height={25}
+            src="/icons/who.svg"
+            alt="who"
+            className="text-white"
+          />
+          من نحن
+        </a>
+        <a
+          href="#"
+          className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+        >
+          <Image
+            width={25}
+            height={25}
+            src="/icons/products.svg"
+            alt="who"
+            className="text-white"
+          />
+          المنتجات
+        </a>
+        <a
+          href="#"
+          className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+        >
+          <Image
+            width={25}
+            height={25}
+            src="/icons/export.svg"
+            alt="who"
+            className="text-white"
+          />
+          الجملة والتصدير
+        </a>
+        <a
+          href="#"
+          className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+        >
+          <Image
+            width={25}
+            height={25}
+            src="/icons/rose-icon.svg"
+            alt="who"
+            className="text-white"
+          />
+          لماذا تستخدم اخشاب روز وود
         </a>
         <a
           href="#"
           className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
-          <span className="text-amber-800">📦</span> المنتجات
+          <Image
+            width={25}
+            height={25}
+            src="/icons/feedEye.svg"
+            alt="who"
+            className="text-white"
+          />
+          التغذية البصرية
         </a>
         <a
           href="#"
           className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
-          <span className="text-amber-800">⚙️</span> آثار الجملة والتصدير
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-        >
-          <span className="text-amber-800">❓</span> لماذا تستخدم أشياب روز وود
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-        >
-          <span className="text-amber-800">🛡️</span> التخذية البحرية
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-        >
-          <span className="text-amber-800">📞</span> تواصل معنا
+          <Image
+            width={25}
+            height={25}
+            src="/icons/contact.svg"
+            alt="who"
+            className="text-white"
+          />
+          تواصل معنا
         </a>
       </nav>
       {/* Bottom section with buttons like in the design */}
@@ -74,30 +116,30 @@ const SideNav = ({ isOpen, onClose }) => (
         </button>
       </div>
       {/* Social media icons */}
-      <div className="flex justify-center gap-4 mt-8">
+      <div className="absolute bottom-5 flex justify-center gap-4 mt-8">
         <a
           href="#"
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
-          <span className="text-sm">in</span>
+          <Linkedin size={16} />
         </a>
         <a
           href="#"
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
-          <span className="text-sm">f</span>
+          <Facebook size={16} />
         </a>
         <a
           href="#"
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
-          <span className="text-sm">X</span>
+          <X size={16} />
         </a>
         <a
           href="#"
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
-          <span className="text-sm">▶</span>
+          <Youtube size={16} />
         </a>
       </div>
     </div>
