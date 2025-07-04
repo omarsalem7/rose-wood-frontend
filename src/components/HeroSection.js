@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className="relative z-10 flex items-center justify-center min-h-[70vh] px-6">
         <div className="text-center max-w-4xl">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-black">
-            طبيعية... لأدوات مطبخ صحية ..
+            جودة طبيعية... لأدوات مطبخ صحية
           </h1>
           <p className="text-lg md:text-xl mb-8 text-black max-w-3xl mx-auto leading-relaxed">
             مرحباً بكم في <span className="font-bold">روز وود</span> حيث نعيد
