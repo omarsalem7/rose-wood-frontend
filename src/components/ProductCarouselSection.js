@@ -173,7 +173,7 @@ const ProductCarouselSection = () => {
 
   return (
     <section className="py-6 px-0 bg-gray-50 font-alexandria">
-      <div className="w-full mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2
@@ -209,7 +209,7 @@ const ProductCarouselSection = () => {
                     )} ${getCardOpacity(index)} mx-2`}
                     onClick={() => openModal(product)}
                   >
-                    <div className="aspect-[4/3] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
+                    <div className="aspect-[7/4] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <img
                         src={product.image}
                         alt={product.title}
@@ -258,7 +258,7 @@ const ProductCarouselSection = () => {
 
       {/* Modal */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-[#000000b5] bg-opacity-70 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="flex">
               {/* Image Section */}
