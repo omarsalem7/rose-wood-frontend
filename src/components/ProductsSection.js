@@ -245,7 +245,7 @@ const ProductsSection = () => {
           </h2>
 
           {/* Pagination and Category Navigation */}
-          <div className="flex justify-between items-center mb-8">
+          <div className="flex flex-wrap justify-between items-center mb-8">
             {/* Category Navigation */}
             <div className="flex gap-8">
               {categories.map((category) => (
