@@ -1,22 +1,28 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
+
 import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
 
 const SideNav = ({ isOpen, onClose }) => (
   <div
-    className={`fixed top-0 right-0 h-full w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out ${
+    className={`fixed top-0 right-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out ${
       isOpen ? "translate-x-0" : "translate-x-full"
     }`}
   >
     <div className="p-6 ">
       {/* Header with logo and close button */}
       <div className="flex justify-between items-center mb-8">
-        <Image
-          src="/assets/rose-h-logo.png"
-          alt="Rosewood Logo"
-          width={200}
-          height={100}
-        />
+        <Link href="/">
+          <Image
+            className="w-auto h-auto"
+            src="/assets/rose-h-logo.png"
+            alt="Rosewood Logo"
+            width={200}
+            height={100}
+            onClick={onClose}
+          />
+        </Link>
         <button
           onClick={onClose}
           className="text-gray-900 p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
@@ -27,9 +33,9 @@ const SideNav = ({ isOpen, onClose }) => (
       </div>
       {/* Navigation menu items with icons like in the design */}
       <nav className="space-y-4">
-        <a
-          href="#"
+        <Link
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+          onClick={onClose}
         >
           <Image
             width={25}
@@ -39,7 +45,7 @@ const SideNav = ({ isOpen, onClose }) => (
             className="text-white"
           />
           من نحن
-        </a>
+        </Link>
         <a
           href="#"
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
