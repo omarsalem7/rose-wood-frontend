@@ -3,7 +3,7 @@ import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-16 px-6 font-alexandria" dir="rtl">
+    <footer className="bg-gray-100 py-16 px-6 font-alexandria">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">

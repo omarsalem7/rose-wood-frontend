@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="py-16 px-6 bg-white font-alexandria">
+    <section className="py-24 px-6 bg-white font-alexandria">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
@@ -15,9 +15,7 @@ export default function AboutSection() {
                   height={30}
                   alt="Rosewood Logo"
                 />
-                <h2 className="text-3xl md:text-4xl font-bold text-black">
-                  من نحن
-                </h2>
+                <h2 className="text-3xl  text-black">من نحن</h2>
               </div>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
@@ -76,7 +74,7 @@ export default function AboutSection() {
 
             {/* Buttons */}
             <div className="flex gap-4">
-              <button className="bg-amber-800 text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+              <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
                 عرض كل المنتجات
               </button>
               <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">

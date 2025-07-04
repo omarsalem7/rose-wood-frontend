@@ -11,7 +11,7 @@ const Header = ({ onMenuClick }) => (
         className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
         aria-label="Toggle menu"
       >
-        <Menu size={30} className="text-gray-800" />
+        <Menu size={35} className="text-[#5F361F]" />
       </button>
       {/* Center - Logo using the provided image */}
       <div className="flex items-center">
@@ -24,11 +24,11 @@ const Header = ({ onMenuClick }) => (
       </div>
       {/* Left side - Contact button and search */}
       <div className="flex items-center gap-4">
-        <button className="bg-amber-800 text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-          تواصل معنا
-        </button>
-        <button className="p-2 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors duration-200">
+        <button className="p-2 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
           <Search size={20} className="text-gray-600" />
+        </button>
+        <button className="bg-[#5F361F] text-white px-8 py-2 rounded-xl text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+          تواصل معنا
         </button>
       </div>
     </div>

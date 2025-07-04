@@ -53,7 +53,6 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
-                  dir="rtl"
                 />
               </div>
 
@@ -66,7 +65,6 @@ const ContactSection = () => {
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
-                  dir="rtl"
                 />
               </div>
 
@@ -79,7 +77,6 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
-                  dir="rtl"
                 />
               </div>
 
@@ -92,7 +89,6 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   rows={4}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300 resize-none"
-                  dir="rtl"
                 />
               </div>
 

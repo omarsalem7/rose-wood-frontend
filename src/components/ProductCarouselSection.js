@@ -14,7 +14,6 @@ const ProductCarouselSection = () => {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
 
@@ -172,14 +171,14 @@ const ProductCarouselSection = () => {
   };
 
   return (
-    <section className="py-6 px-0 bg-gray-50 font-alexandria">
+    <section
+      style={{ direction: "ltr" }}
+      className="py-16 px-0 bg-gray-50 font-alexandria"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2
-            className="text-4xl font-bold text-gray-800 mb-4"
-            style={{ direction: "rtl" }}
-          >
+          <h2 className="text-3xl font-semibold text-gray-800 mb-4">
             التغذية البصرية
           </h2>
         </div>
@@ -187,8 +186,6 @@ const ProductCarouselSection = () => {
         {/* Product Carousel */}
         <div
           className="relative overflow-hidden"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
           onMouseMove={handleDragMove}
           onMouseUp={handleDragEnd}
         >
@@ -209,7 +206,7 @@ const ProductCarouselSection = () => {
                     )} ${getCardOpacity(index)} mx-2`}
                     onClick={() => openModal(product)}
                   >
-                    <div className="aspect-[7/4] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
+                    <div className="aspect-[7/5] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <img
                         src={product.image}
                         alt={product.title}
@@ -225,18 +222,6 @@ const ProductCarouselSection = () => {
               ))}
             </CarouselContent>
           </Carousel>
-
-          {/* Draggable Circle */}
-          {isHovering && (
-            <div
-              className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-white bg-opacity-90 rounded-full flex items-center justify-center shadow-lg cursor-grab transition-all duration-300 ${
-                isDragging ? "cursor-grabbing scale-110" : "hover:scale-105"
-              }`}
-              onMouseDown={handleDragStart}
-            >
-              <Move size={24} className="text-gray-600" />
-            </div>
-          )}
 
           {/* Progress indicator */}
           <div className="flex justify-center mt-6">
@@ -290,10 +275,7 @@ const ProductCarouselSection = () => {
               </div>
 
               {/* Content Section */}
-              <div
-                className="w-80 p-6 flex flex-col"
-                style={{ direction: "rtl" }}
-              >
+              <div className="w-80 p-6 flex flex-col">
                 {/* Close button */}
                 <button
                   onClick={closeModal}

@@ -66,7 +66,7 @@ const SideNav = ({ isOpen, onClose }) => (
       </nav>
       {/* Bottom section with buttons like in the design */}
       <div className="mt-12 space-y-4">
-        <button className="w-full bg-amber-800 text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+        <button className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
           تواصل معنا
         </button>
         <button className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
@@ -77,25 +77,25 @@ const SideNav = ({ isOpen, onClose }) => (
       <div className="flex justify-center gap-4 mt-8">
         <a
           href="#"
-          className="w-10 h-10 bg-amber-800 rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+          className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <span className="text-sm">in</span>
         </a>
         <a
           href="#"
-          className="w-10 h-10 bg-amber-800 rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+          className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <span className="text-sm">f</span>
         </a>
         <a
           href="#"
-          className="w-10 h-10 bg-amber-800 rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+          className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <span className="text-sm">X</span>
         </a>
         <a
           href="#"
-          className="w-10 h-10 bg-amber-800 rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+          className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <span className="text-sm">▶</span>
         </a>

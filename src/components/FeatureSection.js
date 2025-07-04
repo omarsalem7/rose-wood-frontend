@@ -39,7 +39,7 @@ const FeaturesSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h3 className="text-2xl  font-semibold text-black mb-4">
+          <h3 className="text-3xl font-semibold text-black mb-4">
             مزايا روز وود التنافسية
           </h3>
         </div>

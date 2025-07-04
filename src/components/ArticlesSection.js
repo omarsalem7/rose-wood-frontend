@@ -133,10 +133,7 @@ const ArticlesSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">
-          <h2
-            className="text-4xl md:text-5xl font-bold text-white mb-4 font-alexandria"
-            style={{ direction: "rtl" }}
-          >
+          <h2 className="text-3xl font-semibold text-white mb-4 font-alexandria">
             المقالات
           </h2>
         </div>
@@ -159,27 +156,18 @@ const ArticlesSection = () => {
 
               <CardContent className="p-6">
                 {/* Article Title */}
-                <h3
-                  className="text-xl font-bold text-gray-800 mb-4 font-alexandria leading-relaxed"
-                  style={{ direction: "rtl" }}
-                >
+                <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed">
                   {article.title}
                 </h3>
 
                 {/* Article Excerpt */}
-                <p
-                  className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria"
-                  style={{ direction: "rtl" }}
-                >
+                <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria">
                   {article.excerpt}
                 </p>
 
                 {/* Article Meta */}
                 <div className="flex items-center justify-between text-gray-500 text-sm">
-                  <div
-                    className="flex items-center space-x-4"
-                    style={{ direction: "rtl" }}
-                  >
+                  <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
                       <Calendar size={16} />
                       <span className="font-alexandria">{article.date}</span>
@@ -217,7 +205,7 @@ const ArticlesSection = () => {
                   : "opacity-50 cursor-not-allowed"
               }`}
             >
-              <ArrowLeft size={20} className="text-white" />
+              <ArrowRight size={20} className="text-white" />
             </button>
             <button
               onClick={goToNext}
@@ -228,7 +216,7 @@ const ArticlesSection = () => {
                   : "opacity-50 cursor-not-allowed"
               }`}
             >
-              <ArrowRight size={20} className="text-white" />
+              <ArrowLeft size={20} className="text-white" />
             </button>
           </div>
         </div>

@@ -37,18 +37,12 @@ const VideoSection = () => {
       {/* Content Overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-6">
         {/* Title */}
-        <h2
-          className="text-4xl md:text-5xl font-bold text-center mb-6 font-alexandria"
-          style={{ direction: "rtl" }}
-        >
+        <h2 className="text-3xl font-semibold text-center mb-6 font-alexandria">
           لماذا الأخشاب
         </h2>
 
         {/* Subtitle */}
-        <p
-          className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed font-alexandria"
-          style={{ direction: "rtl" }}
-        >
+        <p className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed font-alexandria">
           نعرض لكم طريقة صناعه الاخشاب وأهمية استخدام المنتجات الخشبية في المطبخ
         </p>
 
@@ -67,10 +61,7 @@ const VideoSection = () => {
         </div>
 
         {/* Duration */}
-        <div
-          className="flex items-center space-x-2 text-sm font-alexandria"
-          style={{ direction: "rtl" }}
-        >
+        <div className="flex items-center space-x-2 text-sm font-alexandria">
           <span className="w-2 h-2 bg-white rounded-full opacity-60"></span>
           <span className="opacity-80">
             {duration > 0 ? formatDuration(duration) : "3 دقائق"}

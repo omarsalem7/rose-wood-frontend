@@ -8,6 +8,8 @@ import ArticlesSection from "@/components/ArticlesSection";
 import { Contact } from "lucide-react";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import KitchenHeroSection from "@/components/KitchenHeroSection";
+import BulkOrderSection from "@/components/BulkOrderSection";
 
 export const metadata = {
   title: "Rosewood Kitchenware",
@@ -19,11 +21,13 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <FeatureSection />
-      <WhyChooseRosewoodSection />
+      <BulkOrderSection />
       <ProductCarouselSection />
       <VideoSection />
+      <WhyChooseRosewoodSection />
       <ArticlesSection />
       <ContactSection />
+      <KitchenHeroSection />
       <Footer />
     </div>
   );

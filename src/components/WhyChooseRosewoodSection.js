@@ -83,7 +83,10 @@ const WhyChooseRosewoodSection = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-rose-50 font-alexandria">
+    <section className="py-20 px-6 max-sm:hidden">
+      <h2 className="text-center pb-16 font-semibold text-3xl">
+        لماذا تختار روز وود
+      </h2>
       <div className="max-w-7xl mx-auto">
         {/* Central Circle with Features */}
         <div className="relative flex items-center justify-center min-h-[700px]">
@@ -194,13 +197,11 @@ const WhyChooseRosewoodSection = () => {
                   left: `calc(50% + ${featurePos.x + textPos.x}px)`,
                   top: `calc(50% + ${featurePos.y + textPos.y}px)`,
                   transform: "translate(-50%, -50%)",
-                  direction: "rtl",
                 }}
               >
                 <div
                   className={`
-                  bg-rose-100 
-                  border-2 border-rose-200 
+                  bg-[#FFF6F4] 
                   rounded-lg 
                   px-4 py-3 
                   shadow-md
