@@ -18,7 +18,7 @@ const HeroSection = () => {
           <p className="text-lg md:text-xl mb-8 text-black max-w-3xl mx-auto leading-relaxed">
             مرحباً بكم في <span className="font-bold">روز وود</span> حيث نعيد
             تعريف أدوات المطبخ من خلال منتجات خشبية طبيعية وصحية، تجمع بين
-            الجودة العالية والتصميم العصري.,,
+            الجودة العالية والتصميم العصر
           </p>
         </div>
       </div>
