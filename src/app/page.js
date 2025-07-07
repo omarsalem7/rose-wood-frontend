@@ -27,7 +27,7 @@ export default function Home() {
       <WhyChooseRosewoodSection />
       <ArticlesSection />
       <ContactSection />
-      <KitchenHeroSection />
+      {/* <KitchenHeroSection /> */}
     </div>
   );
 }
