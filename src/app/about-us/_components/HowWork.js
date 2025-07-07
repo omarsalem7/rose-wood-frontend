@@ -65,8 +65,18 @@ const HowWork = () => {
           </div>
         </div>
         <div className="flex gap-8">
-          <Image src="/assets/spoons.png" width={300} height={150} />
-          <Image src="/assets/kitchen.png" width={500} height={150} />
+          <Image
+            src="/assets/spoons.png"
+            width={300}
+            height={150}
+            alt="spoons"
+          />
+          <Image
+            src="/assets/kitchen.png"
+            width={500}
+            height={150}
+            alt="kitchen"
+          />
         </div>
       </div>
     </section>
