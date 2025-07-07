@@ -6,7 +6,6 @@ import ProductCarouselSection from "@/components/ProductCarouselSection";
 import VideoSection from "@/components/VideoSection";
 import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
-import KitchenHeroSection from "@/components/KitchenHeroSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
 
