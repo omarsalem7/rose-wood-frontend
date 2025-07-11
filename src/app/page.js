@@ -9,22 +9,22 @@ import ContactSection from "@/components/ContactSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
 import { fetchAllHomePageData } from "@/lib/cms/api";
+import { fetchCategories, fetchProductsBHomePage } from "@/lib/collections";
 import { generateMetadata } from "@/lib/metadata";
 
 export { generateMetadata };
 
 export default async function Home() {
   const { hero, about, features } = await fetchAllHomePageData();
-  // const heroy = await fetchHeroData();
-  // const { title, description, images, list, buttons } =
-  //   await fetchAboutSection();
-  // const featureSection = await fetchFeatureSection();
+  const products = await fetchProductsBHomePage();
+  const categories = await fetchCategories();
+  console.log(products);
   return (
     <div>
       <HeroSection {...hero} />
       <AboutSection {...about} />
       <FeatureSection {...features} />
-      <ProductsSection />
+      <ProductsSection products={products} myCategories={categories} />
       <BulkOrderSection />
       <ProductCarouselSection />
       <VideoSection />
