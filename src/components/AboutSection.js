@@ -5,7 +5,7 @@ export default function AboutSection({
   description,
   images,
   buttons,
-  features,
+  list,
 }) {
   return (
     <section className="py-8 md:py-24 px-6 bg-white">
@@ -31,7 +31,7 @@ export default function AboutSection({
 
             {/* Features List */}
             <div className="space-y-4 mb-8">
-              {features.map((feature, idx) => (
+              {list.map((feature, idx) => (
                 <div key={idx} className="flex items-center gap-3">
                   <div className="bg-[#E5FFE9] rounded-full p-1">
                     <Image
@@ -42,7 +42,7 @@ export default function AboutSection({
                       className="text-white"
                     />
                   </div>
-                  <span className="text-gray-700">{feature.item}</span>
+                  <span className="text-gray-700">{feature.text}</span>
                 </div>
               ))}
             </div>
@@ -50,10 +50,10 @@ export default function AboutSection({
             {/* Buttons */}
             <div className="flex gap-4">
               <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-                {buttons[0].title}
+                {buttons[0].text}
               </button>
               <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-                {buttons[1].title}
+                {buttons[1].text}
               </button>
             </div>
           </div>

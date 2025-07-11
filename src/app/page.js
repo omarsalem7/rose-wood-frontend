@@ -8,39 +8,22 @@ import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
-import { fetchHeroData, fetchWhyUs } from "@/lib/api";
+import { fetchAllHomePageData } from "@/lib/api";
+import { generateMetadata } from "@/lib/metadata";
 
-export async function generateMetadata() {
-  const hero = await fetchHeroData();
-  return {
-    title: hero.title || "Rosewood Kitchenware",
-    description: hero.subTitle,
-    openGraph: {
-      title: hero.title,
-      description: hero.subTitle,
-      images: hero.imageUrl ? [hero.imageUrl] : [],
-    },
-  };
-}
+export { generateMetadata };
 
 export default async function Home() {
-  const hero = await fetchHeroData();
-  const whyUs = await fetchWhyUs();
+  const { hero, about, features } = await fetchAllHomePageData();
+  // const heroy = await fetchHeroData();
+  // const { title, description, images, list, buttons } =
+  //   await fetchAboutSection();
+  // const featureSection = await fetchFeatureSection();
   return (
     <div>
-      <HeroSection
-        title={hero.title}
-        subTitle={hero.subTitle}
-        imageUrl={hero.imageUrl}
-      />
-      <AboutSection
-        title={whyUs.title}
-        description={whyUs.description}
-        images={whyUs.images}
-        buttons={whyUs.buttons}
-        features={whyUs.list}
-      />
-      <FeatureSection />
+      <HeroSection {...hero} />
+      <AboutSection {...about} />
+      <FeatureSection {...features} />
       <ProductsSection />
       <BulkOrderSection />
       <ProductCarouselSection />
