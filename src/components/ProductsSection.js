@@ -236,23 +236,23 @@ const ProductsSection = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-gray-50 font-alexandria" dir="rtl">
+    <section className="py-16 px-6 font-alexandria">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">
+          <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
             منتجات روز وود
           </h2>
 
           {/* Pagination and Category Navigation */}
           <div className="flex flex-wrap justify-between items-center mb-8">
             {/* Category Navigation */}
-            <div className="flex gap-8">
+            <div className="flex gap-4 md:gap-8">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
-                  className={`text-lg font-medium transition-colors ${
+                  className={`text-sm md:text-lg font-medium transition-colors ${
                     activeCategory === category
                       ? "text-amber-600 border-b-2 border-amber-600"
                       : "text-gray-600 hover:text-amber-600"
@@ -263,7 +263,7 @@ const ProductsSection = () => {
               ))}
             </div>
             {/*  Pagination Controls */}
-            <div className="flex gap-4">
+            <div className="hidden md:flex gap-4">
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
@@ -284,7 +284,7 @@ const ProductsSection = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-12">
           {currentProducts.map((product) => {
             const selectedColor = selectedColors[product.id] || "medium";
             const currentImage = product.images[selectedColor];
@@ -292,10 +292,10 @@ const ProductsSection = () => {
             return (
               <div
                 key={product.id}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow"
               >
                 {/* Product Image */}
-                <div className="w-full h-64 mb-6  rounded-xl overflow-hidden">
+                <div className="w-full h-24 md:h-64 mb-6  rounded-xl overflow-hidden">
                   <Image
                     width={200}
                     height={200}
@@ -307,7 +307,7 @@ const ProductsSection = () => {
 
                 {/* Product Info */}
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  <h3 className="font-semibold md:text-xl md:font-bold text-gray-800 mb-2">
                     {product.name}
                   </h3>
                   <p className="text-gray-600 text-sm mb-1">

@@ -179,7 +179,7 @@ const ProductCarouselSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+          <h2 className="text-2xl md:text-3xl md:font-semibold text-gray-800 mb-4">
             التغذية البصرية
           </h2>
         </div>
@@ -199,7 +199,7 @@ const ProductCarouselSection = () => {
               {products.map((product, index) => (
                 <CarouselItem
                   key={product.id}
-                  className="basis-1/2 md:basis-2/3 lg:basis-3/5 flex-shrink-0"
+                  className="basis-[80%] md:basis-2/3 lg:basis-3/5 flex-shrink-0"
                 >
                   <div
                     className={`relative group cursor-pointer transition-all duration-700 ease-in-out transform ${getCardScale(

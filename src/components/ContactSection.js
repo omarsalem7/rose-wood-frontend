@@ -26,7 +26,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50" dir="rtl">
+    <section className="py-8 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Right Side - Title */}

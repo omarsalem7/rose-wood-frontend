@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutSection() {
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-8 md:py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
@@ -15,7 +15,7 @@ export default function AboutSection() {
                   height={30}
                   alt="Rosewood Logo"
                 />
-                <h2 className="text-3xl  text-black">من نحن</h2>
+                <h2 className="text-2xl md:text-3xl  text-black">من نحن</h2>
               </div>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
