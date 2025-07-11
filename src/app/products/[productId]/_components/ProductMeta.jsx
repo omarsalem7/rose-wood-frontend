@@ -70,7 +70,7 @@ const ProductMeta = () => {
                       height={16}
                       src="/icons/check.svg"
                       alt="check icon"
-                      className="text-white"
+                      className="text-white "
                     />
                   </div>
                   <span className="text-gray-700">
