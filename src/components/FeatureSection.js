@@ -1,40 +1,6 @@
 import Image from "next/image";
 
 const FeaturesSection = ({ cards, title }) => {
-  console.log(cards);
-  const features = [
-    {
-      icon: "/icons/feature-icon.svg",
-      title: "أسعار جملة منافسة",
-      bgColor: "bg-amber-50",
-    },
-    {
-      icon: "/icons/feature-icon.svg",
-      title: "تشطيب صحي وآمن للطعام",
-      bgColor: "bg-amber-50",
-    },
-    {
-      icon: "/icons/feature-icon.svg",
-      title: "خشب طبيعي مجفف",
-      bgColor: "bg-amber-50",
-    },
-    {
-      icon: "/icons/feature-icon.svg",
-      title: "استجابة سريعة خلال 24 ساعة",
-      bgColor: "bg-amber-50",
-    },
-    {
-      icon: "/icons/feature-icon.svg",
-      title: "تصنيع وتغليف حسب الطلب",
-      bgColor: "bg-amber-50",
-    },
-    {
-      icon: "/icons/feature-icon.svg",
-      title: "تصدير دولي بمعايير عالمية",
-      bgColor: "bg-amber-50",
-    },
-  ];
-
   return (
     <section className="py-16 px-6 bg-white font-alexandria">
       <div className="max-w-7xl mx-auto">

@@ -1,4 +1,4 @@
-import { getFullImageUrl } from "./image";
+import { getFullImageUrl } from "../image";
 
 // ----------------------
 

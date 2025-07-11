@@ -1,4 +1,4 @@
-import { fetchAllHomePageData } from "./api";
+import { fetchAllHomePageData } from "./cms/api";
 
 export async function generateMetadata() {
   try {
