@@ -15,17 +15,17 @@ import { generateMetadata } from "@/lib/metadata";
 export { generateMetadata };
 
 export default async function Home() {
-  const { hero, about, features } = await fetchAllHomePageData();
+  const { hero, about, features, bulkOrder } = await fetchAllHomePageData();
   const products = await fetchProductsBHomePage();
   const categories = await fetchCategories();
-  console.log(products);
+  console.log(bulkOrder);
   return (
     <div>
       <HeroSection {...hero} />
       <AboutSection {...about} />
       <FeatureSection {...features} />
       <ProductsSection products={products} myCategories={categories} />
-      <BulkOrderSection />
+      <BulkOrderSection {...bulkOrder} />
       <ProductCarouselSection />
       <VideoSection />
       <WhyChooseRosewoodSection />

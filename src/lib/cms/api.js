@@ -34,7 +34,7 @@ async function apiCall(endpoint, options = {}) {
 export async function fetchAllHomePageData() {
   try {
     const json = await apiCall(
-      "/home-page?populate[hero][populate]=*&populate[aboutSection][populate]=*&populate[featureSection][populate][cards][populate]=*"
+      "/home-page?populate[hero][populate]=*&populate[aboutSection][populate]=*&populate[bulkOrder][populate]=*&populate[featureSection][populate][cards][populate]=*"
     );
 
     if (!json.data) {
@@ -47,6 +47,7 @@ export async function fetchAllHomePageData() {
       hero: transformHeroData(data.hero),
       about: transformAboutData(data.aboutSection),
       features: transformFeatureData(data.featureSection),
+      bulkOrder: data.bulkOrder,
     };
   } catch (error) {
     console.error("Error fetching all home page data:", error);
