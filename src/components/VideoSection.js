@@ -37,7 +37,7 @@ const VideoSection = () => {
       {/* Content Overlay */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-6">
         {/* Title */}
-        <h2 className="text-2xl md:text-3xl font-medium md:font-semibold text-center mb-6 font-alexandria">
+        <h2 className="text-2xl md:text-3xl md:font-semibold text-center mb-6 font-alexandria">
           لـماذا الاخــشاب
         </h2>
 

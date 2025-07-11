@@ -133,7 +133,7 @@ const ArticlesSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-semibold text-white mb-4 font-alexandria">
+          <h2 className="text-2xl md:text-3xl md:font-semibold text-white mb-4 font-alexandria">
             المقالات
           </h2>
         </div>
