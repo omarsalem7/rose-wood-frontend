@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const KitchenHeroSection = () => {
   return (
@@ -17,16 +18,18 @@ const KitchenHeroSection = () => {
         {/* Logo */}
         <div className="mb-8">
           <div className="mb-4">
-            <img
+            <Image
               src="/lovable-uploads/2c379c90-3310-45a8-966a-20888683a80a.png"
               alt="Rosewood Kitchen Collections Logo"
-              className="mx-auto h-20 w-auto"
+              className="mx-auto"
+              width={200}
+              height={100}
             />
           </div>
         </div>
 
         {/* Main Arabic Text */}
-        <h1 className="text-4xl font-semibold mb-12 leading-tight">
+        <h1 className="text-2xl md:text-4xl md:font-semibold mb-12 leading-9 md:leading-tight">
           اشترِ طبيك الدن معنا واطلب كميتك
         </h1>
 
