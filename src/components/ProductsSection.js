@@ -114,13 +114,26 @@ const ProductsSection = ({ myCategories, products }) => {
               >
                 {/* Product Image */}
                 <div className="w-full h-24 md:h-64 mb-6  rounded-xl overflow-hidden">
-                  <Image
-                    width={200}
-                    height={200}
-                    src={currentImage}
-                    alt={product.name}
-                    className="w-full h-full object-contain"
-                  />
+                  {currentImage ? (
+                    typeof currentImage === "string" &&
+                    currentImage.trim() !== "" ? (
+                      <Image
+                        width={200}
+                        height={200}
+                        src={currentImage}
+                        alt={product.name}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        لا توجد صورة
+                      </div>
+                    )
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      لا توجد صورة
+                    </div>
+                  )}
                 </div>
 
                 {/* Product Info */}
