@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const HeroSection = ({ title, subTitle, imageUrl }) => {
   return (
     <div className="relative h-[calc(100vh-102px)] bg-gray-100 font-alexandria">
@@ -18,13 +16,7 @@ const HeroSection = ({ title, subTitle, imageUrl }) => {
             {title || "جودة طبيعية... لأدوات مطبخ صحية"}
           </h1>
           <p className="text-lg md:text-2xl mb-8 text-black max-w-3xl mx-auto leading-relaxed">
-            {subTitle || (
-              <>
-                مرحباً بكم في <span className="font-bold">روز وود</span> حيث
-                نعيد تعريف أدوات المطبخ من خلال منتجات خشبية طبيعية وصحية، تجمع
-                بين الجودة العالية والتصميم العصر
-              </>
-            )}
+            {subTitle}
           </p>
         </div>
       </div>

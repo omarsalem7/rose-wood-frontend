@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       dir="rtl"
       className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning>
         <SharedLayout>{children}</SharedLayout>
         <SpeedInsights debug={process.env.NODE_ENV === "development"} />
       </body>

@@ -222,7 +222,7 @@ const Footer = () => {
         {/* Large Brand Text Background */}
         <div className="relative lg:h-[150px]">
           <div className="absolute h-fit inset-0 flex items-center justify-center opacity-5">
-            <h2 className="text-4xl md:text-9xl lg:text-[12rem] font-bold text-[oklch(0.56 0 0)] whitespace-nowrap">
+            <h2 className="text-4xl md:text-7xl lg:text-[9rem] xl:text-[12rem] font-bold text-[oklch(0.56 0 0)] whitespace-nowrap">
               ROSEWOOD
             </h2>
           </div>

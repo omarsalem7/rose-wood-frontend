@@ -8,7 +8,7 @@ import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
-import { fetchHeroData } from "@/lib/api";
+import { fetchHeroData, fetchWhyUs } from "@/lib/api";
 
 export async function generateMetadata() {
   const hero = await fetchHeroData();
@@ -25,6 +25,7 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const hero = await fetchHeroData();
+  const whyUs = await fetchWhyUs();
   return (
     <div>
       <HeroSection
@@ -32,7 +33,13 @@ export default async function Home() {
         subTitle={hero.subTitle}
         imageUrl={hero.imageUrl}
       />
-      <AboutSection />
+      <AboutSection
+        title={whyUs.title}
+        description={whyUs.description}
+        images={whyUs.images}
+        buttons={whyUs.buttons}
+        features={whyUs.list}
+      />
       <FeatureSection />
       <ProductsSection />
       <BulkOrderSection />

@@ -1,6 +1,12 @@
 import Image from "next/image";
 
-export default function AboutSection() {
+export default function AboutSection({
+  title,
+  description,
+  images,
+  buttons,
+  features,
+}) {
   return (
     <section className="py-8 md:py-24 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -15,69 +21,39 @@ export default function AboutSection() {
                   height={30}
                   alt="Rosewood Logo"
                 />
-                <h2 className="text-2xl md:text-3xl  text-black">من نحن</h2>
+                <h2 className="text-2xl md:text-3xl  text-black">{title}</h2>
               </div>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                روز وود هو صانع مصري متخصص في إنتاج أدوات المطبخ الخشبية عالية
-                الجودة، نستخدم أحدث التقنيات مثل تجفيف الخشب في أفران خاصة
-                وتشطيب طبيعي بزيت وشمع آمن للطعام.
+                {description}
               </p>
             </div>
 
             {/* Features List */}
             <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-3">
-                <div className="bg-[#E5FFE9] rounded-full p-1">
-                  <Image
-                    width={16}
-                    height={16}
-                    src="/icons/check.svg"
-                    alt="check icon"
-                    className="text-white"
-                  />
+              {features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="bg-[#E5FFE9] rounded-full p-1">
+                    <Image
+                      width={16}
+                      height={16}
+                      src="/icons/check.svg"
+                      alt="check icon"
+                      className="text-white"
+                    />
+                  </div>
+                  <span className="text-gray-700">{feature.item}</span>
                 </div>
-                <span className="text-gray-700">أكثر من 120 منتج متنوع</span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-[#E5FFE9] rounded-full p-1">
-                  <Image
-                    width={16}
-                    height={16}
-                    src="/icons/check.svg"
-                    alt="check icon"
-                    className="text-white"
-                  />
-                </div>
-                <span className="text-gray-700">
-                  تصنيع بكميات كبيرة للتجار والمطاعم
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="bg-[#E5FFE9] rounded-full p-1">
-                  <Image
-                    width={16}
-                    height={16}
-                    src="/icons/check.svg"
-                    alt="check icon"
-                    className="text-white"
-                  />
-                </div>
-                <span className="text-gray-700">
-                  تخصيص المقاسات، الألوان، النقائش والشعارات حسب الطلب
-                </span>
-              </div>
+              ))}
             </div>
 
             {/* Buttons */}
             <div className="flex gap-4">
               <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-                عرض كل المنتجات
+                {buttons[0].title}
               </button>
               <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-                اطلب عينة
+                {buttons[1].title}
               </button>
             </div>
           </div>
@@ -90,7 +66,8 @@ export default function AboutSection() {
                   src="/assets/rose-v-logo.png"
                   alt="Rosewood Logo"
                   className="px-2 py-5 md:px-6 md:py-9"
-                  fill
+                  width={150}
+                  height={150}
                 />
               </div>
             </div>
@@ -98,8 +75,8 @@ export default function AboutSection() {
             {/* Top row */}
             <div className="space-y-4 flex flex-col h-full">
               <Image
-                src="/assets/about1.png"
-                width={600}
+                src={images[0].img}
+                width={400}
                 height={600}
                 alt="Wooden cutting boards and kitchen utensils"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
@@ -107,14 +84,14 @@ export default function AboutSection() {
             </div>
             <div className="space-y-4 flex flex-col h-full">
               <Image
-                src="/assets/about2.png"
+                src={images[1].img}
                 width={600}
                 height={600}
                 alt="Wooden bowls and kitchen items"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
               />
               <Image
-                src="/assets/about3.png"
+                src={images[2].img}
                 width={600}
                 height={600}
                 alt="Wooden bowls and utensils set"
