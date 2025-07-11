@@ -3,10 +3,10 @@ import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 px-6">
+    <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
           {/* روز وود Section */}
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
