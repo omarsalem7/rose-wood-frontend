@@ -48,6 +48,7 @@ export async function fetchAllHomePageData() {
       about: transformAboutData(data.aboutSection),
       features: transformFeatureData(data.featureSection),
       bulkOrder: data.bulkOrder,
+      title: data.ProductCarouselSectionTitle,
     };
   } catch (error) {
     console.error("Error fetching all home page data:", error);
@@ -71,6 +72,7 @@ export async function fetchAllHomePageData() {
         title: "Features",
         cards: [],
       },
+      title: "الـتـغذيـة البـصريــــة",
     };
   }
 }

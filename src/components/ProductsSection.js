@@ -144,9 +144,7 @@ const ProductsSection = ({ myCategories, products }) => {
                   <p className="text-gray-600 text-sm mb-1">
                     {product.description}
                   </p>
-                  <p className="text-gray-500 text-xs">
-                    {product.subDescription}
-                  </p>
+                  <p className="text-gray-500 text-xs">{product.features}</p>
                 </div>
 
                 {/* Color Selection */}

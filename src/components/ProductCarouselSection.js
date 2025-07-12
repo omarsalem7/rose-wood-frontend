@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel.js";
 
-const ProductCarouselSection = () => {
+const ProductCarouselSection = ({ title, products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState();
@@ -17,81 +17,7 @@ const ProductCarouselSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
-
-  const products = [
-    {
-      id: 1,
-      title: "طبق خشبي",
-      description: "متوفر تيكات تبدأ من 100 قطعة",
-      features: "متاح تصنيع حسب المقاس / اللون / التشطيب",
-      image: "/lovable-uploads/cdead82f-785e-45b4-9366-a2dc6818c380.png",
-      gallery: [
-        "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-        "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-        "/lovable-uploads/e432c118-112a-46c1-a96b-9415ab4c10a0.png",
-      ],
-    },
-    {
-      id: 2,
-      title: "أدوات المطبخ الخشبية",
-      description: "مجموعة متكاملة من أدوات المطبخ",
-      features: "طبيعية 100% وآمنة على الطعام",
-      image: "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      gallery: [
-        "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-        "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-        "/lovable-uploads/e432c118-112a-46c1-a96b-9415ab4c10a0.png",
-      ],
-    },
-    {
-      id: 3,
-      title: "لوح التقطيع",
-      description: "لوح تقطيع عالي الجودة",
-      features: "مقاوم للبكتيريا وسهل التنظيف",
-      image: "/lovable-uploads/e432c118-112a-46c1-a96b-9415ab4c10a0.png",
-      gallery: [
-        "/lovable-uploads/e432c118-112a-46c1-a96b-9415ab4c10a0.png",
-        "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-        "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      ],
-    },
-    {
-      id: 4,
-      title: "صندوق تخزين خشبي",
-      description: "صندوق أنيق للتخزين والتنظيم",
-      features: "مصنوع من خشب طبيعي عالي الجودة",
-      image: "/assets/product1.png",
-      gallery: [
-        "/assets/product1.png",
-        "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-        "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      ],
-    },
-    {
-      id: 5,
-      title: "ملاعق خشبية مجموعة",
-      description: "مجموعة ملاعق متنوعة الأحجام",
-      features: "مناسبة للطبخ والتقديم",
-      image: "/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png",
-      gallery: [
-        "/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png",
-        "/lovable-uploads/e432c118-112a-46c1-a96b-9415ab4c10a0.png",
-        "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      ],
-    },
-    {
-      id: 6,
-      title: "كوب خشبي",
-      description: "كوب طبيعي للمشروبات الساخنة",
-      features: "عازل حراري ومقاوم للكسر",
-      image: "/lovable-uploads/9d836571-687a-4ae1-8ef1-7473e1c9ccae.png",
-      gallery: [
-        "/lovable-uploads/9d836571-687a-4ae1-8ef1-7473e1c9ccae.png",
-        "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-        "/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png",
-      ],
-    },
-  ];
+  console.log("asd", products);
 
   useEffect(() => {
     if (!api) {
@@ -114,22 +40,6 @@ const ProductCarouselSection = () => {
 
   const closeModal = () => {
     setSelectedProduct(null);
-  };
-
-  const nextImage = () => {
-    if (selectedProduct) {
-      setCurrentSlide((prev) => (prev + 1) % selectedProduct.gallery.length);
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedProduct) {
-      setCurrentSlide(
-        (prev) =>
-          (prev - 1 + selectedProduct.gallery.length) %
-          selectedProduct.gallery.length
-      );
-    }
   };
 
   const getCardScale = (index) => {
@@ -180,7 +90,7 @@ const ProductCarouselSection = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl md:font-semibold text-gray-800 mb-4">
-            التغذية البصرية
+            {title}
           </h2>
         </div>
 
@@ -198,7 +108,7 @@ const ProductCarouselSection = () => {
             <CarouselContent className="flex">
               {products.map((product, index) => (
                 <CarouselItem
-                  key={product.id}
+                  key={product?.id}
                   className="basis-[80%] md:basis-2/3 lg:basis-3/5 flex-shrink-0"
                 >
                   <div
@@ -210,7 +120,7 @@ const ProductCarouselSection = () => {
                     <div className="aspect-[7/5] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <Image
                         src={product.image}
-                        alt={product.title}
+                        alt={product.name ?? `productImage ${index}`}
                         width={500}
                         height={250}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -266,10 +176,10 @@ const ProductCarouselSection = () => {
             </button>
 
             {/* Product Image */}
-            <div className="flex justify-center ">
+            <div className="flex justify-center">
               <Image
-                src={selectedProduct.gallery[currentSlide]}
-                alt={selectedProduct.title}
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
                 width={300}
                 height={300}
               />
@@ -277,7 +187,7 @@ const ProductCarouselSection = () => {
 
             {/* Product Title */}
             <h3 className="text-2xl font-bold text-gray-800 mb-2 mt-16">
-              {selectedProduct.title}
+              {selectedProduct.name}
             </h3>
 
             {/* Description */}
