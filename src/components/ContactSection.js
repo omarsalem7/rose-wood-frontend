@@ -49,7 +49,7 @@ const ContactSection = () => {
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="محمد مصطفى علي"
+                  placeholder="الإسم ..."
                   value={formData.name}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
@@ -61,7 +61,7 @@ const ContactSection = () => {
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder="رقم الهاتف..."
+                  placeholder="... رقم الهاتف"
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"

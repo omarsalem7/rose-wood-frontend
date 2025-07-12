@@ -5,7 +5,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
-
+function formatArabicDate(dateString) {
+  return new Date(dateString).toLocaleDateString("ar-EG", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
 const ArticlesSection = ({ blogs }) => {
   console.log(blogs);
   const [currentPage, setCurrentPage] = useState(0);
@@ -84,8 +90,8 @@ const ArticlesSection = ({ blogs }) => {
                         {article.title}
                       </h3>
                       {/* Article Excerpt */}
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria">
-                        {JSON.stringify(article)}
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4">
+                        {article.description}
                       </p>
                       {/* Article Meta */}
                       <div className="flex items-center justify-between text-gray-500 text-sm">
@@ -93,7 +99,7 @@ const ArticlesSection = ({ blogs }) => {
                           <div className="flex items-center space-x-1">
                             <Calendar size={16} />
                             <span className="font-alexandria">
-                              {article.date}
+                              {formatArabicDate(article.date)}
                             </span>
                           </div>
                           {/* <div className="flex items-center space-x-1">
@@ -134,7 +140,7 @@ const ArticlesSection = ({ blogs }) => {
                       {article.title}
                     </h3>
                     {/* Article Excerpt */}
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria">
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4">
                       {article.description}
                     </p>
                     {/* Article Meta */}
@@ -143,7 +149,7 @@ const ArticlesSection = ({ blogs }) => {
                         <div className="flex items-center space-x-1">
                           <Calendar size={16} />
                           <span className="font-alexandria">
-                            {article.date}
+                            {formatArabicDate(article.date)}
                           </span>
                         </div>
                         {/* <div className="flex items-center space-x-1">
