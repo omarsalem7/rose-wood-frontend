@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import { Play } from "lucide-react";
 
-const VideoSection = () => {
+const VideoSection = ({ videoData }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const videoRef = useRef(null);
@@ -27,8 +27,8 @@ const VideoSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="/lovable-uploads/4714f7de-a63b-4eaf-a171-bd3524269b0f.png"
-          alt="Woodworking Process"
+          src={videoData.thumbnail}
+          alt="rosewood thumbnail"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#000000b5]"></div>
@@ -38,12 +38,12 @@ const VideoSection = () => {
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-6">
         {/* Title */}
         <h2 className="text-2xl md:text-3xl md:font-semibold text-center mb-6 font-alexandria">
-          لـماذا الاخــشاب
+          {videoData.title}
         </h2>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed font-alexandria">
-          نعرض لكم طريقة صناعه الاخشاب وأهمية استخدام المنتجات الخشبية في المطبخ
+          {videoData.description}
         </p>
 
         {/* Play Button */}
@@ -86,7 +86,7 @@ const VideoSection = () => {
               controls
               autoPlay
               onLoadedMetadata={handleVideoLoad}
-              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              src={videoData.video}
             >
               Your browser does not support the video tag.
             </video>

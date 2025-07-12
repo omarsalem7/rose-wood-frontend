@@ -34,7 +34,7 @@ async function apiCall(endpoint, options = {}) {
 export async function fetchAllHomePageData() {
   try {
     const json = await apiCall(
-      "/home-page?populate[hero][populate]=*&populate[aboutSection][populate]=*&populate[bulkOrder][populate]=*&populate[featureSection][populate][cards][populate]=*"
+      "/home-page?populate[hero][populate]=*&populate[aboutSection][populate]=*&populate[videoSection][populate]=*&populate[bulkOrder][populate]=*&populate[featureSection][populate][cards][populate]=*"
     );
 
     if (!json.data) {
@@ -49,6 +49,7 @@ export async function fetchAllHomePageData() {
       features: transformFeatureData(data.featureSection),
       bulkOrder: data.bulkOrder,
       title: data.ProductCarouselSectionTitle,
+      videoSection: transformVideoData(data.videoSection),
     };
   } catch (error) {
     console.error("Error fetching all home page data:", error);
@@ -73,6 +74,13 @@ export async function fetchAllHomePageData() {
         cards: [],
       },
       title: "الـتـغذيـة البـصريــــة",
+      videoSection: {
+        id: null,
+        title: "Features",
+        description: "Features",
+        video: null,
+        thumbnail: "",
+      },
     };
   }
 }
@@ -91,6 +99,19 @@ function transformHeroData(heroData) {
       : image?.url
       ? getFullImageUrl(image.url)
       : null,
+  };
+}
+
+function transformVideoData(videoData) {
+  if (!videoData) return null;
+
+  const { title, description, video, thumbnail } = videoData;
+
+  return {
+    title: title,
+    description: description,
+    thumbnail: thumbnail?.url ? getFullImageUrl(thumbnail?.url) : null,
+    video: video?.url ? getFullImageUrl(video?.url) : null,
   };
 }
 
