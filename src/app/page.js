@@ -9,7 +9,11 @@ import ContactSection from "@/components/ContactSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
 import { fetchAllHomePageData } from "@/lib/cms/api";
-import { fetchCategories, fetchProductsBHomePage } from "@/lib/collections";
+import {
+  fetchBlogs,
+  fetchCategories,
+  fetchProductsBHomePage,
+} from "@/lib/collections";
 import { generateMetadata } from "@/lib/metadata";
 
 export { generateMetadata };
@@ -26,6 +30,7 @@ export default async function Home() {
   } = await fetchAllHomePageData();
   const products = await fetchProductsBHomePage();
   const categories = await fetchCategories();
+  const blogs = await fetchBlogs();
 
   return (
     <div>
@@ -37,7 +42,7 @@ export default async function Home() {
       <ProductCarouselSection title={title} products={products} />
       <VideoSection videoData={videoSection} />
       <WhyChooseRosewoodSection title={whyChooseTitle} />
-      <ArticlesSection />
+      <ArticlesSection blogs={blogs} />
       <ContactSection />
       {/* <KitchenHeroSection /> */}
     </div>

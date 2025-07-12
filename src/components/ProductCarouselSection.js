@@ -17,7 +17,6 @@ const ProductCarouselSection = ({ title, products }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStartX, setDragStartX] = useState(0);
-  console.log("asd", products);
 
   useEffect(() => {
     if (!api) {

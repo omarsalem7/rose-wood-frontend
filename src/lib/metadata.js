@@ -98,7 +98,7 @@ export async function generateMetadata() {
         "theme-color": "#8B4513", // Brown color for wooden theme
         "color-scheme": "light",
         "format-detection": "telephone=yes",
-        "apple-mobile-web-app-capable": "yes",
+        "mobile-web-app-capable": "yes",
         "apple-mobile-web-app-status-bar-style": "default",
         "application-name": "Rosewood Kitchenware",
         "msapplication-TileColor": "#8B4513",

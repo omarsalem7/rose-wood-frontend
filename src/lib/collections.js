@@ -10,6 +10,20 @@ export async function fetchCategories() {
   return json.data || [];
 }
 
+export async function fetchBlogs() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(
+    `${apiUrl}/blogs?populate=*&pagination[page]=1&pagination[pageSize]=20`,
+    {
+      cache: "no-store",
+    }
+  );
+  if (!res.ok) throw new Error("Failed to fetch categories");
+  const json = await res.json();
+  // Adjust the mapping if the API response structure is different
+  return transformBlog(json.data);
+}
+
 export async function fetchProductsBHomePage() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(
@@ -20,7 +34,6 @@ export async function fetchProductsBHomePage() {
   );
   if (!res.ok) throw new Error("Failed to fetch products");
   const json = await res.json();
-  console.log("json: ", json);
   return (json.data || []).map((product) => {
     // Normalize colors with images
     const colors = Array.isArray(product.colors)
@@ -51,6 +64,18 @@ export async function fetchProductsBHomePage() {
       images,
       image,
       category: product.category?.name,
+    };
+  });
+}
+
+function transformBlog(data) {
+  return data.map((blog) => {
+    return {
+      id: blog.id,
+      title: blog.title,
+      description: blog.description,
+      image: getFullImageUrl(blog.image.url),
+      date: blog.createdAt,
     };
   });
 }

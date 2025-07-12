@@ -1,17 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  Calendar,
-  MessageCircle,
-  Eye,
-  ArrowLeft,
-  ArrowRight,
-} from "lucide-react";
+import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Image from "next/image";
 
-const ArticlesSection = () => {
+const ArticlesSection = ({ blogs }) => {
+  console.log(blogs);
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const articlesPerPage = 3;
@@ -25,105 +21,9 @@ const ArticlesSection = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const allArticles = [
-    {
-      id: 1,
-      image: "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-      title: "عنوان نص الموضوع يكون في هذا المكان",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "5/5/2023",
-      comments: 320,
-      views: 6842,
-    },
-    {
-      id: 2,
-      image: "/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png",
-      title: "مقال عن أحدث التطورات في الصناعة",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "3/5/2023",
-      comments: 185,
-      views: 4521,
-    },
-    {
-      id: 3,
-      image: "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      title: "دليل شامل للمبتدئين في المجال",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "1/5/2023",
-      comments: 92,
-      views: 2847,
-    },
-    {
-      id: 4,
-      image: "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-      title: "نصائح وحيل مفيدة للمحترفين",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "28/4/2023",
-      comments: 256,
-      views: 5673,
-    },
-    {
-      id: 5,
-      image: "/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png",
-      title: "استراتيجيات النجاح في العمل",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "25/4/2023",
-      comments: 147,
-      views: 3924,
-    },
-    {
-      id: 6,
-      image: "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      title: "تحليل السوق والاتجاهات الحديثة",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "20/4/2023",
-      comments: 78,
-      views: 2156,
-    },
-    {
-      id: 7,
-      image: "/lovable-uploads/85367162-16c2-4a95-8acf-765ebb5ac768.png",
-      title: "أفضل الممارسات في الصناعة",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "18/4/2023",
-      comments: 203,
-      views: 4785,
-    },
-    {
-      id: 8,
-      image: "/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png",
-      title: "كيفية تطوير المهارات المهنية",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "15/4/2023",
-      comments: 134,
-      views: 3267,
-    },
-    {
-      id: 9,
-      image: "/lovable-uploads/90e87b17-13ba-485e-8102-615eb33aeebd.png",
-      title: "مستقبل التكنولوجيا والابتكار",
-      excerpt:
-        "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى... إقرأ المزيد",
-      date: "12/4/2023",
-      comments: 89,
-      views: 2943,
-    },
-  ];
-
-  const totalPages = Math.ceil(allArticles.length / articlesPerPage);
+  const totalPages = Math.ceil(blogs.length / articlesPerPage);
   const startIndex = currentPage * articlesPerPage;
-  const currentArticles = allArticles.slice(
-    startIndex,
-    startIndex + articlesPerPage
-  );
+  const currentArticles = blogs.slice(startIndex, startIndex + articlesPerPage);
 
   const goToPrevious = () => {
     if (currentPage > 0) {
@@ -162,7 +62,7 @@ const ArticlesSection = () => {
               centeredSlides={true}
               style={{ paddingLeft: "8vw", paddingRight: "8vw" }}
             >
-              {allArticles.map((article) => (
+              {blogs.map((article) => (
                 <SwiperSlide
                   key={article.id}
                   style={{ width: "84vw", maxWidth: 400 }}
@@ -170,9 +70,11 @@ const ArticlesSection = () => {
                   <Card className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                     {/* Article Image */}
                     <div className="aspect-video overflow-hidden">
-                      <img
+                      <Image
                         src={article.image}
                         alt={article.title}
+                        width={200}
+                        height={200}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
@@ -183,7 +85,7 @@ const ArticlesSection = () => {
                       </h3>
                       {/* Article Excerpt */}
                       <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria">
-                        {article.excerpt}
+                        {JSON.stringify(article)}
                       </p>
                       {/* Article Meta */}
                       <div className="flex items-center justify-between text-gray-500 text-sm">
@@ -194,14 +96,14 @@ const ArticlesSection = () => {
                               {article.date}
                             </span>
                           </div>
-                          <div className="flex items-center space-x-1">
+                          {/* <div className="flex items-center space-x-1">
                             <MessageCircle size={16} />
                             <span>{article.comments}</span>
                           </div>
                           <div className="flex items-center space-x-1">
                             <Eye size={16} />
                             <span>{article.views}</span>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </CardContent>
@@ -218,9 +120,11 @@ const ArticlesSection = () => {
                 >
                   {/* Article Image */}
                   <div className="aspect-video overflow-hidden">
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.title}
+                      width={200}
+                      height={200}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
@@ -231,7 +135,7 @@ const ArticlesSection = () => {
                     </h3>
                     {/* Article Excerpt */}
                     <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria">
-                      {article.excerpt}
+                      {article.description}
                     </p>
                     {/* Article Meta */}
                     <div className="flex items-center justify-between text-gray-500 text-sm">
@@ -242,14 +146,14 @@ const ArticlesSection = () => {
                             {article.date}
                           </span>
                         </div>
-                        <div className="flex items-center space-x-1">
+                        {/* <div className="flex items-center space-x-1">
                           <MessageCircle size={16} />
                           <span>{article.comments}</span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Eye size={16} />
                           <span>{article.views}</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </CardContent>
