@@ -50,6 +50,7 @@ export async function fetchAllHomePageData() {
       bulkOrder: data.bulkOrder,
       title: data.ProductCarouselSectionTitle,
       videoSection: transformVideoData(data.videoSection),
+      whyChooseTitle: data.whyChooseTitle,
     };
   } catch (error) {
     console.error("Error fetching all home page data:", error);
@@ -74,6 +75,7 @@ export async function fetchAllHomePageData() {
         cards: [],
       },
       title: "الـتـغذيـة البـصريــــة",
+      whyChooseTitle: "لماذا تختار روز وود",
       videoSection: {
         id: null,
         title: "Features",

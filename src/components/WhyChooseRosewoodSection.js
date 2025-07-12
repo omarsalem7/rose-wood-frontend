@@ -1,41 +1,41 @@
 import Image from "next/image";
 
-const WhyChooseRosewoodSection = () => {
+const WhyChooseRosewoodSection = ({ title }) => {
   const features = [
     {
       id: 1,
       title: "الالتزام كامل بالجودة في كل قطعة",
-      image: "/assets/rose-v-logo.png",
+      image: "/assets/whyChoose1.png",
       position: "top-right",
     },
     {
       id: 2,
       title: "خامات طبيعية 100% وآمنة على الطعام",
-      image: "/assets/rose-v-logo.png",
+      image: "/assets/whyChoose2.png",
       position: "right",
     },
     {
       id: 3,
       title: "تصميمات عصرية تناسب كل المطابخ",
-      image: "/assets/rose-v-logo.png",
+      image: "/assets/whyChoose3.png",
       position: "bottom-right",
     },
     {
       id: 4,
       title: "تصدير عالمي بجودة فائقة وطبيعية",
-      image: "/assets/rose-v-logo.png",
+      image: "/assets/whyChoose1.png",
       position: "bottom-left",
     },
     {
       id: 5,
       title: "حلول مخصصة للمشاريع والمطاعم الكبيرة",
-      image: "/assets/rose-v-logo.png",
+      image: "/assets/whyChoose2.png",
       position: "left",
     },
     {
       id: 6,
       title: "دعم فني وخدمة عملاء متميزة دائما",
-      image: "/assets/rose-h-logo.png",
+      image: "/assets/whyChoose3.png",
       position: "top-left",
     },
   ];
@@ -66,17 +66,17 @@ const WhyChooseRosewoodSection = () => {
 
     switch (position) {
       case "top-right":
-        return { x: distance, y: -distance, align: "right" };
+        return { x: distance + 100, y: 0, align: "right" };
       case "right":
-        return { x: distance, y: 0, align: "right" };
+        return { x: distance + 45, y: 0, align: "right" };
       case "bottom-right":
-        return { x: distance, y: distance, align: "right" };
+        return { x: distance + 100, y: 0, align: "right" };
       case "bottom-left":
-        return { x: -distance, y: distance, align: "left" };
+        return { x: -distance - 100, y: 0, align: "left" };
       case "left":
-        return { x: -distance, y: 0, align: "left" };
+        return { x: -distance - 45, y: 0, align: "left" };
       case "top-left":
-        return { x: -distance, y: -distance, align: "left" };
+        return { x: -distance - 100, y: 0, align: "left" };
       default:
         return { x: 0, y: 0, align: "center" };
     }
@@ -84,12 +84,10 @@ const WhyChooseRosewoodSection = () => {
 
   return (
     <section className="py-20 px-6 max-sm:hidden">
-      <h2 className="text-center pb-16 font-semibold text-3xl">
-        لماذا تختار روز وود
-      </h2>
+      <h2 className="text-center  font-semibold text-3xl">{title}</h2>
       <div className="max-w-7xl mx-auto">
         {/* Central Circle with Features */}
-        <div className="relative flex items-center justify-center min-h-[700px]">
+        <div className="relative flex items-center justify-center min-h-[650px]">
           <svg
             className="absolute inset-0 w-full h-full"
             viewBox="-400 -350 800 700"
@@ -201,7 +199,7 @@ const WhyChooseRosewoodSection = () => {
               >
                 <div
                   className={`
-                  bg-[#FFF6F4] 
+                  bg-[#fff8f6] 
                   rounded-lg 
                   px-4 py-3 
                   shadow-md
