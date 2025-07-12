@@ -231,7 +231,7 @@ const ProductCarouselSection = () => {
             <div className="flex items-center space-x-2">
               <div className="h-1 bg-gray-300 rounded-full w-32">
                 <div
-                  className="h-1 bg-amber-600 rounded-full transition-all duration-300"
+                  className="h-1 bg-[#5A6E51] rounded-full transition-all duration-300"
                   style={{ width: `${(current / count) * 100}%` }}
                 ></div>
               </div>
@@ -247,95 +247,54 @@ const ProductCarouselSection = () => {
       {/* Modal */}
       {selectedProduct && (
         <div
-          className="fixed inset-0 bg-[#000000b5] bg-opacity-70 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
           onClick={closeModal}
         >
           <div
-            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 pt-16 text-center flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex">
-              {/* Image Section */}
-              <div className="flex-1 relative">
-                <img
-                  src={selectedProduct.gallery[currentSlide]}
-                  alt={selectedProduct.title}
-                  className="w-full h-96 object-cover"
-                />
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              aria-label="إغلاق"
+              className="absolute -inset-8  w-8 h-8 flex items-center justify-center cursor-pointer bg-[#CB974F] hover:bg-[#cb974fa2] text-white rounded-full  transition focus:outline-none focus:ring-2 focus:ring-amber-900"
+            >
+              <X size={20} />
+            </button>
 
-                {/* Navigation arrows */}
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50"
-                >
-                  <ChevronRight size={20} />
-                </button>
-
-                {/* Plus icon */}
-                {/* <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                  <Plus size={16} className="text-gray-600" />
-                </div> */}
-              </div>
-
-              {/* Content Section */}
-              <div className="w-80 p-6 flex flex-col">
-                {/* Close button */}
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 left-4 w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white hover:bg-amber-700"
-                >
-                  <X size={16} />
-                </button>
-
-                {/* Product gallery thumbnails */}
-                <div className="flex gap-2 mb-6 justify-center">
-                  {selectedProduct.gallery.map((img, index) => (
-                    <div
-                      key={index}
-                      className={`w-16 h-16 rounded-lg overflow-hidden cursor-pointer border-2 ${
-                        currentSlide === index
-                          ? "border-amber-600"
-                          : "border-transparent"
-                      }`}
-                      onClick={() => setCurrentSlide(index)}
-                    >
-                      <img
-                        src={img}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Product info */}
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-                    {selectedProduct.title}
-                  </h3>
-
-                  <p className="text-blue-600 text-sm mb-2 text-center">
-                    {selectedProduct.description}
-                  </p>
-
-                  <p className="text-gray-600 text-sm mb-6 text-center">
-                    {selectedProduct.features}
-                  </p>
-                </div>
-
-                {/* Add to cart button */}
-                <button className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg text-center hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
-                  <ChevronLeft size={16} />
-                  أضف إلى طلب الجملة
-                </button>
-              </div>
+            {/* Product Image */}
+            <div className="flex justify-center ">
+              <Image
+                src={selectedProduct.gallery[currentSlide]}
+                alt={selectedProduct.title}
+                width={300}
+                height={300}
+              />
             </div>
+
+            {/* Product Title */}
+            <h3 className="text-2xl font-bold text-gray-800 mb-2 mt-16">
+              {selectedProduct.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-gray-600 text-base mb-1">
+              {selectedProduct.description}
+            </p>
+
+            {/* Features */}
+            <p className="text-gray-400 text-sm mb-6">
+              {selectedProduct.features}
+            </p>
+
+            {/* Action Button */}
+            <button className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900  py-3 rounded-lg font-semibold text-lg  transition focus:outline-none cursor-pointer">
+              <ChevronLeft size={20} />
+              أضف إلى طلب الجملة
+            </button>
           </div>
         </div>
       )}
