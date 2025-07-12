@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { productList } from "@/utils/data";
 import Pagination from "./Pagination";
+import Link from "next/link";
 
 const ProductsList = () => {
   // const { products } = useProductsLogic();
@@ -15,7 +16,7 @@ const ProductsList = () => {
           <div className="py-4">كل المنتجات (650 منتج)</div>
           <div className="items py-2 flex flex-col justify-between md:flex-row flex-wrap gap-4">
             {products.map((product) => (
-              <div
+              <Link href={`products/${product.id}`}
                 key={product.id}
                 className="item border border-gray-300 rounded w-full md:w-[30%] flex justify-center flex-col items-center gap-4 p-4"
               >
@@ -24,7 +25,7 @@ const ProductsList = () => {
                 <span className="text-sm text-[#7B8B8E]">
                   {product.description}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
           {/*  */}

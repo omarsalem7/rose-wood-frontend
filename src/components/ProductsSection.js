@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button.js";
+import Link from "next/link";
 
 const ProductsSection = ({ myCategories, products }) => {
   const [activeCategory, setActiveCategory] = useState("");
@@ -180,9 +180,12 @@ const ProductsSection = ({ myCategories, products }) => {
 
         {/* View All Products Button */}
         <div className="text-center">
-          <Button className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg">
+          <Link
+            href="/products"
+            className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg"
+          >
             عرض كل المنتجات
-          </Button>
+          </Link>
         </div>
       </div>
     </section>
