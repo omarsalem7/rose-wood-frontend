@@ -23,10 +23,7 @@ const OurMessage = () => {
   ];
 
   return (
-    <section
-      className="py-20 bg-gradient-to-b from-orange-50/30 to-white"
-      dir="rtl"
-    >
+    <section className="py-20 ">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 mb-4">رسالتنا</h2>
@@ -40,7 +37,7 @@ const OurMessage = () => {
             return (
               <div
                 key={index}
-                className={`text-center group p-8 rounded-2xl ${feature.bgColor} transition-all duration-300 hover:shadow-lg hover:scale-105`}
+                className="text-center group p-8 rounded-2xl bg-[#FFF8F6] transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
                   {feature.title}

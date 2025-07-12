@@ -55,7 +55,7 @@ const HowWork = () => {
               </div>
             ))}
           </div>
-          <div className="flex gap-4 mt-8 ">
+          <div className="flex gap-4 mt-8">
             <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
               عرض كل المنتجات
             </button>
@@ -64,18 +64,20 @@ const HowWork = () => {
             </button>
           </div>
         </div>
-        <div className="flex gap-8">
+        <div className="grid grid-cols-5 gap-8 max-sm:order-first">
           <Image
             src="/assets/spoons.png"
-            width={300}
-            height={150}
+            width={200}
+            height={200}
             alt="spoons"
+            className="col-span-3 w-full h-full"
           />
           <Image
             src="/assets/kitchen.png"
-            width={500}
+            width={150}
             height={150}
             alt="kitchen"
+            className="col-span-2 w-full h-full"
           />
         </div>
       </div>

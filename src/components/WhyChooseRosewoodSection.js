@@ -107,7 +107,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
                     x2={featurePos.x}
                     y2={featurePos.y}
                     stroke="#9ca3af"
-                    strokeWidth="2"
+                    strokeWidth="1"
                   />
 
                   {/* Line from feature circle to text box */}
@@ -117,7 +117,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
                     x2={featurePos.x + textPos.x}
                     y2={featurePos.y + textPos.y}
                     stroke="#9ca3af"
-                    strokeWidth="2"
+                    strokeWidth="1"
                   />
 
                   {/* Feature Circle */}
@@ -127,7 +127,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
                     r="50"
                     fill="white"
                     stroke="#e5e7eb"
-                    strokeWidth="2"
+                    strokeWidth="1"
                     filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
                   />
 
@@ -166,7 +166,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
               r="60"
               fill="white"
               stroke="#d1d5db"
-              strokeWidth="2"
+              strokeWidth="1"
               filter="drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))"
             />
           </svg>
