@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 const Header = ({ onMenuClick }) => (
-  <header className="relative z-20 p-6 bg-white">
+  <header className="relative z-20 p-6 py-3 bg-white">
     <div className="flex justify-between items-center max-w-7xl mx-auto">
       {/* Right side - Menu button */}
       <button
