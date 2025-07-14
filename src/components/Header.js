@@ -27,9 +27,6 @@ const Header = ({ onMenuClick }) => (
       </Link>
       {/* Left side - Contact button and search */}
       <div className="flex items-center gap-4">
-        <button className="p-2 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors duration-200">
-          <Search size={20} className="text-gray-600" />
-        </button>
         <button className="bg-[#5F361F] text-white px-8 py-2 rounded-xl text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
           تواصل معنا
         </button>

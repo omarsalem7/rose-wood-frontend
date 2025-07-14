@@ -6,13 +6,13 @@ const WhaleHero = () => {
     <>
       {/* pb-60 */}
       <section className=" relative bg-white   ">
-        <div className="px-6  bg-[url('/assets/whale-hero-bg.png')]     h-[100vh] bg-cover bg-center">
+        <div className="px-6  bg-[url('/assets/whale-hero-bg.png')] md:h-[calc(100vh-70px)] h-[calc(100vh-120px)] bg-cover bg-center">
           <div className="max-w-7xl mx-auto py-14">
             <div className=" text-center mb-2 md:mb-8">
-              <h1 className="text-xl md:text-[40px] font- pb-6">
+              <h1 className="text-2xl md:text-3xl font-semibold pb-6">
                 رووز وود شريكك التجاري الموثوق – محليًا ودوليًا
               </h1>
-              <p className="text-sm md:text-2xl font text-[#586675]">
+              <p className="text-xl md:text-2xl text-[#586675]">
                 في رووز وود، لا تقتصر رؤيتنا على السوق المحلي فقط، بل نعمل على
                 تصدير منتجاتنا الخشبية عالية الجودة إلى مختلف أنحاء العالم،
                 وفقًا للمعايير الدولية في التغليف، التعقيم، والرطوبة, نلتزم
