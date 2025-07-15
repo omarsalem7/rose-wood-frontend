@@ -83,122 +83,124 @@ const WhyChooseRosewoodSection = ({ title }) => {
   };
 
   return (
-    <section className="py-20 px-6 max-sm:hidden">
-      <h2 className="text-center  font-semibold text-3xl">{title}</h2>
-      <div className="max-w-7xl mx-auto">
-        {/* Central Circle with Features */}
-        <div className="relative flex items-center justify-center min-h-[650px]">
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="-400 -350 800 700"
-            style={{ overflow: "visible" }}
-          >
-            {/* Feature Circles and Lines */}
+    <>
+      {/* Desktop/Tablet Layout */}
+      <section className="py-20 px-6 max-lg:hidden">
+        <h2 className="text-center  font-semibold text-3xl">{title}</h2>
+        <div className="max-w-7xl mx-auto">
+          {/* Central Circle with Features */}
+          <div className="relative flex items-center justify-center min-h-[650px]">
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="-400 -350 800 700"
+              style={{ overflow: "visible" }}
+            >
+              {/* Feature Circles and Lines */}
+              {features.map((feature) => {
+                const featurePos = getFeaturePosition(feature.position);
+                const textPos = getTextBoxPosition(feature.position);
+
+                return (
+                  <g key={feature.id}>
+                    {/* Connecting Line from center to feature circle */}
+                    <line
+                      x1="0"
+                      y1="0"
+                      x2={featurePos.x}
+                      y2={featurePos.y}
+                      stroke="#9ca3af"
+                      strokeWidth="1"
+                    />
+
+                    {/* Line from feature circle to text box */}
+                    <line
+                      x1={featurePos.x}
+                      y1={featurePos.y}
+                      x2={featurePos.x + textPos.x}
+                      y2={featurePos.y + textPos.y}
+                      stroke="#9ca3af"
+                      strokeWidth="1"
+                    />
+
+                    {/* Feature Circle */}
+                    <circle
+                      cx={featurePos.x}
+                      cy={featurePos.y}
+                      r="50"
+                      fill="white"
+                      stroke="#e5e7eb"
+                      strokeWidth="1"
+                      filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
+                    />
+
+                    {/* Feature Image */}
+                    <foreignObject
+                      x={featurePos.x - 40}
+                      y={featurePos.y - 40}
+                      width="80"
+                      height="80"
+                    >
+                      <div
+                        style={{
+                          width: 80,
+                          height: 80,
+                          borderRadius: "50%",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <Image
+                          src={feature.image}
+                          alt={feature.title}
+                          width={80}
+                          height={80}
+                          style={{ objectFit: "cover" }}
+                        />
+                      </div>
+                    </foreignObject>
+                  </g>
+                );
+              })}
+
+              {/* Central Logo Circle */}
+              <circle
+                cx="0"
+                cy="0"
+                r="60"
+                fill="white"
+                stroke="#d1d5db"
+                strokeWidth="1"
+                filter="drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))"
+              />
+            </svg>
+
+            {/* Central Logo */}
+            <div className="absolute w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center z-10 border border-gray-200">
+              <Image
+                src="/assets/rose-v-logo.png"
+                alt="Rosewood Logo"
+                width={56}
+                height={56}
+                className="h-14 w-auto"
+              />
+            </div>
+
+            {/* Feature Text Boxes */}
             {features.map((feature) => {
               const featurePos = getFeaturePosition(feature.position);
               const textPos = getTextBoxPosition(feature.position);
 
               return (
-                <g key={feature.id}>
-                  {/* Connecting Line from center to feature circle */}
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2={featurePos.x}
-                    y2={featurePos.y}
-                    stroke="#9ca3af"
-                    strokeWidth="1"
-                  />
-
-                  {/* Line from feature circle to text box */}
-                  <line
-                    x1={featurePos.x}
-                    y1={featurePos.y}
-                    x2={featurePos.x + textPos.x}
-                    y2={featurePos.y + textPos.y}
-                    stroke="#9ca3af"
-                    strokeWidth="1"
-                  />
-
-                  {/* Feature Circle */}
-                  <circle
-                    cx={featurePos.x}
-                    cy={featurePos.y}
-                    r="50"
-                    fill="white"
-                    stroke="#e5e7eb"
-                    strokeWidth="1"
-                    filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
-                  />
-
-                  {/* Feature Image */}
-                  <foreignObject
-                    x={featurePos.x - 40}
-                    y={featurePos.y - 40}
-                    width="80"
-                    height="80"
-                  >
-                    <div
-                      style={{
-                        width: 80,
-                        height: 80,
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <Image
-                        src={feature.image}
-                        alt={feature.title}
-                        width={80}
-                        height={80}
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                  </foreignObject>
-                </g>
-              );
-            })}
-
-            {/* Central Logo Circle */}
-            <circle
-              cx="0"
-              cy="0"
-              r="60"
-              fill="white"
-              stroke="#d1d5db"
-              strokeWidth="1"
-              filter="drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15))"
-            />
-          </svg>
-
-          {/* Central Logo */}
-          <div className="absolute w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center z-10 border border-gray-200">
-            <Image
-              src="/assets/rose-v-logo.png"
-              alt="Rosewood Logo"
-              width={56}
-              height={56}
-              className="h-14 w-auto"
-            />
-          </div>
-
-          {/* Feature Text Boxes */}
-          {features.map((feature) => {
-            const featurePos = getFeaturePosition(feature.position);
-            const textPos = getTextBoxPosition(feature.position);
-
-            return (
-              <div
-                key={`text-${feature.id}`}
-                className="absolute"
-                style={{
-                  left: `calc(50% + ${featurePos.x + textPos.x}px)`,
-                  top: `calc(50% + ${featurePos.y + textPos.y}px)`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
                 <div
-                  className={`
+                  key={`text-${feature.id}`}
+                  className="absolute"
+                  style={{
+                    left: `calc(50% + ${featurePos.x + textPos.x}px)`,
+                    top: `calc(50% + ${featurePos.y + textPos.y}px)`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div
+                    className={`
                   bg-[#fff8f6] 
                   rounded-lg 
                   px-4 py-3 
@@ -212,17 +214,46 @@ const WhyChooseRosewoodSection = ({ title }) => {
                       : "text-center"
                   }
                 `}
-                >
-                  <p className="text-sm font-medium text-gray-800 leading-relaxed">
-                    {feature.title}
-                  </p>
+                  >
+                    <p className="text-sm font-medium text-gray-800 leading-relaxed">
+                      {feature.title}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Mobile Layout */}
+      <section className="lg:hidden py-8 px-3">
+        <h2 className="text-center font-semibold text-xl mb-6">{title}</h2>
+        <div className="flex flex-col gap-4">
+          {features.map((feature, idx) => (
+            <div
+              key={feature.id}
+              className="flex flex-row items-center bg-[#fff8f6] rounded-xl px-3 py-3 shadow-sm"
+            >
+              <div className="flex-shrink-0 ml-3">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  width={56}
+                  height={56}
+                  className="rounded-full object-cover w-14 h-14"
+                />
+              </div>
+              <div className="flex-1 text-end">
+                <p className="text-sm font-medium text-gray-800 leading-relaxed">
+                  {feature.title}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 

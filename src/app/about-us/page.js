@@ -1,5 +1,5 @@
 import Hero from "./_components/hero";
-import HowWork from "./_components/howWork";
+import HowWork from "./_components/HowWork";
 import OurMessage from "./_components/ourMessage";
 import Vision from "./_components/vision";
 import SectorSection from "./_components/sectorSection";
