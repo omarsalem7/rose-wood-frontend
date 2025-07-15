@@ -6,13 +6,13 @@ const WoodHero = () => {
     <>
       {/* pb-60 */}
       <section className=" relative bg-white   ">
-        <div className="px-6  bg-[url('/assets/whale-hero-bg.png')]     md:h-[100vh] bg-cover bg-center">
+        <div className="px-6  bg-[url('/assets/whale-hero-bg.png')] md:h-[calc(100vh-70px)] h-[calc(100vh-120px)] bg-cover bg-center">
           <div className="max-w-7xl mx-auto py-14">
             <div className=" text-center mb-8 md:mb-24">
-              <h1 className="text-xl md:text-[40px] font- pb-6">
+              <h1 className="text-2xl md:text-3xl font-semibold pb-6">
                 حكاية تبدأ من الخشب... وتنتهي بتحفة
               </h1>
-              <p className="text-sm md:text-2xl font text-[#586675]">
+              <p className="text-xl md:text-2xl font text-[#586675]">
                 في روز وود، لا نقدّم منتجًا فحسب، بل نُقدم تجربة متكاملة تبدأ من
                 اختيار الخشب وتنتهي بين يديك. نحن نؤمن أن كل قطعة يجب أن تعكس
                 جمال الطبيعة، ودقة الصنعة، واهتمامًا حقيقيًا بالتفاصيل, كل منتج
