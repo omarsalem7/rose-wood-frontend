@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { fetchQuotationSection } from "@/lib/cms/api";
 import Image from "next/image";
 
-const KitchenHeroSection = () => {
+const KitchenHeroSection = async () => {
+  const data = await fetchQuotationSection();
   return (
     <section
       className="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
@@ -30,7 +32,7 @@ const KitchenHeroSection = () => {
 
         {/* Main Arabic Text */}
         <h1 className="text-2xl md:text-4xl md:font-semibold mb-12 leading-9 md:leading-tight">
-          اشترِ طبيك الدن معنا واطلب كميتك
+          {data.title}
         </h1>
 
         {/* Call to Action Button */}
@@ -38,7 +40,7 @@ const KitchenHeroSection = () => {
           className="bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white px-12 py-6 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
           style={{ borderRadius: "12px" }}
         >
-          عرض سعر مخصص
+          {data.buttonText}
         </Button>
       </div>
     </section>

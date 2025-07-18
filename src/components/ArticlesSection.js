@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
+
 function formatArabicDate(dateString) {
   return new Date(dateString).toLocaleDateString("ar-EG", {
     day: "2-digit",
@@ -12,8 +13,8 @@ function formatArabicDate(dateString) {
     year: "numeric",
   });
 }
-const ArticlesSection = ({ blogs }) => {
-  console.log(blogs);
+
+const ArticlesSection = ({ blogs = [], title }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const articlesPerPage = 3;
@@ -55,7 +56,7 @@ const ArticlesSection = ({ blogs }) => {
         {/* Section Title */}
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl md:font-semibold text-white mb-4 font-alexandria">
-            المقالات
+            {title}
           </h2>
         </div>
 
@@ -172,9 +173,9 @@ const ArticlesSection = ({ blogs }) => {
         {/* Bottom Section with Button and Navigation */}
         <div className="flex items-center justify-between px-8">
           {/* View All Button */}
-          <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-[#8B5A3C] transition-all duration-300 font-alexandria">
+          {/* <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-[#8B5A3C] transition-all duration-300 font-alexandria">
             عرض كل الأخبار
-          </button>
+          </button> */}
 
           {/* Navigation Arrows */}
           <div className="hidden md:flex items-center space-x-4">

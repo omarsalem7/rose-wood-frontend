@@ -10,7 +10,7 @@ export async function fetchCategories() {
   return json.data || [];
 }
 
-export async function fetchBlogs() {
+export async function fetchBlogsHomePage() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(
     `${apiUrl}/blogs?populate=*&pagination[page]=1&pagination[pageSize]=20`,

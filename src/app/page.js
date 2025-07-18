@@ -10,7 +10,7 @@ import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
 import { fetchAllHomePageData } from "@/lib/cms/api";
 import {
-  fetchBlogs,
+  fetchBlogsHomePage,
   fetchCategories,
   fetchProductsBHomePage,
 } from "@/lib/collections";
@@ -19,18 +19,11 @@ import { generateMetadata } from "@/lib/metadata";
 export { generateMetadata };
 
 export default async function Home() {
-  const {
-    hero,
-    about,
-    features,
-    bulkOrder,
-    title,
-    videoSection,
-    whyChooseTitle,
-  } = await fetchAllHomePageData();
+  const { hero, about, features, bulkOrder, title, videoSection, blogsTitle } =
+    await fetchAllHomePageData();
   const products = await fetchProductsBHomePage();
   const categories = await fetchCategories();
-  const blogs = await fetchBlogs();
+  const blogs = await fetchBlogsHomePage();
 
   return (
     <div>
@@ -41,8 +34,8 @@ export default async function Home() {
       <BulkOrderSection {...bulkOrder} />
       <ProductCarouselSection title={title} products={products} />
       <VideoSection videoData={videoSection} />
-      <WhyChooseRosewoodSection title={whyChooseTitle} />
-      <ArticlesSection blogs={blogs} />
+      <WhyChooseRosewoodSection />
+      <ArticlesSection blogs={blogs} title={blogsTitle} />
       <ContactSection />
       {/* <KitchenHeroSection /> */}
     </div>

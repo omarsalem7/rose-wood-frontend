@@ -51,6 +51,7 @@ export async function fetchAllHomePageData() {
       title: data.ProductCarouselSectionTitle,
       videoSection: transformVideoData(data.videoSection),
       whyChooseTitle: data.whyChooseTitle,
+      blogsTitle: data.blogsTitle,
     };
   } catch (error) {
     console.error("Error fetching all home page data:", error);
@@ -170,6 +171,34 @@ export async function fetchWhyChooseRoseWood() {
           image: feature.img?.url ? getFullImageUrl(feature.img.url) : null,
           position: getPositionByIndex(index),
         })) || [],
+    };
+  } catch (error) {
+    console.error("Error fetching WhyChooseRoseWood data:", error);
+
+    // Return fallback data
+    return {
+      id: null,
+      title: "لماذا تختار روز وود",
+      features: [],
+    };
+  }
+}
+export async function fetchQuotationSection() {
+  try {
+    const json = await apiCall(
+      "/home-page?populate[quotationSection][populate]=*"
+    );
+
+    if (!json.data || !json.data.quotationSection) {
+      throw new Error("quotationSection data not found");
+    }
+
+    const resData = json.data.quotationSection;
+
+    return {
+      id: resData.id,
+      title: resData.title || "اشترِ طبيك الدن معنا واطلب كميتك",
+      buttonText: resData.buttonText || "عرض سعر مخصص",
     };
   } catch (error) {
     console.error("Error fetching WhyChooseRoseWood data:", error);
