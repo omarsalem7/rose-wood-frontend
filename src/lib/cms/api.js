@@ -147,3 +147,51 @@ function transformFeatureData(featureData) {
       })) || [],
   };
 }
+
+export async function fetchWhyChooseRoseWood() {
+  try {
+    const json = await apiCall(
+      "/home-page?populate[whyChooseRoseWood][populate][features][populate]=*"
+    );
+
+    if (!json.data || !json.data.whyChooseRoseWood) {
+      throw new Error("WhyChooseRoseWood data not found");
+    }
+
+    const whyChooseData = json.data.whyChooseRoseWood;
+
+    return {
+      id: whyChooseData.id,
+      title: whyChooseData.title || "لماذا تختار روز وود",
+      features:
+        whyChooseData.features?.map((feature, index) => ({
+          id: feature.id,
+          text: feature.text || "",
+          image: feature.img?.url ? getFullImageUrl(feature.img.url) : null,
+          position: getPositionByIndex(index),
+        })) || [],
+    };
+  } catch (error) {
+    console.error("Error fetching WhyChooseRoseWood data:", error);
+
+    // Return fallback data
+    return {
+      id: null,
+      title: "لماذا تختار روز وود",
+      features: [],
+    };
+  }
+}
+
+// Helper function to assign positions based on index
+function getPositionByIndex(index) {
+  const positions = [
+    "top-right",
+    "right",
+    "bottom-right",
+    "bottom-left",
+    "left",
+    "top-left",
+  ];
+  return positions[index % positions.length];
+}

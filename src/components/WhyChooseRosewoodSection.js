@@ -1,44 +1,10 @@
 import Image from "next/image";
+import { fetchWhyChooseRoseWood } from "@/lib/cms/api";
 
-const WhyChooseRosewoodSection = ({ title }) => {
-  const features = [
-    {
-      id: 1,
-      title: "الالتزام كامل بالجودة في كل قطعة",
-      image: "/assets/whyChoose1.png",
-      position: "top-right",
-    },
-    {
-      id: 2,
-      title: "خامات طبيعية 100% وآمنة على الطعام",
-      image: "/assets/whyChoose2.png",
-      position: "right",
-    },
-    {
-      id: 3,
-      title: "تصميمات عصرية تناسب كل المطابخ",
-      image: "/assets/whyChoose3.png",
-      position: "bottom-right",
-    },
-    {
-      id: 4,
-      title: "تصدير عالمي بجودة فائقة وطبيعية",
-      image: "/assets/whyChoose1.png",
-      position: "bottom-left",
-    },
-    {
-      id: 5,
-      title: "حلول مخصصة للمشاريع والمطاعم الكبيرة",
-      image: "/assets/whyChoose2.png",
-      position: "left",
-    },
-    {
-      id: 6,
-      title: "دعم فني وخدمة عملاء متميزة دائما",
-      image: "/assets/whyChoose3.png",
-      position: "top-left",
-    },
-  ];
+const WhyChooseRosewoodSection = async () => {
+  // Fetch data from API
+  const whyChooseData = await fetchWhyChooseRoseWood();
+  const features = whyChooseData.features;
 
   const getFeaturePosition = (position) => {
     const radius = 280;
@@ -86,7 +52,9 @@ const WhyChooseRosewoodSection = ({ title }) => {
     <>
       {/* Desktop/Tablet Layout */}
       <section className="py-20 px-6 max-lg:hidden">
-        <h2 className="text-center  font-semibold text-3xl">{title}</h2>
+        <h2 className="text-center  font-semibold text-3xl">
+          {whyChooseData.title || "لماذا تختار روز وود"}
+        </h2>
         <div className="max-w-7xl mx-auto">
           {/* Central Circle with Features */}
           <div className="relative flex items-center justify-center min-h-[650px]">
@@ -150,7 +118,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
                       >
                         <Image
                           src={feature.image}
-                          alt={feature.title}
+                          alt={feature.text}
                           width={80}
                           height={80}
                           style={{ objectFit: "cover" }}
@@ -216,7 +184,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
                 `}
                   >
                     <p className="text-sm font-medium text-gray-800 leading-relaxed">
-                      {feature.title}
+                      {feature.text}
                     </p>
                   </div>
                 </div>
@@ -228,7 +196,10 @@ const WhyChooseRosewoodSection = ({ title }) => {
 
       {/* Mobile Layout */}
       <section className="lg:hidden py-8 px-3">
-        <h2 className="text-center font-semibold text-xl mb-6">{title}</h2>
+        <h2 className="text-center font-semibold text-xl mb-6">
+          {" "}
+          {whyChooseData.title || "لماذا تختار روز وود"}
+        </h2>
         <div className="flex flex-col gap-4">
           {features.map((feature, idx) => (
             <div
@@ -238,7 +209,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
               <div className="flex-shrink-0 ml-3">
                 <Image
                   src={feature.image}
-                  alt={feature.title}
+                  alt={feature.text}
                   width={56}
                   height={56}
                   className="rounded-full object-cover w-14 h-14"
@@ -246,7 +217,7 @@ const WhyChooseRosewoodSection = ({ title }) => {
               </div>
               <div className="flex-1 text-end">
                 <p className="text-sm font-medium text-gray-800 leading-relaxed">
-                  {feature.title}
+                  {feature.text}
                 </p>
               </div>
             </div>

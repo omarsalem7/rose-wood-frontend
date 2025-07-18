@@ -12,7 +12,7 @@ const BulkOrderSection = ({ title, card1, card2 }) => {
         {/* Cards Grid */}
         <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto min-h-[37vh]">
           {/* Bulk Order Card */}
-          <div className="bg-gradient-to-r  max-sm:min-h-[30vh] from-[#fdf2ef] to-[#FFF8F600]  rounded-2xl p-4 md:p-8 shadow-sm relative overflow-hidden">
+          <div className="bg-gradient-to-r  min-h-[30vh] from-[#fdf2ef] to-[#FFF8F600]  rounded-2xl p-4 md:p-8 shadow-sm relative overflow-hidden">
             <div className="mb-8">
               <h3 className="md:text-xl font-semibold md:font-bold text-black mb-4">
                 {card1.title}
@@ -38,7 +38,7 @@ const BulkOrderSection = ({ title, card1, card2 }) => {
           </div>
 
           {/* Global Export Card */}
-          <div className="bg-gradient-to-r max-sm:min-h-[30vh] from-[#fdf2ef] to-[#FFF8F600] rounded-2xl p-8 shadow-sm relative overflow-hidden">
+          <div className="bg-gradient-to-r min-h-[30vh] from-[#fdf2ef] to-[#FFF8F600] rounded-2xl p-8 shadow-sm relative overflow-hidden">
             <div className="mb-8">
               <h3 className="md:text-xl font-semibold md:font-bold text-black mb-4">
                 {card2.title}
