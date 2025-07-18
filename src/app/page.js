@@ -8,7 +8,7 @@ import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
-import { fetchAllHomePageData } from "@/lib/cms/api";
+import { fetchAllHomePageData } from "@/lib/cms";
 import {
   fetchBlogsHomePage,
   fetchCategories,
