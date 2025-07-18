@@ -212,6 +212,62 @@ export async function fetchQuotationSection() {
   }
 }
 
+export async function fetchFooterData() {
+  try {
+    const json = await apiCall("/footer?populate[footerItems][populate]=*");
+
+    if (!json.data) {
+      throw new Error("Footer data not found");
+    }
+
+    const footerData = json.data;
+
+    return {
+      id: footerData.id,
+      footerItems:
+        footerData.footerItems?.map((section) => ({
+          id: section.id,
+          title: section.title,
+          items:
+            section.items?.map((item) => ({
+              id: item.id,
+              text: item.text,
+              url: item.url,
+            })) || [],
+        })) || [],
+    };
+  } catch (error) {
+    console.error("Error fetching footer data:", error);
+
+    // Return fallback data
+    return {
+      id: null,
+      footerItems: [
+        {
+          id: 1,
+          title: "روز وود",
+          items: [
+            { id: 1, text: "من نحن", url: "/about" },
+            { id: 2, text: "خدماتنا", url: "/services" },
+          ],
+        },
+        {
+          id: 2,
+          title: "تواصل معنا",
+          items: [
+            { id: 3, text: "اتصل بنا", url: "/contact" },
+            {
+              id: 4,
+              text: "البريد الإلكتروني",
+              url: "mailto:info@rosewood.com",
+            },
+          ],
+        },
+      ],
+    };
+  }
+}
+
 // Helper function to assign positions based on index
 function getPositionByIndex(index) {
   const positions = [

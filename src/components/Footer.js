@@ -1,212 +1,164 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
+import { fetchFooterData } from "@/lib/cms";
 
 const Footer = () => {
+  const [footerData, setFooterData] = useState({
+    footerItems: [
+      {
+        id: 1,
+        title: "روز وود",
+        items: [
+          { id: 1, text: "من نحن", url: "/about" },
+          { id: 2, text: "خدماتنا", url: "/services" },
+        ],
+      },
+      {
+        id: 2,
+        title: "تواصل معنا",
+        items: [
+          { id: 3, text: "اتصل بنا", url: "/contact" },
+          { id: 4, text: "البريد الإلكتروني", url: "mailto:info@rosewood.com" },
+        ],
+      },
+    ],
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadFooterData = async () => {
+      try {
+        const data = await fetchFooterData();
+        setFooterData(data);
+      } catch (error) {
+        console.error("Error loading footer data:", error);
+        // Keep fallback data
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadFooterData();
+  }, []);
+
+  // Find social media section
+  const socialMediaSection = footerData.footerItems.find((section) =>
+    section.title.toLowerCase().includes("social media")
+  );
+
+  if (loading) {
+    return (
+      <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
+            <div className="animate-pulse">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="lg:col-span-1">
+                  <div className="h-6 bg-gray-300 rounded mb-4 w-24"></div>
+                  <div className="space-y-3">
+                    {[...Array(3)].map((_, j) => (
+                      <div
+                        key={j}
+                        className="h-4 bg-gray-200 rounded w-20"
+                      ></div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
-          {/* روز وود Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              روز وود
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  تواصل معنا
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  اطلب كميتك
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  اطلب كميتك
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* خدماتنا Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              خدماتنا
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  اسم الخدمة لنا
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  اسم الخدمة لنا
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  اسم الخدمة لنا
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  اسم الخدمة لنا
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* منتجاتنا Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              منتجاتنا
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  الأطباق
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  المعالق
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  البلاطيل
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  الخدميات
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* روابط مهمة Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              روابط مهمة
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  تواصل معنا
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  عرض كل المنتجات
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  عرض كل الخدمات
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  عرض كل الخدمات
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* تواصل معنا Section with Social Icons */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              تواصل معنا
-            </h3>
-
-            <div className="mb-6">
-              <p className="text-gray-600 text-sm mb-2">تواصل معنا</p>
-              <p className="text-gray-600 text-sm mb-2">اطلب كميتك</p>
-              <p className="text-gray-600 text-sm mb-4">اطلب كميتك</p>
-            </div>
-          </div>
+          {/* Dynamic Footer Sections */}
+          {footerData.footerItems
+            .filter(
+              (section) => !section.title.toLowerCase().includes("social media")
+            )
+            .map((section) => (
+              <div key={section.id} className="lg:col-span-1">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  {section.title}
+                </h3>
+                <ul className="space-y-3">
+                  {section.items.map((item) => (
+                    <li key={item.id}>
+                      <a
+                        href={item.url}
+                        className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
+                      >
+                        {item.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
           {/* Social Media Icons in 2x2 grid + heart */}
           <div className="lg:col-span-1">
             <div className="flex gap-2">
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
-                  <a
-                    href="#"
-                    className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
-                  >
-                    <X size={16} />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-700 transition-colors duration-200"
-                  >
-                    <Youtube size={16} />
-                  </a>
+                  {socialMediaSection?.items.slice(0, 2).map((social) => {
+                    const getSocialIcon = (text) => {
+                      const lowerText = text.toLowerCase();
+                      if (lowerText.includes("x")) return <X size={16} />;
+                      if (lowerText.includes("youtube"))
+                        return <Youtube size={16} />;
+                      if (lowerText.includes("linkedin"))
+                        return <Linkedin size={16} />;
+                      if (lowerText.includes("facebook"))
+                        return <Facebook size={16} />;
+                      return <X size={16} />; // default
+                    };
+
+                    return (
+                      <a
+                        key={social.id}
+                        href={social.url}
+                        className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
+                      >
+                        {getSocialIcon(social.text)}
+                      </a>
+                    );
+                  })}
                 </div>
                 <div className="flex gap-3">
-                  <a
-                    href="#"
-                    className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors duration-200"
-                  >
-                    <Linkedin size={16} />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors duration-200"
-                  >
-                    <Facebook size={16} />
-                  </a>
+                  {socialMediaSection?.items.slice(2, 4).map((social) => {
+                    const getSocialIcon = (text) => {
+                      const lowerText = text.toLowerCase();
+                      if (lowerText.includes("x")) return <X size={16} />;
+                      if (lowerText.includes("youtube"))
+                        return <Youtube size={16} />;
+                      if (lowerText.includes("linkedin"))
+                        return <Linkedin size={16} />;
+                      if (lowerText.includes("facebook"))
+                        return <Facebook size={16} />;
+                      return <X size={16} />; // default
+                    };
+
+                    return (
+                      <a
+                        key={social.id}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener"
+                        className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-blue-800 transition-colors duration-200"
+                      >
+                        {getSocialIcon(social.text)}
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
               <div className="mt-2">
