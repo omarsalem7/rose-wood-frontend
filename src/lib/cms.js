@@ -3,10 +3,12 @@ import { getFullImageUrl, transformImages } from "./image";
 // ----------------------
 
 const getApiConfig = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (!baseUrl) throw new Error("API_BASE_URL is not defined");
   const isDev = process.env.NODE_ENV === "development";
 
   return {
-    apiUrl: process.env.NEXT_PUBLIC_API_URL,
+    apiUrl: baseUrl,
     cache: isDev ? "no-store" : "force-cache",
     revalidate: isDev ? 0 : 3600,
   };
