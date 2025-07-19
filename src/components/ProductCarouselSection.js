@@ -162,7 +162,7 @@ const ProductCarouselSection = ({ title, products }) => {
           onClick={closeModal}
         >
           <div
-            className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 pt-16 text-center flex flex-col items-center"
+            className="relative bg-white rounded-2xl shadow-2xl max-w-md md:w-full p-6 pt-16 text-center flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}

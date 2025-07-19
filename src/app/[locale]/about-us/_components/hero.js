@@ -1,5 +1,5 @@
 import Image from "next/image";
-const Hero = () => {
+const Hero = ({ title, description, imageUrl }) => {
   return (
     <div className=" bg-gray-50">
       {/* Header Section with Manufacturing Facility */}
@@ -8,12 +8,12 @@ const Hero = () => {
           {/* Title and Description */}
           <div className="flex flex-col items-center justify-center mb-12">
             <h1 className="text-3xl leading-16 text-center font-semibold max-w-4xl text-gray-900 mb-6">
-              روز وود هو مصنع مصري متخصص في صناعة 🏭 أدوات المطبخ 🍴 الخشبية
-              الصحية والآمنة.
+              {title ||
+                "روز وود هو مصنع مصري متخصص في صناعة 🏭 أدوات المطبخ 🍴 الخشبية الصحية والآمنة."}
             </h1>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              نستخدم أخشاب طبيعية مجففة، ونشطها بزيوت ونموذج آمنة للطعام، مع
-              خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة.
+            <p className="text-lg text-gray-600 text-center max-w-4xl mx-auto leading-relaxed">
+              {description ||
+                "نستخدم أخشاب طبيعية مجففة، ونشطها بزيوت ونموذج آمنة للطعام، مع خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة."}
             </p>
           </div>
 
@@ -21,7 +21,7 @@ const Hero = () => {
             <Image
               width={1200}
               height={600}
-              src="/assets/about-hero.png"
+              src={imageUrl || "/assets/about-hero.png"}
               alt="مصنع روز وود - خط الإنتاج الأول"
               className="w-full  object-cover"
             />

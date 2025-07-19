@@ -100,6 +100,36 @@ export async function fetchAllHomePageData() {
   }
 }
 
+export async function fetchAllAboutPageData() {
+  try {
+    const json = await apiCall(
+      "/about-page?populate[hero][populate]=*&populate[howWork][populate]=*&populate[ourMessage][populate]=*&populate[ourVision][populate]=*&populate[sectorSection][populate][card][populate]=*"
+    );
+
+    if (!json.data) {
+      throw new Error("about page data not found");
+    }
+
+    // Use transformation function for about page
+    return transformAboutPageData(json.data);
+  } catch (error) {
+    console.error("Error fetching all home page data:", error);
+
+    // Return fallback data for all sections
+    return {
+      hero: {
+        title: "Rosewood Kitchenware",
+        subTitle: "Premium wooden kitchenware",
+        imageUrl: null,
+      },
+      howWork: null,
+      ourMessage: null,
+      ourVision: null,
+      sectorSection: null,
+    };
+  }
+}
+
 // Transformation functions
 function transformHeroData(heroData) {
   if (!heroData) return null;
@@ -109,10 +139,25 @@ function transformHeroData(heroData) {
   return {
     title: title || "Rosewood Kitchenware",
     subTitle: subTitle || "Premium wooden kitchenware",
-    imageUrl: image?.formats?.large?.url
-      ? getFullImageUrl(image.formats.large.url)
+    imageUrl: image?.url
+      ? getFullImageUrl(image?.url)
       : image?.url
-      ? getFullImageUrl(image.url)
+      ? getFullImageUrl(image?.url)
+      : null,
+  };
+}
+function transformHeroAboutPage(heroData) {
+  if (!heroData) return null;
+
+  const { title, description, image } = heroData;
+
+  return {
+    title: title,
+    description: description,
+    imageUrl: image?.url
+      ? getFullImageUrl(image?.url)
+      : image?.url
+      ? getFullImageUrl(image?.url)
       : null,
   };
 }
@@ -236,10 +281,12 @@ export async function fetchFooterData() {
 
     return {
       id: footerData.id,
+      vText: footerData.verticalText,
       footerItems:
         footerData.footerItems?.map((section) => ({
           id: section.id,
           title: section.title,
+
           items:
             section.items?.map((item) => ({
               id: item.id,
@@ -313,6 +360,69 @@ export async function fetchContactUsData() {
       fieldMessage: "نص الرسالة...",
     };
   }
+}
+
+// Transformation function for about page data
+function transformAboutPageData(data) {
+  return {
+    hero: transformHeroAboutPage(data.hero),
+    howWork: data.howWork
+      ? {
+          id: data.howWork.id,
+          title: data.howWork.title,
+          subTitle: data.howWork.subTitle,
+          list:
+            data.howWork.list?.map((item) => ({
+              id: item.id,
+              text: item.text,
+            })) || [],
+          images: transformImages(data.howWork.images),
+          buttons:
+            data.howWork.buttons?.map((btn) => ({
+              id: btn.id,
+              text: btn.text,
+              link: btn.link,
+            })) || [],
+        }
+      : null,
+    ourMessage: data.ourMessage
+      ? {
+          id: data.ourMessage.id,
+          title: data.ourMessage.title,
+          subTitle: data.ourMessage.subTitle,
+          endDescription: data.ourMessage.endDescription,
+          cards:
+            data.ourMessage.cards?.map((card) => ({
+              id: card.id,
+              text: card.text,
+            })) || [],
+        }
+      : null,
+    ourVision: data.ourVision
+      ? {
+          id: data.ourVision.id,
+          title: data.ourVision.title,
+          description: data.ourVision.description,
+        }
+      : null,
+    sectorSection: data.sectorSection
+      ? {
+          id: data.sectorSection.id,
+          card:
+            data.sectorSection.card?.map((card) => ({
+              id: card.id,
+              title: card.title,
+              subTitle: card.subTitle,
+              image: card.image ? getFullImageUrl(card.image.url) : null,
+              list:
+                card.list?.map((item) => ({
+                  id: item.id,
+                  text: item.text,
+                })) || [],
+            })) || [],
+        }
+      : null,
+  };
 }
 
 // Helper function to assign positions based on index

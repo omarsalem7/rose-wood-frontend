@@ -1,6 +1,6 @@
 const HeroSection = ({ title, subTitle, imageUrl }) => {
   return (
-    <div className="relative h-[calc(100vh-102px)] bg-gray-100 font-alexandria">
+    <div className="relative h-[calc(100vh-78px)] bg-gray-100 font-alexandria">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"

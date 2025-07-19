@@ -4,15 +4,18 @@ import OurMessage from "./_components/ourMessage";
 import Vision from "./_components/vision";
 import SectorSection from "./_components/sectorSection";
 import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
+import { fetchAllAboutPageData } from "@/lib/cms";
 
-export default function About() {
+export default async function About() {
+  const data = await fetchAllAboutPageData();
+
   return (
     <>
-      <Hero />
-      <HowWork />
-      <OurMessage />
-      <Vision />
-      <SectorSection />
+      <Hero {...data.hero} />
+      <HowWork {...data.howWork} />
+      <OurMessage {...data.ourMessage} />
+      <Vision {...data.ourVision} />
+      <SectorSection {...data.sectorSection} />
       <WhyChooseRosewoodSection title="لماذا تختار روز وود" />
     </>
   );

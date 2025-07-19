@@ -1,5 +1,5 @@
-const OurMessage = () => {
-  const features = [
+const OurMessage = ({ title, subTitle, endDescription, cards }) => {
+  const features = cards || [
     {
       title: "الجودة العالية",
       description: "",
@@ -26,9 +26,11 @@ const OurMessage = () => {
     <section className="py-20 ">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">رسالتنا</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            {title || "رسالتنا"}
+          </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            نسعى لتوفير أدوات مطبخ خشبية تجمع بين
+            {subTitle || "نسعى لتوفير أدوات مطبخ خشبية تجمع بين"}
           </p>
         </div>
 
@@ -36,11 +38,18 @@ const OurMessage = () => {
           {features.map((feature, index) => {
             return (
               <div
-                key={index}
+                key={feature.id || index}
                 className="text-center group p-8 rounded-2xl bg-[#FFF8F6] transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
+                <div
+                  className="mx-auto mb-4 w-20 h-20 rounded-full flex items-center justify-center"
+                  style={{
+                    background:
+                      "radial-gradient(50% 50% at 50% 50%, rgba(203, 151, 79, 0) 0%, #e59a334f 100%)",
+                  }}
+                ></div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {feature.title}
+                  {feature.text || feature.title}
                 </h3>
               </div>
             );
@@ -49,8 +58,8 @@ const OurMessage = () => {
 
         <div className="text-center mt-12">
           <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-            لكل من يقدر التفاصيل الدقيقة في أدواته اليومية، سواء كان مطبخ منزل
-            أو مطعم محترف.
+            {endDescription ||
+              "لكل من يقدر التفاصيل الدقيقة في أدواته اليومية، سواء كان مطبخ منزل أو مطعم محترف."}
           </p>
         </div>
       </div>

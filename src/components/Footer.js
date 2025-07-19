@@ -6,6 +6,7 @@ import { fetchFooterData } from "@/lib/cms";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState({
+    vText: "s صممت بحب لكم",
     footerItems: [
       {
         id: 1,
@@ -31,6 +32,7 @@ const Footer = () => {
     const loadFooterData = async () => {
       try {
         const data = await fetchFooterData();
+        console.log("ssssssssss", data);
         setFooterData(data);
       } catch (error) {
         console.error("Error loading footer data:", error);
@@ -52,10 +54,10 @@ const Footer = () => {
     return (
       <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
-            <div className="animate-pulse">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="lg:col-span-1">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="lg:col-span-1">
                   <div className="h-6 bg-gray-300 rounded mb-4 w-24"></div>
                   <div className="space-y-3">
                     {[...Array(3)].map((_, j) => (
@@ -66,8 +68,8 @@ const Footer = () => {
                     ))}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </footer>
@@ -163,7 +165,7 @@ const Footer = () => {
               </div>
               <div className="mt-2">
                 <p className="[writing-mode:vertical-rl] font-semibold text-xl">
-                  مـنتجات صممت بحب لكم
+                  {footerData.vText}
                 </p>
                 <Heart className="w-8 h-8 text-red-500 fill-current" />
               </div>

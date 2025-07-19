@@ -1,4 +1,4 @@
-const Vision = () => {
+const Vision = ({ title, description }) => {
   return (
     <section
       className="relative py-20 px-6 mb-20 md:mx-auto container rounded-3xl bg-cover bg-center"
@@ -12,11 +12,8 @@ const Vision = () => {
       {/* Content */}
       <div className="relative container mx-auto px-4 z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-white mb-8">رؤيتنا</h2>
-          <p className="text-lg text-white leading-relaxed">
-            أن تكون العلامة الرائدة في الشرق الأوسط في مجال أدوات المطبخ الخشبية
-            الصحية، من خلال الابتكار والاستدامة، والالتزام بأعلى معايير الجودة.
-          </p>
+          <h2 className="text-3xl font-semibold text-white mb-8">{title}</h2>
+          <p className="text-lg text-white leading-relaxed">{description}</p>
         </div>
       </div>
     </section>
