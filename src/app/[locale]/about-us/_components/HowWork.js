@@ -45,8 +45,8 @@ const HowWork = ({ title, subTitle, list, images, buttons }) => {
                   key={btn.id || idx}
                   className={
                     idx === 0
-                      ? "bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
-                      : "border border-gray-300 text-gray-700 px-12 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                      ? "bg-[#5F361F] text-white max-sm:w-full md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                      : "border border-gray-300 text-gray-700 max-sm:w-full  md:px-12 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
                   }
                 >
                   {btn.text}
