@@ -268,6 +268,41 @@ export async function fetchFooterData() {
   }
 }
 
+export async function fetchContactUsData() {
+  try {
+    const json = await apiCall("/home-page?populate[contactUs][populate]=*");
+
+    if (!json.data || !json.data.contactUs) {
+      throw new Error("ContactUs data not found");
+    }
+
+    const contactData = json.data.contactUs;
+
+    return {
+      id: contactData.id,
+      title: contactData.title || "تواصل معنا",
+      subTitle: contactData.subTitle || "نحن نحب الاستماع اليك، راسلنا الان:",
+      fieldName: contactData.fieldName || "الإسم ...",
+      fieldPhone: contactData.fieldPhone || "رقم الهاتف...",
+      fieldEmail: contactData.fieldEmail || "البريد الالكتروني...",
+      fieldMessage: contactData.fieldMessage || "نص الرسالة...",
+    };
+  } catch (error) {
+    console.error("Error fetching ContactUs data:", error);
+
+    // Return fallback data
+    return {
+      id: null,
+      title: "تواصل معنا",
+      subTitle: "نحن نحب الاستماع اليك، راسلنا الان:",
+      fieldName: "الإسم ...",
+      fieldPhone: "رقم الهاتف...",
+      fieldEmail: "البريد الالكتروني...",
+      fieldMessage: "نص الرسالة...",
+    };
+  }
+}
+
 // Helper function to assign positions based on index
 function getPositionByIndex(index) {
   const positions = [

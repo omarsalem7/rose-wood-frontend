@@ -1,15 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { fetchContactUsData } from "@/lib/cms";
 
 const ContactSection = () => {
+  const [contactData, setContactData] = useState({
+    title: "تواصل معنا",
+    subTitle: "نحن نحب الاستماع اليك، راسلنا الان:",
+    fieldName: "الإسم ...",
+    fieldPhone: "رقم الهاتف...",
+    fieldEmail: "البريد الالكتروني...",
+    fieldMessage: "نص الرسالة...",
+  });
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     message: "",
   });
+
+  useEffect(() => {
+    const loadContactData = async () => {
+      try {
+        const data = await fetchContactUsData();
+        setContactData(data);
+      } catch (error) {
+        console.error("Error loading contact data:", error);
+        // Keep fallback data
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadContactData();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,13 +57,9 @@ const ContactSection = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Right Side - Title */}
           <div className="text-right">
-            <p className="text-[#8B4513] text-lg mb-4">تواصل معنا</p>
+            <p className="text-[#8B4513] text-lg mb-4">{contactData.title}</p>
             <h2 className="text-5xl md:text-6xl font-bold text-[#8B4513] leading-tight">
-              نحن نحب
-              <br />
-              الاستماع اليك،
-              <br />
-              راسلنا الان:
+              {contactData.subTitle}
             </h2>
           </div>
 
@@ -49,7 +71,7 @@ const ContactSection = () => {
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="الإسم ..."
+                  placeholder={contactData.fieldName}
                   value={formData.name}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
@@ -61,7 +83,7 @@ const ContactSection = () => {
                   id="phone"
                   name="phone"
                   type="tel"
-                  placeholder="... رقم الهاتف"
+                  placeholder={contactData.fieldPhone}
                   value={formData.phone}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
@@ -73,7 +95,7 @@ const ContactSection = () => {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="البريد الالكتروني..."
+                  placeholder={contactData.fieldEmail}
                   value={formData.email}
                   onChange={handleInputChange}
                   className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
@@ -84,7 +106,7 @@ const ContactSection = () => {
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="نص الرسالة..."
+                  placeholder={contactData.fieldMessage}
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
