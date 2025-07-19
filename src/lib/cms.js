@@ -1,10 +1,11 @@
 import { getFullImageUrl, transformImages } from "./image";
+import { getCurrentLocale } from "./locale-utils";
 
 // ----------------------
 
 const getApiConfig = () => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (!baseUrl) throw new Error("API_BASE_URL is not defined");
+  if (!baseUrl) throw new Error("Next API_BASE_URL is not defined");
   const isDev = process.env.NODE_ENV === "development";
 
   return {
@@ -13,11 +14,20 @@ const getApiConfig = () => {
     revalidate: isDev ? 0 : 3600,
   };
 };
+
+/**
+ * Global API interceptor that automatically adds locale to all requests
+ */
 async function apiCall(endpoint, options = {}) {
   const config = getApiConfig();
 
+  // Automatically detect and add locale
+  const locale = await getCurrentLocale();
+  const separator = endpoint.includes("?") ? "&" : "?";
+  const endpointWithLocale = `${endpoint}${separator}locale=${locale}`;
+
   try {
-    const res = await fetch(`${config.apiUrl}${endpoint}`, {
+    const res = await fetch(`${config.apiUrl}${endpointWithLocale}`, {
       cache: config.cache,
       next: { revalidate: config.revalidate },
       ...options,
@@ -29,7 +39,7 @@ async function apiCall(endpoint, options = {}) {
 
     return await res.json();
   } catch (error) {
-    console.error(`API call failed for ${endpoint}:`, error);
+    console.error(`API call failed for ${endpointWithLocale}:`, error);
     throw error;
   }
 }

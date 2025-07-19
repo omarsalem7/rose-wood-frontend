@@ -6,9 +6,10 @@ import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
 
 const SideNav = ({ isOpen, onClose }) => (
   <div
-    className={`fixed top-0 right-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out ${
-      isOpen ? "translate-x-0" : "translate-x-full"
-    }`}
+    className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
+      ${
+        isOpen ? "translate-x-0" : "ltr:translate-x-full rtl:-translate-x-full"
+      }`}
   >
     <div className="p-6 ">
       {/* Header with logo and close button */}

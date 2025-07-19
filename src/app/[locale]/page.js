@@ -37,7 +37,6 @@ export default async function Home() {
       <WhyChooseRosewoodSection />
       <ArticlesSection blogs={blogs} title={blogsTitle} />
       <ContactSection />
-      {/* <KitchenHeroSection /> */}
     </div>
   );
 }
