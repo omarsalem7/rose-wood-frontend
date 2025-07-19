@@ -56,7 +56,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Right Side - Title */}
-          <div className="text-right">
+          <div className="text-start">
             <p className="text-[#8B4513] text-lg mb-4">{contactData.title}</p>
             <h2 className="text-5xl md:text-6xl font-bold text-[#8B4513] leading-tight">
               {contactData.subTitle}
@@ -74,7 +74,7 @@ const ContactSection = () => {
                   placeholder={contactData.fieldName}
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
+                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
                 />
               </div>
 
@@ -86,7 +86,7 @@ const ContactSection = () => {
                   placeholder={contactData.fieldPhone}
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
+                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
                 />
               </div>
 
@@ -98,7 +98,7 @@ const ContactSection = () => {
                   placeholder={contactData.fieldEmail}
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
+                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
                 />
               </div>
 
@@ -110,7 +110,7 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full text-right bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300 resize-none"
+                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300 resize-none"
                 />
               </div>
 
