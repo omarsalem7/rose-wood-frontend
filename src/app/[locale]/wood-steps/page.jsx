@@ -1,12 +1,15 @@
 import React from 'react'
 import WoodHero from './_components/WoodHero'
 import WoodStepsList from './_components/WoodStepsList';
+import { fetchWoodStepsPageData } from '@/lib/cms';
 
-const WoodSteps = () => {
+const WoodSteps = async () => {
+  const woodStepsData = await fetchWoodStepsPageData();
+
   return (
     <>
-      <WoodHero />
-      <WoodStepsList />
+      <WoodHero heroData={woodStepsData.hero} />
+      <WoodStepsList stepsData={woodStepsData.steps} />
     </>
   );
 }

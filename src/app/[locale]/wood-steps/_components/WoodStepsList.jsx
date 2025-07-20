@@ -1,26 +1,18 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { woodStepsList } from "@/utils/data";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
 
-const GlobalService = () => {
-  const [woodSteps, setWoodSteps] = useState([]);
-  useEffect(() => {
-    setWoodSteps(woodStepsList);
-  }, []);
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+
+const GlobalService = ({ stepsData }) => {
   return (
     <>
-      <section className="px-6  pt-30 md:pt-60">
+      <section className="px-6 pt-30 md:pt-60">
         <div className="max-w-7xl mx-auto">
           <div className="text-center pb-8 ">
             <h2 className="font-medium text-2xl leading-12">
-              خطواتنا المدروسة... تصنع الفرق
+              {stepsData.title}
             </h2>
             <p className="text-[#586675] text-lg">
-              في رووز وود ، نؤمن أن كل تفصيلة في مراحل التصنيع تترك بصمتها على
-              المنتج النهائي. من اختيار الخشب وحتى التغليف، نعمل بخبرة، شغف،
-              وتقنيات متطورة لنمنحك منتجًا يفوق التوقعات.
+              {stepsData.description}
             </p>
           </div>
           <div className="bg-[#804524] w-[60%] md:w-[20%] flex mx-auto   h-0.5 relative mb-12">
@@ -29,8 +21,8 @@ const GlobalService = () => {
           </div>
           {/*  */}
           <div className="flex flex-col gap-4">
-            {woodSteps.length > 0 ? (
-              woodSteps.map((item, idx) => (
+            {stepsData.stepsList.length > 0 ? (
+              stepsData.stepsList.map((item, idx) => (
                 <div
                   key={item?.id}
                   className="items flex flex-col gap-12 md:gap-24 md:flex-row md:even:flex-row-reverse py-6"
@@ -39,12 +31,12 @@ const GlobalService = () => {
                     <h3 className="text-lg font-medium text-[#1D252E]">
                       {item?.title}
                     </h3>
-                    <p className="text-lg text-[#586675]">{item?.desc}</p>
-                    <ul className="text-[#804524] text-lg flex flex-col gap-6 py-6">
+                    <p className="text-lg text-[#586675]">{item?.description}</p>
+                    <ul className="text-[rgb(128,69,36)] text-lg flex flex-col gap-6 py-6">
                       {item?.list?.map((item) => (
                         <li key={item?.id}>
                           <span className="me-3 w-[16px] h-[16px] rounded-full inline-block bg-[#9C5C38] shadow-[#e4a682]"></span>
-                          {item?.listItem}
+                          {item?.text}
                         </li>
                       ))}
                     </ul>
@@ -86,10 +78,10 @@ const GlobalService = () => {
           </div>
           <div className="flex justify-center items-center gap-6 py-14">
             <Button className=" w-[186px] rounded-lg text-white bg-[#804524] py-2">
-              عــرض كل المـنتجات
+              {stepsData.btnProducts}
             </Button>
             <Button className=" w-[186px] rounded-lg text-[#804524] border border-[#804524] py-2">
-              أطلب عينة
+              {stepsData.btnSample}
             </Button>
           </div>
         </div>

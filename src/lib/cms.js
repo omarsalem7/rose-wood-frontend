@@ -130,6 +130,40 @@ export async function fetchAllAboutPageData() {
   }
 }
 
+
+
+export async function fetchWoodStepsPageData() {
+  try {
+    const json = await apiCall(
+      "/wood-steps-page?populate[hero][populate]=*&populate[steps][populate][stepsList][populate]=*"
+    );
+
+    if (!json.data) {
+      throw new Error("wood steps page data not found");
+    }
+
+    // Use transformation function for about page
+    return transformWoodStepsPageData(json.data);
+  } catch (error) {
+    console.error("Error fetching all home page data:", error);
+
+    // Return fallback data for all sections
+    return {
+      hero: {
+        title: "حكاية تبدأ من الخشب... وتنتهي بتحفة",
+        description: "",
+        imageUrl: null,
+      },
+      steps: {
+        title:'',
+        stepsList:[],
+        description:''
+      },
+    };
+  }
+}
+
+
 // Transformation functions
 function transformHeroData(heroData) {
   if (!heroData) return null;
@@ -422,6 +456,37 @@ function transformAboutPageData(data) {
             })) || [],
         }
       : null,
+  };
+}
+
+// Transformation function for wood steps page data
+function transformWoodStepsPageData(data) {
+  return {
+    hero: {
+      title: data.hero?.title || "",
+      description: data.hero?.description || "",
+      image1: data.hero?.image1?.url ? getFullImageUrl(data.hero.image1.url) : null,
+      image2: data.hero?.image2?.url ? getFullImageUrl(data.hero.image2.url) : null,
+      image3: data.hero?.image3?.url ? getFullImageUrl(data.hero.image3.url) : null,
+    },
+    steps: {
+      title: data.steps?.title || "",
+      description: data.steps?.description || "",
+      stepsList: data.steps?.stepsList?.map((step) => ({
+        id: step.id,
+        title: step.title,
+        description: step.description,
+        list: step.list?.map((item) => ({
+          id: item.id,
+          text: item.text,
+        })) || [],
+        bgImg: step.bgImg?.url ? getFullImageUrl(step.bgImg.url) : null,
+        img1: step.img1?.[0]?.url ? getFullImageUrl(step.img1[0].url) : null,
+        img2: step.img2?.url ? getFullImageUrl(step.img2.url) : null,
+      })) || [],
+      btnProducts:data.steps?.btnProducts,
+      btnSample:data.steps?.btnSample,
+    },
   };
 }
 

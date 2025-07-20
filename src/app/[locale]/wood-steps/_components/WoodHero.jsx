@@ -1,23 +1,19 @@
 import Image from "next/image";
 import React from "react";
 
-const WoodHero = () => {
+const WoodHero = ({heroData}) => {
   return (
     <>
       {/* pb-60 */}
-      <section className=" relative bg-white   ">
+      <section className="relative bg-white">
         <div className="px-6  bg-[url('/assets/whale-hero-bg.png')] md:h-[calc(100vh-70px)] h-[calc(100vh-120px)] bg-cover bg-center">
           <div className="max-w-7xl mx-auto py-14">
             <div className=" text-center mb-8 md:mb-24">
               <h1 className="text-2xl md:text-3xl font-semibold pb-6">
-                حكاية تبدأ من الخشب... وتنتهي بتحفة
+                {heroData.title}
               </h1>
               <p className="text-xl md:text-2xl font text-[#586675]">
-                في روز وود، لا نقدّم منتجًا فحسب، بل نُقدم تجربة متكاملة تبدأ من
-                اختيار الخشب وتنتهي بين يديك. نحن نؤمن أن كل قطعة يجب أن تعكس
-                جمال الطبيعة، ودقة الصنعة، واهتمامًا حقيقيًا بالتفاصيل, كل منتج
-                من رووز وود يعكس شغفنا بالحِرَف اليدوية والدقة في كل مرحلة من
-                مراحل التصنيع.
+                {heroData.description}
               </p>
             </div>
             <div className="relative pb-66 md:pb-24">
@@ -48,7 +44,7 @@ const WoodHero = () => {
         <div className="flex w-full justify-center overflow-hidden absolute bottom-[-30px] md:bottom-[-180px] pt-16  gap-8     ">
           <div className=" shrink-0">
             <Image
-              src="/assets/whale-hero(1).png"
+              src={heroData.image1}
               alt="hero1"
               width={400}
               height={400}
@@ -57,7 +53,7 @@ const WoodHero = () => {
           </div>
           <div className="mt-[-60px]  shrink-0  ">
             <Image
-              src="/assets/whale-hero(2).png"
+              src={heroData.image2}
               alt="hero2"
               width={400}
               height={400}
@@ -66,7 +62,7 @@ const WoodHero = () => {
           </div>
           <div className=" shrink-0">
             <Image
-              src="/assets/whale-hero(3).png"
+              src={heroData.image3}
               alt="hero3"
               width={400}
               height={400}
