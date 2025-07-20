@@ -43,7 +43,7 @@ const GlobalService = () => {
                     <ul className="text-[#804524] text-lg flex flex-col gap-6 py-6">
                       {item?.list?.map((item) => (
                         <li key={item?.id}>
-                          <span className="ml-3 w-[16px] h-[16px] rounded-full inline-block bg-[#9C5C38] shadow-[#e4a682]"></span>
+                          <span className="me-3 w-[16px] h-[16px] rounded-full inline-block bg-[#9C5C38] shadow-[#e4a682]"></span>
                           {item?.listItem}
                         </li>
                       ))}
@@ -55,7 +55,7 @@ const GlobalService = () => {
                       idx % 2 === 0 ? "mr-auto  " : "ml-auto  "
                     }   bg-cover bg-center relative item w-[324px] md:w-[50%] h-[324px]  md:h-[480px] border border-gray-300 rounded-2xl`}
                   >
-                    <div className=" absolute top-0 left-0 w-full h-full bg-black/70 rounded-2xl">
+                    <div className="absolute top-0 left-0 w-full h-full bg-black/70 rounded-2xl">
                       <div
                         className={` absolute top-0 md:top-6 ${
                           idx % 2 === 0 ? "right-[-30px]" : "left-[-30px]"
@@ -64,15 +64,15 @@ const GlobalService = () => {
                         <Image
                           src={item?.img1}
                           alt=""
-                          width={100}
-                          height={100}
+                          width={400}
+                          height={400}
                           className="w-[276px] h-[150px] md:w-[373px] md:h-[203px]"
                         />
                         <Image
                           src={item?.img2}
                           alt=""
-                          width={100}
-                          height={100}
+                          width={400}
+                          height={400}
                           className=" w-[276px] h-[150px] md:w-[373px] md:h-[203px]"
                         />
                       </div>
