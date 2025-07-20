@@ -6,6 +6,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
 
+// Custom styles for equal height Swiper slides
+const swiperStyles = `
+  .equal-height-swiper .swiper-slide {
+    height: auto;
+    display: flex;
+  }
+  .equal-height-swiper .swiper-wrapper {
+    align-items: stretch;
+  }
+`;
+
 function formatArabicDate(dateString) {
   return new Date(dateString).toLocaleDateString("ar-EG", {
     day: "2-digit",
@@ -48,10 +59,12 @@ const ArticlesSection = ({ blogs = [], title }) => {
   const canGoRight = currentPage < totalPages - 1;
 
   return (
-    <section
-      className="py-16 px-0 md:px-8"
-      style={{ backgroundColor: "#8B5A3C" }}
-    >
+    <>
+      <style jsx>{swiperStyles}</style>
+      <section
+        className="py-16 px-0 md:px-8"
+        style={{ backgroundColor: "#8B5A3C" }}
+      >
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <div className="text-center mb-12">
@@ -66,17 +79,19 @@ const ArticlesSection = ({ blogs = [], title }) => {
             <Swiper
               spaceBetween={20}
               slidesPerView={1.1}
-              centeredSlides={true}
+              centeredSlides={false}
               style={{ paddingLeft: "8vw", paddingRight: "8vw" }}
+              className="equal-height-swiper"
             >
               {blogs.map((article) => (
                 <SwiperSlide
                   key={article.id}
-                  style={{ width: "84vw", maxWidth: 400 }}
+                  style={{ width: "84vw", maxWidth: 400, height: "auto" }}
+                  className="h-auto"
                 >
-                  <Card className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <Card className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                     {/* Article Image */}
-                    <div className="aspect-video overflow-hidden">
+                    <div className="aspect-video overflow-hidden flex-shrink-0">
                       <Image
                         src={article.image}
                         alt={article.title}
@@ -85,17 +100,17 @@ const ArticlesSection = ({ blogs = [], title }) => {
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <CardContent className="p-6">
+                    <CardContent className="p-6 flex flex-col flex-grow">
                       {/* Article Title */}
-                      <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed">
+                      <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed flex-shrink-0">
                         {article.title}
                       </h3>
                       {/* Article Excerpt */}
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4">
+                      <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4 flex-grow">
                         {article.description}
                       </p>
                       {/* Article Meta */}
-                      <div className="flex items-center justify-between text-gray-500 text-sm">
+                      <div className="flex items-center justify-between text-gray-500 text-sm flex-shrink-0 mt-auto">
                         <div className="flex items-center space-x-4">
                           <div className="flex items-center space-x-1">
                             <Calendar size={16} />
@@ -119,14 +134,14 @@ const ArticlesSection = ({ blogs = [], title }) => {
               ))}
             </Swiper>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
               {currentArticles.map((article) => (
                 <Card
                   key={article.id}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
                 >
                   {/* Article Image */}
-                  <div className="aspect-video overflow-hidden">
+                  <div className="aspect-video overflow-hidden flex-shrink-0">
                     <Image
                       src={article.image}
                       alt={article.title}
@@ -135,17 +150,17 @@ const ArticlesSection = ({ blogs = [], title }) => {
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-grow">
                     {/* Article Title */}
-                    <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed">
+                    <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed flex-shrink-0">
                       {article.title}
                     </h3>
                     {/* Article Excerpt */}
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4">
+                    <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4 flex-grow">
                       {article.description}
                     </p>
                     {/* Article Meta */}
-                    <div className="flex items-center justify-between text-gray-500 text-sm">
+                    <div className="flex items-center justify-between text-gray-500 text-sm flex-shrink-0 mt-auto">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
                           <Calendar size={16} />
@@ -205,6 +220,7 @@ const ArticlesSection = ({ blogs = [], title }) => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
