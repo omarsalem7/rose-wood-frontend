@@ -90,7 +90,7 @@ export const woodStepsList = [
         listItem: "تقطيع دقيق يوفر الوقت ويمنحنا بداية مثالية للتصميم.",
       },
     ],
-    bgImg: "/assets/wood-steps-sec(1)-img(1).png",
+    bgImg: "/assets/kitchen.png",
     img1: "/assets/wood-steps-sec(1)-img(2).png",
     img2: "/assets/wood-steps-sec(1)-img(3).png",
   },

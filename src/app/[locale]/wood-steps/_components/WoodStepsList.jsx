@@ -50,7 +50,7 @@ const GlobalService = () => {
                     </ul>
                   </div>
                   <div
-                    style={{ backgroundImage: `url('${item?.img1}')` }}
+                    style={{ backgroundImage: `url('${item?.bgImg}')` }}
                     className={` ${
                       idx % 2 === 0 ? "mr-auto  " : "ml-auto  "
                     }   bg-cover bg-center relative item w-[324px] md:w-[50%] h-[324px]  md:h-[480px] border border-gray-300 rounded-2xl`}
