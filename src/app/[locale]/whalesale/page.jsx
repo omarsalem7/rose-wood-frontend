@@ -2,13 +2,16 @@ import React from "react";
 import WhaleHero from "./_components/WhaleHero";
 import GlobalService from "./_components/GlobalService";
 import LocalService from "./_components/LocalService";
+import { fetchWhaleSalePage } from "@/lib/cms";
 
-const WhaleSale = () => {
+const WhaleSale = async () => {
+  const data = await fetchWhaleSalePage();
+  console.log(data)
   return (
     <>
-      <WhaleHero />
-      <GlobalService />
-      <LocalService />
+      <WhaleHero hero={data.hero} />
+      <GlobalService global={data.global} />
+      <LocalService local={data.local} />
     </>
   );
 };

@@ -163,6 +163,54 @@ export async function fetchWoodStepsPageData() {
   }
 }
 
+export async function fetchWhaleSalePage() {
+  try {
+    const json = await apiCall(
+      "/whalesale-page?populate[hero][populate]=*&populate[global][populate][service][populate]=*&populate[local][populate]=*"
+    );
+
+    if (!json.data) {
+      throw new Error("whale sale page data not found");
+    }
+
+    // Use transformation function for whale sale page
+    return transformWhaleSalePageData(json.data);
+  } catch (error) {
+    console.error("Error fetching whale sale page data:", error);
+
+    // Return fallback data for all sections
+    return {
+      hero: {
+        title: "رووز وود شريكك التجاري الموثوق – محليًا ودوليًا",
+        description: "",
+        image1: null,
+        image2: null,
+        image3: null,
+      },
+      global: {
+        title: "",
+        description: "",
+        service: {
+          title: "",
+          description: "",
+          buttontext: "",
+          list: [],
+          image1: null,
+          image2: null,
+        },
+      },
+      local: {
+        title: "",
+        description: "",
+        buttontext: "",
+        list: [],
+        image1: null,
+        image2: null,
+      },
+    };
+  }
+}
+
 
 // Transformation functions
 function transformHeroData(heroData) {
@@ -486,6 +534,45 @@ function transformWoodStepsPageData(data) {
       })) || [],
       btnProducts:data.steps?.btnProducts,
       btnSample:data.steps?.btnSample,
+    },
+  };
+}
+
+// Transformation function for whale sale page data
+function transformWhaleSalePageData(data) {
+  return {
+    hero: {
+      title: data.hero?.title || "",
+      description: data.hero?.description || "",
+      image1: data.hero?.image1?.url ? getFullImageUrl(data.hero.image1.url) : null,
+      image2: data.hero?.image2?.url ? getFullImageUrl(data.hero.image2.url) : null,
+      image3: data.hero?.image3?.url ? getFullImageUrl(data.hero.image3.url) : null,
+    },
+    global: {
+      title: data.global?.title || "",
+      description: data.global?.description || "",
+      service: {
+        title: data.global?.service?.title || "",
+        description: data.global?.service?.description || "",
+        buttontext: data.global?.service?.buttontext || "",
+        list: data.global?.service?.list?.map((item) => ({
+          id: item.id,
+          text: item.text,
+        })) || [],
+        image1: data.global?.service?.image1?.url ? getFullImageUrl(data.global.service.image1.url) : null,
+        image2: data.global?.service?.image2?.url ? getFullImageUrl(data.global.service.image2.url) : null,
+      },
+    },
+    local: {
+      title: data.local?.title || "",
+      description: data.local?.description || "",
+      buttontext: data.local?.buttontext || "",
+      list: data.local?.list?.map((item) => ({
+        id: item.id,
+        text: item.text,
+      })) || [],
+      image1: data.local?.image1?.url ? getFullImageUrl(data.local.image1.url) : null,
+      image2: data.local?.image2?.url ? getFullImageUrl(data.local.image2.url) : null,
     },
   };
 }
