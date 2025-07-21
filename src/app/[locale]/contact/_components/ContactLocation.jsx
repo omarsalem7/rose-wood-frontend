@@ -9,7 +9,7 @@ const CustomMap = () => {
   });
 
   return (
-    <div className="map-container rounded-lg w-full h-[450px]">
+    <div className="map-container rounded-lg w-full h-[300px]">
       <Map
         style={{ width: "100%", height: "100%", borderRadius: "20px" }}
         defaultZoom={15}

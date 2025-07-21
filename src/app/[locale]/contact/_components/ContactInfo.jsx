@@ -4,13 +4,13 @@ import React from "react";
 import CustomMap from "./ContactLocation";
 import { APIProvider } from "@vis.gl/react-google-maps";
 
-const ContactInfo = () => {
+const ContactInfo = ({ contactInfo }) => {
   return (
     <>
       <div className=" w-full md:w-[50%]">
         <div className="rounded-lg p-4 border border-gray-300">
           <ul className=" flex flex-col gap-6">
-            <li>تواصل معنا عن طريق:</li>
+            <li>{contactInfo.title}</li>
             <li className="flex items-center gap-2">
               <Image
                 src="/location.svg"
@@ -18,11 +18,11 @@ const ContactInfo = () => {
                 height={20}
                 alt="location"
               />
-              بجوار مول العرب, 6 اكتوبر
+              {contactInfo.location}
             </li>
             <li className="flex items-center gap-2">
               <Image src="/phone.svg" width={20} height={20} alt="phone" />
-              +201033143*** - +201033143***
+              {contactInfo.phone}
             </li>
             <li className="flex items-center gap-2">
               <Image
@@ -31,11 +31,11 @@ const ContactInfo = () => {
                 height={20}
                 alt="envelope"
               />
-              info@rosewood.com
+              {contactInfo.email}
             </li>
             <li className="flex items-center gap-2">
               <Image src="/X.svg" width={20} height={20} alt="X" />
-              روز وود للاخشاب الصحية
+              {contactInfo.roseWood}
             </li>
           </ul>
         </div>

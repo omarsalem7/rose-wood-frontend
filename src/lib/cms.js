@@ -211,6 +211,24 @@ export async function fetchWhaleSalePage() {
   }
 }
 
+export async function fetchContactPageData() {
+  try {
+    const json = await apiCall(
+      "/contact-page?populate[contactForm][populate]=*"
+    );
+
+    if (!json.data) {
+      throw new Error("contact page data not found");
+    }
+
+    // Return data as-is without transformation
+    return json.data;
+  } catch (error) {
+    console.error("Error fetching contact page data:", error);
+    throw error;
+  }
+}
+
 
 // Transformation functions
 function transformHeroData(heroData) {

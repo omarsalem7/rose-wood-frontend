@@ -1,8 +1,11 @@
 import React from "react";
 import ContactForm from "./_components/ContactForm";
 import ContactInfo from "./_components/ContactInfo";
+import { fetchContactPageData } from "@/lib/cms";
 
-const Contact = () => {
+const Contact = async () => {
+  const data = await fetchContactPageData();
+
   return (
     <>
       <section className="px-6 py-4">
@@ -11,8 +14,8 @@ const Contact = () => {
             تواصل معنا الان
           </div>
           <div className="items flex flex-col  gap-6 md:flex-row">
-            <ContactForm />
-            <ContactInfo />
+            <ContactForm btnText={data.sendButton} contactForm={data.contactForm} />
+            <ContactInfo contactInfo={data} />
           </div>
         </div>
       </section>
