@@ -32,7 +32,6 @@ const Footer = () => {
     const loadFooterData = async () => {
       try {
         const data = await fetchFooterData();
-        console.log("ssssssssss", data);
         setFooterData(data);
       } catch (error) {
         console.error("Error loading footer data:", error);
