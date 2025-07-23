@@ -1,0 +1,25 @@
+{
+  "title": "Request Custom Quote",
+  "fullName": "Full Name",
+  "companyName": "Company Name",
+  "email": "Email Address",
+  "phone": "Phone Number",
+  "city": "City",
+  "address": "Address",
+  "products": "Products",
+  "addProduct": "Add Product",
+  "qty": "Qty",
+  "specialRequests": "Special Requests (Optional)",
+  "submit": "Submit Quote Request",
+  "selectProduct": "Select a product",
+  "validation": {
+    "nameMin": "Name must be at least 2 characters",
+    "email": "Please enter a valid email address",
+    "phoneMin": "Phone number must be at least 10 digits",
+    "city": "City is required",
+    "address": "Address is required",
+    "productRequired": "Please select a product",
+    "quantityMin": "Quantity must be at least 1",
+    "productsMin": "At least one product must be selected"
+  }
+}

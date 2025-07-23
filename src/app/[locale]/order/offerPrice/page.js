@@ -26,6 +26,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
+import en from "@/../public/locales/en/offerPrice.json";
+import ar from "@/../public/locales/ar/offerPrice.json";
 
 const productOptions = {
   "Kitchen Products": [
@@ -48,24 +50,31 @@ const productOptions = {
   ],
 };
 
-const formSchema = z.object({
-  customerName: z.string().min(2, "Name must be at least 2 characters"),
-  companyName: z.string().optional(),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
-  city: z.string().min(1, "City is required"),
-  address: z.string().min(1, "Address is required"),
-  products: z
-    .array(
-      z.object({
-        productId: z.string().min(1, "Please select a product"),
-        quantity: z.number().min(1, "Quantity must be at least 1"),
-      })
-    )
-    .min(1, "At least one product must be selected"),
-  specialRequests: z.string().optional(),
-});
-export default function OfferPricePage() {
+export default function OfferPricePage({ params }) {
+  // Unwrap the params Promise
+  const { locale } = React.use(params);
+
+  const t = locale === "ar" ? ar : en;
+
+  // Localized Zod schema
+  const formSchema = z.object({
+    customerName: z.string().min(2, t.validation.nameMin),
+    companyName: z.string().optional(),
+    email: z.string().email(t.validation.email),
+    phone: z.string().min(10, t.validation.phoneMin),
+    city: z.string().min(1, t.validation.city),
+    address: z.string().min(1, t.validation.address),
+    products: z
+      .array(
+        z.object({
+          productId: z.string().min(1, t.validation.productRequired),
+          quantity: z.number().min(1, t.validation.quantityMin),
+        })
+      )
+      .min(1, t.validation.productsMin),
+    specialRequests: z.string().optional(),
+  });
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -88,7 +97,7 @@ export default function OfferPricePage() {
   const onSubmit = (data) => {
     console.log("Form submitted:", data);
     toast({
-      title: "Quote Request Submitted",
+      title: t.title,
       description:
         "We'll get back to you within 24 hours with your custom quote.",
     });
@@ -108,13 +117,9 @@ export default function OfferPricePage() {
     <section className="py-16 px-4 bg-background">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Request Custom Quote
+          <h2 className="text-3xl  font-bold text-foreground mb-4">
+            {t.title}
           </h2>
-          {/* <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get a personalized quote for your custom woodworking project. Select
-            your products and we'll provide detailed pricing.
-          </p> */}
         </div>
 
         <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200">
@@ -127,10 +132,10 @@ export default function OfferPricePage() {
                   name="customerName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Full Name</FormLabel>
+                      <FormLabel>{t.fullName}</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter your full name"
+                          placeholder={t.fullName}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />
@@ -145,11 +150,11 @@ export default function OfferPricePage() {
                   name="companyName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Company Name</FormLabel>
+                      <FormLabel>{t.companyName}</FormLabel>
                       <FormControl>
                         <Input
                           type="text"
-                          placeholder="Enter your company name"
+                          placeholder={t.companyName}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />
@@ -164,10 +169,10 @@ export default function OfferPricePage() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
+                      <FormLabel>{t.phone}</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter your phone number"
+                          placeholder={t.phone}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />
@@ -181,11 +186,11 @@ export default function OfferPricePage() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email Address</FormLabel>
+                      <FormLabel>{t.email}</FormLabel>
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="your.email@example.com"
+                          placeholder={t.email}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />
@@ -199,10 +204,10 @@ export default function OfferPricePage() {
                   name="city"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>City</FormLabel>
+                      <FormLabel>{t.city}</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter your city"
+                          placeholder={t.city}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />
@@ -216,10 +221,10 @@ export default function OfferPricePage() {
                   name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Address</FormLabel>
+                      <FormLabel>{t.address}</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter your address"
+                          placeholder={t.address}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />
@@ -233,17 +238,17 @@ export default function OfferPricePage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-semibold text-foreground">
-                    Products
+                    {t.products}
                   </h3>
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
                     onClick={addProduct}
-                    className="bg-gray-900 text-white font-bold rounded-md hover:bg-gray-800 flex items-center gap-2"
+                    className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
                   >
                     <Plus className="h-4 w-4" />
-                    Add Product
+                    {t.addProduct}
                   </Button>
                 </div>
 
@@ -259,14 +264,18 @@ export default function OfferPricePage() {
                           name={`products.${index}.productId`}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Product {index + 1}</FormLabel>
+                              <FormLabel>{`${t.products} ${
+                                index + 1
+                              }`}</FormLabel>
                               <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
                               >
                                 <FormControl>
                                   <SelectTrigger className="bg-white border mb-0 border-gray-200 rounded-md placeholder:text-gray-400">
-                                    <SelectValue placeholder="Select a product" />
+                                    <SelectValue
+                                      placeholder={t.selectProduct}
+                                    />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
@@ -299,7 +308,7 @@ export default function OfferPricePage() {
                           name={`products.${index}.quantity`}
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Qty</FormLabel>
+                              <FormLabel>{t.qty}</FormLabel>
                               <FormControl>
                                 <Input
                                   type="number"
@@ -341,10 +350,10 @@ export default function OfferPricePage() {
                 name="specialRequests"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Special Requests (Optional)</FormLabel>
+                    <FormLabel>{t.specialRequests}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Any specific requirements, dimensions, or customizations..."
+                        placeholder={t.specialRequests}
                         className="min-h-[100px] bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                         {...field}
                       />
@@ -359,9 +368,9 @@ export default function OfferPricePage() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="bg-gray-900 text-white font-bold rounded-md hover:bg-gray-800 px-8"
+                  className="bg-[#5F361F] text-white font-bold rounded-md hover:bg-amber-900 cursor-pointer px-8"
                 >
-                  Submit Quote Request
+                  {t.submit}
                 </Button>
               </div>
             </form>
