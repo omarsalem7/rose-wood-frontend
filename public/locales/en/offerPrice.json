@@ -7,7 +7,7 @@
   "city": "City",
   "address": "Address",
   "products": "Products",
-  "addProduct": "Add Product",
+  "addProduct": "Add another product",
   "qty": "Qty",
   "specialRequests": "Special Requests (Optional)",
   "submit": "Submit Quote Request",

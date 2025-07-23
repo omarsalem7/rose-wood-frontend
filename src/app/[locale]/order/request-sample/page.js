@@ -69,7 +69,6 @@ export default function RequestSamplePage({ params }) {
       .array(
         z.object({
           productId: z.string().min(1, t.validation.productRequired),
-          quantity: z.number().min(1, t.validation.quantityMin),
         })
       )
       .min(1, t.validation.productsMin),
@@ -86,7 +85,7 @@ export default function RequestSamplePage({ params }) {
       city: "",
       country: "",
       address: "",
-      products: [{ productId: "", quantity: 1 }],
+      products: [{ productId: "" }],
       specialRequests: "",
     },
   });
@@ -106,7 +105,7 @@ export default function RequestSamplePage({ params }) {
   };
 
   const addProduct = () => {
-    append({ productId: "", quantity: 1 });
+    append({ productId: "" });
   };
 
   const removeProduct = (index) => {
@@ -316,33 +315,6 @@ export default function RequestSamplePage({ params }) {
                                 </SelectContent>
                               </Select>
                               <FormMessage className="absolute" />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <div className="w-24">
-                        <FormField
-                          control={form.control}
-                          name={`products.${index}.quantity`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>{t.qty}</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="number"
-                                  min="1"
-                                  placeholder="1"
-                                  className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                                  {...field}
-                                  onChange={(e) =>
-                                    field.onChange(
-                                      parseInt(e.target.value) || 1
-                                    )
-                                  }
-                                />
-                              </FormControl>
-                              <FormMessage />
                             </FormItem>
                           )}
                         />
