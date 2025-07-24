@@ -1,10 +1,10 @@
 "use client";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const Header = ({ onMenuClick }) => (
+const Header = ({ onMenuClick, contactUs }) => (
   <header className="relative z-20 p-6 py-3 bg-white">
     <div className="flex justify-between items-center max-w-7xl mx-auto">
       {/* Right side - Menu button */}
@@ -29,7 +29,7 @@ const Header = ({ onMenuClick }) => (
       <div className="flex items-center gap-4">
         <LanguageSwitcher />
         <button className="bg-[#5F361F] text-white px-2 md:px-8 py-2 rounded-xl text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-          تواصل معنا
+          {contactUs}
         </button>
       </div>
     </div>

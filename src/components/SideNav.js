@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
 
-const SideNav = ({ isOpen, onClose }) => (
+const SideNav = ({ isOpen, onClose, data }) => (
   <div
     className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
       ${
@@ -46,10 +46,10 @@ const SideNav = ({ isOpen, onClose }) => (
             alt="who"
             className="text-white"
           />
-          من نحن
+          {data?.whoAreWe}
         </Link>
-        <a
-          href="#"
+        <Link
+          href="/products"
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -59,10 +59,10 @@ const SideNav = ({ isOpen, onClose }) => (
             alt="who"
             className="text-white"
           />
-          المنتجات
-        </a>
-        <a
-          href="#"
+          {data?.products}
+        </Link>
+        <Link
+          href="/wholesale"
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -72,10 +72,10 @@ const SideNav = ({ isOpen, onClose }) => (
             alt="who"
             className="text-white"
           />
-          الجملة والتصدير
-        </a>
+          {data?.wholesaleExport}
+        </Link>
         <a
-          href="#"
+          href="/why-use-rosewood"
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -85,7 +85,7 @@ const SideNav = ({ isOpen, onClose }) => (
             alt="who"
             className="text-white"
           />
-          لماذا تستخدم اخشاب روز وود
+          {data?.whyUseRosewood}
         </a>
         <a
           href="#"
@@ -98,10 +98,10 @@ const SideNav = ({ isOpen, onClose }) => (
             alt="who"
             className="text-white"
           />
-          التغذية البصرية
+          {data?.visualFeeding}
         </a>
-        <a
-          href="#"
+        <Link
+          href="/contact"
           className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -111,40 +111,46 @@ const SideNav = ({ isOpen, onClose }) => (
             alt="who"
             className="text-white"
           />
-          تواصل معنا
-        </a>
+          {data?.contactUs}
+        </Link>
       </nav>
       {/* Bottom section with buttons like in the design */}
-      <div className="mt-12 space-y-4">
-        <button className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-          تواصل معنا
-        </button>
-        <button className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-          عرض سعر
-        </button>
+      <div className="mt-12 space-y-4 space-x-4">
+        <Link
+          href="/contact"
+          className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+        >
+          {data?.contactUs}
+        </Link>
+        <Link
+          href="/order/price-quote"
+          className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+        >
+          {data?.offerPrice}
+        </Link>
       </div>
       {/* Social media icons */}
       <div className="absolute bottom-5 flex justify-center gap-4 mt-8">
         <a
-          href="#"
+          href={data?.linkedin}
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <Linkedin size={16} />
         </a>
         <a
-          href="#"
+          href={data?.facebook}
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <Facebook size={16} />
         </a>
         <a
-          href="#"
+          href={data?.x}
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <X size={16} />
         </a>
         <a
-          href="#"
+          href={data?.youtube}
           className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
         >
           <Youtube size={16} />

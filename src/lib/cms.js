@@ -130,8 +130,6 @@ export async function fetchAllAboutPageData() {
   }
 }
 
-
-
 export async function fetchWoodStepsPageData() {
   try {
     const json = await apiCall(
@@ -155,9 +153,9 @@ export async function fetchWoodStepsPageData() {
         imageUrl: null,
       },
       steps: {
-        title:'',
-        stepsList:[],
-        description:''
+        title: "",
+        stepsList: [],
+        description: "",
       },
     };
   }
@@ -228,7 +226,6 @@ export async function fetchContactPageData() {
     throw error;
   }
 }
-
 
 // Transformation functions
 function transformHeroData(heroData) {
@@ -531,27 +528,35 @@ function transformWoodStepsPageData(data) {
     hero: {
       title: data.hero?.title || "",
       description: data.hero?.description || "",
-      image1: data.hero?.image1?.url ? getFullImageUrl(data.hero.image1.url) : null,
-      image2: data.hero?.image2?.url ? getFullImageUrl(data.hero.image2.url) : null,
-      image3: data.hero?.image3?.url ? getFullImageUrl(data.hero.image3.url) : null,
+      image1: data.hero?.image1?.url
+        ? getFullImageUrl(data.hero.image1.url)
+        : null,
+      image2: data.hero?.image2?.url
+        ? getFullImageUrl(data.hero.image2.url)
+        : null,
+      image3: data.hero?.image3?.url
+        ? getFullImageUrl(data.hero.image3.url)
+        : null,
     },
     steps: {
       title: data.steps?.title || "",
       description: data.steps?.description || "",
-      stepsList: data.steps?.stepsList?.map((step) => ({
-        id: step.id,
-        title: step.title,
-        description: step.description,
-        list: step.list?.map((item) => ({
-          id: item.id,
-          text: item.text,
+      stepsList:
+        data.steps?.stepsList?.map((step) => ({
+          id: step.id,
+          title: step.title,
+          description: step.description,
+          list:
+            step.list?.map((item) => ({
+              id: item.id,
+              text: item.text,
+            })) || [],
+          bgImg: step.bgImg?.url ? getFullImageUrl(step.bgImg.url) : null,
+          img1: step.img1?.[0]?.url ? getFullImageUrl(step.img1[0].url) : null,
+          img2: step.img2?.url ? getFullImageUrl(step.img2.url) : null,
         })) || [],
-        bgImg: step.bgImg?.url ? getFullImageUrl(step.bgImg.url) : null,
-        img1: step.img1?.[0]?.url ? getFullImageUrl(step.img1[0].url) : null,
-        img2: step.img2?.url ? getFullImageUrl(step.img2.url) : null,
-      })) || [],
-      btnProducts:data.steps?.btnProducts,
-      btnSample:data.steps?.btnSample,
+      btnProducts: data.steps?.btnProducts,
+      btnSample: data.steps?.btnSample,
     },
   };
 }
@@ -562,9 +567,15 @@ function transformWhaleSalePageData(data) {
     hero: {
       title: data.hero?.title || "",
       description: data.hero?.description || "",
-      image1: data.hero?.image1?.url ? getFullImageUrl(data.hero.image1.url) : null,
-      image2: data.hero?.image2?.url ? getFullImageUrl(data.hero.image2.url) : null,
-      image3: data.hero?.image3?.url ? getFullImageUrl(data.hero.image3.url) : null,
+      image1: data.hero?.image1?.url
+        ? getFullImageUrl(data.hero.image1.url)
+        : null,
+      image2: data.hero?.image2?.url
+        ? getFullImageUrl(data.hero.image2.url)
+        : null,
+      image3: data.hero?.image3?.url
+        ? getFullImageUrl(data.hero.image3.url)
+        : null,
     },
     global: {
       title: data.global?.title || "",
@@ -573,24 +584,34 @@ function transformWhaleSalePageData(data) {
         title: data.global?.service?.title || "",
         description: data.global?.service?.description || "",
         buttontext: data.global?.service?.buttontext || "",
-        list: data.global?.service?.list?.map((item) => ({
-          id: item.id,
-          text: item.text,
-        })) || [],
-        image1: data.global?.service?.image1?.url ? getFullImageUrl(data.global.service.image1.url) : null,
-        image2: data.global?.service?.image2?.url ? getFullImageUrl(data.global.service.image2.url) : null,
+        list:
+          data.global?.service?.list?.map((item) => ({
+            id: item.id,
+            text: item.text,
+          })) || [],
+        image1: data.global?.service?.image1?.url
+          ? getFullImageUrl(data.global.service.image1.url)
+          : null,
+        image2: data.global?.service?.image2?.url
+          ? getFullImageUrl(data.global.service.image2.url)
+          : null,
       },
     },
     local: {
       title: data.local?.title || "",
       description: data.local?.description || "",
       buttontext: data.local?.buttontext || "",
-      list: data.local?.list?.map((item) => ({
-        id: item.id,
-        text: item.text,
-      })) || [],
-      image1: data.local?.image1?.url ? getFullImageUrl(data.local.image1.url) : null,
-      image2: data.local?.image2?.url ? getFullImageUrl(data.local.image2.url) : null,
+      list:
+        data.local?.list?.map((item) => ({
+          id: item.id,
+          text: item.text,
+        })) || [],
+      image1: data.local?.image1?.url
+        ? getFullImageUrl(data.local.image1.url)
+        : null,
+      image2: data.local?.image2?.url
+        ? getFullImageUrl(data.local.image2.url)
+        : null,
     },
   };
 }
@@ -606,4 +627,32 @@ function getPositionByIndex(index) {
     "top-left",
   ];
   return positions[index % positions.length];
+}
+
+export async function fetchNavbarData() {
+  try {
+    const json = await apiCall("/navbar?populate=*");
+    if (!json.data) {
+      throw new Error("Navbar data not found");
+    }
+    return json.data;
+  } catch (error) {
+    console.error("Error fetching navbar data:", error);
+    // Return fallback data
+    return {
+      id: null,
+      documentId: null,
+      whoAreWe: "من نحن",
+      products: "المنتجات",
+      wholesaleExport: "الجملة والتصدير",
+      whyUseRosewood: "لماذا تستخدم اخشاب روز وود",
+      visualFeeding: "التغذية البصرية",
+      contactUs: "تواصل معنا",
+      offerPrice: "عرض سعر",
+      facebook: "",
+      linkedin: "",
+      x: "",
+      youtube: "",
+    };
+  }
 }
