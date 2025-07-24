@@ -379,7 +379,7 @@ export default function InternationalExportPage({ params }) {
                 <Button
                   type="submit"
                   size="lg"
-                  className="bg-[#5F361F] text-white font-bold rounded-md hover:bg-amber-900 cursor-pointer px-8"
+                  className="bg-[#5F361F] min-w-3xs text-white font-bold rounded-md hover:bg-amber-900 cursor-pointer px-8"
                 >
                   {t.submit}
                 </Button>

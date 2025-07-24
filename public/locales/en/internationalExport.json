@@ -12,7 +12,7 @@
   "addProduct": "Add another product",
   "qty": "Qty",
   "specialRequests": "Special Requests (Optional)",
-  "submit": "Submit Request Sample",
+  "submit": "Send",
   "selectProduct": "Select a product",
   "validation": {
     "nameMin": "Name must be at least 2 characters",

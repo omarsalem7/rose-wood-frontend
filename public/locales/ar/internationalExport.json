@@ -12,7 +12,7 @@
   "addProduct": "إضافة منتج أخر",
   "qty": "الكمية",
   "specialRequests": "طلبات خاصة (اختياري)",
-  "submit": "إرسال طلب عينة",
+  "submit": "إرسال",
   "selectProduct": "اختر منتجًا",
   "validation": {
     "nameMin": "يجب أن يكون الاسم على الأقل حرفين",
