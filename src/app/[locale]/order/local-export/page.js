@@ -26,8 +26,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
-import en from "@/../public/locales/en/requestSample.json";
-import ar from "@/../public/locales/ar/requestSample.json";
+import en from "@/../public/locales/en/localExport.json";
+import ar from "@/../public/locales/ar/localExport.json";
 
 const productOptions = {
   "Kitchen Products": [
@@ -50,7 +50,7 @@ const productOptions = {
   ],
 };
 
-export default function RequestSamplePage({ params }) {
+export default function LocalExportPage({ params }) {
   // Unwrap the params Promise
   const { locale } = React.use(params);
 
@@ -63,7 +63,6 @@ export default function RequestSamplePage({ params }) {
     email: z.string().email(t.validation.email),
     phone: z.string().min(10, t.validation.phoneMin),
     city: z.string().min(1, t.validation.city),
-    country: z.string().min(1, t.validation.country),
     address: z.string().min(1, t.validation.address),
     products: z
       .array(
@@ -83,7 +82,6 @@ export default function RequestSamplePage({ params }) {
       email: "",
       phone: "",
       city: "",
-      country: "",
       address: "",
       products: [{ productId: "" }],
       specialRequests: "",
@@ -128,24 +126,24 @@ export default function RequestSamplePage({ params }) {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               {/* Customer Information */}
 
-              <FormField
-                control={form.control}
-                name="fullName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t.fullName}</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t.fullName}
-                        className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t.fullName}</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder={t.fullName}
+                          className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="companyName"
@@ -164,7 +162,6 @@ export default function RequestSamplePage({ params }) {
                     </FormItem>
                   )}
                 />
-
                 <FormField
                   control={form.control}
                   name="phone"
@@ -192,23 +189,6 @@ export default function RequestSamplePage({ params }) {
                         <Input
                           type="email"
                           placeholder={t.email}
-                          className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="country"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t.country}</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder={t.country}
                           className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                           {...field}
                         />

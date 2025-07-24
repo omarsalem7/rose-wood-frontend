@@ -58,7 +58,7 @@ export default function OfferPricePage({ params }) {
 
   // Localized Zod schema
   const formSchema = z.object({
-    customerName: z.string().min(2, t.validation.nameMin),
+    fullName: z.string().min(2, t.validation.nameMin),
     companyName: z.string().optional(),
     email: z.string().email(t.validation.email),
     phone: z.string().min(10, t.validation.phoneMin),
@@ -78,7 +78,7 @@ export default function OfferPricePage({ params }) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      customerName: "",
+      fullName: "",
       companyName: "",
       email: "",
       phone: "",
@@ -129,7 +129,7 @@ export default function OfferPricePage({ params }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
-                  name="customerName"
+                  name="fullName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t.fullName}</FormLabel>
