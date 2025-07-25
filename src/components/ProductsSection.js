@@ -24,17 +24,10 @@ const swiperStyles = `
   }
 `;
 
-const ProductsSection = ({ myCategories, products }) => {
-  const [activeCategory, setActiveCategory] = useState("");
+const ProductsSection = ({ products }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 3;
-
-  useEffect(() => {
-    if (myCategories && myCategories.length > 0) {
-      setActiveCategory(myCategories[0].name);
-    }
-  }, [myCategories]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,13 +38,10 @@ const ProductsSection = ({ myCategories, products }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const categories = myCategories.map((cat) => cat.name);
-
   const [selectedColors, setSelectedColors] = useState({});
 
-  const filteredProducts = products.filter(
-    (product) => product.category === activeCategory
-  );
+  // No category filtering, just use all products
+  const filteredProducts = products;
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = filteredProducts.slice(
@@ -64,11 +54,6 @@ const ProductsSection = ({ myCategories, products }) => {
       ...prev,
       [productId]: color,
     }));
-  };
-
-  const handleCategoryChange = (category) => {
-    setActiveCategory(category);
-    setCurrentPage(1);
   };
 
   const handlePrevPage = () => {
@@ -87,85 +72,143 @@ const ProductsSection = ({ myCategories, products }) => {
     <>
       <style jsx>{swiperStyles}</style>
       <section className="py-16 px-6 font-alexandria">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
-            منتجات روز وود
-          </h2>
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
+              منتجات روز وود
+            </h2>
 
-          {/* Pagination and Category Navigation */}
-          <div className="flex flex-wrap justify-between items-center mb-8">
-            {/* Category Navigation */}
-            <div className="flex gap-4 md:gap-8">
-              {categories.map((category) => (
+            {/* Pagination Controls (no categories) */}
+            <div className="flex flex-wrap justify-end items-center mb-8">
+              <div className="hidden md:flex gap-4">
                 <button
-                  key={category}
-                  onClick={() => handleCategoryChange(category)}
-                  className={`text-sm md:text-lg font-medium transition-colors ${
-                    activeCategory === category
-                      ? "text-amber-600 border-b-2 border-amber-600"
-                      : "text-gray-600 hover:text-amber-600"
-                  }`}
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                  className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {category}
+                  <ChevronRight className="w-6 h-6 text-gray-600" />
                 </button>
-              ))}
-            </div>
-            {/*  Pagination Controls */}
-            <div className="hidden md:flex gap-4">
-              <button
-                onClick={handlePrevPage}
-                disabled={currentPage === 1}
-                className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-600" />
-              </button>
 
-              <button
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-600" />
-              </button>
+                <button
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft className="w-6 h-6 text-gray-600" />
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Products Grid/Swiper */}
-        <div className="mb-12">
-          {isMobile ? (
-            <Swiper
-              spaceBetween={20}
-              slidesPerView={1.1}
-              centeredSlides={false}
-              style={{ paddingLeft: "6vw", paddingRight: "6vw" }}
-              className="equal-height-swiper"
-              breakpoints={{
-                320: {
-                  slidesPerView: 1.1,
-                  spaceBetween: 20
-                },
-                640: {
-                  slidesPerView: 1.5,
-                  spaceBetween: 20
-                }
-              }}
-            >
-              {currentProducts.map((product) => {
-                const selectedColor = selectedColors[product.id] || "medium";
-                const currentImage = product.images[selectedColor];
+          {/* Products Grid/Swiper */}
+          <div className="mb-12">
+            {isMobile ? (
+              <Swiper
+                spaceBetween={20}
+                slidesPerView={1.1}
+                centeredSlides={false}
+                style={{ paddingLeft: "6vw", paddingRight: "6vw" }}
+                className="equal-height-swiper"
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1.1,
+                    spaceBetween: 20,
+                  },
+                  640: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 20,
+                  },
+                }}
+              >
+                {currentProducts.map((product) => {
+                  const selectedColor = selectedColors[product.id] || "medium";
+                  const currentImage = product.images[selectedColor];
 
-                return (
-                  <SwiperSlide
-                    key={product.id}
-                    className="h-auto"
-                  >
-                    <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0">
+                  return (
+                    <SwiperSlide key={product.id} className="h-auto">
+                      <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0">
+                        {/* Product Image */}
+                        <div className="w-full h-48 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
+                          {currentImage &&
+                          typeof currentImage === "string" &&
+                          currentImage.trim() !== "" ? (
+                            <Image
+                              width={200}
+                              height={200}
+                              src={currentImage}
+                              alt={product.name}
+                              className="w-full h-full object-contain"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50">
+                              لا توجد صورة
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Product Info */}
+                        <div className="text-center mb-6 flex-grow flex flex-col">
+                          <h3 className="text-xl font-bold text-gray-800 mb-2 flex-shrink-0">
+                            {product.name}
+                          </h3>
+                          <p className="text-gray-600 text-sm mb-1 flex-grow">
+                            {product.description}
+                          </p>
+                          <p className="text-gray-500 text-xs flex-shrink-0">
+                            {product.features}
+                          </p>
+                        </div>
+
+                        {/* Color Selection */}
+                        <div className="flex justify-center gap-3 mb-6 flex-shrink-0">
+                          {Object.keys(product.images).map((color) => (
+                            <button
+                              key={color}
+                              onClick={() =>
+                                handleColorChange(product.id, color)
+                              }
+                              className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                selectedColor === color
+                                  ? "border-white ring-[1.5px] ring-black"
+                                  : "border-white hover:border-gray-400"
+                              } ${
+                                color === "dark"
+                                  ? "bg-[#4D2E26]"
+                                  : color === "medium"
+                                  ? "bg-[#BA806D]"
+                                  : "bg-[#DB9D5F]"
+                              }`}
+                            />
+                          ))}
+                        </div>
+
+                        {/* Add to Cart Button */}
+                        <div className="flex items-center justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto">
+                          أضف إلى طلب الجملة
+                          <ChevronLeft size={16} />
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            ) : (
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 auto-rows-fr">
+                {currentProducts.map((product) => {
+                  const selectedColor = selectedColors[product.id] || "medium";
+                  const currentImage = product.images[selectedColor];
+
+                  return (
+                    <div
+                      key={product.id}
+                      className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
+                    >
                       {/* Product Image */}
-                      <div className="w-full h-48 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
-                        {currentImage && typeof currentImage === "string" && currentImage.trim() !== "" ? (
+                      <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
+                        {currentImage &&
+                        typeof currentImage === "string" &&
+                        currentImage.trim() !== "" ? (
                           <Image
                             width={200}
                             height={200}
@@ -182,13 +225,15 @@ const ProductsSection = ({ myCategories, products }) => {
 
                       {/* Product Info */}
                       <div className="text-center mb-6 flex-grow flex flex-col">
-                        <h3 className="text-xl font-bold text-gray-800 mb-2 flex-shrink-0">
+                        <h3 className="md:text-xl md:font-bold text-gray-800 mb-2 flex-shrink-0">
                           {product.name}
                         </h3>
                         <p className="text-gray-600 text-sm mb-1 flex-grow">
                           {product.description}
                         </p>
-                        <p className="text-gray-500 text-xs flex-shrink-0">{product.features}</p>
+                        <p className="text-gray-500 text-xs flex-shrink-0">
+                          {product.features}
+                        </p>
                       </div>
 
                       {/* Color Selection */}
@@ -218,93 +263,23 @@ const ProductsSection = ({ myCategories, products }) => {
                         <ChevronLeft size={16} />
                       </div>
                     </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          ) : (
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 auto-rows-fr">
-              {currentProducts.map((product) => {
-                const selectedColor = selectedColors[product.id] || "medium";
-                const currentImage = product.images[selectedColor];
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
-                return (
-                  <div
-                    key={product.id}
-                    className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
-                  >
-                    {/* Product Image */}
-                    <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
-                      {currentImage && typeof currentImage === "string" && currentImage.trim() !== "" ? (
-                        <Image
-                          width={200}
-                          height={200}
-                          src={currentImage}
-                          alt={product.name}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50">
-                          لا توجد صورة
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="text-center mb-6 flex-grow flex flex-col">
-                      <h3 className="md:text-xl md:font-bold text-gray-800 mb-2 flex-shrink-0">
-                        {product.name}
-                      </h3>
-                      <p className="text-gray-600 text-sm mb-1 flex-grow">
-                        {product.description}
-                      </p>
-                      <p className="text-gray-500 text-xs flex-shrink-0">{product.features}</p>
-                    </div>
-
-                    {/* Color Selection */}
-                    <div className="flex justify-center gap-3 mb-6 flex-shrink-0">
-                      {Object.keys(product.images).map((color) => (
-                        <button
-                          key={color}
-                          onClick={() => handleColorChange(product.id, color)}
-                          className={`w-7 h-7 rounded-full border-3 transition-all ${
-                            selectedColor === color
-                              ? "border-white ring-[1.5px] ring-black"
-                              : "border-white hover:border-gray-400"
-                          } ${
-                            color === "dark"
-                              ? "bg-[#4D2E26]"
-                              : color === "medium"
-                              ? "bg-[#BA806D]"
-                              : "bg-[#DB9D5F]"
-                          }`}
-                        />
-                      ))}
-                    </div>
-
-                    {/* Add to Cart Button */}
-                    <div className="flex items-center justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto">
-                      أضف إلى طلب الجملة
-                      <ChevronLeft size={16} />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+          {/* View All Products Button */}
+          <div className="text-center">
+            <Link
+              href="/products"
+              className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg"
+            >
+              عرض كل المنتجات
+            </Link>
+          </div>
         </div>
-
-        {/* View All Products Button */}
-        <div className="text-center">
-          <Link
-            href="/products"
-            className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg"
-          >
-            عرض كل المنتجات
-          </Link>
-        </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 };
