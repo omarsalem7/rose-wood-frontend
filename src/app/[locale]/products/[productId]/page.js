@@ -1,19 +1,23 @@
-import React from "react";
 import ProductDetails from "./_components/ProductDetails";
 import ProductMeta from "./_components/ProductMeta";
 import OtherCategory from "./_components/OtherCategory";
 import RelatedProducts from "./_components/RelatedProducts";
 import MakeOrder from "./_components/MakeOrder";
+import ProductInfo from "./_components/ProductInfo";
+import HowWork from "../../about-us/_components/HowWork";
 
-const Product = () => {
+const Product = async ({ params }) => {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
   return (
-  <>
-    <ProductDetails />
-    <MakeOrder />
-    <ProductMeta />
-    <OtherCategory />
-    <RelatedProducts />
-  </>
+    <>
+      <ProductDetails locale={locale} />
+      <MakeOrder locale={locale} />
+      <ProductInfo locale={locale} />
+      <HowWork isButtonshow={false} />
+      <OtherCategory />
+      <RelatedProducts />
+    </>
   );
 };
 

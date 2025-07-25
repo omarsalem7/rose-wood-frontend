@@ -2,8 +2,12 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React, { useState } from "react";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
+const ProductDetails = ({ locale }) => {
+  console.log('locale',locale);
 
-const ProductDetails = () => {
+  const t = locale === "ar" ? ar : en;
   const images = [
     {
       id: 1,
@@ -42,9 +46,9 @@ const ProductDetails = () => {
               <h1 className=" font-medium text-[40px]">
                 حامل البيتزا الدائري الصحي <br /> باحجام مختلفة
               </h1>
-              <p>من: روز وود</p>
+              <p>{t.from}: روز وود</p>
               <div>
-                <span className="text-[#5F361F] font-bold">نبذة بسيطة</span>
+                <span className="text-[#5F361F] font-bold">{t.noteOverView}</span>
                 <p className="text-[#586675] text-lg pt-3">
                   نستخدم أخشاب طبيعية مجففة، ونشطبها بزيوت وشموع آمنة للطعام، مع
                   خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة.
@@ -52,22 +56,22 @@ const ProductDetails = () => {
               </div>
               <div>
                 <span className="text-[#5F361F] font-bold">
-                  الاحجام المتوفر
+                  {t.availableSizes}
                 </span>
                 <div className="flex items-center gap-4 py-3">
-                  <Button className="bg-[#F4F8FF] rounded-xl">كبير</Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">وسط</Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">صغير</Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">مقاس خاص</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">{t.large}</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">{t.medium}</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">{t.small}</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">{t.custom}</Button>
                 </div>
               </div>
               <div>
-                <span className="text-[#5F361F] font-bold">الالوان</span>
+                <span className="text-[#5F361F] font-bold">{t.colors}</span>
                 <div className="flex gap-4    py-3 items-center">
                   <Button className="bg-[#DB9D5F] rounded-xl w-[40px] h-[40px]"></Button>
                   <Button className="bg-[#BA806D] rounded-xl w-[40px] h-[40px]"></Button>
                   <Button className="bg-[#4D2E26] rounded-xl w-[40px] h-[40px]"></Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">لون خاص</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">{t.customColor}</Button>
                 </div>
               </div>
             </div>
@@ -77,8 +81,8 @@ const ProductDetails = () => {
                 <Image
                   src={selectedImage || ""}
                   className="w-full h-full object-fill"
-                  width={100}
-                  height={100}
+                  width={400}
+                  height={400}
                   alt="Selected product image"
                 />
               </div>
@@ -95,8 +99,8 @@ const ProductDetails = () => {
                   >
                     <Image
                       src={img.image}
-                      width={100}
-                      height={100}
+                      width={200}
+                      height={200}
                       alt={`Thumbnail ${img.id}`}
                       className="w-full h-full object-fill"
                     />

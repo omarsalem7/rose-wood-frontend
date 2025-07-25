@@ -12,7 +12,7 @@ export default async function About() {
   return (
     <>
       <Hero {...data.hero} />
-      <HowWork {...data.howWork} />
+      <HowWork isButtonshow={true} />
       <OurMessage {...data.ourMessage} />
       <Vision {...data.ourVision} />
       <SectorSection {...data.sectorSection} />

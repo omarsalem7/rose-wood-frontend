@@ -85,13 +85,14 @@ const ProductMeta = () => {
             <div className=" w-full md:w-[60%] flex jmd:ustify-end gap-2 md:gap-6">
               <Image
                 src="/assets/product-meta2.png"
-                alt=""
+                alt="product-meta2"
                 width={294}
                 height={120}
               />
               <Image
                 src="/assets/product-meta1.png"
-                alt=""
+                alt="product-meta1"
+                className="grow"
                 width={400}
                 height={120}
               />

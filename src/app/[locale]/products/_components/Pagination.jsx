@@ -1,30 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(2);
-  const totalPages = 4;
-
-  const handleClick = (page) => {
-    setCurrentPage(page);
-  };
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  // Page numbers in normal order for RTL (1 to totalPages)
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   const handlePrev = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPage > 1) onPageChange(currentPage - 1);
   };
 
   const handleNext = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    if (currentPage < totalPages) onPageChange(currentPage + 1);
   };
 
-  // Page numbers in normal order for RTL (1 to 4)
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
-
   return (
-    <div className="flex flex-row items-center justify-center py-8 gap-3" dir="rtl">
+    <div className="flex flex-row items-center justify-center py-8 gap-3">
       {/* Right Arrow (which means "back" in Arabic layout) */}
       <button
-        onClick={handleNext}
+        onClick={handlePrev}
         className="bg-[#5B3629] text-white rounded-md w-10 h-10 flex items-center justify-center"
+        disabled={currentPage === 1}
       >
         &lt;
       </button>
@@ -32,7 +26,7 @@ const Pagination = () => {
       {pageNumbers.map((page) => (
         <button
           key={page}
-          onClick={() => handleClick(page)}
+          onClick={() => onPageChange(page)}
           className={`w-10 h-10 flex items-center justify-center rounded-md 
             ${
               currentPage === page
@@ -46,8 +40,9 @@ const Pagination = () => {
 
       {/* Left Arrow (which means "forward" in Arabic layout) */}
       <button
-        onClick={handlePrev}
+        onClick={handleNext}
         className="bg-[#5B3629] text-white rounded-md w-10 h-10 flex items-center justify-center"
+        disabled={currentPage === totalPages}
       >
         &gt;
       </button>

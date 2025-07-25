@@ -60,10 +60,25 @@ export async function fetchAllHomePageData() {
   }
 }
 
+export async function fetchHowWorkSection() {
+  try {
+    const json = await apiCall("/about-page?populate[howWork][populate]=*");
+
+    if (!json.data) {
+      throw new Error("how work section data not found");
+    }
+
+    return transformHowWorkSectionData(json.data);
+  } catch (error) {
+    console.error("Error fetching how work section data:", error);
+    throw error;
+  }
+}
+
 export async function fetchAllAboutPageData() {
   try {
     const json = await apiCall(
-      "/about-page?populate[hero][populate]=*&populate[howWork][populate]=*&populate[ourMessage][populate]=*&populate[ourVision][populate]=*&populate[sectorSection][populate][card][populate]=*"
+      "/about-page?populate[hero][populate]=*&populate[ourMessage][populate]=*&populate[ourVision][populate]=*&populate[sectorSection][populate][card][populate]=*"
     );
 
     if (!json.data) {
@@ -216,6 +231,30 @@ function transformHeroAboutPage(heroData) {
       : image?.url
       ? getFullImageUrl(image?.url)
       : null,
+  };
+}
+
+function transformHowWorkSectionData(howWorkData) {
+  if (!howWorkData || !howWorkData.howWork) return null;
+
+  const howWork = howWorkData.howWork;
+
+  return {
+    id: howWork.id,
+    title: howWork.title,
+    subTitle: howWork.subTitle,
+    list:
+      howWork.list?.map((item) => ({
+        id: item.id,
+        text: item.text,
+      })) || [],
+    images: transformImages(howWork.images),
+    buttons:
+      howWork.buttons?.map((btn) => ({
+        id: btn.id,
+        text: btn.text,
+        link: btn.link,
+      })) || [],
   };
 }
 

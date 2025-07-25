@@ -1,6 +1,13 @@
 import Image from "next/image";
 import StyledText from "@/components/ui/styledText";
-const HowWork = ({ title, subTitle, list, images, buttons }) => {
+
+import { fetchHowWorkSection } from "@/lib/api/cms";
+
+const HowWork = async ({ isButtonshow }) => {
+  console.log(isButtonshow);
+  const { title, subTitle, images, buttons, list } =
+    await fetchHowWorkSection();
+
   return (
     <section className="py-16 container mx-auto px-6">
       <div className="">
@@ -39,7 +46,7 @@ const HowWork = ({ title, subTitle, list, images, buttons }) => {
             ))}
           </div>
           <div className="flex gap-4 mt-8">
-            {buttons && buttons.length > 0 ? (
+            {isButtonshow && buttons && buttons.length > 0 ? (
               buttons.map((btn, idx) => (
                 <button
                   key={btn.id || idx}
@@ -53,31 +60,25 @@ const HowWork = ({ title, subTitle, list, images, buttons }) => {
                 </button>
               ))
             ) : (
-              <>
-                <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-                  عرض كل المنتجات
-                </button>
-                <button className="border border-gray-300 text-gray-700 px-12 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-                  اطلب عينة
-                </button>
-              </>
+              <></>
             )}
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-8 max-sm:order-first">
+
+        <div className=" w-full md:w-[60%] flex md:flex-row flex-col md:ustify-end gap-2 md:gap-6">
           <Image
             src={images && images[0] ? images[0].img : "/assets/spoons.png"}
-            width={200}
-            height={200}
-            alt="spoons"
-            className="col-span-3 w-full h-full"
+            alt="product-meta2"
+            width={294}
+            height={120}
+            className="max-md:w-full"
           />
           <Image
-            src={images && images[1] ? images[1].img : "/assets/kitchen.png"}
-            width={150}
-            height={150}
-            alt="kitchen"
-            className="col-span-2 w-full h-full"
+            src={images && images[0] ? images[1].img : "/product-meta1.png"}
+            alt="product-meta1"
+            width={400}
+            className="max-md:w-full grow"
+            height={120}
           />
         </div>
       </div>
