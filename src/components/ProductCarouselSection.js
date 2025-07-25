@@ -125,9 +125,9 @@ const ProductCarouselSection = ({ title, products }) => {
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       {/* Plus icon overlay */}
-                      {/* <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
                         <Plus size={16} className="text-gray-600" />
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </CarouselItem>
