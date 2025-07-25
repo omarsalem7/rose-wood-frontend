@@ -8,7 +8,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel.js";
 
-const ProductCarouselSection = ({ title, products }) => {
+const ProductCarouselSection = ({ title, products, categories }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState();
@@ -105,21 +105,21 @@ const ProductCarouselSection = ({ title, products }) => {
             opts={{ align: "center", loop: true }}
           >
             <CarouselContent className="flex">
-              {products.map((product, index) => (
+              {categories.map((item, index) => (
                 <CarouselItem
-                  key={product?.id}
+                  key={item?.id}
                   className="basis-[80%] md:basis-2/3 lg:basis-3/5 flex-shrink-0"
                 >
                   <div
                     className={`relative group cursor-pointer transition-all duration-700 ease-in-out transform ${getCardScale(
                       index
                     )} ${getCardOpacity(index)} mx-2`}
-                    onClick={() => openModal(product)}
+                    onClick={() => openModal(item)}
                   >
                     <div className="aspect-[7/5] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <Image
-                        src={product.image}
-                        alt={product.name ?? `productImage ${index}`}
+                        src={item.visualFeeding}
+                        alt={item.name ?? `categoryImage ${index}`}
                         width={500}
                         height={250}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -177,7 +177,7 @@ const ProductCarouselSection = ({ title, products }) => {
             {/* Product Image */}
             <div className="flex justify-center">
               <Image
-                src={selectedProduct.image}
+                src={selectedProduct.visualFeeding}
                 alt={selectedProduct.name}
                 width={300}
                 height={300}
@@ -202,7 +202,7 @@ const ProductCarouselSection = ({ title, products }) => {
             {/* Action Button */}
             <button className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900  py-3 rounded-lg font-semibold text-lg  transition focus:outline-none cursor-pointer">
               <ChevronLeft size={20} />
-              أضف إلى طلب الجملة
+              {selectedProduct.CTA_Button}
             </button>
           </div>
         </div>

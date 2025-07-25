@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
-import { fetchFooterData } from "@/lib/cms";
+import { fetchFooterData } from "@/lib/api/cms";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState({

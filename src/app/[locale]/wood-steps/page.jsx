@@ -1,7 +1,7 @@
 import React from 'react'
 import WoodHero from './_components/WoodHero'
 import WoodStepsList from './_components/WoodStepsList';
-import { fetchWoodStepsPageData } from '@/lib/cms';
+import { fetchWoodStepsPageData } from '@/lib/api/cms';
 
 const WoodSteps = async () => {
   const woodStepsData = await fetchWoodStepsPageData();

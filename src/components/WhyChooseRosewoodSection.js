@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { fetchWhyChooseRoseWood } from "@/lib/cms";
+import { fetchWhyChooseRoseWood } from "@/lib/api/cms";
 
 const WhyChooseRosewoodSection = async () => {
   // Fetch data from API

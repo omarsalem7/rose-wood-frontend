@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { fetchContactUsData } from "@/lib/cms";
+import { fetchContactUsData } from "@/lib/api/cms";
 
 const ContactSection = () => {
   const [contactData, setContactData] = useState({

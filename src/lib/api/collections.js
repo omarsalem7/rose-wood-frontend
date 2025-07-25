@@ -1,4 +1,5 @@
-import { getFullImageUrl } from "./image";
+import { getFullImageUrl } from "../image";
+import { apiCall } from "../utils";
 export async function fetchCategories() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(`${apiUrl}/categories`, {
@@ -11,29 +12,18 @@ export async function fetchCategories() {
 }
 
 export async function fetchBlogsHomePage() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(
-    `${apiUrl}/blogs?populate=*&pagination[page]=1&pagination[pageSize]=20`,
-    {
-      cache: "no-store",
-    }
+  const json = await apiCall(
+    "/blogs?populate=*&pagination[page]=1&pagination[pageSize]=20"
   );
-  if (!res.ok) throw new Error("Failed to fetch categories");
-  const json = await res.json();
-  // Adjust the mapping if the API response structure is different
+
   return transformBlog(json.data);
 }
 
 export async function fetchProductsBHomePage() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(
-    `${apiUrl}/products?populate=colors.img&populate=category&populate=mainImageUrl`,
-    {
-      cache: "no-store",
-    }
+  const json = await apiCall(
+    "/products?populate=colors.img&populate=mainImageUrl"
   );
-  if (!res.ok) throw new Error("Failed to fetch products");
-  const json = await res.json();
+
   return (json.data || []).map((product) => {
     // Normalize colors with images
     const colors = Array.isArray(product.colors)

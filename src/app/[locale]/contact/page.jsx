@@ -1,7 +1,7 @@
 import React from "react";
 import ContactForm from "./_components/ContactForm";
 import ContactInfo from "./_components/ContactInfo";
-import { fetchContactPageData } from "@/lib/cms";
+import { fetchContactPageData } from "@/lib/api/cms";
 
 const Contact = async () => {
   const data = await fetchContactPageData();

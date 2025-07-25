@@ -2,7 +2,7 @@ import React from "react";
 import WhaleHero from "./_components/WhaleHero";
 import GlobalService from "./_components/GlobalService";
 import LocalService from "./_components/LocalService";
-import { fetchWhaleSalePage } from "@/lib/cms";
+import { fetchWhaleSalePage } from "@/lib/api/cms";
 
 const WhaleSale = async () => {
   const data = await fetchWhaleSalePage();

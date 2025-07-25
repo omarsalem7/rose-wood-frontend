@@ -4,7 +4,7 @@ import OurMessage from "./_components/ourMessage";
 import Vision from "./_components/vision";
 import SectorSection from "./_components/sectorSection";
 import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
-import { fetchAllAboutPageData } from "@/lib/cms";
+import { fetchAllAboutPageData } from "@/lib/api/cms";
 
 export default async function About() {
   const data = await fetchAllAboutPageData();

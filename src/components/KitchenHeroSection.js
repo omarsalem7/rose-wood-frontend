@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { fetchQuotationSection } from "@/lib/cms";
+import { fetchQuotationSection } from "@/lib/api/cms";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 

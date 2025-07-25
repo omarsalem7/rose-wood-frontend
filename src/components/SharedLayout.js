@@ -4,7 +4,7 @@ import SideNav from "@/components/SideNav";
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
 import KitchenHeroSection from "./KitchenHeroSection";
-import { fetchNavbarData as getNavbarData } from "@/lib/cms";
+import { fetchNavbarData as getNavbarData } from "@/lib/api/cms";
 
 export default function SharedLayout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
