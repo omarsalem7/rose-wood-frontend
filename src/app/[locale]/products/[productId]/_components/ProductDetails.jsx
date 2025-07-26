@@ -5,8 +5,6 @@ import React, { useState } from "react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 const ProductDetails = ({ locale }) => {
-  console.log('locale',locale);
-
   const t = locale === "ar" ? ar : en;
   const images = [
     {
@@ -36,8 +34,8 @@ const ProductDetails = ({ locale }) => {
   };
   return (
     <>
-      <section className="px-6  ">
-        <div className="max-w-7xl mx-auto border-t border-gray-300 relative">
+      <section className="py-16 container mx-auto px-6">
+        <div className="border-t border-gray-300 relative">
           <span className="absolute left-0 top-0 z-50 w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <span className="absolute right-0 top-0 w-1.5 z-50 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
 
@@ -48,7 +46,9 @@ const ProductDetails = ({ locale }) => {
               </h1>
               <p>{t.from}: روز وود</p>
               <div>
-                <span className="text-[#5F361F] font-bold">{t.noteOverView}</span>
+                <span className="text-[#5F361F] font-bold">
+                  {t.noteOverView}
+                </span>
                 <p className="text-[#586675] text-lg pt-3">
                   نستخدم أخشاب طبيعية مجففة، ونشطبها بزيوت وشموع آمنة للطعام، مع
                   خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة.
@@ -60,9 +60,13 @@ const ProductDetails = ({ locale }) => {
                 </span>
                 <div className="flex items-center gap-4 py-3">
                   <Button className="bg-[#F4F8FF] rounded-xl">{t.large}</Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">{t.medium}</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">
+                    {t.medium}
+                  </Button>
                   <Button className="bg-[#F4F8FF] rounded-xl">{t.small}</Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">{t.custom}</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">
+                    {t.custom}
+                  </Button>
                 </div>
               </div>
               <div>
@@ -71,18 +75,20 @@ const ProductDetails = ({ locale }) => {
                   <Button className="bg-[#DB9D5F] rounded-xl w-[40px] h-[40px]"></Button>
                   <Button className="bg-[#BA806D] rounded-xl w-[40px] h-[40px]"></Button>
                   <Button className="bg-[#4D2E26] rounded-xl w-[40px] h-[40px]"></Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">{t.customColor}</Button>
+                  <Button className="bg-[#F4F8FF] rounded-xl">
+                    {t.customColor}
+                  </Button>
                 </div>
               </div>
             </div>
             {/* Image Section */}
             <div className="w-full md:w-[50%]">
-              <div className="h-[450px]">
+              <div className="h-[450px] flex justify-center items-center">
                 <Image
                   src={selectedImage || ""}
                   className="w-full h-full object-fill"
-                  width={400}
-                  height={400}
+                  width={600}
+                  height={600}
                   alt="Selected product image"
                 />
               </div>
@@ -91,7 +97,7 @@ const ProductDetails = ({ locale }) => {
                   <Button
                     key={img.id}
                     onClick={() => handleImageSelect(img.id)}
-                    className={`w-[140px] h-[118px] rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
+                    className={`h-[118px] w-full rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
                       img.id === selectedImageId
                         ? "opacity-100"
                         : "opacity-80 bg-black "

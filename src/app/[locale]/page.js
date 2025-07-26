@@ -19,7 +19,9 @@ import { fetchVisualFeedingsHomePage } from "@/lib/api/categories";
 
 export { generateMetadata };
 
-export default async function Home() {
+export default async function Home({ params }) {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
   const { hero, about, features, bulkOrder, title, videoSection, blogsTitle } =
     await fetchAllHomePageData();
   const products = await fetchProductsBHomePage();
@@ -31,7 +33,7 @@ export default async function Home() {
       <HeroSection {...hero} />
       <AboutSection {...about} />
       <FeatureSection {...features} />
-      <ProductsSection products={products} />
+      <ProductsSection products={products} locale={locale} />
       <BulkOrderSection {...bulkOrder} />
       <ProductCarouselSection
         title={title}

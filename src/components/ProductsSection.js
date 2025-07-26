@@ -5,6 +5,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
 
 // Custom styles for equal height Swiper slides
 const swiperStyles = `
@@ -24,7 +26,8 @@ const swiperStyles = `
   }
 `;
 
-const ProductsSection = ({ products }) => {
+const ProductsSection = ({ products, locale }) => {
+  const t = locale === "ar" ? ar : en;
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 3;
@@ -70,13 +73,13 @@ const ProductsSection = ({ products }) => {
 
   return (
     <>
-      <style jsx>{swiperStyles}</style>
+      <style>{swiperStyles}</style>
       <section className="py-16 px-6 font-alexandria">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
-              منتجات روز وود
+              {t.roseWoodProducts}
             </h2>
 
             {/* Pagination Controls (no categories) */}
@@ -87,7 +90,7 @@ const ProductsSection = ({ products }) => {
                   disabled={currentPage === 1}
                   className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <ChevronRight className="w-6 h-6 text-gray-600" />
+                  <ChevronRight className="w-6 h-6 ltr:rotate-180 text-gray-600" />
                 </button>
 
                 <button
@@ -95,7 +98,7 @@ const ProductsSection = ({ products }) => {
                   disabled={currentPage === totalPages}
                   className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <ChevronLeft className="w-6 h-6 text-gray-600" />
+                  <ChevronLeft className="w-6 h-6 ltr:rotate-180 text-gray-600" />
                 </button>
               </div>
             </div>
@@ -142,7 +145,7 @@ const ProductsSection = ({ products }) => {
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50">
-                              لا توجد صورة
+                              {t.noImage}
                             </div>
                           )}
                         </div>
@@ -184,10 +187,13 @@ const ProductsSection = ({ products }) => {
                         </div>
 
                         {/* Add to Cart Button */}
-                        <div className="flex items-center justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto">
-                          أضف إلى طلب الجملة
-                          <ChevronLeft size={16} />
-                        </div>
+                        <Link
+                          href={`/products/${product.id}`}
+                          className="flex items-center  justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto"
+                        >
+                          {t.productDetails}
+                          <ChevronLeft size={16} className="ltr:rotate-180" />
+                        </Link>
                       </div>
                     </SwiperSlide>
                   );
@@ -205,7 +211,7 @@ const ProductsSection = ({ products }) => {
                       className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
                     >
                       {/* Product Image */}
-                      <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
+                      <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0">
                         {currentImage &&
                         typeof currentImage === "string" &&
                         currentImage.trim() !== "" ? (
@@ -218,7 +224,7 @@ const ProductsSection = ({ products }) => {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50">
-                            لا توجد صورة
+                            {t.noImage}
                           </div>
                         )}
                       </div>
@@ -258,10 +264,13 @@ const ProductsSection = ({ products }) => {
                       </div>
 
                       {/* Add to Cart Button */}
-                      <div className="flex items-center justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto">
-                        أضف إلى طلب الجملة
-                        <ChevronLeft size={16} />
-                      </div>
+                      <Link
+                        href={`/products/${product.id}`}
+                        className="flex items-center justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto"
+                      >
+                        {t.productDetails}
+                        <ChevronLeft size={16} className="ltr:rotate-180" />
+                      </Link>
                     </div>
                   );
                 })}
@@ -275,7 +284,7 @@ const ProductsSection = ({ products }) => {
               href="/products"
               className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg"
             >
-              عرض كل المنتجات
+              {t.viewAllProducts}
             </Link>
           </div>
         </div>

@@ -6,8 +6,8 @@ const MakeOrder = ({ locale }) => {
   const t = locale === "ar" ? ar : en;
   return (
     <>
-      <div className="bg-[#FFF8F6]  px-6 ">
-        <div className="max-w-7xl mx-auto py-6 flex flex-col gap-5 md:flex-row items-center justify-between">
+      <div className="bg-[#FFF8F6]">
+        <div className="py-16 container mx-auto px-6 flex flex-col gap-5 md:flex-row items-center justify-between">
           <div className="">
             <span className="text-sm font-bold text-[#5F361F]">
               {t.didYouLikeProduct}

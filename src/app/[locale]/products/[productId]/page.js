@@ -8,6 +8,7 @@ import HowWork from "../../about-us/_components/HowWork";
 
 const Product = async ({ params }) => {
   const resolvedParams = await params;
+  console.log(resolvedParams);
   const { locale } = resolvedParams;
   return (
     <>
@@ -16,7 +17,7 @@ const Product = async ({ params }) => {
       <ProductInfo locale={locale} />
       <HowWork isButtonshow={false} />
       <OtherCategory />
-      <RelatedProducts />
+      {/* <RelatedProducts /> */}
     </>
   );
 };
