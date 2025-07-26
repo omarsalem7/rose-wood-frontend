@@ -8,9 +8,11 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel.js";
 import Link from "next/link";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
 
 const ProductCarouselSection = ({ title, categories, locale }) => {
-  console.log("mmmm", locale);
+  const t = locale === "ar" ? ar : en;
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
@@ -203,7 +205,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
               className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900  py-3 rounded-lg font-semibold text-lg  transition focus:outline-none cursor-pointer"
             >
               <ChevronLeft size={20} />
-              {selectedProduct.CTA_Button}
+              {t.viewDetails}
             </Link>
           </div>
         </div>
