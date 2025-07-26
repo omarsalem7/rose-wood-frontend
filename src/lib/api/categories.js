@@ -15,7 +15,7 @@ export async function fetchVisualFeedingsHomePage() {
 
 export async function fetchRelatedCategories(categoryId) {
   const json = await apiCall(
-    "/categories?populate=mainImage&pagination[limit]=100"
+    `/categories?populate=mainImage&pagination[limit]=100&filters[id][$ne]=${categoryId}`
   );
   const res = (json.data || []).map((category) => {
     return {
@@ -23,6 +23,7 @@ export async function fetchRelatedCategories(categoryId) {
       image: getFullImageUrl(category?.mainImage?.url),
     };
   });
+  console.log(res);
 
-  return res.filter((category) => category.id !== categoryId);
+  return res;
 }

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 
 const SectorSection = ({ card }) => {
-  console.log("omar card: ", card);
   const cards = card || [
     {
       title: "التصدير الدولي",

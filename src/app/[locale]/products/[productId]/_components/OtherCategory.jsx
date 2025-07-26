@@ -33,9 +33,7 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
 
   return (
     <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
-      <h2 className="text-2xl font-medium mb-8 text-right pr-2">
-        {t.otherCategories}
-      </h2>
+      <h2 className="text-2xl font-medium mb-8 pr-2">{t.otherCategories}</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {visibleCategories.map((cat, idx) => (
           <div
@@ -62,24 +60,16 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
           <button
             onClick={prevSlide}
             disabled={isPrevDisabled}
-            className={`rtl:rotate-180 w-10 h-10  flex items-center justify-center rounded-full border transition-colors ${
-              isPrevDisabled
-                ? "border-gray-200  text-gray-300 cursor-not-allowed"
-                : "border-gray-800  cursor-pointer text-gray-600 hover:bg-gray-100 hover:border-gray-400"
-            }`}
+            className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <ChevronRight className="w-5 h-5 ltr:rotate-180 text-gray-600" />
+            <ChevronRight className="w-5 h-5  text-gray-600" />
           </button>
           <button
             onClick={nextSlide}
             disabled={isNextDisabled}
-            className={`rtl:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border transition-colors ${
-              isNextDisabled
-                ? "border-gray-200  text-gray-300 cursor-not-allowed"
-                : "border-gray-800  cursor-pointer text-gray-600 hover:bg-gray-100 hover:border-gray-400"
-            }`}
+            className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <ChevronLeft className="w-5 h-5 ltr:rotate-180 text-gray-600" />
+            <ChevronLeft className="w-5 h-5  text-gray-600" />
           </button>
         </div>
       </div>

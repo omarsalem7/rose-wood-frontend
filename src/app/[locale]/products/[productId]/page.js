@@ -20,6 +20,7 @@ const Product = async ({ params }) => {
       {product?.category?.documentId && (
         <RelatedProducts
           productId={productId}
+          locale={locale}
           categoryId={product?.category?.documentId}
         />
       )}

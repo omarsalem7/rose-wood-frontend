@@ -90,11 +90,9 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
       <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0 font-alexandria">
         <div className="">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
-              {t.roseWoodProducts}
-            </h2>
-          </div>
+          <h2 className="text-2xl font-medium mb-8 pr-2">
+            {t.roseWoodProducts}
+          </h2>
 
           {/* Products Grid/Swiper */}
           <div className="mb-8">
@@ -184,7 +182,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                           className="flex items-center  justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto"
                         >
                           {t.productDetails}
-                          <ChevronLeft size={16} className="ltr:rotate-180" />
+                          <ChevronLeft className="w-5 h-5 ltr:rotate-180 text-gray-600" />
                         </Link>
                       </div>
                     </SwiperSlide>
@@ -285,7 +283,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
               <button
                 onClick={handlePrevPage}
                 disabled={currentPage === 1}
-                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:border-gray-300 disabled:cursor-not-allowed"
               >
                 <ChevronRight className="w-5 h-5 ltr:rotate-180 text-gray-600" />
               </button>
@@ -293,7 +291,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
               <button
                 onClick={handleNextPage}
                 disabled={currentPage === totalPages}
-                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:border-gray-300 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-5 h-5 ltr:rotate-180 text-gray-600" />
               </button>

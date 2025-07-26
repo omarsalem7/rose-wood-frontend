@@ -6,7 +6,6 @@ import { fetchWhaleSalePage } from "@/lib/api/cms";
 
 const WhaleSale = async () => {
   const data = await fetchWhaleSalePage();
-  console.log(data)
   return (
     <>
       <WhaleHero hero={data.hero} />

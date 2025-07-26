@@ -50,7 +50,6 @@ export const getProductById = async (id) => {
     `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery`
   );
   const product = json.data;
-  console.log("product", product);
   return {
     ...product,
     mainImageUrl: getFullImageUrl(product.mainImageUrl.url),
@@ -63,8 +62,6 @@ export const getRelatedProducts = async (categoryId, productId) => {
   const json = await apiCall(
     `/products?populate=mainImageUrl&populate=colors.img&filters[category][documentId][$eq]=${categoryId}&pagination[limit]=100`
   );
-  const products = json.data;
-  console.log("products", products);
   return (json.data || [])
     .filter((product) => product.documentId !== productId) // Filter out current product
     .map((product) => {

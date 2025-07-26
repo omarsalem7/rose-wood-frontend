@@ -14,9 +14,11 @@ function getLocale(request) {
   if (pathnameIsMissingLocale) {
     // Try to get locale from preferred_language cookie
     const cookieHeader = request.headers.get("cookie");
+    console.log("cookieHeader", cookieHeader);
     let locale = defaultLocale;
     if (cookieHeader) {
       const match = cookieHeader.match(/preferred_language=([^;]+)/);
+      console.log("match", match);
       if (match && locales.includes(match[1])) {
         locale = match[1];
       }
@@ -46,6 +48,7 @@ export function middleware(request) {
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
+  console.log("pathnameIsMissingLocale", pathnameIsMissingLocale);
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
