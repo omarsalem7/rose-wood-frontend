@@ -285,21 +285,25 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
 
               {/* Right: Navigation Arrows */}
               <div className="flex gap-4">
-                <button
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 1}
-                  className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:border-gray-300 disabled:cursor-not-allowed"
-                >
-                  <ChevronRight className="w-5 h-5 ltr:rotate-180 text-gray-600" />
-                </button>
+                {currentProducts.length > 3 && (
+                  <>
+                    <button
+                      onClick={handlePrevPage}
+                      disabled={currentPage === 1}
+                      className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:border-gray-300 disabled:cursor-not-allowed"
+                    >
+                      <ChevronRight className="w-5 h-5 ltr:rotate-180 text-gray-600" />
+                    </button>
 
-                <button
-                  onClick={handleNextPage}
-                  disabled={currentPage === totalPages}
-                  className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:border-gray-300 disabled:cursor-not-allowed"
-                >
-                  <ChevronLeft className="w-5 h-5 ltr:rotate-180 text-gray-600" />
-                </button>
+                    <button
+                      onClick={handleNextPage}
+                      disabled={currentPage === totalPages}
+                      className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:border-gray-300 disabled:cursor-not-allowed"
+                    >
+                      <ChevronLeft className="w-5 h-5 ltr:rotate-180 text-gray-600" />
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 

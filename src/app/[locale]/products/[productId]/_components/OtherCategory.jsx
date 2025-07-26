@@ -61,20 +61,24 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
             <div></div>
             {/* Right: Arrows */}
             <div className="flex gap-4">
-              <button
-                onClick={prevSlide}
-                disabled={isPrevDisabled}
-                className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <ChevronRight className="w-5 h-5  text-gray-600" />
-              </button>
-              <button
-                onClick={nextSlide}
-                disabled={isNextDisabled}
-                className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="w-5 h-5  text-gray-600" />
-              </button>
+              {categories.length > 3 && (
+                <>
+                  <button
+                    onClick={prevSlide}
+                    disabled={isPrevDisabled}
+                    className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronRight className="w-5 h-5  text-gray-600" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    disabled={isNextDisabled}
+                    className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronLeft className="w-5 h-5  text-gray-600" />
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </section>
