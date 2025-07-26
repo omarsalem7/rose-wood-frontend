@@ -1,20 +1,21 @@
 import ProductDetails from "./_components/ProductDetails";
-import ProductMeta from "./_components/ProductMeta";
 import OtherCategory from "./_components/OtherCategory";
 import RelatedProducts from "./_components/RelatedProducts";
 import MakeOrder from "./_components/MakeOrder";
 import ProductInfo from "./_components/ProductInfo";
 import HowWork from "../../about-us/_components/HowWork";
+import { getProductById } from "@/lib/api/products";
 
 const Product = async ({ params }) => {
   const resolvedParams = await params;
-  console.log(resolvedParams);
-  const { locale } = resolvedParams;
+  const { locale, productId } = resolvedParams;
+  const product = await getProductById(productId);
+  console.log(product);
   return (
     <>
-      <ProductDetails locale={locale} />
+      <ProductDetails locale={locale} product={product} />
       <MakeOrder locale={locale} />
-      <ProductInfo locale={locale} />
+      <ProductInfo locale={locale} product={product} />
       <HowWork isButtonshow={false} />
       <OtherCategory />
       {/* <RelatedProducts /> */}

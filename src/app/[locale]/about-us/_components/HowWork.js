@@ -64,7 +64,7 @@ const HowWork = async ({ isButtonshow }) => {
           </div>
         </div>
 
-        <div className=" w-full md:w-[50%] xl:w-[60%] flex md:flex-row flex-col md:ustify-end gap-2 md:gap-6">
+        <div className=" w-full md:w-[50%] xl:w-[100%] flex md:flex-row flex-col md:ustify-end gap-2 md:gap-6">
           <Image
             src={images && images[0] ? images[0].img : "/assets/spoons.png"}
             alt="product-meta2"

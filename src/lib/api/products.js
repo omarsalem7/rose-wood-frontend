@@ -1,5 +1,5 @@
 import { apiCall } from "../utils";
-import { getFullImageUrl } from "../image";
+import { getFullImageUrl, transformImages } from "../image";
 
 export const getAllproducts = async ({
   categoryId,
@@ -42,5 +42,19 @@ export const getAllproducts = async ({
   return {
     items: list,
     totalCount: json.meta.pagination.total,
+  };
+};
+
+export const getProductById = async (id) => {
+  const json = await apiCall(
+    `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery`
+  );
+  const product = json.data;
+  console.log("product", product);
+  return {
+    ...product,
+    mainImageUrl: getFullImageUrl(product.mainImageUrl.url),
+    productDetailsImage: getFullImageUrl(product.productDetailsImage.url),
+    gallery: product.gallery ? transformImages(product.gallery) : [],
   };
 };

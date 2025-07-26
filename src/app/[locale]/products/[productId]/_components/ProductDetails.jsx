@@ -4,34 +4,21 @@ import Image from "next/image";
 import React, { useState } from "react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
-const ProductDetails = ({ locale }) => {
+const ProductDetails = ({ locale, product }) => {
   const t = locale === "ar" ? ar : en;
-  const images = [
-    {
-      id: 1,
-      image: "/assets/product-details.png",
-    },
-    {
-      id: 2,
-      image: "/assets/product1.png",
-    },
-    {
-      id: 3,
-      image: "/assets/product-details.png",
-    },
-    {
-      id: 4,
-      image: "/assets/product-details.png",
-    },
-  ];
 
-  const [selectedImageId, setSelectedImageId] = useState(1);
+  const [selectedImageId, setSelectedImageId] = useState(
+    product?.gallery?.[0]?.id || 1
+  );
 
-  const selectedImage = images.find((img) => img.id === selectedImageId)?.image;
+  const selectedImage = product?.gallery?.find(
+    (img) => img.id === selectedImageId
+  )?.img;
 
   const handleImageSelect = (id) => {
     setSelectedImageId(id);
   };
+  console.log(product);
   return (
     <>
       <section className="py-16 container mx-auto px-6">
@@ -41,10 +28,10 @@ const ProductDetails = ({ locale }) => {
 
           <div className="items flex flex-col md:flex-row justify-between   gap-2 md:gap-6 py-12  ">
             <div className="w-full md:w-[50%]    px-2   flex flex-col gap-4">
-              <h1 className=" font-medium text-[40px]">
-                حامل البيتزا الدائري الصحي <br /> باحجام مختلفة
-              </h1>
-              <p>{t.from}: روز وود</p>
+              <h1 className=" font-medium text-[40px]">{product.name}</h1>
+              <p>
+                {t.from}: {product.brand}
+              </p>
               <div>
                 <span className="text-[#5F361F] font-bold">
                   {t.noteOverView}
@@ -83,32 +70,35 @@ const ProductDetails = ({ locale }) => {
             </div>
             {/* Image Section */}
             <div className="w-full md:w-[50%]">
-              <div className="h-[450px] flex justify-center items-center">
+              <div className="h-[450px] flex justify-center items-center bg-gray-50 rounded-xl overflow-hidden">
                 <Image
                   src={selectedImage || ""}
                   className="w-full h-full object-fill"
-                  width={600}
-                  height={600}
+                  width={800}
+                  height={800}
+                  quality={95}
+                  priority={true}
                   alt="Selected product image"
                 />
               </div>
               <div className="flex justify-center items-center mt-4 gap-3">
-                {images.map((img) => (
+                {product.gallery.map((img) => (
                   <Button
                     key={img.id}
                     onClick={() => handleImageSelect(img.id)}
                     className={`h-[118px] w-full rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
                       img.id === selectedImageId
-                        ? "opacity-100"
-                        : "opacity-80 bg-black "
+                        ? "opacity-100 ring-2 ring-[#5F361F]"
+                        : "opacity-60 bg-black hover:opacity-90"
                     }`}
                   >
                     <Image
-                      src={img.image}
-                      width={200}
-                      height={200}
-                      alt={`Thumbnail ${img.id}`}
-                      className="w-full h-full object-fill"
+                      src={img.img}
+                      width={300}
+                      height={300}
+                      quality={85}
+                      alt={img.alt}
+                      className="w-full h-full object-cover"
                     />
                   </Button>
                 ))}

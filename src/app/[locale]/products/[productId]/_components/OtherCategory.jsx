@@ -102,7 +102,7 @@ const OtherCategory = () => {
           <button
             onClick={prevSlide}
             disabled={isPrevDisabled}
-            className={`w-8 h-8 flex items-center justify-center rounded-full border transition-colors ${
+            className={`rtl:rotate-180 w-8 h-8 flex items-center justify-center rounded-full border transition-colors ${
               isPrevDisabled
                 ? "border-gray-200 border-2 text-gray-300 cursor-not-allowed"
                 : "border-gray-800 border-2 cursor-pointer text-gray-600 hover:bg-gray-100 hover:border-gray-400"
@@ -126,7 +126,7 @@ const OtherCategory = () => {
           <button
             onClick={nextSlide}
             disabled={isNextDisabled}
-            className={`w-8 h-8 flex items-center justify-center rounded-full border transition-colors ${
+            className={`rtl:rotate-180 w-8 h-8 flex items-center justify-center rounded-full border transition-colors ${
               isNextDisabled
                 ? "border-gray-200 border-2 text-gray-300 cursor-not-allowed"
                 : "border-gray-800 border-2 cursor-pointer text-gray-600 hover:bg-gray-100 hover:border-gray-400"

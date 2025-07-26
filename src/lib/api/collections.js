@@ -47,7 +47,7 @@ export async function fetchProductsBHomePage() {
     const image = getFullImageUrl(product.mainImageUrl.url);
 
     return {
-      id: product.id,
+      id: product.documentId,
       name: product.name,
       description: product.description,
       features: product.features,

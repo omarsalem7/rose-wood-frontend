@@ -3,10 +3,10 @@ import Image from "next/image";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 
-const ProductInfo = ({ locale }) => {
+const ProductInfo = ({ locale, product }) => {
   const t = locale === "ar" ? ar : en;
   return (
-    <section className="py-16 container mx-auto px-6">
+    <section className="py-16 max-w-6xl mx-auto px-6">
       <div className="">
         <div className="text-center mb-2">
           <h2 className="text-2xl font-semibold mb-1">{t.productDetails}</h2>
@@ -14,10 +14,10 @@ const ProductInfo = ({ locale }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 items-center">
           {/* Left: Product Image */}
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-center ">
             <div className="w-full ">
               <Image
-                src="/assets/blog-details-hero(1).png"
+                src={product.productDetailsImage}
                 alt="product-image"
                 width={1000}
                 height={600}
@@ -27,7 +27,7 @@ const ProductInfo = ({ locale }) => {
             </div>
           </div>
           {/* Right: Product Details */}
-          <div className="w-full">
+          <div className="w-full ">
             <ul className="space-y-4">
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
                 <div className="flex items-center gap-2">
@@ -37,7 +37,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  12 قطعة
+                  {product.quantityPerCarton}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -48,7 +48,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  بلاستيكي (Blister)
+                  {product.packagingPerUnit}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -64,7 +64,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  كرتون رئيسي (Master Carton)
+                  {product.outerPackaging}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -75,7 +75,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  41 × 25 × 41 سم
+                  {product.cartonDimensions}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -91,7 +91,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  0.550 كجم
+                  {product.netProductWeight}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -107,7 +107,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  1.200 كجم
+                  {product.netCartonWeight}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -123,7 +123,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  7.80 كجم
+                  {product.totalCartonWeight}
                 </span>
               </li>
               <li className="grid grid-cols-2 gap-2 pb-2 items-center">
@@ -139,7 +139,7 @@ const ProductInfo = ({ locale }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-[#223132] text-base text-left md:text-right">
-                  0.0420 م³
+                  {product.cartonVolume}
                 </span>
               </li>
             </ul>
