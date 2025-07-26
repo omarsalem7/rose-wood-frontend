@@ -58,3 +58,45 @@ export const getProductById = async (id) => {
     gallery: product.gallery ? transformImages(product.gallery) : [],
   };
 };
+
+export const getRelatedProducts = async (categoryId, productId) => {
+  const json = await apiCall(
+    `/products?populate=mainImageUrl&populate=colors.img&filters[category][documentId][$eq]=${categoryId}&pagination[limit]=100`
+  );
+  const products = json.data;
+  console.log("products", products);
+  return (json.data || [])
+    .filter((product) => product.documentId !== productId) // Filter out current product
+    .map((product) => {
+      // Normalize colors with images
+      const colors = Array.isArray(product.colors)
+        ? product.colors.map((color) => {
+            let imgUrl = null;
+            if (color.img && color.img.url) {
+              imgUrl = getFullImageUrl(color.img.url);
+            }
+            return {
+              id: color.id,
+              text: color.text,
+              imgUrl,
+            };
+          })
+        : [];
+      const images = {
+        dark: colors[0] ? colors[0]?.imgUrl : null,
+        medium: colors[1] ? colors[1]?.imgUrl : null,
+        light: colors[2] ? colors[2]?.imgUrl : null,
+      };
+      const image = getFullImageUrl(product.mainImageUrl.url);
+
+      return {
+        id: product.documentId,
+        name: product.name,
+        description: product.description,
+        features: product.features,
+        images,
+        image,
+        category: product.category?.name,
+      };
+    });
+};

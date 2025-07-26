@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import { getRelatedProducts } from "@/lib/api/products";
 
 // Custom styles for equal height Swiper slides
 const swiperStyles = `
@@ -26,8 +27,9 @@ const swiperStyles = `
   }
 `;
 
-const RelatedProducts = ({ products, locale }) => {
+const RelatedProducts = ({ locale, categoryId, productId }) => {
   const t = locale === "ar" ? ar : en;
+  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 3;
@@ -40,6 +42,17 @@ const RelatedProducts = ({ products, locale }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Fetch related products
+  useEffect(() => {
+    async function fetchRelatedProducts() {
+      if (categoryId) {
+        const data = await getRelatedProducts(categoryId, productId);
+        setProducts(data || []);
+      }
+    }
+    fetchRelatedProducts();
+  }, [categoryId, productId]);
 
   const [selectedColors, setSelectedColors] = useState({});
 

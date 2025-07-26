@@ -10,7 +10,6 @@ const Product = async ({ params }) => {
   const resolvedParams = await params;
   const { locale, productId } = resolvedParams;
   const product = await getProductById(productId);
-  console.log(product);
   return (
     <>
       <ProductDetails locale={locale} product={product} />
@@ -18,7 +17,12 @@ const Product = async ({ params }) => {
       <ProductInfo locale={locale} product={product} />
       <HowWork isButtonshow={false} />
       <OtherCategory currentCategoryId={product.category.id} />
-      {/* <RelatedProducts /> */}
+      {product?.category?.documentId && (
+        <RelatedProducts
+          productId={productId}
+          categoryId={product?.category?.documentId}
+        />
+      )}
     </>
   );
 };

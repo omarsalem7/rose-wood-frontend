@@ -10,7 +10,6 @@ const OtherCategory = ({ currentCategoryId }) => {
   useEffect(() => {
     async function getCategories() {
       const cats = await fetchRelatedCategories(currentCategoryId);
-      console.log(cats);
       setCategories(cats);
     }
     getCategories();

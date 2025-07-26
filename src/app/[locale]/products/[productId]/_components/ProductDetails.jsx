@@ -18,7 +18,7 @@ const ProductDetails = ({ locale, product }) => {
   const handleImageSelect = (id) => {
     setSelectedImageId(id);
   };
-  console.log(product);
+
   return (
     <>
       <section className="py-16 container mx-auto px-6">
