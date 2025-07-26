@@ -24,5 +24,6 @@
   "custom": "Custom",
   "roseWoodProducts": "Rose Wood Products",
   "noImage": "No Image Available",
-  "otherCategories": "Other Categories"
+  "otherCategories": "Other Categories",
+  "otherProductsInCategory": "Other Products in Category"
 }

@@ -37,8 +37,7 @@ const ProductDetails = ({ locale, product }) => {
                   {t.noteOverView}
                 </span>
                 <p className="text-[#586675] text-lg pt-3">
-                  نستخدم أخشاب طبيعية مجففة، ونشطبها بزيوت وشموع آمنة للطعام، مع
-                  خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة.
+                  {product.description}
                 </p>
               </div>
               <div>

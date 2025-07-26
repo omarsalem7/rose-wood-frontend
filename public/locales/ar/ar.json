@@ -24,5 +24,6 @@
   "custom": "مقاس خاص",
   "roseWoodProducts": "منتجات روز وود",
   "noImage": "لا يوجد صورة",
-  "otherCategories": "اقسام اخرى"
+  "otherCategories": "اقسام اخرى",
+  "otherProductsInCategory": "منتجات اخري من نفس القسم"
 }

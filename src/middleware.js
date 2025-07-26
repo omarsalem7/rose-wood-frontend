@@ -14,7 +14,6 @@ function getLocale(request) {
   if (pathnameIsMissingLocale) {
     // Try to get locale from preferred_language cookie
     const cookieHeader = request.headers.get("cookie");
-    console.log("cookieHeader", cookieHeader);
     let locale = defaultLocale;
     if (cookieHeader) {
       const match = cookieHeader.match(/preferred_language=([^;]+)/);
@@ -23,7 +22,9 @@ function getLocale(request) {
         locale = match[1];
       }
     }
-    // If not in cookie, try Accept-Language header
+    /*
+    TODO: Add Accept-Language header (browser language)
+    If not in cookie, try Accept-Language header
     if (locale === defaultLocale) {
       const acceptLanguage = request.headers.get("accept-language");
       if (acceptLanguage) {
@@ -33,6 +34,8 @@ function getLocale(request) {
         }
       }
     }
+    */
+    // Always default to Arabic if no cookie found (removed Accept-Language check)
     return locale;
   }
 
@@ -66,7 +69,6 @@ export function middleware(request) {
   // Add locale to headers for server components
   const response = NextResponse.next();
   const locale = getLocale(request);
-  console.log("locale: ", locale);
   response.headers.set("x-locale", locale);
 
   return response;
