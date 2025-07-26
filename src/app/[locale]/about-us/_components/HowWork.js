@@ -8,7 +8,7 @@ const HowWork = async ({ isButtonshow }) => {
     await fetchHowWorkSection();
 
   return (
-    <section className="py-16 container mx-auto px-6">
+    <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
       <div className="">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -64,19 +64,19 @@ const HowWork = async ({ isButtonshow }) => {
           </div>
         </div>
 
-        <div className=" w-full md:w-[50%] xl:w-[100%] flex md:flex-row flex-col md:ustify-end gap-2 md:gap-6">
+        <div className="grid grid-cols-5 gap-4">
           <Image
             src={images && images[0] ? images[0].img : "/assets/spoons.png"}
             alt="product-meta2"
             width={294}
             height={120}
-            className="max-md:w-full"
+            className="col-span-2 h-full"
           />
           <Image
             src={images && images[0] ? images[1].img : "/product-meta1.png"}
             alt="product-meta1"
             width={400}
-            className="max-md:w-full grow"
+            className=" col-span-3 h-full"
             height={120}
           />
         </div>

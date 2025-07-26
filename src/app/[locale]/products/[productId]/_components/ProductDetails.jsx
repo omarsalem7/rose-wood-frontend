@@ -21,8 +21,8 @@ const ProductDetails = ({ locale, product }) => {
 
   return (
     <>
-      <section className="py-16 container mx-auto px-6">
-        <div className="border-t border-gray-300 relative">
+      <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
+        <div className="border-t border-gray-300 relative ">
           <span className="absolute left-0 top-0 z-50 w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <span className="absolute right-0 top-0 w-1.5 z-50 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
 

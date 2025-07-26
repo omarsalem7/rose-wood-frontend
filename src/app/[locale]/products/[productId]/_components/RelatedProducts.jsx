@@ -87,38 +87,17 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
   return (
     <>
       <style>{swiperStyles}</style>
-      <section className="py-16 px-6 font-alexandria">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0 font-alexandria">
+        <div className="">
           {/* Header */}
           <div className="text-center mb-8">
             <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
               {t.roseWoodProducts}
             </h2>
-
-            {/* Pagination Controls (no categories) */}
-            <div className="flex flex-wrap justify-end items-center mb-8">
-              <div className="hidden md:flex gap-4">
-                <button
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 1}
-                  className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <ChevronRight className="w-6 h-6 ltr:rotate-180 text-gray-600" />
-                </button>
-
-                <button
-                  onClick={handleNextPage}
-                  disabled={currentPage === totalPages}
-                  className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <ChevronLeft className="w-6 h-6 ltr:rotate-180 text-gray-600" />
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Products Grid/Swiper */}
-          <div className="mb-12">
+          <div className="mb-8">
             {isMobile ? (
               <Swiper
                 spaceBetween={20}
@@ -291,11 +270,41 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
             )}
           </div>
 
-          {/* View All Products Button */}
-          <div className="text-center">
+          {/* Navigation Controls - Web View Only */}
+          <div className="hidden md:flex justify-between items-center mb-8">
+            {/* Left: Button */}
             <Link
               href="/products"
-              className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg"
+              className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
+            >
+              {t.viewAllProducts}
+            </Link>
+
+            {/* Right: Navigation Arrows */}
+            <div className="flex gap-4">
+              <button
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-5 h-5 ltr:rotate-180 text-gray-600" />
+              </button>
+
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-5 h-5 ltr:rotate-180 text-gray-600" />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile View All Products Button */}
+          <div className="md:hidden text-center">
+            <Link
+              href="/products"
+              className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-2 rounded-lg "
             >
               {t.viewAllProducts}
             </Link>

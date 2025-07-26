@@ -6,7 +6,7 @@ import ar from "@/../public/locales/ar/ar.json";
 const ProductInfo = ({ locale, product }) => {
   const t = locale === "ar" ? ar : en;
   return (
-    <section className="py-16 max-w-6xl mx-auto px-6">
+    <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
       <div className="">
         <div className="text-center mb-2">
           <h2 className="text-2xl font-semibold mb-1">{t.productDetails}</h2>

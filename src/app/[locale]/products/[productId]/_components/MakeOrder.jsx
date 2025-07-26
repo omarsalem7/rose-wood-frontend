@@ -7,7 +7,7 @@ const MakeOrder = ({ locale }) => {
   return (
     <>
       <div className="bg-[#FFF8F6]">
-        <div className="py-16 container mx-auto px-6 flex flex-col gap-5 md:flex-row items-center justify-between">
+        <div className="py-16 max-w-7xl mx-auto px-6 2xl:px-0 flex flex-col gap-5 md:flex-row items-center justify-between">
           <div className="">
             <span className="text-sm font-bold text-[#5F361F]">
               {t.didYouLikeProduct}
