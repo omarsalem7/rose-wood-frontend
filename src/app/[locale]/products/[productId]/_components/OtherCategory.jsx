@@ -1,67 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { fetchRelatedCategories } from "@/lib/api/categories";
 
-const categories = [
-  {
-    name: "حامل خشبي",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-meta1.png",
-  },
-  {
-    name: "طبق خشبي",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-meta2.png",
-  },
-  {
-    name: "ملعقة خشبية",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product1.png",
-  },
-  {
-    name: "وعاء خشبي",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-details.png",
-  },
-  {
-    name: "صينية خشبية",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-meta1.png",
-  },
-  {
-    name: "مقبض خشبي",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-meta2.png",
-  },
-  {
-    name: "قاعدة خشبية",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product1.png",
-  },
-  {
-    name: "حامل أدوات",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-details.png",
-  },
-  {
-    name: "رف خشبي",
-    subtitle: "متوفر بكميات تبدأ من 100 قطعة",
-    image: "/assets/product-meta1.png",
-  },
-];
-
-const OtherCategory = () => {
+const OtherCategory = ({ currentCategoryId }) => {
+  const [categories, setCategories] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 3;
+
+  useEffect(() => {
+    async function getCategories() {
+      const cats = await fetchRelatedCategories(currentCategoryId);
+      console.log(cats);
+      setCategories(cats);
+    }
+    getCategories();
+  }, [currentCategoryId]);
+
   const totalPages = Math.ceil(categories.length / itemsPerPage);
 
-  const nextSlide = () => {
+  const nextSlide = () =>
     setCurrentIndex((prev) => Math.min(prev + 1, totalPages - 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
-  };
-
+  const prevSlide = () => setCurrentIndex((prev) => Math.max(prev - 1, 0));
   const isPrevDisabled = currentIndex === 0;
   const isNextDisabled = currentIndex === totalPages - 1;
 
@@ -76,7 +35,7 @@ const OtherCategory = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {visibleCategories.map((cat, idx) => (
           <div
-            key={idx}
+            key={cat.id || idx}
             className="bg-white border hover:shadow-lg border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center min-h-[320px] shadow-sm transition-shadow"
           >
             <img
@@ -93,9 +52,6 @@ const OtherCategory = () => {
       </div>
       {/* Button and Arrows Row */}
       <div className="flex items-center justify-between mt-10">
-        {/* <button className="bg-[#5F361F] text-white rounded-xl px-10 py-3 text-lg font-medium hover:bg-[#7a4a28] transition-colors">
-          عرض كل الاقسام
-        </button> */}
         <div></div>
         {/* Right: Arrows */}
         <div className="flex gap-4">

@@ -17,7 +17,10 @@ const ProductInfo = ({ locale, product }) => {
           <div className="w-full flex items-center justify-center ">
             <div className="w-full ">
               <Image
-                src={product.productDetailsImage}
+                src={
+                  product.productDetailsImage ||
+                  "/assets/blog-details-hero(1).png"
+                }
                 alt="product-image"
                 width={1000}
                 height={600}

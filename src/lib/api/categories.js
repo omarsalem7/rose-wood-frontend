@@ -3,14 +3,26 @@ import { getFullImageUrl } from "../image";
 
 export async function fetchVisualFeedingsHomePage() {
   const json = await apiCall("/categories?populate=visualFeeding");
-  console.log(json);
-  const ress = (json.data || []).map((category) => {
+  const res = (json.data || []).map((category) => {
     return {
       ...category,
       visualFeeding: getFullImageUrl(category?.visualFeeding?.url),
     };
   });
 
-  console.log(ress);
-  return ress;
+  return res;
+}
+
+export async function fetchRelatedCategories(categoryId) {
+  const json = await apiCall(
+    "/categories?populate=mainImage&pagination[limit]=100"
+  );
+  const res = (json.data || []).map((category) => {
+    return {
+      ...category,
+      image: getFullImageUrl(category?.mainImage?.url),
+    };
+  });
+
+  return res.filter((category) => category.id !== categoryId);
 }
