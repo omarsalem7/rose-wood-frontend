@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Pagination from "./Pagination";
 import Filter from "./Filter";
 import Link from "next/link";
@@ -10,7 +11,7 @@ const PAGE_SIZE = 12;
 
 // Skeleton component for loading state
 const ProductSkeleton = () => (
-  <div className="item bg-white shadow-lg rounded-2xl w-full md:w-[30%] flex flex-col items-center gap-4 p-8 animate-pulse min-h-[350px]">
+  <div className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-8 animate-pulse min-h-[350px]">
     <div className="bg-gray-200 rounded-full w-[160px] h-[100px] mt-4 mb-6" />
     <div className="bg-gray-200 rounded h-7 w-2/3 mb-2" />
     <div className="bg-gray-100 rounded h-4 w-1/2" />
@@ -18,6 +19,9 @@ const ProductSkeleton = () => (
 );
 
 const ProductsList = ({ locale }) => {
+  const searchParams = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
+
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
@@ -26,11 +30,14 @@ const ProductsList = ({ locale }) => {
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
+  console.log("categoryId from query params:", categoryId);
+
   const fetchProducts = async (page = 1, searchValue = "") => {
     setLoading(true);
     try {
       const filters = searchValue ? { name: { $contains: searchValue } } : {};
       const res = await getAllproducts({
+        categoryId,
         filters,
         page,
         pageSize: PAGE_SIZE,
@@ -47,7 +54,7 @@ const ProductsList = ({ locale }) => {
   useEffect(() => {
     fetchProducts(currentPage, search);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, search]);
+  }, [currentPage, search, categoryId]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -65,21 +72,37 @@ const ProductsList = ({ locale }) => {
         <div className="max-w-7xl mx-auto">
           <div className="py-4">كل المنتجات ({totalCount})</div>
           {loading ? (
-            <div className="items py-2 flex flex-col justify-between md:flex-row flex-wrap gap-4">
+            <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
               {Array.from({ length: 3 }).map((_, i) => (
                 <ProductSkeleton key={i} />
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="py-8 text-center">لا توجد منتجات</div>
+            <div className="py-16 pb-24 text-center">
+              <div className="max-w-md mx-auto">
+                <div className="mb-6">
+                  <img
+                    src="/assets/noProducts.png"
+                    alt="No products found"
+                    className="w-32 h-32 mx-auto opacity-60"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                  لا توجد منتجات
+                </h3>
+                <p className="text-gray-500 text-sm">
+                  {categoryId ? "لا توجد منتجات في هذه الفئة" : ""}
+                </p>
+              </div>
+            </div>
           ) : (
             <>
-              <div className="items py-2 flex flex-col justify-between md:flex-row flex-wrap gap-4">
+              <div className="items py-2 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
                 {products.map((product) => (
                   <Link
                     href={`/${locale}/products/${product.documentId}`}
                     key={product.id}
-                    className="item bg-white shadow-lg rounded-2xl w-full md:w-[30%] flex flex-col items-center gap-4 p-8 transition-transform hover:scale-105 min-h-[350px]"
+                    className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:scale-105 min-h-fit md:min-h-[350px]"
                   >
                     <div className="flex justify-center w-full">
                       <Image

@@ -92,7 +92,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
           <div className="">
             {/* Header */}
             <h2 className="text-2xl font-medium mb-8 pr-2">
-              {t.otherProductsInCategory}
+              {t.roseWoodProducts}
             </h2>
 
             {/* Products Grid/Swiper */}

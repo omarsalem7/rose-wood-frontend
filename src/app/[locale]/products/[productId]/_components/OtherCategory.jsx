@@ -4,6 +4,7 @@ import { fetchRelatedCategories } from "@/lib/api/categories";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import Link from "next/link";
 const OtherCategory = ({ currentCategoryId, locale }) => {
   const t = locale === "ar" ? ar : en;
   const [categories, setCategories] = useState([]);
@@ -40,7 +41,8 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {visibleCategories.map((cat, idx) => (
-              <div
+              <Link
+                href={`/${locale}/products?categoryId=${cat.id}`}
                 key={cat.id || idx}
                 className="bg-white border hover:shadow-lg border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center min-h-[320px] shadow-sm transition-shadow"
               >
@@ -53,7 +55,7 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
                   {cat.name}
                 </div>
                 <div className="text-gray-400 text-base">{cat.subtitle}</div>
-              </div>
+              </Link>
             ))}
           </div>
           {/* Button and Arrows Row */}

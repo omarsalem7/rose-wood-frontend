@@ -11,9 +11,11 @@ const ProductDetails = ({ locale, product }) => {
     product?.gallery?.[0]?.id || 1
   );
 
-  const selectedImage = product?.gallery?.find(
-    (img) => img.id === selectedImageId
-  )?.img;
+  const selectedImage =
+    product?.gallery?.find((img) => img.id === selectedImageId)?.img ||
+    product?.mainImageUrl ||
+    product?.image ||
+    null;
 
   const handleImageSelect = (id) => {
     setSelectedImageId(id);
@@ -70,38 +72,53 @@ const ProductDetails = ({ locale, product }) => {
             {/* Image Section */}
             <div className="w-full md:w-[50%]">
               <div className="h-[450px] flex justify-center items-center bg-gray-50 rounded-xl overflow-hidden">
-                <Image
-                  src={selectedImage || ""}
-                  className="w-full h-full object-fill"
-                  width={800}
-                  height={800}
-                  quality={95}
-                  priority={true}
-                  alt="Selected product image"
-                />
+                {selectedImage ? (
+                  <Image
+                    src={selectedImage}
+                    className="w-full h-full object-fill"
+                    width={800}
+                    height={800}
+                    quality={95}
+                    priority={true}
+                    alt="Selected product image"
+                  />
+                ) : (
+                  <div className="text-gray-400 text-center">
+                    <div className="text-6xl mb-4">📷</div>
+                    <p>No image available</p>
+                  </div>
+                )}
               </div>
-              <div className="flex justify-center items-center mt-4 gap-3">
-                {product.gallery.map((img) => (
-                  <Button
-                    key={img.id}
-                    onClick={() => handleImageSelect(img.id)}
-                    className={`h-[118px] w-full rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
-                      img.id === selectedImageId
-                        ? "opacity-100 ring-2 ring-[#5F361F]"
-                        : "opacity-60 bg-black hover:opacity-90"
-                    }`}
-                  >
-                    <Image
-                      src={img.img}
-                      width={300}
-                      height={300}
-                      quality={85}
-                      alt={img.alt}
-                      className="w-full h-full object-cover"
-                    />
-                  </Button>
-                ))}
-              </div>
+              {product.gallery && product.gallery.length > 0 && (
+                <div className="flex justify-center items-center mt-4 gap-3">
+                  {product.gallery.map((img) => (
+                    <Button
+                      key={img.id}
+                      onClick={() => handleImageSelect(img.id)}
+                      className={`h-[118px] w-full rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
+                        img.id === selectedImageId
+                          ? "opacity-100 ring-2 ring-[#5F361F]"
+                          : "opacity-60 bg-black hover:opacity-90"
+                      }`}
+                    >
+                      {img.img ? (
+                        <Image
+                          src={img.img}
+                          width={300}
+                          height={300}
+                          quality={85}
+                          alt={img.alt || "Product image"}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                          📷
+                        </div>
+                      )}
+                    </Button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

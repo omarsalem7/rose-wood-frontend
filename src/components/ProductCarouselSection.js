@@ -1,16 +1,17 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, Plus } from "lucide-react";
+import { ChevronLeft, X, Plus } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel.js";
+import Link from "next/link";
 
-const ProductCarouselSection = ({ title, products, categories }) => {
+const ProductCarouselSection = ({ title, categories, locale }) => {
+  console.log("mmmm", locale);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -53,11 +54,6 @@ const ProductCarouselSection = ({ title, products, categories }) => {
       return "opacity-100";
     }
     return "opacity-70";
-  };
-
-  const handleDragStart = (e) => {
-    setIsDragging(true);
-    setDragStartX(e.clientX);
   };
 
   const handleDragMove = (e) => {
@@ -200,10 +196,15 @@ const ProductCarouselSection = ({ title, products, categories }) => {
             </p>
 
             {/* Action Button */}
-            <button className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900  py-3 rounded-lg font-semibold text-lg  transition focus:outline-none cursor-pointer">
+            <Link
+              href={`/${locale}/products?${
+                selectedProduct.id ? `categoryId=${selectedProduct.id}` : ""
+              }`}
+              className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900  py-3 rounded-lg font-semibold text-lg  transition focus:outline-none cursor-pointer"
+            >
               <ChevronLeft size={20} />
               {selectedProduct.CTA_Button}
-            </button>
+            </Link>
           </div>
         </div>
       )}

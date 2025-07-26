@@ -36,8 +36,8 @@ export default async function Home({ params }) {
       <BulkOrderSection {...bulkOrder} />
       <ProductCarouselSection
         title={title}
-        products={products}
         categories={categories}
+        locale={locale}
       />
       <VideoSection videoData={videoSection} />
       <WhyChooseRosewoodSection />
