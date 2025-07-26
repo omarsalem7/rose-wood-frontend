@@ -17,7 +17,7 @@ const ProductSkeleton = () => (
   </div>
 );
 
-const ProductsList = () => {
+const ProductsList = ({ locale }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
@@ -77,7 +77,7 @@ const ProductsList = () => {
               <div className="items py-2 flex flex-col justify-between md:flex-row flex-wrap gap-4">
                 {products.map((product) => (
                   <Link
-                    href={`products/${product.id}`}
+                    href={`/${locale}/products/${product.documentId}`}
                     key={product.id}
                     className="item bg-white shadow-lg rounded-2xl w-full md:w-[30%] flex flex-col items-center gap-4 p-8 transition-transform hover:scale-105 min-h-[350px]"
                   >

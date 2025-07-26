@@ -16,7 +16,12 @@ const Product = async ({ params }) => {
       <MakeOrder locale={locale} />
       <ProductInfo locale={locale} product={product} />
       <HowWork isButtonshow={false} />
-      <OtherCategory currentCategoryId={product.category.id} locale={locale} />
+
+      <OtherCategory
+        currentCategoryId={product?.category?.id}
+        locale={locale}
+      />
+
       {product?.category?.documentId && (
         <RelatedProducts
           productId={productId}

@@ -1,10 +1,11 @@
 import React from "react";
 import ProductsList from "./_components/ProductsList";
 
-const Products = () => {
+const Products = ({ params }) => {
+  const { locale } = params;
   return (
     <>
-      <ProductsList />
+      <ProductsList locale={locale} />
     </>
   );
 };

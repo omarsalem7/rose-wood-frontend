@@ -14,8 +14,11 @@ export async function fetchVisualFeedingsHomePage() {
 }
 
 export async function fetchRelatedCategories(categoryId) {
+  // If categoryId is undefined, null, or empty, fetch all categories
+  const filterQuery = categoryId ? `&filters[id][$ne]=${categoryId}` : "";
+
   const json = await apiCall(
-    `/categories?populate=mainImage&pagination[limit]=100&filters[id][$ne]=${categoryId}`
+    `/categories?populate=mainImage&pagination[limit]=100${filterQuery}`
   );
   const res = (json.data || []).map((category) => {
     return {
