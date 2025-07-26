@@ -29,9 +29,7 @@ const ProductsList = () => {
   const fetchProducts = async (page = 1, searchValue = "") => {
     setLoading(true);
     try {
-      const filters = searchValue
-        ? { name: { $contains: searchValue } }
-        : {};
+      const filters = searchValue ? { name: { $contains: searchValue } } : {};
       const res = await getAllproducts({
         filters,
         page,

@@ -11,7 +11,6 @@ import ProductsSection from "@/components/ProductsSection";
 import { fetchAllHomePageData } from "@/lib/api/cms";
 import {
   fetchBlogsHomePage,
-  fetchCategories,
   fetchProductsBHomePage,
 } from "@/lib/api/collections";
 import { generateMetadata } from "@/lib/metadata";

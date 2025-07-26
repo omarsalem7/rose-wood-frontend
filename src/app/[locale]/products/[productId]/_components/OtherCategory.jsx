@@ -32,48 +32,54 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
   );
 
   return (
-    <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
-      <h2 className="text-2xl font-medium mb-8 pr-2">{t.otherCategories}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {visibleCategories.map((cat, idx) => (
-          <div
-            key={cat.id || idx}
-            className="bg-white border hover:shadow-lg border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center min-h-[320px] shadow-sm transition-shadow"
-          >
-            <img
-              src={cat.image}
-              alt={cat.name}
-              className="h-40 object-contain mb-6 mt-2"
-            />
-            <div className="font-bold text-2xl text-[#1A3447] mb-2">
-              {cat.name}
-            </div>
-            <div className="text-gray-400 text-base">{cat.subtitle}</div>
+    <>
+      {categories.length > 0 && (
+        <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
+          <h2 className="text-2xl font-medium mb-8 pr-2">
+            {t.otherCategories}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {visibleCategories.map((cat, idx) => (
+              <div
+                key={cat.id || idx}
+                className="bg-white border hover:shadow-lg border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center min-h-[320px] shadow-sm transition-shadow"
+              >
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="h-40 object-contain mb-6 mt-2"
+                />
+                <div className="font-bold text-2xl text-[#1A3447] mb-2">
+                  {cat.name}
+                </div>
+                <div className="text-gray-400 text-base">{cat.subtitle}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {/* Button and Arrows Row */}
-      <div className="flex items-center justify-between mt-10">
-        <div></div>
-        {/* Right: Arrows */}
-        <div className="flex gap-4">
-          <button
-            onClick={prevSlide}
-            disabled={isPrevDisabled}
-            className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ChevronRight className="w-5 h-5  text-gray-600" />
-          </button>
-          <button
-            onClick={nextSlide}
-            disabled={isNextDisabled}
-            className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft className="w-5 h-5  text-gray-600" />
-          </button>
-        </div>
-      </div>
-    </section>
+          {/* Button and Arrows Row */}
+          <div className="flex items-center justify-between mt-10">
+            <div></div>
+            {/* Right: Arrows */}
+            <div className="flex gap-4">
+              <button
+                onClick={prevSlide}
+                disabled={isPrevDisabled}
+                className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="w-5 h-5  text-gray-600" />
+              </button>
+              <button
+                onClick={nextSlide}
+                disabled={isNextDisabled}
+                className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-5 h-5  text-gray-600" />
+              </button>
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 

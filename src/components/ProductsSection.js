@@ -188,7 +188,7 @@ const ProductsSection = ({ products, locale }) => {
 
                         {/* Add to Cart Button */}
                         <Link
-                          href={`/products/${product.id}`}
+                          href={`/${locale}/products/${product.id}`}
                           className="flex items-center  justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto"
                         >
                           {t.productDetails}
@@ -265,7 +265,7 @@ const ProductsSection = ({ products, locale }) => {
 
                       {/* Add to Cart Button */}
                       <Link
-                        href={`/products/${product.id}`}
+                        href={`/${locale}/products/${product.id}`}
                         className="flex items-center justify-center gap-2 font-medium text-center hover:text-[#5F361F] text-[#804524] flex-shrink-0 mt-auto"
                       >
                         {t.productDetails}
@@ -281,7 +281,7 @@ const ProductsSection = ({ products, locale }) => {
           {/* View All Products Button */}
           <div className="text-center">
             <Link
-              href="/products"
+              href={`/${locale}/products`}
               className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-lg"
             >
               {t.viewAllProducts}
