@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const Header = ({ onMenuClick, contactUs }) => (
+const Header = ({ onMenuClick, contactUs, locale }) => (
   <header className="relative z-20 p-6 py-3 bg-white">
     <div className="flex justify-between items-center max-w-7xl mx-auto">
       {/* Right side - Menu button */}
@@ -16,7 +16,7 @@ const Header = ({ onMenuClick, contactUs }) => (
         <Menu size={35} className="text-[#5F361F]" />
       </button>
       {/* Center - Logo using the provided image */}
-      <Link href="/" className="flex items-center">
+      <Link href={`/${locale}`} className="flex items-center">
         <Image
           className="w-auto h-auto"
           src="/assets/rose-h-logo.png"

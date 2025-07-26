@@ -30,7 +30,7 @@ export default async function Home({ params }) {
   return (
     <div>
       <HeroSection {...hero} />
-      <AboutSection {...about} />
+      <AboutSection {...about} locale={locale} />
       <FeatureSection {...features} />
       <ProductsSection products={products} locale={locale} />
       <BulkOrderSection {...bulkOrder} />

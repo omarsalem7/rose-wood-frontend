@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutSection({
   title,
@@ -6,6 +7,7 @@ export default function AboutSection({
   images,
   buttons,
   list,
+  locale,
 }) {
   return (
     <section className="py-8 md:py-24 px-6 bg-white">
@@ -49,12 +51,18 @@ export default function AboutSection({
 
             {/* Buttons */}
             <div className="flex gap-4">
-              <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+              <Link
+                href={`${locale}/products`}
+                className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+              >
                 {buttons[0].text}
-              </button>
-              <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
+              </Link>
+              <Link
+                href={`${locale}/order/request-sample`}
+                className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+              >
                 {buttons[1].text}
-              </button>
+              </Link>
             </div>
           </div>
           {/* Images Grid with overlay */}
