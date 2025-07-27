@@ -14,6 +14,12 @@
   "specialRequests": "Special Requests (Optional)",
   "submit": "Send",
   "selectProduct": "Select a product",
+  "loadingProducts": "Loading products...",
+  "submitting": "Submitting...",
+  "goToHome": "Go to Home",
+  "tryAgain": "Try Again",
+  "successMessage": "We received your international export application and we will contact with you soon",
+  "errorMessage": "Failed to submit your international export application. Please try again.",
   "validation": {
     "nameMin": "Name must be at least 2 characters",
     "email": "Please enter a valid email address",

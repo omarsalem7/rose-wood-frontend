@@ -32,3 +32,19 @@ export const submitPriceQuote = async (data) => {
     throw error;
   }
 };
+export const submitInternationalExports = async (data) => {
+  try {
+    const response = await apiCall("/international-exports", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error submitting international-exports:", error);
+    throw error;
+  }
+};
