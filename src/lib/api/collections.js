@@ -79,3 +79,21 @@ export async function getBlogById(id) {
     subImage: getFullImageUrl(json.data?.subImage?.url),
   };
 }
+
+export async function getRelatedBlogs(blogId) {
+  // If categoryId is undefined, null, or empty, fetch all categories
+  const filterQuery = blogId ? `&filters[documentId][$ne]=${blogId}` : "";
+
+  const json = await apiCall(
+    `/blogs?populate=*&pagination[limit]=3${filterQuery}`
+  );
+  const res = (json.data || []).map((blog) => {
+    return {
+      ...blog,
+      image: getFullImageUrl(blog?.image?.url),
+    };
+  });
+  console.log(res);
+
+  return res;
+}

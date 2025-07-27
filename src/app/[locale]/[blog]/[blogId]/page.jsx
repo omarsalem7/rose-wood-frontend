@@ -11,14 +11,13 @@ const BlogDetails = async ({ params }) => {
 
   // Fetch blog data
   const blog = await getBlogById(blogId);
-  console.log("sss", blog);
 
   return (
     <>
       <BlogContentIntroSection blog={blog} locale={locale} />
       <BlogMainContentSection blog={blog} locale={locale} />
       <BlogTagsAndShareSection blog={blog} locale={locale} />
-      <RelatedBlogs blog={blog} locale={locale} />
+      <RelatedBlogs blogId={blogId} locale={locale} />
     </>
   );
 };
