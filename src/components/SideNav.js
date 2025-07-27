@@ -2,9 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Youtube, X, Linkedin, Facebook, Heart } from "lucide-react";
+import { Youtube, X, Linkedin, Facebook } from "lucide-react";
 
-const SideNav = ({ isOpen, onClose, data }) => (
+const SideNav = ({ isOpen, onClose, data, locale }) => (
   <div
     className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
       ${
@@ -14,7 +14,7 @@ const SideNav = ({ isOpen, onClose, data }) => (
     <div className="p-6 ">
       {/* Header with logo and close button */}
       <div className="flex justify-between items-center mb-8">
-        <Link href="/">
+        <Link href={`/${locale}`}>
           <Image
             className="w-auto h-auto"
             src="/assets/rose-h-logo.png"
@@ -35,7 +35,7 @@ const SideNav = ({ isOpen, onClose, data }) => (
       {/* Navigation menu items with icons like in the design */}
       <nav className="space-y-4">
         <Link
-          href="/"
+          href={`/${locale}`}
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
           onClick={onClose}
         >
@@ -49,7 +49,7 @@ const SideNav = ({ isOpen, onClose, data }) => (
           {data?.whoAreWe}
         </Link>
         <Link
-          href="/products"
+          href={`/${locale}/products`}
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -62,7 +62,7 @@ const SideNav = ({ isOpen, onClose, data }) => (
           {data?.products}
         </Link>
         <Link
-          href="/wholesale"
+          href={`/${locale}/wholesale`}
           className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -101,7 +101,7 @@ const SideNav = ({ isOpen, onClose, data }) => (
           {data?.visualFeeding}
         </a>
         <Link
-          href="/contact"
+          href={`/${locale}/contact`}
           className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
         >
           <Image
@@ -117,13 +117,13 @@ const SideNav = ({ isOpen, onClose, data }) => (
       {/* Bottom section with buttons like in the design */}
       <div className="mt-12 space-y-4 space-x-4">
         <Link
-          href="/contact"
+          href={`/${locale}/contact`}
           className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
         >
           {data?.contactUs}
         </Link>
         <Link
-          href="/order/price-quote"
+          href={`/${locale}/order/price-quote`}
           className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
         >
           {data?.offerPrice}

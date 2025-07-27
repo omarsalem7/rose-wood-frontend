@@ -28,9 +28,12 @@ const Header = ({ onMenuClick, contactUs, locale }) => (
       {/* Left side - Language switcher, Contact button and search */}
       <div className="flex items-center gap-4">
         <LanguageSwitcher />
-        <button className="bg-[#5F361F] text-white px-2 md:px-8 py-2 rounded-xl text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+        <Link
+          href={`/${locale}/contact`}
+          className="bg-[#5F361F] text-white px-2 md:px-8 py-2 rounded-xl text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+        >
           {contactUs}
-        </button>
+        </Link>
       </div>
     </div>
   </header>

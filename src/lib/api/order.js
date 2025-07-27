@@ -64,3 +64,15 @@ export const submitLocalExports = async (data) => {
     throw error;
   }
 };
+
+export const submitContactForm = async (data) => {
+  const response = await apiCall("/contacts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ data }),
+  });
+
+  return response;
+};

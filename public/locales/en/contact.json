@@ -1,0 +1,26 @@
+{
+  "title": "Contact Us",
+  "fullName": "Full Name",
+  "phone": "Phone Number",
+  "email": "Email Address",
+  "address": "Address",
+  "message": "Message",
+  "submit": "Send Message",
+  "submitting": "Sending...",
+  "successMessage": "Your message has been sent successfully! We'll get back to you soon.",
+  "errorMessage": "There was an error sending your message. Please try again.",
+  "goToHome": "Go to Home",
+  "tryAgain": "Try Again",
+  "validation": {
+    "nameMin": "Name must be at least 2 characters",
+    "nameRequired": "Name is required",
+    "phoneMin": "Phone number must be at least 10 characters",
+    "phoneRequired": "Phone number is required",
+    "email": "Please enter a valid email address",
+    "emailRequired": "Email is required",
+    "addressMin": "Address must be at least 5 characters",
+    "addressRequired": "Address is required",
+    "messageMin": "Message must be at least 10 characters",
+    "messageRequired": "Message is required"
+  }
+}

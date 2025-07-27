@@ -91,9 +91,9 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     className="h-auto"
                   >
                     <Link href={`/${locale}/blog/${article.id}`}>
-                      <Card className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                      <Card className="bg-white max-sm:w-[70vw] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                         {/* Article Image */}
-                        <div className="aspect-video overflow-hidden flex-shrink-0">
+                        <div className="aspect-video  overflow-hidden flex-shrink-0">
                           <Image
                             src={article.image}
                             alt={article.title}
@@ -139,11 +139,8 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
                 {currentArticles.map((article) => (
-                  <Link href={`/${locale}/blog/${article.id}`}>
-                    <Card
-                      key={article.id}
-                      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
-                    >
+                  <Link key={article.id} href={`/${locale}/blog/${article.id}`}>
+                    <Card className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                       {/* Article Image */}
                       <div className="aspect-video overflow-hidden flex-shrink-0">
                         <Image
