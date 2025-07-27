@@ -44,7 +44,23 @@ export const submitInternationalExports = async (data) => {
 
     return response;
   } catch (error) {
-    console.error("Error submitting international-exports:", error);
+    console.error("Error submitting international exports:", error);
+    throw error;
+  }
+};
+export const submitLocalExports = async (data) => {
+  try {
+    const response = await apiCall("/local-exports", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error submitting local exports:", error);
     throw error;
   }
 };
