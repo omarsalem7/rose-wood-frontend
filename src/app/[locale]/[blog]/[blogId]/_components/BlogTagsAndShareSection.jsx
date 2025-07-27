@@ -1,33 +1,21 @@
-import Link from "next/link";
 import React from "react";
-import { Facebook, Instagram, X } from "lucide-react";
-const BlogTagsAndShareSection = () => {
+const BlogTagsAndShareSection = ({ blog }) => {
   return (
     <>
       <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
         <div className="border-b-5 border-[#727580] pb-10">
           <div className="text-[32px] font-medium text-[#063046] pb-3">
-            عنوان فرعي داخل المدونـة
+            {blog.subTitle2}
           </div>
           <ul className="space-y-5 mb-6 list-disc list-inside">
-            <li className="leading-9 md:leading-[50px] text-[#727580] text-xl">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-              العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
-              التطبيق
-            </li>
-            <li className="leading-9 md:leading-[50px] text-[#727580] text-xl">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-              العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
-              التطبيق
-            </li>
-            <li className="leading-9 md:leading-[50px] text-[#727580] text-xl">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-              العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
-              التطبيق
-            </li>
+            {blog.list.map((item) => (
+              <li
+                key={item.id}
+                className="leading-9 md:leading-[50px] text-[#727580] text-xl"
+              >
+                {item.text}
+              </li>
+            ))}
           </ul>
           {/* <div className="p-4 flex md:justify-between flex-wrap justify-start w-[320px] md:w-[610px] border border-gray-100 shadow mb-6">
             <Link

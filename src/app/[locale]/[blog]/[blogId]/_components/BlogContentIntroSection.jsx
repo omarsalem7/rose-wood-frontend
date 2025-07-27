@@ -1,26 +1,16 @@
 import Image from "next/image";
 import React from "react";
-import {
-  Eye,
-  MessageSquareMore,
-  CalendarRange,
-  BookOpenText,
-} from "lucide-react";
-const BlogContentIntroSection = () => {
+const BlogContentIntroSection = ({ blog }) => {
   return (
     <>
       <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
         <div>
           <div className="text-center pb-6">
             <h1 className="text-3xl md:text-5xl font-medium leading-14 md:leading-24 text-[#4D4E5F] pb-5 md:pb-3">
-              كيفية استخراج الاخشاب الصحية وصناعه محتويات المطبخ لحياة صحية
-              بطعام أمن
+              {blog.title}
             </h1>
             <p className="font-medium text-xl text-[#727580] leading-8">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
-              العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
-              التطبيق
+              {blog.description}
             </p>
           </div>
           {/* <div className="items rounded-lg shadow-xl flex flex-col md:flex-row justify-between p-6 mb-10">
@@ -65,30 +55,28 @@ const BlogContentIntroSection = () => {
               </ul>
             </div>
           </div> */}
-          <div className="items pb-5 flex flex-col md:flex-row gap-8">
-            <div className="w-full md:w-1/2">
+          <div className="items pb-5 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="w-full">
               <Image
-                src="/assets/blog-details-hero(1).png"
-                alt="dsd"
-                width={500}
-                height={500}
-                className="w-full h-full object-cover"
+                src={blog.image}
+                alt={blog.title}
+                width={600}
+                height={600}
+                className="w-full h-[50vh] object-cover rounded-xl"
               />
             </div>
-            <div className="w-full md:w-1/2">
+            <div className="w-full">
               <Image
-                src="/assets/blog-details-hero(2).png"
-                alt="dsd"
-                width={500}
-                height={500}
-                className="w-full h-full object-cover"
+                src={blog.image2}
+                alt={blog.title}
+                width={600}
+                height={600}
+                className="w-full h-[50vh] object-cover rounded-xl"
               />
             </div>
           </div>
           <div className="text-xl font-medium text-[#727580] leading-8">
-            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-            النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
-            من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق
+            {blog.imageCaption}
           </div>
         </div>
       </section>

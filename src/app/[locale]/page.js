@@ -41,7 +41,7 @@ export default async function Home({ params }) {
       />
       <VideoSection videoData={videoSection} />
       <WhyChooseRosewoodSection />
-      <ArticlesSection blogs={blogs} title={blogsTitle} />
+      <ArticlesSection blogs={blogs} title={blogsTitle} locale={locale} />
       <ContactSection />
     </div>
   );

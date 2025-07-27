@@ -61,11 +61,21 @@ export async function fetchProductsBHomePage() {
 function transformBlog(data) {
   return data.map((blog) => {
     return {
-      id: blog.id,
+      id: blog.documentId,
       title: blog.title,
       description: blog.description,
       image: getFullImageUrl(blog.image.url),
       date: blog.createdAt,
     };
   });
+}
+
+export async function getBlogById(id) {
+  const json = await apiCall(`/blogs/${id}?populate=*`);
+  return {
+    ...json.data,
+    image: getFullImageUrl(json.data?.image?.url),
+    image2: getFullImageUrl(json.data?.image2?.url),
+    subImage: getFullImageUrl(json.data?.subImage?.url),
+  };
 }
