@@ -25,7 +25,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { toast } from "@/hooks/use-toast";
+
 import en from "@/../public/locales/en/internationalExport.json";
 import ar from "@/../public/locales/ar/internationalExport.json";
 
@@ -99,11 +99,6 @@ export default function InternationalExportPage({ params }) {
 
   const onSubmit = (data) => {
     console.log("Form submitted:", data);
-    toast({
-      title: t.title,
-      description:
-        "We'll get back to you within 24 hours with your custom quote.",
-    });
   };
 
   const addProduct = () => {

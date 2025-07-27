@@ -97,3 +97,11 @@ export const getRelatedProducts = async (categoryId, productId) => {
       };
     });
 };
+
+export const getLookupProducts = async () => {
+  const json = await apiCall(
+    `/products?fields=name&populate=category&pagination[page]=1&pagination[pageSize]=1000`
+  );
+  console.log(json.data);
+  return json.data;
+};
