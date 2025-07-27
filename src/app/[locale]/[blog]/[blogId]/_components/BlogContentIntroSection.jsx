@@ -9,8 +9,8 @@ import {
 const BlogContentIntroSection = () => {
   return (
     <>
-      <section className="px-6 py-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
+        <div>
           <div className="text-center pb-6">
             <h1 className="text-3xl md:text-5xl font-medium leading-14 md:leading-24 text-[#4D4E5F] pb-5 md:pb-3">
               كيفية استخراج الاخشاب الصحية وصناعه محتويات المطبخ لحياة صحية
@@ -23,7 +23,7 @@ const BlogContentIntroSection = () => {
               التطبيق
             </p>
           </div>
-          <div className="items rounded-lg shadow-xl flex flex-col md:flex-row justify-between p-6 mb-10">
+          {/* <div className="items rounded-lg shadow-xl flex flex-col md:flex-row justify-between p-6 mb-10">
             <div className="w-full md:w-[40%] border-b md:border-b-0 ltr:border-r ltr:border-l-0 ltr:pr-5 ltr:pl-5 pb-3 md:border-l border-gray-200  md:pl-10">
               <div className="flex gap-3 pb-3">
                 <div className="">
@@ -64,14 +64,14 @@ const BlogContentIntroSection = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
           <div className="items pb-5 flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-1/2">
               <Image
                 src="/assets/blog-details-hero(1).png"
                 alt="dsd"
-                width={100}
-                height={100}
+                width={500}
+                height={500}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -79,8 +79,8 @@ const BlogContentIntroSection = () => {
               <Image
                 src="/assets/blog-details-hero(2).png"
                 alt="dsd"
-                width={100}
-                height={100}
+                width={500}
+                height={500}
                 className="w-full h-full object-cover"
               />
             </div>

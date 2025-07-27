@@ -4,8 +4,8 @@ import Image from "next/image";
 const BlogMainContentSection = () => {
   return (
     <>
-      <section className="px-6 py-6">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
+        <div>
           <div className="text-[32px] font-medium text-[#063046] pb-3">
             عنوان فرعي داخل المدونـة
           </div>
@@ -14,9 +14,9 @@ const BlogMainContentSection = () => {
               <Image
                 src="/assets/blog-details-maincontent.png"
                 alt="dsdsd"
-                width={100}
-                height={100}
-                className="w-full h-full object-cover"
+                width={500}
+                height={500}
+                className="w-full h-full object-cover  rounded-lg"
               />
             </div>
             <div className="w-full md:w-1/2 pl-3">
