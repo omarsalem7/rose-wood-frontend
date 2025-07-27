@@ -13,7 +13,7 @@ export async function fetchCategories() {
 
 export async function fetchBlogsHomePage() {
   const json = await apiCall(
-    "/blogs?populate=*&pagination[page]=1&pagination[pageSize]=20"
+    "/blogs?populate=*&pagination[page]=1&pagination[pageSize]=500"
   );
 
   return transformBlog(json.data);
@@ -21,7 +21,7 @@ export async function fetchBlogsHomePage() {
 
 export async function fetchProductsBHomePage() {
   const json = await apiCall(
-    "/products?populate=colors.img&populate=mainImageUrl"
+    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=500"
   );
 
   return (json.data || []).map((product) => {

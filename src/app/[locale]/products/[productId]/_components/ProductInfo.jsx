@@ -13,22 +13,6 @@ const ProductInfo = ({ locale, product }) => {
           {/* <div className="text-[#7B8B8E] text-base">{product.subtitle}</div> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 items-center">
-          {/* Left: Product Image */}
-          <div className="w-full flex items-center justify-center ">
-            <div className="w-full ">
-              <Image
-                src={
-                  product.productDetailsImage ||
-                  "/assets/blog-details-hero(1).png"
-                }
-                alt="product-image"
-                width={1000}
-                height={600}
-                className="w-full  object-contain rounded-xl"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </div>
           {/* Right: Product Details */}
           <div className="w-full ">
             <ul className="space-y-4">
@@ -146,6 +130,22 @@ const ProductInfo = ({ locale, product }) => {
                 </span>
               </li>
             </ul>
+          </div>
+          {/* Left: Product Image */}
+          <div className="w-full flex items-center justify-center ">
+            <div className="w-full ">
+              <Image
+                src={
+                  product.productDetailsImage ||
+                  "/assets/blog-details-hero(1).png"
+                }
+                alt="product-image"
+                width={1000}
+                height={600}
+                className="w-full  object-contain rounded-xl"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
           </div>
         </div>
       </div>

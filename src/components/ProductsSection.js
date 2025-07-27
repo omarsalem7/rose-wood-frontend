@@ -83,25 +83,27 @@ const ProductsSection = ({ products, locale }) => {
             </h2>
 
             {/* Pagination Controls (no categories) */}
-            <div className="flex flex-wrap justify-end items-center mb-8">
-              <div className="hidden md:flex gap-4">
-                <button
-                  onClick={handlePrevPage}
-                  disabled={currentPage === 1}
-                  className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <ChevronRight className="w-6 h-6 ltr:rotate-180 text-gray-600" />
-                </button>
+            {totalPages > 1 && (
+              <div className="flex flex-wrap justify-end items-center mb-8">
+                <div className="hidden md:flex gap-4">
+                  <button
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronRight className="w-6 h-6 ltr:rotate-180 text-gray-600" />
+                  </button>
 
-                <button
-                  onClick={handleNextPage}
-                  disabled={currentPage === totalPages}
-                  className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <ChevronLeft className="w-6 h-6 ltr:rotate-180 text-gray-600" />
-                </button>
+                  <button
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    className="p-3 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronLeft className="w-6 h-6 ltr:rotate-180 text-gray-600" />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Products Grid/Swiper */}
