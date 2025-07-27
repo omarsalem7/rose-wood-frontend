@@ -12,6 +12,12 @@
   "specialRequests": "Special Requests (Optional)",
   "submit": "Submit Quote Request",
   "selectProduct": "Select a product",
+  "loadingProducts": "Loading products...",
+  "submitting": "Submitting...",
+  "goToHome": "Go to Home",
+  "tryAgain": "Try Again",
+  "successMessage": "We received your quote request and we will contact with you soon",
+  "errorMessage": "Failed to submit your quote request. Please try again.",
   "validation": {
     "nameMin": "Name must be at least 2 characters",
     "email": "Please enter a valid email address",

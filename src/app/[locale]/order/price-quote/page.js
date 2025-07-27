@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -25,28 +25,28 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { getLookupProducts } from "@/lib/api/products";
+import { submitPriceQuote } from "@/lib/api/order";
+import FormResultDialog from "@/components/FormResultDialog";
 import en from "@/../public/locales/en/offerPrice.json";
 import ar from "@/../public/locales/ar/offerPrice.json";
 
-const productOptions = {
-  "Kitchen Products": [
-    { value: "cutting-board", label: "Cutting Board" },
-    { value: "kitchen-cabinet", label: "Kitchen Cabinet" },
-    { value: "spice-rack", label: "Spice Rack" },
-    { value: "kitchen-island", label: "Kitchen Island" },
-  ],
-  Furniture: [
-    { value: "dining-table", label: "Dining Table" },
-    { value: "coffee-table", label: "Coffee Table" },
-    { value: "bookshelf", label: "Bookshelf" },
-    { value: "wardrobe", label: "Wardrobe" },
-  ],
-  "Decorative Items": [
-    { value: "wall-art", label: "Wall Art" },
-    { value: "picture-frame", label: "Picture Frame" },
-    { value: "decorative-bowl", label: "Decorative Bowl" },
-    { value: "candle-holder", label: "Candle Holder" },
-  ],
+// Function to organize products by category
+const organizeProductsByCategory = (products) => {
+  const categories = {};
+
+  products.forEach((product) => {
+    const categoryName = product.category?.name || "Other";
+    if (!categories[categoryName]) {
+      categories[categoryName] = [];
+    }
+    categories[categoryName].push({
+      value: product.documentId.toString(),
+      label: product.name,
+    });
+  });
+
+  return categories;
 };
 
 export default function OfferPricePage({ params }) {
@@ -54,6 +54,36 @@ export default function OfferPricePage({ params }) {
   const { locale } = React.use(params);
 
   const t = locale === "ar" ? ar : en;
+
+  // State for products data
+  const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  // State for form submission
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [dialogState, setDialogState] = React.useState({
+    isOpen: false,
+    type: "success", // 'success' or 'error'
+    title: "",
+    message: "",
+  });
+
+  // Fetch products on component mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const productsData = await getLookupProducts();
+        setProducts(productsData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // Localized Zod schema
   const formSchema = z.object({
@@ -93,8 +123,41 @@ export default function OfferPricePage({ params }) {
     name: "products",
   });
 
-  const onSubmit = (data) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data) => {
+    try {
+      setIsSubmitting(true);
+      const res = {
+        ...data,
+        products: { connect: data.products.map((p) => p.productId) },
+      };
+      console.log(res);
+
+      // Submit the form data to the API
+      await submitPriceQuote(res);
+
+      // Show success dialog
+      setDialogState({
+        isOpen: true,
+        type: "success",
+        title: t.title,
+        message: t.successMessage,
+      });
+
+      // Reset the form after successful submission
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+
+      // Show error dialog
+      setDialogState({
+        isOpen: true,
+        type: "error",
+        title: "Error",
+        message: t.errorMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const addProduct = () => {
@@ -264,17 +327,28 @@ export default function OfferPricePage({ params }) {
                               <Select
                                 onValueChange={field.onChange}
                                 defaultValue={field.value}
+                                disabled={loading}
                               >
                                 <FormControl>
                                   <SelectTrigger className="bg-white border mb-0 border-gray-200 rounded-md placeholder:text-gray-400">
                                     <SelectValue
-                                      placeholder={t.selectProduct}
+                                      placeholder={
+                                        loading
+                                          ? t.loadingProducts
+                                          : t.selectProduct
+                                      }
                                     />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  {Object.entries(productOptions).map(
-                                    ([category, products]) => (
+                                  {loading ? (
+                                    <div className="px-2 py-1.5 text-sm text-muted-foreground">
+                                      {t.loadingProducts}
+                                    </div>
+                                  ) : (
+                                    Object.entries(
+                                      organizeProductsByCategory(products)
+                                    ).map(([category, products]) => (
                                       <SelectGroup key={category}>
                                         <SelectLabel>{category}</SelectLabel>
                                         {products.map((product) => (
@@ -286,7 +360,7 @@ export default function OfferPricePage({ params }) {
                                           </SelectItem>
                                         ))}
                                       </SelectGroup>
-                                    )
+                                    ))
                                   )}
                                 </SelectContent>
                               </Select>
@@ -362,15 +436,28 @@ export default function OfferPricePage({ params }) {
                 <Button
                   type="submit"
                   size="lg"
-                  className="bg-[#5F361F] text-white font-bold rounded-md hover:bg-amber-900 cursor-pointer px-8"
+                  disabled={isSubmitting}
+                  className="bg-[#5F361F] text-white font-bold rounded-md hover:bg-amber-900 cursor-pointer px-8 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {t.submit}
+                  {isSubmitting ? t.submitting : t.submit}
                 </Button>
               </div>
             </form>
           </Form>
         </div>
       </div>
+
+      {/* Form Result Dialog */}
+      <FormResultDialog
+        isOpen={dialogState.isOpen}
+        onClose={() => setDialogState({ ...dialogState, isOpen: false })}
+        type={dialogState.type}
+        title={dialogState.title}
+        message={dialogState.message}
+        redirectPath={`/${locale}`}
+        successButtonText={t.goToHome}
+        errorButtonText={t.tryAgain}
+      />
     </section>
   );
 }
