@@ -21,6 +21,11 @@ const nextConfig = {
         hostname: "exuberant-smile-8788e41b5a.strapiapp.com",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "exuberant-smile-8788e41b5a.media.strapiapp.com",
+        pathname: "/**",
+      },
     ],
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
