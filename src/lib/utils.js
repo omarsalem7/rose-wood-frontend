@@ -33,10 +33,33 @@ export async function apiCall(endpoint, options = {}) {
   const separator = endpoint.includes("?") ? "&" : "?";
   const endpointWithLocale = `${endpoint}${separator}locale=${locale}`;
 
+  // Determine cache tags based on endpoint
+  const getCacheTags = (endpoint) => {
+    if (endpoint.includes("/products")) return ["products"];
+    if (endpoint.includes("/categories")) return ["categories"];
+    if (endpoint.includes("/blogs")) return ["blogs"];
+    if (endpoint.includes("/pages")) return ["pages"];
+    if (endpoint.includes("/page")) return ["page"];
+    if (endpoint.includes("/articles")) return ["articles"];
+    // Home page data should use "home" cache tag
+    if (
+      endpoint.includes("/home") ||
+      endpoint.includes("/hero") ||
+      endpoint.includes("/featured")
+    )
+      return ["home"];
+    return ["default"];
+  };
+
+  const cacheTags = options.cacheTags || getCacheTags(endpoint);
+
   try {
     const res = await fetch(`${config.apiUrl}${endpointWithLocale}`, {
       cache: config.cache,
-      next: { revalidate: config.revalidate },
+      next: {
+        revalidate: config.revalidate,
+        tags: cacheTags,
+      },
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
