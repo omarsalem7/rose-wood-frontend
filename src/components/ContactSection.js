@@ -3,8 +3,13 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { fetchContactUsData } from "@/lib/api/cms";
+import { submitContactForm } from "@/lib/api/order";
+import FormResultDialog from "@/components/FormResultDialog";
+import en from "@/../public/locales/en/contact.json";
+import ar from "@/../public/locales/ar/contact.json";
 
-const ContactSection = () => {
+const ContactSection = ({ locale }) => {
+  const t = locale === "ar" ? ar : en;
   const [contactData, setContactData] = useState({
     title: "تواصل معنا",
     subTitle: "نحن نحب الاستماع اليك، راسلنا الان:",
@@ -15,9 +20,17 @@ const ContactSection = () => {
   });
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
-    name: "",
+    fullName: "",
     phone: "",
     email: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dialogState, setDialogState] = useState({
+    isOpen: false,
+    type: "success", // 'success' or 'error'
+    title: "",
     message: "",
   });
 
@@ -37,18 +50,106 @@ const ContactSection = () => {
     loadContactData();
   }, []);
 
+  // Validation functions
+  const validateName = (fullName) => {
+    if (!fullName.trim()) return t.validation.nameRequired;
+    if (fullName.trim().length < 2) return t.validation.nameMin;
+    return "";
+  };
+
+  const validatePhone = (phone) => {
+    if (!phone.trim()) return t.validation.phoneRequired;
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/;
+    if (!phoneRegex.test(phone.trim())) return t.validation.phoneInvalid;
+    return "";
+  };
+
+  const validateEmail = (email) => {
+    if (!email.trim()) return t.validation.emailRequired;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) return t.validation.email;
+    return "";
+  };
+
+  const validateMessage = (message) => {
+    if (!message.trim()) return t.validation.messageRequired;
+    if (message.trim().length < 10) return t.validation.messageMin;
+    return "";
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    newErrors.fullName = validateName(formData.fullName);
+    newErrors.phone = validatePhone(formData.phone);
+    newErrors.email = validateEmail(formData.email);
+    newErrors.message = validateMessage(formData.message);
+
+    setErrors(newErrors);
+
+    return !Object.values(newErrors).some((error) => error !== "");
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission here
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Submit the form data to the API
+      await submitContactForm(formData);
+
+      // Reset form after successful submission
+      setFormData({
+        fullName: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+      setErrors({});
+
+      // Show success dialog
+      setDialogState({
+        isOpen: true,
+        type: "success",
+        title: t.successTitle || "تم إرسال الرسالة بنجاح!",
+        message: t.successMessage || "شكراً لك! سنتواصل معك قريباً.",
+      });
+    } catch (error) {
+      setDialogState({
+        isOpen: true,
+        type: "error",
+        title: t.errorTitle || "حدث خطأ",
+        message:
+          t.errorMessage || "حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDialogClose = () => {
+    setDialogState((prev) => ({ ...prev, isOpen: false }));
   };
 
   return (
@@ -68,26 +169,44 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="relative">
                 <input
-                  id="name"
-                  name="name"
+                  id="fullName"
+                  name="fullName"
                   type="text"
                   placeholder={contactData.fieldName}
-                  value={formData.name}
+                  value={formData.fullName}
                   onChange={handleInputChange}
-                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
+                  className={`w-full text-start bg-transparent border-0 border-b rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none transition-all duration-300 ${
+                    errors.fullName
+                      ? "border-b-red-500 focus:border-b-red-500"
+                      : "border-b-gray-300 focus:border-b-[#8B4513]"
+                  }`}
                 />
+                {errors.fullName && (
+                  <p className="text-red-500 text-sm mt-1 text-start">
+                    {errors.fullName}
+                  </p>
+                )}
               </div>
 
               <div className="relative">
                 <input
                   id="phone"
                   name="phone"
-                  type="tel"
+                  type="text"
                   placeholder={contactData.fieldPhone}
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
+                  className={`w-full text-start bg-transparent border-0 border-b rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none transition-all duration-300 ${
+                    errors.phone
+                      ? "border-b-red-500 focus:border-b-red-500"
+                      : "border-b-gray-300 focus:border-b-[#8B4513]"
+                  }`}
                 />
+                {errors.phone && (
+                  <p className="text-red-500 text-sm mt-1 text-start">
+                    {errors.phone}
+                  </p>
+                )}
               </div>
 
               <div className="relative">
@@ -98,8 +217,17 @@ const ContactSection = () => {
                   placeholder={contactData.fieldEmail}
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300"
+                  className={`w-full text-start bg-transparent border-0 border-b rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none transition-all duration-300 ${
+                    errors.email
+                      ? "border-b-red-500 focus:border-b-red-500"
+                      : "border-b-gray-300 focus:border-b-[#8B4513]"
+                  }`}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1 text-start">
+                    {errors.email}
+                  </p>
+                )}
               </div>
 
               <div className="relative">
@@ -110,22 +238,52 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full text-start bg-transparent border-0 border-b border-gray-300 rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none focus:border-b-2 focus:border-b-[#8B4513] transition-all duration-300 resize-none"
+                  className={`w-full text-start bg-transparent border-0 border-b rounded-none px-0 py-4 text-lg placeholder:text-gray-400 outline-none transition-all duration-300 resize-none ${
+                    errors.message
+                      ? "border-b-red-500 focus:border-b-red-500"
+                      : "border-b-gray-300 focus:border-b-[#8B4513]"
+                  }`}
                 />
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1 text-start">
+                    {errors.message}
+                  </p>
+                )}
               </div>
 
               <div className="pt-8">
                 <Button
                   type="submit"
-                  className="bg-[#8B4513] hover:bg-[#654321] text-white rounded-full w-16 h-16 p-0 flex items-center justify-center transition-all duration-300 hover:scale-105"
+                  disabled={isSubmitting}
+                  className={`cursor-pointer rounded-full w-16 h-16 p-0 flex items-center justify-center transition-all duration-300 ${
+                    isSubmitting
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#8B4513] hover:bg-[#654321] hover:scale-105"
+                  } text-white`}
                 >
-                  <ArrowLeft className="w-6 h-6" />
+                  {isSubmitting ? (
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  ) : (
+                    <ArrowLeft className="w-6 h-6" />
+                  )}
                 </Button>
               </div>
             </form>
           </div>
         </div>
       </div>
+
+      {/* Form Result Dialog */}
+      <FormResultDialog
+        isOpen={dialogState.isOpen}
+        onClose={handleDialogClose}
+        type={dialogState.type}
+        title={dialogState.title}
+        message={dialogState.message}
+        redirectPath={null}
+        successButtonText={t.close || "إغلاق"}
+        errorButtonText={t.tryAgain || "حاول مرة أخرى"}
+      />
     </section>
   );
 };

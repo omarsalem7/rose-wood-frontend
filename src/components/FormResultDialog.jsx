@@ -26,7 +26,9 @@ const FormResultDialog = ({
 
   const handleSuccessAction = () => {
     onClose();
-    router.push(redirectPath);
+    if (redirectPath) {
+      router.push(redirectPath);
+    }
   };
 
   const handleErrorAction = () => {
@@ -35,10 +37,10 @@ const FormResultDialog = ({
 
   const isSuccess = type === "success";
   const Icon = isSuccess ? CheckCircle : XCircle;
-  const iconColor = isSuccess ? "text-green-500" : "text-red-500";
+  const iconColor = isSuccess ? "text-[#8B4513]" : "text-red-600";
   const buttonColor = isSuccess
-    ? "bg-gradient-to-b from-green-400 to-green-500 hover:from-green-500 hover:to-green-600"
-    : "bg-gradient-to-b from-red-400 to-red-500 hover:from-red-500 hover:to-red-600";
+    ? "bg-gradient-to-b from-[#8B4513] to-[#654321] hover:from-[#654321] hover:to-[#8B4513]"
+    : "bg-gradient-to-b from-red-600 to-red-700 hover:from-red-700 hover:to-red-600";
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -53,7 +55,7 @@ const FormResultDialog = ({
                   <div
                     key={i}
                     className={`absolute w-2 h-2 rounded-full ${
-                      isSuccess ? "bg-green-200" : "bg-red-200"
+                      isSuccess ? "bg-[#8B4513]/20" : "bg-red-200"
                     }`}
                     style={{
                       top: `${50 + 35 * Math.cos((i * 60 * Math.PI) / 180)}%`,

@@ -408,7 +408,7 @@ export default function LocalExportPage({ params }) {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="bg-[#5F361F] text-white font-bold rounded-md hover:bg-amber-900 cursor-pointer px-8 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-[#5F361F] cursor-pointer text-white font-bold rounded-md hover:bg-amber-900 px-8 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? t.submitting : t.submit}
                 </Button>
