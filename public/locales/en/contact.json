@@ -9,7 +9,9 @@
   "submitting": "Sending...",
   "successMessage": "Your message has been sent successfully! We'll get back to you soon.",
   "errorMessage": "There was an error sending your message. Please try again.",
+  "successTitle": "Thank you for contacting us!",
   "goToHome": "Go to Home",
+  "close": "Close",
   "tryAgain": "Try Again",
   "validation": {
     "nameMin": "Name must be at least 2 characters",
