@@ -8,7 +8,7 @@ const FeaturesSection = ({ cards, title }) => {
         <div
           className="text-center mb-12"
           data-aos="fade-down"
-          data-aos-duration="800"
+          data-aos-duration="600"
         >
           <h3 className="text-2xl md:text-3xl md:font-semibold text-black mb-4">
             {title}
@@ -22,7 +22,7 @@ const FeaturesSection = ({ cards, title }) => {
               key={index}
               className="text-center bg-[#FFF8F6] py-8 px-4 rounded-lg  transition-transform transform hover:scale-105"
               data-aos="fade-up"
-              data-aos-duration="800"
+              data-aos-duration="600"
               data-aos-delay={200 + index * 100}
             >
               {/* Icon Circle */}

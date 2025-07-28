@@ -68,14 +68,23 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Title */}
-          <div className="text-center mb-12">
+          <div
+            className="text-center mb-12"
+            data-aos="fade-down"
+            data-aos-duration="800"
+          >
             <h2 className="text-2xl md:text-3xl md:font-semibold text-white mb-4 font-alexandria">
               {title}
             </h2>
           </div>
 
           {/* Articles Grid or Swiper */}
-          <div className="mb-12">
+          <div
+            className="mb-12"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
             {isMobile ? (
               <Swiper
                 spaceBetween={20}
@@ -84,11 +93,14 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                 style={{ paddingLeft: "8vw", paddingRight: "8vw" }}
                 className="equal-height-swiper"
               >
-                {blogs.map((article) => (
+                {blogs.map((article, index) => (
                   <SwiperSlide
                     key={article.id}
                     style={{ width: "84vw", maxWidth: 400, height: "auto" }}
                     className="h-auto"
+                    data-aos="fade-up"
+                    data-aos-duration="800"
+                    data-aos-delay={300 + index * 100}
                   >
                     <Link href={`/${locale}/blog/${article.id}`}>
                       <Card className="bg-white max-sm:w-[70vw] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
@@ -138,9 +150,14 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
               </Swiper>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
-                {currentArticles.map((article) => (
+                {currentArticles.map((article, index) => (
                   <Link key={article.id} href={`/${locale}/blog/${article.id}`}>
-                    <Card className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                    <Card
+                      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                      data-aos-delay={300 + index * 100}
+                    >
                       {/* Article Image */}
                       <div className="aspect-video overflow-hidden flex-shrink-0">
                         <Image
@@ -188,7 +205,12 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           </div>
 
           {/* Bottom Section with Button and Navigation */}
-          <div className="flex items-center justify-between px-8">
+          <div
+            className="flex items-center justify-between px-8"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="400"
+          >
             {/* View All Button */}
             {/* <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-[#8B5A3C] transition-all duration-300 font-alexandria">
             عرض كل الأخبار
@@ -204,6 +226,9 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     ? "hover:bg-opacity-30 cursor-pointer"
                     : "opacity-50 cursor-not-allowed"
                 }`}
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-delay="500"
               >
                 <ArrowRight size={20} className="text-white" />
               </button>
@@ -215,6 +240,9 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     ? "hover:bg-opacity-30 cursor-pointer"
                     : "opacity-50 cursor-not-allowed"
                 }`}
+                data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-delay="600"
               >
                 <ArrowLeft size={20} className="text-white" />
               </button>

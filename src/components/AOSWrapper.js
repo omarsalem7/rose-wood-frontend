@@ -7,10 +7,10 @@ import "aos/dist/aos.css";
 const AOSWrapper = ({ children }) => {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
+      duration: 600, // Reduced from 1000 to 600ms
       easing: "ease-in-out",
-      once: false, // Changed to false to allow animations to repeat
-      mirror: true, // Enable mirror to animate elements when scrolling up
+      once: false, // Animations repeat on scroll
+      mirror: true, // Animate out on scroll up
       offset: 100,
       delay: 0,
     });

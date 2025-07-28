@@ -15,7 +15,7 @@ const HeroSection = ({ title, subTitle, imageUrl }) => {
           <h1
             className="text-3xl md:text-6xl font-semibold md:font-bold mb-6 leading-tight text-black"
             data-aos="fade-down"
-            data-aos-duration="1200"
+            data-aos-duration="600"
             data-aos-delay="300"
           >
             {title || "جودة طبيعية... لأدوات مطبخ صحية"}
@@ -23,7 +23,7 @@ const HeroSection = ({ title, subTitle, imageUrl }) => {
           <p
             className="text-lg md:text-2xl mb-8 text-black max-w-3xl mx-auto leading-relaxed"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="600"
             data-aos-delay="600"
           >
             {subTitle}

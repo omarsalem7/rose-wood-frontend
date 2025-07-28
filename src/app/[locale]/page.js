@@ -31,27 +31,27 @@ export default async function Home({ params }) {
   return (
     <AOSWrapper>
       <div>
-        <div data-aos="fade-down" data-aos-duration="1200">
+        <div data-aos="fade-down" data-aos-duration="600">
           <HeroSection {...hero} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
           <AboutSection {...about} locale={locale} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
           <FeatureSection {...features} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
           <ProductsSection products={products} locale={locale} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
           <BulkOrderSection {...bulkOrder} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
           <ProductCarouselSection
             title={title}
             categories={categories}
@@ -59,19 +59,19 @@ export default async function Home({ params }) {
           />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">
+        <div data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
           <VideoSection videoData={videoSection} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+        <div data-aos="fade-up" data-aos-duration="400" data-aos-delay="200">
           <WhyChooseRosewoodSection />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+        <div data-aos="fade-up" data-aos-duration="600">
           <ArticlesSection blogs={blogs} title={blogsTitle} locale={locale} />
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+        <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
           <ContactSection locale={locale} />
         </div>
       </div>

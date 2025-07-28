@@ -80,7 +80,7 @@ const ProductsSection = ({ products, locale }) => {
           <div
             className="text-center mb-8"
             data-aos="fade-down"
-            data-aos-duration="800"
+            data-aos-duration="600"
           >
             <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
               {t.roseWoodProducts}
@@ -144,7 +144,7 @@ const ProductsSection = ({ products, locale }) => {
                       <div
                         className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0"
                         data-aos="fade-up"
-                        data-aos-duration="800"
+                        data-aos-duration="600"
                         data-aos-delay={200 + index * 100}
                       >
                         {/* Product Image */}
@@ -228,7 +228,7 @@ const ProductsSection = ({ products, locale }) => {
                       key={product.id}
                       className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
                       data-aos="fade-up"
-                      data-aos-duration="800"
+                      data-aos-duration="600"
                       data-aos-delay={200 + index * 100}
                     >
                       {/* Product Image */}

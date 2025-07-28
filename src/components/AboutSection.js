@@ -15,7 +15,7 @@ export default function AboutSection({
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
           <div className="text-right flex flex-col justify-center h-full">
-            <div className="mb-8" data-aos="fade-right" data-aos-duration="800">
+            <div className="mb-8" data-aos="fade-right" data-aos-duration="600">
               <div className="flex items-center justify-start gap-2 mb-4">
                 <Image
                   src="/icons/rose-icon.svg"
@@ -35,7 +35,7 @@ export default function AboutSection({
             <div
               className="space-y-4 mb-8"
               data-aos="fade-right"
-              data-aos-duration="800"
+              data-aos-duration="600"
               data-aos-delay="200"
             >
               {list.map((feature, idx) => (
@@ -64,7 +64,7 @@ export default function AboutSection({
             <div
               className="flex gap-4"
               data-aos="fade-up"
-              data-aos-duration="800"
+              data-aos-duration="600"
               data-aos-delay="400"
             >
               <Link
@@ -85,13 +85,13 @@ export default function AboutSection({
           <div
             className="grid grid-cols-2 gap-4 h-full relative"
             data-aos="fade-left"
-            data-aos-duration="1000"
+            data-aos-duration="600"
           >
             {/* Blur overlay with logo - positioned only over images */}
             <div
               className="absolute inset-0  flex items-center justify-center z-10 rounded-lg"
               data-aos="zoom-in"
-              data-aos-duration="1200"
+              data-aos-duration="600"
               data-aos-delay="300"
             >
               <div className="h-18 w-18 md:h-36 md:w-36 backdrop-blur-md bg-[#FFFFFF6E] rounded-full shadow-lg">
@@ -114,7 +114,7 @@ export default function AboutSection({
                 alt="Wooden cutting boards and kitchen utensils"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
                 data-aos="zoom-in"
-                data-aos-duration="800"
+                data-aos-duration="600"
                 data-aos-delay="400"
               />
             </div>
@@ -126,7 +126,7 @@ export default function AboutSection({
                 alt="Wooden bowls and kitchen items"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
                 data-aos="zoom-in"
-                data-aos-duration="800"
+                data-aos-duration="600"
                 data-aos-delay="600"
               />
               <Image
