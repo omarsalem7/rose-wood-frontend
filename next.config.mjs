@@ -38,35 +38,6 @@ const nextConfig = {
   },
   // Compression
   compress: true,
-  // Optimize bundle size - only apply webpack config in production or when not using Turbopack
-  webpack: (config, { dev, isServer }) => {
-    // Only apply webpack optimizations in production or when not using Turbopack
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: "all",
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
-        },
-      };
-    }
-
-    // Handle SVG files - only add if not already present
-    const svgRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
-    );
-    if (!svgRule) {
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ["@svgr/webpack"],
-      });
-    }
-
-    return config;
-  },
 };
 
 export default withBundleAnalyzer(nextConfig);
