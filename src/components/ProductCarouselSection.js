@@ -80,6 +80,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
 
   return (
     <section
+      id="visual-feeding"
       style={{ direction: "ltr" }}
       className="py-16 px-0 bg-gray-50 font-alexandria"
     >

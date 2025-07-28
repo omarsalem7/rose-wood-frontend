@@ -12,6 +12,7 @@ body {
   font-family: var(--font-alexandria), var(--font-ibm-plex-arabic), sans-serif;
   background-color: #fff;
   color: #171717;
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -25,5 +26,3 @@ div,
 span {
   font-family: var(--font-ibm-plex-arabic), var(--font-alexandria), sans-serif;
 }
-
- 
