@@ -18,7 +18,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "your-production-domain.com",
+        hostname: "exuberant-smile-8788e41b5a.strapiapp.com",
         pathname: "/uploads/**",
       },
     ],
