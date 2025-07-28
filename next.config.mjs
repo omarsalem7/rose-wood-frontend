@@ -29,23 +29,13 @@ const nextConfig = {
   },
   // Performance optimizations
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ["lucide-react"],
-    // Enable Turbopack for faster development
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
-      },
-    },
   },
   // Compression
   compress: true,
-  // Optimize bundle size
+  // Optimize bundle size - only apply webpack config in production or when not using Turbopack
   webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size
+    // Only apply webpack optimizations in production or when not using Turbopack
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: "all",
@@ -58,6 +48,18 @@ const nextConfig = {
         },
       };
     }
+
+    // Handle SVG files - only add if not already present
+    const svgRule = config.module.rules.find((rule) =>
+      rule.test?.test?.(".svg")
+    );
+    if (!svgRule) {
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
+      });
+    }
+
     return config;
   },
 };
