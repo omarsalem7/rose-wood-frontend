@@ -8,6 +8,7 @@ import ArticlesSection from "@/components/ArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
+import AOSWrapper from "@/components/AOSWrapper";
 import { fetchAllHomePageData } from "@/lib/api/cms";
 import {
   fetchBlogsHomePage,
@@ -28,21 +29,52 @@ export default async function Home({ params }) {
   const blogs = await fetchBlogsHomePage();
 
   return (
-    <div>
-      <HeroSection {...hero} />
-      <AboutSection {...about} locale={locale} />
-      <FeatureSection {...features} />
-      <ProductsSection products={products} locale={locale} />
-      <BulkOrderSection {...bulkOrder} />
-      <ProductCarouselSection
-        title={title}
-        categories={categories}
-        locale={locale}
-      />
-      <VideoSection videoData={videoSection} />
-      <WhyChooseRosewoodSection />
-      <ArticlesSection blogs={blogs} title={blogsTitle} locale={locale} />
-      <ContactSection locale={locale} />
-    </div>
+    <AOSWrapper>
+      <div>
+        <div data-aos="fade-down" data-aos-duration="1200">
+          <HeroSection {...hero} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+          <AboutSection {...about} locale={locale} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+          <FeatureSection {...features} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+          <ProductsSection products={products} locale={locale} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+          <BulkOrderSection {...bulkOrder} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+          <ProductCarouselSection
+            title={title}
+            categories={categories}
+            locale={locale}
+          />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">
+          <VideoSection videoData={videoSection} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800">
+          <WhyChooseRosewoodSection />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+          <ArticlesSection blogs={blogs} title={blogsTitle} locale={locale} />
+        </div>
+
+        <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+          <ContactSection locale={locale} />
+        </div>
+      </div>
+    </AOSWrapper>
   );
 }

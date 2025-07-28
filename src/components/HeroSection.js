@@ -12,10 +12,20 @@ const HeroSection = ({ title, subTitle, imageUrl }) => {
       {/* Hero Content - Updated text color to black */}
       <div className="relative z-10 flex items-center justify-center min-h-[70vh] px-6">
         <div className="text-center max-w-6xl">
-          <h1 className="text-3xl md:text-6xl font-semibold md:font-bold mb-6 leading-tight text-black">
+          <h1
+            className="text-3xl md:text-6xl font-semibold md:font-bold mb-6 leading-tight text-black"
+            data-aos="fade-down"
+            data-aos-duration="1200"
+            data-aos-delay="300"
+          >
             {title || "جودة طبيعية... لأدوات مطبخ صحية"}
           </h1>
-          <p className="text-lg md:text-2xl mb-8 text-black max-w-3xl mx-auto leading-relaxed">
+          <p
+            className="text-lg md:text-2xl mb-8 text-black max-w-3xl mx-auto leading-relaxed"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="600"
+          >
             {subTitle}
           </p>
         </div>

@@ -53,7 +53,7 @@ export default function SharedLayout({ children }) {
       )}
       {children}
 
-      <KitchenHeroSection />
+      <KitchenHeroSection locale={locale} />
       <Footer />
     </>
   );

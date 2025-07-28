@@ -15,7 +15,7 @@ export default function AboutSection({
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
           <div className="text-right flex flex-col justify-center h-full">
-            <div className="mb-8">
+            <div className="mb-8" data-aos="fade-right" data-aos-duration="800">
               <div className="flex items-center justify-start gap-2 mb-4">
                 <Image
                   src="/icons/rose-icon.svg"
@@ -32,9 +32,20 @@ export default function AboutSection({
             </div>
 
             {/* Features List */}
-            <div className="space-y-4 mb-8">
+            <div
+              className="space-y-4 mb-8"
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
               {list.map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-3">
+                <div
+                  key={idx}
+                  className="flex items-center gap-3"
+                  data-aos="fade-right"
+                  data-aos-duration="600"
+                  data-aos-delay={300 + idx * 100}
+                >
                   <div className="bg-[#E5FFE9] rounded-full p-1">
                     <Image
                       width={16}
@@ -50,7 +61,12 @@ export default function AboutSection({
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-4">
+            <div
+              className="flex gap-4"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
               <Link
                 href={`${locale}/products`}
                 className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
@@ -66,9 +82,18 @@ export default function AboutSection({
             </div>
           </div>
           {/* Images Grid with overlay */}
-          <div className="grid grid-cols-2 gap-4 h-full relative">
+          <div
+            className="grid grid-cols-2 gap-4 h-full relative"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
             {/* Blur overlay with logo - positioned only over images */}
-            <div className="absolute inset-0  flex items-center justify-center z-10 rounded-lg">
+            <div
+              className="absolute inset-0  flex items-center justify-center z-10 rounded-lg"
+              data-aos="zoom-in"
+              data-aos-duration="1200"
+              data-aos-delay="300"
+            >
               <div className="h-18 w-18 md:h-36 md:w-36 backdrop-blur-md bg-[#FFFFFF6E] rounded-full shadow-lg">
                 <Image
                   src="/assets/rose-v-logo.png"
@@ -88,6 +113,9 @@ export default function AboutSection({
                 height={600}
                 alt="Wooden cutting boards and kitchen utensils"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
+                data-aos="zoom-in"
+                data-aos-duration="800"
+                data-aos-delay="400"
               />
             </div>
             <div className="space-y-4 flex flex-col h-full">
@@ -97,6 +125,9 @@ export default function AboutSection({
                 height={600}
                 alt="Wooden bowls and kitchen items"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
+                data-aos="zoom-in"
+                data-aos-duration="800"
+                data-aos-delay="600"
               />
               <Image
                 src={images[2].img}
@@ -104,6 +135,9 @@ export default function AboutSection({
                 height={600}
                 alt="Wooden bowls and utensils set"
                 className="w-full flex-1 object-cover rounded-lg shadow-lg"
+                data-aos="zoom-in"
+                data-aos-duration="800"
+                data-aos-delay="800"
               />
             </div>
           </div>

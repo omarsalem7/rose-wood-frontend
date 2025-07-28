@@ -3,9 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { fetchQuotationSection } from "@/lib/api/cms";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const KitchenHeroSection = () => {
+const KitchenHeroSection = ({ locale }) => {
   const [data, setData] = useState({
     title: "اشترِ طبيك الدن معنا واطلب كميتك",
     buttonText: "عرض سعر مخصص",
@@ -91,12 +92,13 @@ const KitchenHeroSection = () => {
         </h1>
 
         {/* Call to Action Button */}
-        <Button
-          className="bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white px-12 py-6 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+        <Link
+          href={`/${locale}/order/price-quote`}
+          className="bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white px-12 py-3 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
           style={{ borderRadius: "12px" }}
         >
           {data.buttonText}
-        </Button>
+        </Link>
       </div>
     </section>
   );

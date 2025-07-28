@@ -77,14 +77,23 @@ const ProductsSection = ({ products, locale }) => {
       <section className="py-16 px-6 font-alexandria">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div
+            className="text-center mb-8"
+            data-aos="fade-down"
+            data-aos-duration="800"
+          >
             <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
               {t.roseWoodProducts}
             </h2>
 
             {/* Pagination Controls (no categories) */}
             {totalPages > 1 && (
-              <div className="flex flex-wrap justify-end items-center mb-8">
+              <div
+                className="flex flex-wrap justify-end items-center mb-8"
+                data-aos="fade-left"
+                data-aos-duration="600"
+                data-aos-delay="200"
+              >
                 <div className="hidden md:flex gap-4">
                   <button
                     onClick={handlePrevPage}
@@ -126,13 +135,18 @@ const ProductsSection = ({ products, locale }) => {
                   },
                 }}
               >
-                {currentProducts.map((product) => {
+                {currentProducts.map((product, index) => {
                   const selectedColor = selectedColors[product.id] || "medium";
                   const currentImage = product.images[selectedColor];
 
                   return (
                     <SwiperSlide key={product.id} className="h-auto">
-                      <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0">
+                      <div
+                        className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0"
+                        data-aos="fade-up"
+                        data-aos-duration="800"
+                        data-aos-delay={200 + index * 100}
+                      >
                         {/* Product Image */}
                         <div className="w-full h-48 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
                           {currentImage &&
@@ -205,7 +219,7 @@ const ProductsSection = ({ products, locale }) => {
               </Swiper>
             ) : (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 auto-rows-fr">
-                {currentProducts.map((product) => {
+                {currentProducts.map((product, index) => {
                   const selectedColor = selectedColors[product.id] || "medium";
                   const currentImage = product.images[selectedColor];
 
@@ -213,6 +227,9 @@ const ProductsSection = ({ products, locale }) => {
                     <div
                       key={product.id}
                       className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                      data-aos-delay={200 + index * 100}
                     >
                       {/* Product Image */}
                       <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0">
