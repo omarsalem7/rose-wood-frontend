@@ -17,8 +17,8 @@ export const getApiConfig = () => {
 
   return {
     apiUrl: baseUrl,
-    cache: isDev ? "no-store" : "force-cache",
-    revalidate: isDev ? 0 : 3600,
+    cache: "force-cache", // Enable caching in both dev and prod
+    revalidate: isDev ? 300 : 3600, // 5 minutes in dev, 1 hour in prod
   };
 };
 
@@ -37,6 +37,11 @@ export async function apiCall(endpoint, options = {}) {
     const res = await fetch(`${config.apiUrl}${endpointWithLocale}`, {
       cache: config.cache,
       next: { revalidate: config.revalidate },
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        ...options.headers,
+      },
       ...options,
     });
 
@@ -112,4 +117,78 @@ export const navigateToSection = (locale, elementId, router) => {
   setTimeout(() => {
     scrollToElement(elementId);
   }, 100);
+};
+
+/**
+ * Performance monitoring utilities
+ */
+export const performanceUtils = {
+  // Track navigation performance
+  trackNavigation: (from, to) => {
+    if (typeof window !== "undefined" && window.performance) {
+      const navigation = performance.getEntriesByType("navigation")[0];
+      console.log("Navigation Performance:", {
+        from,
+        to,
+        loadTime: navigation?.loadEventEnd - navigation?.loadEventStart,
+        domContentLoaded:
+          navigation?.domContentLoadedEventEnd -
+          navigation?.domContentLoadedEventStart,
+        firstPaint: performance.getEntriesByName("first-paint")[0]?.startTime,
+        firstContentfulPaint: performance.getEntriesByName(
+          "first-contentful-paint"
+        )[0]?.startTime,
+      });
+    }
+  },
+
+  // Track API call performance
+  trackApiCall: (endpoint, startTime) => {
+    const duration = performance.now() - startTime;
+    console.log(
+      `API Call Performance - ${endpoint}:`,
+      `${duration.toFixed(2)}ms`
+    );
+    return duration;
+  },
+
+  // Measure component render time
+  measureRender: (componentName, callback) => {
+    const start = performance.now();
+    const result = callback();
+    const duration = performance.now() - start;
+    console.log(`${componentName} render time:`, `${duration.toFixed(2)}ms`);
+    return result;
+  },
+};
+
+/**
+ * Debounce function to prevent excessive API calls
+ */
+export const debounce = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+/**
+ * Throttle function to limit function execution frequency
+ */
+export const throttle = (func, limit) => {
+  let inThrottle;
+  return function () {
+    const args = arguments;
+    const context = this;
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
 };

@@ -106,7 +106,8 @@ const ProductDetails = ({ locale, product }) => {
                           src={img.img}
                           width={300}
                           height={300}
-                          quality={85}
+                          quality={70}
+                          loading="lazy"
                           alt={img.alt || "Product image"}
                           className="w-full h-full object-cover"
                         />

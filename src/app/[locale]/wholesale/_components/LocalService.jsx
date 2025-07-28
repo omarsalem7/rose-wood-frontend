@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const LocalService = ({local}) => {
+const LocalService = ({ local, locale }) => {
   return (
     <>
       <section className="relative px-6  md:py-26 ">
@@ -13,7 +13,7 @@ const LocalService = ({local}) => {
               alt="line"
               width={400}
               height={400}
-              className= "hidden md:flex absolute top-[-180px] left-[40%] z-50 w-[417px] h-[419px]"
+              className="hidden md:flex absolute top-[-180px] left-[40%] z-5 w-[417px] h-[419px]"
             />
           </div>
           {/*  */}
@@ -38,17 +38,18 @@ const LocalService = ({local}) => {
               <h3 className="text-lg font-medium text-[#1D252E]">
                 {local.title}
               </h3>
-              <p className="text-lg text-[#586675]">
-                {local.description}
-              </p>
+              <p className="text-lg text-[#586675]">{local.description}</p>
               <ul className="text-[#804524] text-lg flex flex-col gap-6 pb-6">
                 {local.list.map((item, index) => (
                   <li key={index}>{item.text}</li>
                 ))}
               </ul>
-              <Button className="w-fit px-10 rounded-lg text-white bg-[#5F361F] py-2">
+              <Link
+                href={`/${locale}/order/local-export`}
+                className="cursor-pointer w-fit px-10 rounded-lg text-white bg-[#5A6E51] py-2"
+              >
                 {local.buttontext}
-              </Button>
+              </Link>
             </div>
           </div>
         </div>

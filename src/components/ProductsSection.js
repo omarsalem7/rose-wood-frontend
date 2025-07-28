@@ -143,6 +143,8 @@ const ProductsSection = ({ products, locale }) => {
                               height={200}
                               src={currentImage}
                               alt={product.name}
+                              loading="lazy"
+                              quality={75}
                               className="w-full h-full object-contain"
                             />
                           ) : (
@@ -222,6 +224,8 @@ const ProductsSection = ({ products, locale }) => {
                             height={200}
                             src={currentImage}
                             alt={product.name}
+                            loading="lazy"
+                            quality={75}
                             className="w-full h-full object-contain"
                           />
                         ) : (

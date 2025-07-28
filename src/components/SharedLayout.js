@@ -14,26 +14,38 @@ export default function SharedLayout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen((v) => !v);
   const [navbarData, setNavbarData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getNavbarData();
-      setNavbarData(data);
+      try {
+        setIsLoading(true);
+        const data = await getNavbarData();
+        setNavbarData(data);
+      } catch (error) {
+        console.error("Error fetching navbar data:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
     fetchData();
   }, []);
+
   return (
     <>
       <Header
         contactUs={navbarData?.contactUs}
         onMenuClick={toggleMenu}
         locale={locale}
+        isLoading={isLoading}
       />
       <SideNav
         locale={locale}
         data={navbarData}
         isOpen={isMenuOpen}
         onClose={toggleMenu}
+        isLoading={isLoading}
       />
       {/* Overlay for SideNav */}
       {isMenuOpen && (

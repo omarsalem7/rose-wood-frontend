@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-const Header = ({ onMenuClick, contactUs, locale }) => (
+const Header = ({ onMenuClick, contactUs, locale, isLoading = false }) => (
   <header className="relative z-20 p-6 py-3 bg-white">
     <div className="flex justify-between items-center max-w-7xl mx-auto">
       {/* Right side - Menu button */}
@@ -32,7 +32,11 @@ const Header = ({ onMenuClick, contactUs, locale }) => (
           href={`/${locale}/contact`}
           className="bg-[#5F361F] text-white px-2 md:px-8 py-2 rounded-xl text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
         >
-          {contactUs}
+          {isLoading ? (
+            <div className="w-16 h-4 bg-white/20 rounded animate-pulse"></div>
+          ) : (
+            contactUs
+          )}
         </Link>
       </div>
     </div>

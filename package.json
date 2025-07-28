@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build",
+    "build:analyze": "cross-env ANALYZE=true next build",
+    "performance": "lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html",
+    "test:performance": "node scripts/test-performance.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -30,9 +34,12 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.3.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "24.1.0",
     "@types/react": "19.1.8",
+    "cross-env": "^7.0.3",
+    "puppeteer": "^24.15.0",
     "tailwindcss": "^4",
     "typescript": "5.8.3"
   }

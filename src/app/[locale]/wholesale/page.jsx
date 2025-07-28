@@ -4,13 +4,15 @@ import GlobalService from "./_components/GlobalService";
 import LocalService from "./_components/LocalService";
 import { fetchWhaleSalePage } from "@/lib/api/cms";
 
-const WhaleSale = async () => {
+const WhaleSale = async ({ params }) => {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
   const data = await fetchWhaleSalePage();
   return (
     <>
       <WhaleHero hero={data.hero} />
-      <GlobalService global={data.global} />
-      <LocalService local={data.local} />
+      <GlobalService global={data.global} locale={locale} />
+      <LocalService local={data.local} locale={locale} />
     </>
   );
 };

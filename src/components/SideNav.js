@@ -5,7 +5,15 @@ import SmoothScrollLink from "./ui/SmoothScrollLink";
 
 import { Youtube, X, Linkedin, Facebook } from "lucide-react";
 
-const SideNav = ({ isOpen, onClose, data, locale }) => {
+const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
+  // Skeleton component for loading state
+  const MenuItemSkeleton = () => (
+    <div className="flex items-center gap-3 py-3">
+      <div className="w-6 h-6 bg-gray-200 rounded animate-pulse"></div>
+      <div className="h-6 bg-gray-200 rounded w-24 animate-pulse"></div>
+    </div>
+  );
+
   return (
     <div
       className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
@@ -36,108 +44,130 @@ const SideNav = ({ isOpen, onClose, data, locale }) => {
         </div>
         {/* Navigation menu items with icons like in the design */}
         <nav className="space-y-4">
-          <SmoothScrollLink
-            elementId="about-us"
-            locale={locale}
-            className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-            onClick={onClose}
-          >
-            <Image
-              width={25}
-              height={25}
-              src="/icons/who.svg"
-              alt="who"
-              className="text-white"
-            />
-            {data?.whoAreWe}
-          </SmoothScrollLink>
-          <Link
-            onClick={onClose}
-            href={`/${locale}/products`}
-            className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-          >
-            <Image
-              width={25}
-              height={25}
-              src="/icons/products.svg"
-              alt="who"
-              className="text-white"
-            />
-            {data?.products}
-          </Link>
-          <Link
-            onClick={onClose}
-            href={`/${locale}/wholesale`}
-            className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-          >
-            <Image
-              width={25}
-              height={25}
-              src="/icons/export.svg"
-              alt="who"
-              className="text-white"
-            />
-            {data?.wholesaleExport}
-          </Link>
-          <SmoothScrollLink
-            elementId="whyUseRosewood"
-            locale={locale}
-            onClick={onClose}
-            className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-          >
-            <Image
-              width={25}
-              height={25}
-              src="/icons/rose-icon.svg"
-              alt="who"
-              className="text-white"
-            />
-            {data?.whyUseRosewood}
-          </SmoothScrollLink>
-          <SmoothScrollLink
-            elementId="visual-feeding"
-            locale={locale}
-            className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-            onClick={onClose}
-          >
-            <Image
-              width={25}
-              height={25}
-              src="/icons/feedEye.svg"
-              alt="video"
-              className="text-white"
-            />
-            {data?.visualFeeding}
-          </SmoothScrollLink>
+          {isLoading ? (
+            <>
+              <MenuItemSkeleton />
+              <MenuItemSkeleton />
+              <MenuItemSkeleton />
+              <MenuItemSkeleton />
+              <MenuItemSkeleton />
+              <MenuItemSkeleton />
+            </>
+          ) : (
+            <>
+              <SmoothScrollLink
+                elementId="about-us"
+                locale={locale}
+                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+                onClick={onClose}
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/who.svg"
+                  alt="who"
+                  className="text-white"
+                />
+                {data?.whoAreWe}
+              </SmoothScrollLink>
+              <Link
+                onClick={onClose}
+                href={`/${locale}/products`}
+                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/products.svg"
+                  alt="who"
+                  className="text-white"
+                />
+                {data?.products}
+              </Link>
+              <Link
+                onClick={onClose}
+                href={`/${locale}/wholesale`}
+                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/export.svg"
+                  alt="who"
+                  className="text-white"
+                />
+                {data?.wholesaleExport}
+              </Link>
+              <SmoothScrollLink
+                elementId="whyUseRosewood"
+                locale={locale}
+                onClick={onClose}
+                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/rose-icon.svg"
+                  alt="who"
+                  className="text-white"
+                />
+                {data?.whyUseRosewood}
+              </SmoothScrollLink>
+              <SmoothScrollLink
+                elementId="visual-feeding"
+                locale={locale}
+                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+                onClick={onClose}
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/feedEye.svg"
+                  alt="video"
+                  className="text-white"
+                />
+                {data?.visualFeeding}
+              </SmoothScrollLink>
 
-          <Link
-            href={`/${locale}/contact`}
-            className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
-          >
-            <Image
-              width={25}
-              height={25}
-              src="/icons/contact.svg"
-              alt="who"
-              className="text-white"
-            />
-            {data?.contactUs}
-          </Link>
+              <Link
+                href={`/${locale}/contact`}
+                className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/contact.svg"
+                  alt="who"
+                  className="text-white"
+                />
+                {data?.contactUs}
+              </Link>
+            </>
+          )}
         </nav>
         {/* Bottom section with buttons like in the design */}
         <div className="mt-12 space-y-4 space-x-4">
-          <Link
-            href={`/${locale}/contact`}
-            className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
-          >
-            {data?.contactUs}
-          </Link>
-          <Link
-            href={`/${locale}/order/price-quote`}
-            className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
-          >
-            {data?.offerPrice}
-          </Link>
+          {isLoading ? (
+            <>
+              <div className="w-full h-12 bg-gray-200 rounded-lg animate-pulse"></div>
+              <div className="w-full h-12 bg-gray-200 rounded-lg animate-pulse"></div>
+            </>
+          ) : (
+            <>
+              <Link
+                href={`/${locale}/contact`}
+                className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+              >
+                {data?.contactUs}
+              </Link>
+              <Link
+                href={`/${locale}/order/price-quote`}
+                className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+              >
+                {data?.offerPrice}
+              </Link>
+            </>
+          )}
         </div>
         {/* Social media icons */}
         <div className="absolute bottom-5 flex justify-center gap-4 mt-8">
