@@ -71,13 +71,24 @@ function transformBlog(data) {
 }
 
 export async function getBlogById(id) {
-  const json = await apiCall(`/blogs/${id}?populate=*`);
-  return {
-    ...json.data,
-    image: getFullImageUrl(json.data?.image?.url),
-    image2: getFullImageUrl(json.data?.image2?.url),
-    subImage: getFullImageUrl(json.data?.subImage?.url),
-  };
+  try {
+    const json = await apiCall(`/blogs/${id}?populate=*`);
+
+    // Check if data exists
+    if (!json.data) {
+      throw new Error(`Blog with ID ${id} not found`);
+    }
+
+    return {
+      ...json.data,
+      image: getFullImageUrl(json.data?.image?.url),
+      image2: getFullImageUrl(json.data?.image2?.url),
+      subImage: getFullImageUrl(json.data?.subImage?.url),
+    };
+  } catch (error) {
+    console.error(`Failed to fetch blog with ID ${id}:`, error);
+    throw error;
+  }
 }
 
 export async function getRelatedBlogs(blogId) {

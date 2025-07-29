@@ -217,36 +217,38 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           </button> */}
 
             {/* Navigation Arrows */}
-            <div className="hidden md:flex items-center space-x-4">
-              <button
-                onClick={goToPrevious}
-                disabled={!canGoLeft}
-                className={`w-12 h-12 bg-[#ffffff6b] backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 ${
-                  canGoLeft
-                    ? "hover:bg-opacity-30 cursor-pointer"
-                    : "opacity-50 cursor-not-allowed"
-                }`}
-                data-aos="fade-left"
-                data-aos-duration="400"
-                data-aos-delay="500"
-              >
-                <ArrowRight size={20} className="text-white ltr:rotate-180" />
-              </button>
-              <button
-                onClick={goToNext}
-                disabled={!canGoRight}
-                className={`w-12 h-12 bg-[#ffffff6b] backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 ${
-                  canGoRight
-                    ? "hover:bg-opacity-30 cursor-pointer"
-                    : "opacity-50 cursor-not-allowed"
-                }`}
-                data-aos="fade-left"
-                data-aos-duration="400"
-                data-aos-delay="600"
-              >
-                <ArrowLeft size={20} className="text-white ltr:rotate-180" />
-              </button>
-            </div>
+            {blogs.length > 3 && (
+              <div className="hidden md:flex items-center space-x-4">
+                <button
+                  onClick={goToPrevious}
+                  disabled={!canGoLeft}
+                  className={`w-12 h-12 bg-[#ffffff6b] backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 ${
+                    canGoLeft
+                      ? "hover:bg-opacity-30 cursor-pointer"
+                      : "opacity-50 cursor-not-allowed"
+                  }`}
+                  data-aos="fade-left"
+                  data-aos-duration="400"
+                  data-aos-delay="500"
+                >
+                  <ArrowRight size={20} className="text-white ltr:rotate-180" />
+                </button>
+                <button
+                  onClick={goToNext}
+                  disabled={!canGoRight}
+                  className={`w-12 h-12 bg-[#ffffff6b] backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 ${
+                    canGoRight
+                      ? "hover:bg-opacity-30 cursor-pointer"
+                      : "opacity-50 cursor-not-allowed"
+                  }`}
+                  data-aos="fade-left"
+                  data-aos-duration="400"
+                  data-aos-delay="600"
+                >
+                  <ArrowLeft size={20} className="text-white ltr:rotate-180" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
