@@ -10,6 +10,17 @@ const BlogDetails = async ({ params }) => {
   const resolvedParams = await params;
   const { locale, blogId } = resolvedParams;
 
+  // Validate blogId to prevent Chrome DevTools interference
+  if (
+    !blogId ||
+    typeof blogId !== "string" ||
+    blogId.includes("chrome") ||
+    blogId.includes("devtools")
+  ) {
+    console.error("Invalid blogId:", blogId);
+    notFound();
+  }
+
   try {
     // Fetch blog data
     const blog = await getBlogById(blogId);
