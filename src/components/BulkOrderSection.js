@@ -26,7 +26,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
               {/* Button */}
               <Link
                 href={`/${locale}/order/local-export`}
-                className="bg-[#5F361F] absolute min-w-36 text-center md:bottom-[36px] bottom-[10px] md:right-[8px] right-[10px] text-white  px-2 md:px-8  py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                className="bg-[#5F361F] absolute min-w-36 text-center md:bottom-10 md:right-10 bottom-2  right-2 text-white  px-2 md:px-8  py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {card1.buttonText}
               </Link>
@@ -55,7 +55,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
               {/* Button */}
               <Link
                 href={`/${locale}/order/international-export`}
-                className="absolute bottom-[8px] right-[8px] bg-[#5A6E51]  text-white px-4 min-w-36 text-center md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-green-800 transition-colors duration-200"
+                className="absolute md:bottom-10 md:right-10 bottom-2  right-2 bg-[#5A6E51]  text-white px-4 min-w-36 text-center md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-green-800 transition-colors duration-200"
               >
                 {card2.buttonText}
               </Link>
