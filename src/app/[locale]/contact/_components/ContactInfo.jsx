@@ -1,8 +1,7 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React from "react";
-import CustomMap from "./ContactLocation";
-import { APIProvider } from "@vis.gl/react-google-maps";
+import MapWrapper from "@/components/MapWrapper";
 
 const ContactInfo = ({ contactInfo }) => {
   return (
@@ -40,9 +39,7 @@ const ContactInfo = ({ contactInfo }) => {
           </ul>
         </div>
         <div className=" rounded-lg pt-4">
-          <APIProvider apiKey="AIzaSyDb7jKx_QUvxovIcmlkjD0d2CQYfQeDX6U">
-            <CustomMap />
-          </APIProvider>
+          <MapWrapper />
         </div>
       </div>
     </>
