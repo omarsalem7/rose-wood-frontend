@@ -28,5 +28,9 @@
   "noImage": "لا يوجد صورة",
   "otherCategories": "اقسام اخرى",
   "otherProductsInCategory": "منتجات اخري من نفس القسم",
-  "relatedBlogs": "مقالات ذات صلة"
+  "relatedBlogs": "مقالات ذات صلة",
+  "productsTitle": "مـنتــجات روز وود",
+  "searchPlaceholder": "ابحث عن ما تريد هنا...",
+  "filterButton": "فلتر البحث",
+  "searchButton": "ابحث"
 }

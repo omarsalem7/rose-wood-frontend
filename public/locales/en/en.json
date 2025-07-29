@@ -27,5 +27,9 @@
   "noImage": "No Image Available",
   "otherCategories": "Other Categories",
   "otherProductsInCategory": "Other Products in Category",
-  "relatedBlogs": "Related Blogs"
+  "relatedBlogs": "Related Blogs",
+  "productsTitle": "Rose Wood Products",
+  "searchPlaceholder": "Search for what you want here...",
+  "filterButton": "Filter Search",
+  "searchButton": "Search"
 }

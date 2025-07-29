@@ -65,10 +65,19 @@ const ProductsList = ({ locale }) => {
 
   return (
     <>
-      <Filter onFilter={handleFilter} />
+      <div data-aos="fade-down" data-aos-duration="600">
+        <Filter onFilter={handleFilter} />
+      </div>
       <section className="px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="py-4">كل المنتجات ({totalCount})</div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="200"
+            className="py-4"
+          >
+            كل المنتجات ({totalCount})
+          </div>
           {loading ? (
             <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
               {Array.from({ length: 3 }).map((_, i) => (
@@ -76,7 +85,11 @@ const ProductsList = ({ locale }) => {
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div className="py-16 pb-24 text-center">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="800"
+              className="py-16 pb-24 text-center"
+            >
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
                   <img
@@ -96,10 +109,13 @@ const ProductsList = ({ locale }) => {
           ) : (
             <>
               <div className="items py-2 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
-                {products.map((product) => (
+                {products.map((product, index) => (
                   <Link
                     href={`/${locale}/products/${product.documentId}`}
                     key={product.id}
+                    data-aos="zoom-in"
+                    data-aos-duration="600"
+                    data-aos-delay={index * 100}
                     className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:scale-105 min-h-fit md:min-h-[350px]"
                   >
                     <div className="flex justify-center w-full">
@@ -120,11 +136,17 @@ const ProductsList = ({ locale }) => {
                   </Link>
                 ))}
               </div>
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={handlePageChange}
-              />
+              <div
+                data-aos="fade-up"
+                data-aos-duration="600"
+                data-aos-delay="400"
+              >
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={handlePageChange}
+                />
+              </div>
             </>
           )}
         </div>
