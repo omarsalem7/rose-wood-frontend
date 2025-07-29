@@ -25,5 +25,9 @@
     "addressRequired": "العنوان مطلوب",
     "messageMin": "يجب أن تكون الرسالة على الأقل 10 أحرف",
     "messageRequired": "الرسالة مطلوبة"
+  },
+  "map": {
+    "title": "روز وود",
+    "description": "موقعنا هنا"
   }
 }

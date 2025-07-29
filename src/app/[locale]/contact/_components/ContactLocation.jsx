@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { useParams } from "next/navigation";
+import en from "@/../public/locales/en/contact.json";
+import ar from "@/../public/locales/ar/contact.json";
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -15,6 +18,10 @@ L.Icon.Default.mergeOptions({
 });
 
 const CustomMap = () => {
+  const params = useParams();
+  const locale = params.locale;
+  const t = locale === "ar" ? ar : en;
+
   const [markerLocation, setMarkerLocation] = useState({
     lat: 30.006715353230216,
     lng: 30.97424822401751,
@@ -48,11 +55,23 @@ const CustomMap = () => {
         <Marker
           position={[markerLocation.lat, markerLocation.lng]}
           icon={customIcon}
+          eventHandlers={{
+            mouseover: (e) => {
+              e.target.openPopup();
+            },
+            mouseout: (e) => {
+              e.target.closePopup();
+            },
+          }}
         >
           <Popup>
-            <div className="text-center">
-              <h3 className="font-semibold text-gray-800">Rosewood</h3>
-              <p className="text-sm text-gray-600">Your location here</p>
+            <div className={`text-center ${locale === "ar" ? "rtl" : "ltr"}`}>
+              <h3 className="font-semibold text-gray-800">
+                {t.map?.title || "Rosewood"}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {t.map?.description || "Your location here"}
+              </p>
             </div>
           </Popup>
         </Marker>

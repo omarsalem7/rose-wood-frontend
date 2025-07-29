@@ -24,5 +24,9 @@
     "addressRequired": "Address is required",
     "messageMin": "Message must be at least 10 characters",
     "messageRequired": "Message is required"
+  },
+  "map": {
+    "title": "Rosewood",
+    "description": "Our location here"
   }
 }
