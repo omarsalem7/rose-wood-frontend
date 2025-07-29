@@ -28,7 +28,7 @@ const SectorSection = ({ card }) => {
   ];
 
   return (
-    <section className="py-20 px-6 mx-auto container">
+    <section className="py-20 max-w-7xl mx-auto px-6 2xl:px-0">
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-8">
         {cards.map((item, idx) => (
           <Card

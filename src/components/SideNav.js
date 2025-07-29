@@ -55,9 +55,8 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
             </>
           ) : (
             <>
-              <SmoothScrollLink
-                elementId="about-us"
-                locale={locale}
+              <Link
+                href={`/${locale}/about-us`}
                 className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
                 onClick={onClose}
               >
@@ -69,7 +68,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.whoAreWe}
-              </SmoothScrollLink>
+              </Link>
               <Link
                 onClick={onClose}
                 href={`/${locale}/products`}

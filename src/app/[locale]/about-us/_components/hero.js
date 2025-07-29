@@ -4,7 +4,7 @@ const Hero = ({ title, description, imageUrl }) => {
     <div className=" bg-gray-50">
       {/* Header Section with Manufacturing Facility */}
       <section className="relative bg-white py-16">
-        <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 2xl:px-0">
           {/* Title and Description */}
           <div className="flex flex-col items-center justify-center mb-12">
             <h1 className="text-3xl leading-16 text-center font-semibold max-w-4xl text-gray-900 mb-6">
