@@ -113,6 +113,20 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 />
                 {data?.whyUseRosewood}
               </SmoothScrollLink>
+              <Link
+                onClick={onClose}
+                href={`/${locale}/wood-steps`}
+                className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/rose-icon.svg"
+                  alt="manufacturingSteps"
+                  className="text-white"
+                />
+                {data?.manufacturingSteps || "خطوات التصنيع"}
+              </Link>
               <SmoothScrollLink
                 elementId="visual-feeding"
                 locale={locale}
@@ -128,9 +142,26 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 />
                 {data?.visualFeeding}
               </SmoothScrollLink>
+              <SmoothScrollLink
+                elementId="blogs"
+                locale={locale}
+                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+                onClick={onClose}
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/feedEye.svg"
+                  alt="video"
+                  className="text-white"
+                />
+                {data?.blogs}
+              </SmoothScrollLink>
 
-              <Link
-                href={`/${locale}/contact`}
+              <SmoothScrollLink
+                elementId="contactUs"
+                locale={locale}
+                onClick={onClose}
                 className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
               >
                 <Image
@@ -141,7 +172,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.contactUs}
-              </Link>
+              </SmoothScrollLink>
             </>
           )}
         </nav>

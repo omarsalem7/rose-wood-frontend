@@ -63,6 +63,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
     <>
       <style>{swiperStyles}</style>
       <section
+        id="blogs"
         className="py-16 px-0 md:px-8"
         style={{ backgroundColor: "#8B5A3C" }}
       >
@@ -98,9 +99,6 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     key={article.id}
                     style={{ width: "84vw", maxWidth: 400, height: "auto" }}
                     className="h-auto"
-                    data-aos="fade-up"
-                    data-aos-duration="800"
-                    data-aos-delay={300 + index * 100}
                   >
                     <Link href={`/${locale}/blog/${article.id}`}>
                       <Card className="bg-white max-sm:w-[70vw] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
@@ -205,20 +203,16 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           </div>
 
           {/* Bottom Section with Button and Navigation */}
-          <div
-            className="flex items-center justify-between px-8"
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="400"
-          >
-            {/* View All Button */}
-            {/* <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg hover:bg-white hover:text-[#8B5A3C] transition-all duration-300 font-alexandria">
-            عرض كل الأخبار
-          </button> */}
+          {blogs.length > 3 && (
+            <div
+              className="flex items-center justify-between px-8"
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="400"
+            >
+              {/* Navigation Arrows */}
 
-            {/* Navigation Arrows */}
-            {blogs.length > 3 && (
-              <div className="hidden md:flex items-center space-x-4">
+              <div className="hidden md:flex items-center gap-4">
                 <button
                   onClick={goToPrevious}
                   disabled={!canGoLeft}
@@ -248,8 +242,8 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                   <ArrowLeft size={20} className="text-white ltr:rotate-180" />
                 </button>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>
     </>
