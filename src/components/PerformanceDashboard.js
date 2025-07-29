@@ -41,7 +41,7 @@ const PerformanceDashboard = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 bg-black/80 text-white p-4 rounded-lg text-xs z-50 max-w-xs">
+    <div className="hidden fixed bottom-4 right-4 bg-black/80 text-white p-4 rounded-lg text-xs z-50 max-w-xs">
       <h3 className="font-bold mb-2">Performance Metrics</h3>
       <div className="space-y-1">
         <div>Navigation: {metrics.navigationTime.toFixed(2)}ms</div>
