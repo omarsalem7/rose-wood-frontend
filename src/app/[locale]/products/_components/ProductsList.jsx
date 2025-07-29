@@ -65,15 +65,15 @@ const ProductsList = ({ locale }) => {
 
   return (
     <>
-      <div data-aos="fade-down" data-aos-duration="600">
+      <div data-aos="fade-down" data-aos-duration="800">
         <Filter onFilter={handleFilter} />
       </div>
       <section className="px-6">
         <div className="max-w-7xl mx-auto">
           <div
             data-aos="fade-up"
-            data-aos-duration="600"
-            data-aos-delay="200"
+            data-aos-duration="800"
+            data-aos-delay="300"
             className="py-4"
           >
             كل المنتجات ({totalCount})
@@ -87,7 +87,7 @@ const ProductsList = ({ locale }) => {
           ) : products.length === 0 ? (
             <div
               data-aos="fade-up"
-              data-aos-duration="800"
+              data-aos-duration="900"
               className="py-16 pb-24 text-center"
             >
               <div className="max-w-md mx-auto">
@@ -138,8 +138,8 @@ const ProductsList = ({ locale }) => {
               </div>
               <div
                 data-aos="fade-up"
-                data-aos-duration="600"
-                data-aos-delay="400"
+                data-aos-duration="800"
+                data-aos-delay="500"
               >
                 <Pagination
                   currentPage={currentPage}

@@ -1,8 +1,8 @@
-
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
-const GlobalService = ({ stepsData }) => {
+const GlobalService = ({ stepsData, locale }) => {
   return (
     <>
       <section className="px-6 pt-30 md:pt-60">
@@ -11,9 +11,7 @@ const GlobalService = ({ stepsData }) => {
             <h2 className="font-medium text-2xl leading-12">
               {stepsData.title}
             </h2>
-            <p className="text-[#586675] text-lg">
-              {stepsData.description}
-            </p>
+            <p className="text-[#586675] text-lg">{stepsData.description}</p>
           </div>
           <div className="bg-[#804524] w-[60%] md:w-[20%] flex mx-auto   h-0.5 relative mb-12">
             <span className="absolute left-0 top-0 z-50 w-1.5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
@@ -31,7 +29,9 @@ const GlobalService = ({ stepsData }) => {
                     <h3 className="text-lg font-medium text-[#1D252E]">
                       {item?.title}
                     </h3>
-                    <p className="text-lg text-[#586675]">{item?.description}</p>
+                    <p className="text-lg text-[#586675]">
+                      {item?.description}
+                    </p>
                     <ul className="text-[rgb(128,69,36)] text-lg flex flex-col gap-6 py-6">
                       {item?.list?.map((item) => (
                         <li key={item?.id}>
@@ -77,12 +77,18 @@ const GlobalService = ({ stepsData }) => {
             )}
           </div>
           <div className="flex justify-center items-center gap-6 py-14">
-            <Button className=" w-[186px] rounded-lg text-white bg-[#804524] py-2">
+            <Link
+              href={`/${locale}/products`}
+              className="text-center w-[186px] rounded-lg text-white bg-[#804524] py-2"
+            >
               {stepsData.btnProducts}
-            </Button>
-            <Button className=" w-[186px] rounded-lg text-[#804524] border border-[#804524] py-2">
+            </Link>
+            <Link
+              href={`/${locale}/order/request-sample`}
+              className="text-center w-[186px] rounded-lg text-[#804524] border border-[#804524] py-2"
+            >
               {stepsData.btnSample}
-            </Button>
+            </Link>
           </div>
         </div>
       </section>
