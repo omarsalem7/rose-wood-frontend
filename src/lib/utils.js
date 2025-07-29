@@ -112,21 +112,55 @@ export const smoothScrollToSelector = (selector, offset = 0) => {
 };
 
 /**
- * Simple smooth scroll to element by ID
+ * More accurate scroll to element using getBoundingClientRect
  * @param {string} elementId - The ID of the element to scroll to
  */
-export const scrollToElement = (elementId) => {
-  const element = document.getElementById(elementId);
+export const scrollToElementAccurate = (elementId) => {
+  // Find all elements with this ID
+  const elements = document.querySelectorAll(`#${elementId}`);
+
+  // Find the visible element (not hidden by CSS)
+  let element = null;
+  for (let i = 0; i < elements.length; i++) {
+    const el = elements[i];
+    const rect = el.getBoundingClientRect();
+    const style = window.getComputedStyle(el);
+
+    // Check if element is visible (has dimensions and not hidden)
+    if (
+      rect.width > 0 &&
+      rect.height > 0 &&
+      style.display !== "none" &&
+      style.visibility !== "hidden" &&
+      parseFloat(style.opacity) > 0
+    ) {
+      element = el;
+      break;
+    }
+  }
+
   if (element) {
-    // Add a small offset to account for any fixed headers
-    const offset = 80;
-    const elementPosition = element.offsetTop - offset;
+    const rect = element.getBoundingClientRect();
+    const headerHeight = 80; // Adjust this based on your header
+
+    // Calculate the scroll position needed
+    const currentScroll = window.scrollY;
+    const elementTop = rect.top + currentScroll;
+    const targetScroll = elementTop - headerHeight;
 
     window.scrollTo({
-      top: elementPosition,
+      top: targetScroll,
       behavior: "smooth",
     });
   }
+};
+
+/**
+ * Simple smooth scroll to element by ID (legacy function)
+ * @param {string} elementId - The ID of the element to scroll to
+ */
+export const scrollToElement = (elementId) => {
+  scrollToElementAccurate(elementId);
 };
 
 /**

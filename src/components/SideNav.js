@@ -16,7 +16,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
 
   return (
     <div
-      className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-sm bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
+      className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-80 bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
       ${
         isOpen ? "translate-x-0" : "ltr:translate-x-full rtl:-translate-x-full"
       }`}
@@ -146,7 +146,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           )}
         </nav>
         {/* Bottom section with buttons like in the design */}
-        <div className="mt-12 space-y-4 space-x-4">
+        <div className="mt-12 flex gap-2">
           {isLoading ? (
             <>
               <div className="w-full h-12 bg-gray-200 rounded-lg animate-pulse"></div>
@@ -156,13 +156,15 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
             <>
               <Link
                 href={`/${locale}/contact`}
-                className="w-full bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                onClick={onClose}
+                className="w-full text-center bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {data?.contactUs}
               </Link>
               <Link
+                onClick={onClose}
                 href={`/${locale}/order/price-quote`}
-                className="w-full border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                className="w-full text-center border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {data?.offerPrice}
               </Link>

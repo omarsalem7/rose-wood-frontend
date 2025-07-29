@@ -227,10 +227,10 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     : "opacity-50 cursor-not-allowed"
                 }`}
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
                 data-aos-delay="500"
               >
-                <ArrowRight size={20} className="text-white" />
+                <ArrowRight size={20} className="text-white ltr:rotate-180" />
               </button>
               <button
                 onClick={goToNext}
@@ -241,10 +241,10 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     : "opacity-50 cursor-not-allowed"
                 }`}
                 data-aos="fade-left"
-                data-aos-duration="800"
+                data-aos-duration="400"
                 data-aos-delay="600"
               >
-                <ArrowLeft size={20} className="text-white" />
+                <ArrowLeft size={20} className="text-white ltr:rotate-180" />
               </button>
             </div>
           </div>

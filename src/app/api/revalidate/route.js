@@ -31,10 +31,6 @@ export async function POST(request) {
     // Also revalidate the home page since it displays multiple content types
     revalidateTag("home");
 
-    console.log(
-      `Revalidated cache tags: ${cacheTag} and home for model: ${model}`
-    );
-
     return NextResponse.json({
       revalidated: true,
       cacheTag,

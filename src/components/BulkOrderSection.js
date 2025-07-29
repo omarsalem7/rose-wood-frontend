@@ -1,4 +1,6 @@
-const BulkOrderSection = ({ title, card1, card2 }) => {
+import Link from "next/link";
+
+const BulkOrderSection = ({ title, card1, card2, locale }) => {
   return (
     <section className="py-12 md:py-16 px-6  bg-white">
       <div className="mx-auto">
@@ -10,9 +12,9 @@ const BulkOrderSection = ({ title, card1, card2 }) => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto min-h-[37vh]">
+        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto min-h-[40vh]">
           {/* Bulk Order Card */}
-          <div className="bg-gradient-to-r  min-h-[30vh] from-[#fdf2ef] to-[#FFF8F600]  rounded-2xl p-4 md:p-8 shadow-sm relative overflow-hidden">
+          <div className="bg-gradient-to-r  min-h-[38vh] from-[#fdf2ef] to-[#FFF8F600]  rounded-2xl p-4 md:p-8 shadow-sm relative overflow-hidden">
             <div className="mb-8">
               <h3 className="md:text-xl font-semibold md:font-bold text-black mb-4">
                 {card1.title}
@@ -22,9 +24,12 @@ const BulkOrderSection = ({ title, card1, card2 }) => {
               </p>
 
               {/* Button */}
-              <button className="bg-[#5F361F] absolute bottom-[32px] right-[32px] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+              <Link
+                href={`/${locale}/order/local-export`}
+                className="bg-[#5F361F] absolute min-w-36 text-center bottom-[8px] right-[8px] text-white  px-2 md:px-8  py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+              >
                 {card1.buttonText}
-              </button>
+              </Link>
             </div>
 
             {/* Product Image - Bottom Left */}
@@ -38,7 +43,7 @@ const BulkOrderSection = ({ title, card1, card2 }) => {
           </div>
 
           {/* Global Export Card */}
-          <div className="bg-gradient-to-r min-h-[30vh] from-[#fdf2ef] to-[#FFF8F600] rounded-2xl p-8 shadow-sm relative overflow-hidden">
+          <div className="bg-gradient-to-r min-h-[38vh] from-[#fdf2ef] to-[#FFF8F600] rounded-2xl p-8 shadow-sm relative overflow-hidden">
             <div className="mb-8">
               <h3 className="md:text-xl font-semibold md:font-bold text-black mb-4">
                 {card2.title}
@@ -48,9 +53,12 @@ const BulkOrderSection = ({ title, card1, card2 }) => {
               </p>
 
               {/* Button */}
-              <button className="absolute bottom-[32px] right-[32px] bg-[#5A6E51]  text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-green-800 transition-colors duration-200">
+              <Link
+                href={`/${locale}/order/international-export`}
+                className="absolute bottom-[8px] right-[8px] bg-[#5A6E51]  text-white px-4 min-w-36 text-center md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-green-800 transition-colors duration-200"
+              >
                 {card2.buttonText}
-              </button>
+              </Link>
             </div>
 
             {/* Product Image - Bottom Left */}

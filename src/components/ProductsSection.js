@@ -31,9 +31,8 @@ const ProductsSection = ({ products, locale }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 3;
-  console.log(products);
+
   useEffect(() => {
-    console.log(products);
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };

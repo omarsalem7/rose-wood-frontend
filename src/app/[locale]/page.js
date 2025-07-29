@@ -48,7 +48,7 @@ export default async function Home({ params }) {
         </div>
 
         <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
-          <BulkOrderSection {...bulkOrder} />
+          <BulkOrderSection {...bulkOrder} locale={locale} />
         </div>
 
         <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">

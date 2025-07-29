@@ -93,7 +93,6 @@ export async function getRelatedBlogs(blogId) {
       image: getFullImageUrl(blog?.image?.url),
     };
   });
-  console.log(res);
 
   return res;
 }

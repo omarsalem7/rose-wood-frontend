@@ -1,19 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import { ChevronLeft, X, Plus } from "lucide-react";
+import { Plus, ChevronLeft, X } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel.js";
+import { useModal } from "@/lib/ModalContext";
+import Image from "next/image";
 import Link from "next/link";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 
 const ProductCarouselSection = ({ title, categories, locale }) => {
+  const { openModal } = useModal();
   const t = locale === "ar" ? ar : en;
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -35,14 +36,6 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
       setActiveIndex(api.selectedScrollSnap());
     });
   }, [api]);
-
-  const openModal = (product) => {
-    setSelectedProduct(product);
-  };
-
-  const closeModal = () => {
-    setSelectedProduct(null);
-  };
 
   const getCardScale = (index) => {
     if (index === activeIndex) {
@@ -76,6 +69,45 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
 
   const handleDragEnd = () => {
     setIsDragging(false);
+  };
+
+  const createModalContent = (product) => {
+    return (
+      <div className="w-full">
+        {/* Product Image */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src={product.visualFeeding}
+            alt={product.name}
+            width={300}
+            height={300}
+            className="rounded-lg"
+          />
+        </div>
+
+        {/* Product Title */}
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">
+          {product.name}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-600 text-base mb-2">{product.description}</p>
+
+        {/* Features */}
+        <p className="text-gray-400 text-sm mb-6">{product.features}</p>
+
+        {/* Action Button */}
+        <Link
+          href={`/${locale}/products?${
+            product.id ? `categoryId=${product.id}` : ""
+          }`}
+          className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900 py-3 rounded-lg font-semibold text-lg transition focus:outline-none cursor-pointer"
+        >
+          <ChevronLeft size={20} />
+          {t.viewDetails}
+        </Link>
+      </div>
+    );
   };
 
   return (
@@ -113,7 +145,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
                     className={`relative group cursor-pointer transition-all duration-700 ease-in-out transform ${getCardScale(
                       index
                     )} ${getCardOpacity(index)} mx-2`}
-                    onClick={() => openModal(item)}
+                    onClick={() => openModal(createModalContent(item))}
                   >
                     <div className="aspect-[7/5] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <Image
@@ -151,66 +183,6 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
           </div>
         </div>
       </div>
-
-      {/* Modal */}
-      {selectedProduct && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          onClick={closeModal}
-        >
-          <div
-            className="relative bg-white rounded-2xl shadow-2xl max-w-md md:w-full p-6 pt-16 text-center flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              aria-label="إغلاق"
-              className="absolute -inset-8  w-8 h-8 flex items-center justify-center cursor-pointer bg-[#CB974F] hover:bg-[#cb974fa2] text-white rounded-full  transition focus:outline-none focus:ring-2 focus:ring-amber-900"
-            >
-              <X size={20} />
-            </button>
-
-            {/* Product Image */}
-            <div className="flex justify-center">
-              <Image
-                src={selectedProduct.visualFeeding}
-                alt={selectedProduct.name}
-                width={300}
-                height={300}
-              />
-            </div>
-
-            {/* Product Title */}
-            <h3 className="text-2xl font-bold text-gray-800 mb-2 mt-16">
-              {selectedProduct.name}
-            </h3>
-
-            {/* Description */}
-            <p className="text-gray-600 text-base mb-1">
-              {selectedProduct.description}
-            </p>
-
-            {/* Features */}
-            <p className="text-gray-400 text-sm mb-6">
-              {selectedProduct.features}
-            </p>
-
-            {/* Action Button */}
-            <Link
-              href={`/${locale}/products?${
-                selectedProduct.id ? `categoryId=${selectedProduct.id}` : ""
-              }`}
-              className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900  py-3 rounded-lg font-semibold text-lg  transition focus:outline-none cursor-pointer"
-            >
-              <ChevronLeft size={20} />
-              {t.viewDetails}
-            </Link>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

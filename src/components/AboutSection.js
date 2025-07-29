@@ -14,7 +14,7 @@ export default function AboutSection({
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
-          <div className="text-right flex flex-col justify-center h-full">
+          <div className="text-start flex flex-col justify-center h-full">
             <div className="mb-8" data-aos="fade-right" data-aos-duration="600">
               <div className="flex items-center justify-start gap-2 mb-4">
                 <Image
@@ -69,13 +69,13 @@ export default function AboutSection({
             >
               <Link
                 href={`${locale}/products`}
-                className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                className="bg-[#5F361F] text-white  px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {buttons[0].text}
               </Link>
               <Link
                 href={`${locale}/order/request-sample`}
-                className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                className="border border-gray-300 text-gray-700 px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {buttons[1].text}
               </Link>
@@ -98,7 +98,7 @@ export default function AboutSection({
                 <Image
                   src="/assets/rose-v-logo.png"
                   alt="Rosewood Logo"
-                  className="px-2 py-5 md:px-6 md:py-9"
+                  className="px-2 py-5 md:px-6 md:py-9 max-sm:w-[95px]"
                   width={150}
                   height={150}
                 />

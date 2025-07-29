@@ -264,7 +264,7 @@ const ContactSection = ({ locale }) => {
                   {isSubmitting ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   ) : (
-                    <ArrowLeft className="w-6 h-6" />
+                    <ArrowLeft className="w-6 h-6 ltr:rotate-180" />
                   )}
                 </Button>
               </div>

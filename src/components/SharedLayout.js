@@ -6,6 +6,8 @@ import { useParams } from "next/navigation";
 import Footer from "./Footer";
 import KitchenHeroSection from "./KitchenHeroSection";
 import { fetchNavbarData as getNavbarData } from "@/lib/api/cms";
+import { ModalProvider } from "@/lib/ModalContext";
+import GlobalModal from "./GlobalModal";
 
 export default function SharedLayout({ children }) {
   const params = useParams();
@@ -33,7 +35,7 @@ export default function SharedLayout({ children }) {
   }, []);
 
   return (
-    <>
+    <ModalProvider>
       <Header
         contactUs={navbarData?.contactUs}
         onMenuClick={toggleMenu}
@@ -55,6 +57,7 @@ export default function SharedLayout({ children }) {
 
       <KitchenHeroSection locale={locale} />
       <Footer />
-    </>
+      <GlobalModal />
+    </ModalProvider>
   );
 }

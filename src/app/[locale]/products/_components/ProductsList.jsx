@@ -30,8 +30,6 @@ const ProductsList = ({ locale }) => {
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
-  console.log("categoryId from query params:", categoryId);
-
   const fetchProducts = async (page = 1, searchValue = "") => {
     setLoading(true);
     try {

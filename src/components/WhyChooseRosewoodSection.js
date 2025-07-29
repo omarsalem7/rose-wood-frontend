@@ -195,7 +195,7 @@ const WhyChooseRosewoodSection = async () => {
       </section>
 
       {/* Mobile Layout */}
-      <section className="lg:hidden py-8 px-3">
+      <section className="lg:hidden py-12 px-3" id="whyUseRosewood">
         <h2 className="text-center font-semibold text-xl mb-6">
           {" "}
           {whyChooseData.title || "لماذا تختار روز وود"}

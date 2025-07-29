@@ -26,7 +26,6 @@ export async function fetchRelatedCategories(categoryId) {
       image: getFullImageUrl(category?.mainImage?.url),
     };
   });
-  console.log(res);
 
   return res;
 }

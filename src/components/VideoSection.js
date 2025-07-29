@@ -1,14 +1,15 @@
 "use client";
 import React, { useState, useRef } from "react";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
+import { useModal } from "@/lib/ModalContext";
 
 const VideoSection = ({ videoData }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { openModal } = useModal();
   const [duration, setDuration] = useState(0);
   const videoRef = useRef(null);
 
   const handlePlayClick = () => {
-    setIsPlaying(true);
+    openModal(createVideoModalContent(), { type: "video" });
   };
 
   const handleVideoLoad = () => {
@@ -20,6 +21,21 @@ const VideoSection = ({ videoData }) => {
   const formatDuration = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     return `${minutes} دقائق`;
+  };
+
+  const createVideoModalContent = () => {
+    return (
+      <video
+        ref={videoRef}
+        className="w-full h-full object-cover"
+        controls
+        autoPlay
+        onLoadedMetadata={handleVideoLoad}
+        src={videoData.video}
+      >
+        Your browser does not support the video tag.
+      </video>
+    );
   };
 
   return (
@@ -88,31 +104,6 @@ const VideoSection = ({ videoData }) => {
           </span>
         </div>
       </div>
-
-      {/* Video Modal (when playing) */}
-      {isPlaying && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-          <div className="relative w-full max-w-4xl aspect-video">
-            <button
-              onClick={() => setIsPlaying(false)}
-              className="absolute top-4 right-4 text-white text-2xl z-10 hover:text-gray-300 transition-colors"
-            >
-              ×
-            </button>
-            {/* Real Video */}
-            <video
-              ref={videoRef}
-              className="w-full h-full rounded-lg"
-              controls
-              autoPlay
-              onLoadedMetadata={handleVideoLoad}
-              src={videoData.video}
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

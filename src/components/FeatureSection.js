@@ -31,7 +31,7 @@ const FeaturesSection = ({ cards, title }) => {
                   background:
                     "radial-gradient(50% 50% at 50% 50%, rgb(112 85 48 / 0%) 0%, #f5e9d8 100%)",
                 }}
-                className={`w-20 h-16 md:w-25 md:h-25 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm`}
+                className={`w-20 h-16 md:w-24 md:h-24 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm`}
                 data-aos="zoom-in"
                 data-aos-duration="600"
                 data-aos-delay={400 + index * 100}
