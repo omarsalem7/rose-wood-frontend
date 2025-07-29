@@ -2,8 +2,9 @@ import Image from "next/image";
 import StyledText from "@/components/ui/styledText";
 
 import { fetchHowWorkSection } from "@/lib/api/cms";
+import Link from "next/link";
 
-const HowWork = async ({ isButtonshow }) => {
+const HowWork = async ({ isButtonshow, locale }) => {
   const { title, subTitle, images, buttons, list } =
     await fetchHowWorkSection();
 
@@ -47,8 +48,13 @@ const HowWork = async ({ isButtonshow }) => {
           <div className="flex gap-4 mt-8">
             {isButtonshow && buttons && buttons.length > 0 ? (
               buttons.map((btn, idx) => (
-                <button
+                <Link
                   key={btn.id || idx}
+                  href={
+                    idx === 0
+                      ? `/${locale}/products`
+                      : `/${locale}/order/request-sample`
+                  }
                   className={
                     idx === 0
                       ? "bg-[#5F361F] text-white max-sm:w-full md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
@@ -56,7 +62,7 @@ const HowWork = async ({ isButtonshow }) => {
                   }
                 >
                   {btn.text}
-                </button>
+                </Link>
               ))
             ) : (
               <></>

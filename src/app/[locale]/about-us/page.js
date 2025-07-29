@@ -6,13 +6,15 @@ import SectorSection from "./_components/sectorSection";
 import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
 import { fetchAllAboutPageData } from "@/lib/api/cms";
 
-export default async function About() {
+export default async function About({ params }) {
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
   const data = await fetchAllAboutPageData();
 
   return (
     <>
       <Hero {...data.hero} />
-      <HowWork isButtonshow={true} />
+      <HowWork isButtonshow={true} locale={locale} />
       <OurMessage {...data.ourMessage} />
       <Vision {...data.ourVision} />
       <SectorSection {...data.sectorSection} />
