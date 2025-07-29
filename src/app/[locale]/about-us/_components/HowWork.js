@@ -13,10 +13,19 @@ const HowWork = async ({ isButtonshow, locale }) => {
       <div className="">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl  font-semibold text-gray-900 mb-4">
+          <h2
+            data-aos="fade-down"
+            data-aos-duration="800"
+            className="text-3xl  font-semibold text-gray-900 mb-4"
+          >
             {title || "كيف نعمل"}
           </h2>
-          <p className="text-lg text-gray-600">
+          <p
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="200"
+            className="text-lg text-gray-600"
+          >
             {subTitle || "نتبع كل خطوة من خطوات الإنتاج"}
           </p>
         </div>
@@ -28,6 +37,9 @@ const HowWork = async ({ isButtonshow, locale }) => {
             {list.map((feature, idx) => (
               <div
                 key={feature.id || idx}
+                data-aos="fade-right"
+                data-aos-duration="600"
+                data-aos-delay={idx * 100}
                 className="flex items-center gap-3 text-gray-700"
               >
                 <div className="bg-[#E5FFE9] rounded-full p-1">
@@ -45,7 +57,12 @@ const HowWork = async ({ isButtonshow, locale }) => {
               </div>
             ))}
           </div>
-          <div className="flex gap-4 mt-8">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="400"
+            className="flex gap-4 mt-8"
+          >
             {isButtonshow && buttons && buttons.length > 0 ? (
               buttons.map((btn, idx) => (
                 <Link
@@ -70,7 +87,12 @@ const HowWork = async ({ isButtonshow, locale }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-5 gap-4">
+        <div
+          data-aos="fade-left"
+          data-aos-duration="800"
+          data-aos-delay="300"
+          className="grid grid-cols-5 gap-4"
+        >
           <Image
             src={images && images[0] ? images[0].img : "/assets/spoons.png"}
             alt="product-meta2"

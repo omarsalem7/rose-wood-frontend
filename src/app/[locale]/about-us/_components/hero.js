@@ -7,17 +7,31 @@ const Hero = ({ title, description, imageUrl }) => {
         <div className="max-w-7xl mx-auto px-6 2xl:px-0">
           {/* Title and Description */}
           <div className="flex flex-col items-center justify-center mb-12">
-            <h1 className="text-3xl leading-16 text-center font-semibold max-w-4xl text-gray-900 mb-6">
+            <h1
+              data-aos="fade-down"
+              data-aos-duration="800"
+              className="text-3xl leading-16 text-center font-semibold max-w-4xl text-gray-900 mb-6"
+            >
               {title ||
                 "روز وود هو مصنع مصري متخصص في صناعة 🏭 أدوات المطبخ 🍴 الخشبية الصحية والآمنة."}
             </h1>
-            <p className="text-lg text-gray-600 text-center max-w-4xl mx-auto leading-relaxed">
+            <p
+              data-aos="fade-up"
+              data-aos-duration="800"
+              data-aos-delay="200"
+              className="text-lg text-gray-600 text-center max-w-4xl mx-auto leading-relaxed"
+            >
               {description ||
                 "نستخدم أخشاب طبيعية مجففة، ونشطها بزيوت ونموذج آمنة للطعام، مع خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة."}
             </p>
           </div>
 
-          <div className="rounded-2xl ">
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+            className="rounded-2xl "
+          >
             <Image
               width={1200}
               height={600}

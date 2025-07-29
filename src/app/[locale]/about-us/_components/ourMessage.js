@@ -26,10 +26,19 @@ const OurMessage = ({ title, subTitle, endDescription, cards }) => {
     <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-6 2xl:px-0">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2
+            data-aos="fade-down"
+            data-aos-duration="800"
+            className="text-4xl font-bold text-gray-800 mb-4"
+          >
             {title || "رسالتنا"}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="200"
+            className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
+          >
             {subTitle || "نسعى لتوفير أدوات مطبخ خشبية تجمع بين"}
           </p>
         </div>
@@ -39,6 +48,9 @@ const OurMessage = ({ title, subTitle, endDescription, cards }) => {
             return (
               <div
                 key={feature.id || index}
+                data-aos="zoom-in"
+                data-aos-duration="600"
+                data-aos-delay={index * 150}
                 className="text-center group p-8 rounded-2xl bg-[#FFF8F6] transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 <div
@@ -56,7 +68,12 @@ const OurMessage = ({ title, subTitle, endDescription, cards }) => {
           })}
         </div>
 
-        <div className="text-center mt-12">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="400"
+          className="text-center mt-12"
+        >
           <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
             {endDescription ||
               "لكل من يقدر التفاصيل الدقيقة في أدواته اليومية، سواء كان مطبخ منزل أو مطعم محترف."}

@@ -33,6 +33,9 @@ const SectorSection = ({ card }) => {
         {cards.map((item, idx) => (
           <Card
             key={item.id || idx}
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay={idx * 200}
             className="bg-[#F9F7F2] p-6 rounded-2xl border-0 overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             {/* Article Image */}
