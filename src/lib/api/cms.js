@@ -367,58 +367,24 @@ export async function fetchQuotationSection() {
 
 export async function fetchFooterData() {
   try {
-    const json = await apiCall("/footer?populate[footerItems][populate]=*");
+    const json = await apiCall(
+      "/footer?populate[socialMedia][populate]=*&populate[ourProducts][populate]=*&populate[importantLinks][populate]=*&populate[services][populate]=*&populate[rosewoodLinks][populate]=*"
+    );
 
     if (!json.data) {
       throw new Error("Footer data not found");
     }
 
     const footerData = json.data;
+    console.log(footerData);
 
-    return {
-      id: footerData.id,
-      vText: footerData.verticalText,
-      footerItems:
-        footerData.footerItems?.map((section) => ({
-          id: section.id,
-          title: section.title,
-
-          items:
-            section.items?.map((item) => ({
-              id: item.id,
-              text: item.text,
-              url: item.url,
-            })) || [],
-        })) || [],
-    };
+    return json.data;
   } catch (error) {
     console.error("Error fetching footer data:", error);
 
     // Return fallback data
     return {
-      id: null,
-      footerItems: [
-        {
-          id: 1,
-          title: "روز وود",
-          items: [
-            { id: 1, text: "من نحن", url: "/about" },
-            { id: 2, text: "خدماتنا", url: "/services" },
-          ],
-        },
-        {
-          id: 2,
-          title: "تواصل معنا",
-          items: [
-            { id: 3, text: "اتصل بنا", url: "/contact" },
-            {
-              id: 4,
-              text: "البريد الإلكتروني",
-              url: "mailto:info@rosewood.com",
-            },
-          ],
-        },
-      ],
+      verticalText: "مـنتجات صممت بحب لكم",
     };
   }
 }
