@@ -118,146 +118,140 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Upper Section - Navigation Links */}
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
-          {/* Rosewood Links Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              {footerData.rosewoodLinks?.title || "روز وود"}
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="/"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  {footerData.rosewoodLinks?.home || "الصفحة الرئيسية"}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about-us"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  {footerData.rosewoodLinks?.whoUs || "من نـحن"}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/wholesale"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  {footerData.rosewoodLinks?.whyUs || "لـماذا الاخشاب"}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                >
-                  {footerData.rosewoodLinks?.contactUs || "تواصل معنا"}
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              {footerData.services?.title || "خدماتنا"}
-            </h3>
-            <ul className="space-y-3">
-              {footerData.services?.items?.map((item) => (
-                <li key={item.id}>
+        <div className="mb-24">
+          {/* Upper Section - Navigation Links */}
+          <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
+            {/* Rosewood Links Section */}
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                {footerData.rosewoodLinks?.title || "روز وود"}
+              </h3>
+              <ul className="space-y-3">
+                <li>
                   <a
-                    href={item.url || "#"}
+                    href="/"
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
-                    {item.text}
+                    {footerData.rosewoodLinks?.home || "الصفحة الرئيسية"}
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Our Products Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              {footerData.ourProducts?.title || "منتجاتنا"}
-            </h3>
-            <ul className="space-y-3">
-              {footerData.ourProducts?.items?.map((item) => (
-                <li key={item.id}>
+                <li>
                   <a
-                    href={item.url || "#"}
+                    href="/about-us"
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
-                    {item.text}
+                    {footerData.rosewoodLinks?.whoUs || "من نـحن"}
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Important Links Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              {footerData.importantLinks?.title || "روابط مهمة"}
-            </h3>
-            <ul className="space-y-3">
-              {footerData.importantLinks?.items?.map((item) => (
-                <li key={item.id}>
+                <li>
                   <a
-                    href={item.url || "#"}
+                    href="/wholesale"
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
-                    {item.text}
+                    {footerData.rosewoodLinks?.whyUs || "لـماذا الاخشاب"}
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social Media Section */}
-          <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              {footerData.socialMedia?.title || "تواصل معنا"}
-            </h3>
-            <div className="flex gap-3">
-              {footerData.socialMedia?.items?.map((social) => (
-                <a
-                  key={social.id}
-                  href={social.url || "#"}
-                  target="_blank"
-                  rel="noopener"
-                  className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
-                >
-                  {getSocialIcon(social.text)}
-                </a>
-              ))}
+                <li>
+                  <a
+                    href="/contact"
+                    className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
+                  >
+                    {footerData.rosewoodLinks?.contactUs || "تواصل معنا"}
+                  </a>
+                </li>
+              </ul>
             </div>
-          </div>
 
-          {/* Vertical Text and Heart */}
-          <div className="lg:col-span-1 flex justify-end">
-            <div className="flex items-center gap-2">
-              <div className="flex flex-col items-center">
-                <p className="[writing-mode:vertical-rl] font-semibold text-xl text-gray-800">
-                  {footerData.verticalText || "مـنتجات صممت بحب لكم"}
-                </p>
-                <Heart className="w-6 h-6 text-red-500 fill-current mt-2" />
+            {/* Services Section */}
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                {footerData.services?.title || "خدماتنا"}
+              </h3>
+              <ul className="space-y-3">
+                {footerData.services?.items?.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={item.url || "#"}
+                      className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Our Products Section */}
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                {footerData.ourProducts?.title || "منتجاتنا"}
+              </h3>
+              <ul className="space-y-3">
+                {footerData.ourProducts?.items?.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={item.url || "#"}
+                      className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Important Links Section */}
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                {footerData.importantLinks?.title || "روابط مهمة"}
+              </h3>
+              <ul className="space-y-3">
+                {footerData.importantLinks?.items?.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={item.url || "#"}
+                      className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Social Media Section */}
+            <div className="lg:col-span-1">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                {footerData.socialMedia?.title || "تواصل معنا"}
+              </h3>
+              <div className="flex gap-3 flex-wrap">
+                {footerData.socialMedia?.items?.map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.url || "#"}
+                    target="_blank"
+                    rel="noopener"
+                    className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
+                  >
+                    {getSocialIcon(social.text)}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Vertical Text and Heart */}
+            <div className="lg:col-span-1 flex justify-end">
+              <div className="flex items-center gap-2">
+                <div className="flex flex-col items-center">
+                  <p className="[writing-mode:vertical-rl] font-semibold text-xl text-gray-800">
+                    {footerData.verticalText || "مـنتجات صممت بحب لكم"}
+                  </p>
+                  <Heart className="w-6 h-6 text-red-500 fill-current mt-2" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Divider Line */}
-        <div className="border-t border-gray-300 mb-8"></div>
-
-        {/* Lower Section - Contact Information & Watermark */}
-        <div className="relative">
-          {/* Contact Information */}
-          <div className="flex flex-col md:flex-row gap-6 md:gap-12 text-gray-600 text-sm">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-24 border-t border-gray-300 pt-4 text-gray-600 text-sm">
             {footerData.email && (
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-amber-800" />
@@ -282,6 +276,14 @@ const Footer = () => {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Divider Line */}
+        {/* <div className="border-t border-gray-300 mb-8"></div> */}
+
+        {/* Lower Section - Contact Information & Watermark */}
+        <div className="relative">
+          {/* Contact Information */}
 
           {/* Large Brand Text Background */}
           <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
