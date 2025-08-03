@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import Link from "next/link";
 const MakeOrder = ({ locale }) => {
   const t = locale === "ar" ? ar : en;
   return (
@@ -15,12 +16,18 @@ const MakeOrder = ({ locale }) => {
             <p className="text-[#586675] text-lg">{t.useDriedNaturalWood}</p>
           </div>
           <div className="flex gap-6">
-            <Button className="   w-[150px] md:w-[294px]  border border-[#5F361F] text-[#5F361F] rounded-lg">
+            <Link
+              href={`/${locale}/order/request-sample`}
+              className="w-[150px] md:w-[294px] border border-[#5F361F] text-[#5F361F] rounded-lg text-center py-2"
+            >
               {t.sampleRequest}
-            </Button>
-            <Button className="   w-[150px] md:w-[294px]  text-white bg-[#5F361F]">
+            </Link>
+            <Link
+              href={`/${locale}/order/price-quote`}
+              className="w-[150px] md:w-[294px] text-white bg-[#5F361F] rounded-lg text-center py-2"
+            >
               {t.requestSpecialQuote}
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

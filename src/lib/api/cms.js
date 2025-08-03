@@ -375,9 +375,6 @@ export async function fetchFooterData() {
       throw new Error("Footer data not found");
     }
 
-    const footerData = json.data;
-    console.log(footerData);
-
     return json.data;
   } catch (error) {
     console.error("Error fetching footer data:", error);
