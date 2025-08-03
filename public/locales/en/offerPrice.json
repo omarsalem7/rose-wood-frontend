@@ -8,6 +8,7 @@
   "address": "Address",
   "products": "Products",
   "addProduct": "Add another product",
+  "chooseAllProducts": "Choose all products",
   "qty": "Qty",
   "specialRequests": "Special Requests (Optional)",
   "submit": "Submit Quote Request",

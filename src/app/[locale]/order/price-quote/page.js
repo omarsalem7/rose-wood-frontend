@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,6 +25,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
 import { getLookupProducts } from "@/lib/api/products";
 import { submitPriceQuote } from "@/lib/api/order";
 import FormResultDialog from "@/components/FormResultDialog";
@@ -68,6 +69,9 @@ export default function OfferPricePage({ params }) {
     message: "",
   });
 
+  // State for "choose all products" checkbox
+  const [chooseAllProducts, setChooseAllProducts] = React.useState(false);
+
   // Fetch products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
@@ -85,27 +89,38 @@ export default function OfferPricePage({ params }) {
     fetchProducts();
   }, []);
 
-  // Localized Zod schema
-  const formSchema = z.object({
-    fullName: z.string().min(2, t.validation.nameMin),
-    companyName: z.string().optional(),
-    email: z.string().email(t.validation.email),
-    phone: z.string().min(10, t.validation.phoneMin),
-    city: z.string().min(1, t.validation.city),
-    address: z.string().min(1, t.validation.address),
-    products: z
-      .array(
-        z.object({
-          productId: z.string().min(1, t.validation.productRequired),
-          quantity: z.number().min(1, t.validation.quantityMin),
-        })
-      )
-      .min(1, t.validation.productsMin),
-    specialRequests: z.string().optional(),
-  });
+  // Dynamic Zod schema based on chooseAllProducts state
+  const getFormSchema = (chooseAllProducts) => {
+    return z.object({
+      fullName: z.string().min(2, t.validation.nameMin),
+      companyName: z.string().optional(),
+      email: z.string().email(t.validation.email),
+      phone: z.string().min(10, t.validation.phoneMin),
+      city: z.string().min(1, t.validation.city),
+      address: z.string().min(1, t.validation.address),
+      products: chooseAllProducts
+        ? z
+            .array(
+              z.object({
+                productId: z.string().optional(),
+                quantity: z.number().optional(),
+              })
+            )
+            .optional()
+        : z
+            .array(
+              z.object({
+                productId: z.string().min(1, t.validation.productRequired),
+                quantity: z.number().min(1, t.validation.quantityMin),
+              })
+            )
+            .min(1, t.validation.productsMin),
+      specialRequests: z.string().optional(),
+    });
+  };
 
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(getFormSchema(chooseAllProducts)),
     defaultValues: {
       fullName: "",
       companyName: "",
@@ -123,14 +138,30 @@ export default function OfferPricePage({ params }) {
     name: "products",
   });
 
+  // Update form when chooseAllProducts changes
+  useEffect(() => {
+    form.clearErrors();
+    form.setValue("products", [{ productId: "", quantity: 1 }]);
+  }, [chooseAllProducts, form]);
+
   const onSubmit = async (data) => {
     try {
       setIsSubmitting(true);
+
+      let productIds;
+      if (chooseAllProducts) {
+        // If "choose all products" is checked, use all product IDs
+        productIds = products.map((product) => product.documentId.toString());
+      } else {
+        // Use selected products from the form
+        productIds = data.products.map((p) => p.productId);
+      }
+
       const res = {
         ...data,
-        products: { connect: data.products.map((p) => p.productId) },
+        products: { connect: productIds },
+        chooseAllProducts,
       };
-      console.log(res);
 
       // Submit the form data to the API
       await submitPriceQuote(res);
@@ -145,6 +176,7 @@ export default function OfferPricePage({ params }) {
 
       // Reset the form after successful submission
       form.reset();
+      setChooseAllProducts(false);
     } catch (error) {
       console.error("Error submitting form:", error);
 
@@ -297,119 +329,152 @@ export default function OfferPricePage({ params }) {
                   <h3 className="text-xl font-semibold text-foreground">
                     {t.products}
                   </h3>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    size="sm"
-                    onClick={addProduct}
-                    className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
-                  >
-                    <Plus className="h-4 w-4" />
-                    {t.addProduct}
-                  </Button>
-                </div>
-
-                <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-                  {fields.map((field, index) => (
-                    <div
-                      key={field.id}
-                      className="flex gap-4 items-end p-4 rounded-lg bg-muted/50"
+                  {!chooseAllProducts && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={addProduct}
+                      className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
                     >
-                      <div className="flex-1">
-                        <FormField
-                          control={form.control}
-                          name={`products.${index}.productId`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>{`${t.products} ${
-                                index + 1
-                              }`}</FormLabel>
-                              <Select
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                                disabled={loading}
-                              >
-                                <FormControl>
-                                  <SelectTrigger className="bg-white border mb-0 border-gray-200 rounded-md placeholder:text-gray-400">
-                                    <SelectValue
-                                      placeholder={
-                                        loading
-                                          ? t.loadingProducts
-                                          : t.selectProduct
-                                      }
-                                    />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  {loading ? (
-                                    <div className="px-2 py-1.5 text-sm text-gray-600">
-                                      {t.loadingProducts}
-                                    </div>
-                                  ) : (
-                                    Object.entries(
-                                      organizeProductsByCategory(products)
-                                    ).map(([category, products]) => (
-                                      <SelectGroup key={category}>
-                                        <SelectLabel>{category}</SelectLabel>
-                                        {products.map((product) => (
-                                          <SelectItem
-                                            key={product.value}
-                                            value={product.value}
-                                          >
-                                            {product.label}
-                                          </SelectItem>
-                                        ))}
-                                      </SelectGroup>
-                                    ))
-                                  )}
-                                </SelectContent>
-                              </Select>
-                              <FormMessage className="absolute" />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <div className="w-24">
-                        <FormField
-                          control={form.control}
-                          name={`products.${index}.quantity`}
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>{t.qty}</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="number"
-                                  min="1"
-                                  placeholder="1"
-                                  className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                                  {...field}
-                                  onChange={(e) =>
-                                    field.onChange(
-                                      parseInt(e.target.value) || 1
-                                    )
-                                  }
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="icon"
-                        onClick={() => removeProduct(index)}
-                        disabled={fields.length === 1}
-                        className="text-destructive hover:text-destructive cursor-pointer"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  ))}
+                      <Plus className="h-4 w-4" />
+                      {t.addProduct}
+                    </Button>
+                  )}
                 </div>
+
+                {/* Choose All Products Checkbox */}
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="chooseAllProducts"
+                    checked={chooseAllProducts}
+                    onCheckedChange={setChooseAllProducts}
+                    disabled={loading}
+                  />
+                  <label
+                    htmlFor="chooseAllProducts"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                  >
+                    {t.chooseAllProducts}
+                  </label>
+                </div>
+
+                {!chooseAllProducts && (
+                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
+                    {fields.map((field, index) => (
+                      <div
+                        key={field.id}
+                        className="flex gap-4 items-end p-4 rounded-lg bg-muted/50"
+                      >
+                        <div className="flex-1">
+                          <FormField
+                            control={form.control}
+                            name={`products.${index}.productId`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>{`${t.products} ${
+                                  index + 1
+                                }`}</FormLabel>
+                                <Select
+                                  onValueChange={field.onChange}
+                                  defaultValue={field.value}
+                                  disabled={loading}
+                                >
+                                  <FormControl>
+                                    <SelectTrigger className="bg-white border mb-0 border-gray-200 rounded-md placeholder:text-gray-400">
+                                      <SelectValue
+                                        placeholder={
+                                          loading
+                                            ? t.loadingProducts
+                                            : t.selectProduct
+                                        }
+                                      />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {loading ? (
+                                      <div className="px-2 py-1.5 text-sm text-gray-600">
+                                        {t.loadingProducts}
+                                      </div>
+                                    ) : (
+                                      Object.entries(
+                                        organizeProductsByCategory(products)
+                                      ).map(([category, categoryProducts]) => (
+                                        <SelectGroup key={category}>
+                                          <SelectLabel>{category}</SelectLabel>
+                                          {categoryProducts.map((product) => (
+                                            <SelectItem
+                                              key={product.value}
+                                              value={product.value}
+                                            >
+                                              {product.label}
+                                            </SelectItem>
+                                          ))}
+                                        </SelectGroup>
+                                      ))
+                                    )}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage className="absolute" />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <div className="w-24">
+                          <FormField
+                            control={form.control}
+                            name={`products.${index}.quantity`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>{t.qty}</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    type="number"
+                                    min="1"
+                                    placeholder="1"
+                                    className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
+                                    {...field}
+                                    onChange={(e) =>
+                                      field.onChange(
+                                        parseInt(e.target.value) || 1
+                                      )
+                                    }
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          onClick={() => removeProduct(index)}
+                          disabled={fields.length === 1}
+                          className="text-destructive hover:text-destructive cursor-pointer"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {chooseAllProducts && (
+                  <div className="bg-green-50 rounded-lg border border-green-200 p-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" />
+                      </div>
+                      <span className="text-green-800 font-medium">
+                        {t.chooseAllProducts} - {products.length} {t.products}
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Special Requests */}
