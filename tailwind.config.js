@@ -27,6 +27,7 @@ module.exports = {
           "var(--font-ibm-plex-arabic)",
           "sans-serif",
         ],
+        ibm: ["var(--font-ibm-plex-arabic)", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

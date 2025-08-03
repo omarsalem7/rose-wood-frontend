@@ -44,7 +44,7 @@ const FormResultDialog = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-white border-0 shadow-2xl">
+      <DialogContent className="sm:max-w-md bg-white border-0 shadow-2xl font-sans">
         <DialogHeader className="text-center">
           <div className="flex justify-center mb-6">
             <div className={`relative p-4 rounded-full bg-gray-100`}>

@@ -10,6 +10,7 @@
   "activity": "Your type of business activity",
   "products": "Products",
   "addProduct": "Add another product",
+  "chooseAllProducts": "Choose all products",
   "qty": "Qty",
   "specialRequests": "Special Requests (Optional)",
   "submit": "Send",
