@@ -43,7 +43,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           </button>
         </div>
         {/* Navigation menu items with icons like in the design */}
-        <nav className="space-y-4">
+        <nav className="space-y-1 max-h-[60vh] overflow-y-auto">
           {isLoading ? (
             <>
               <MenuItemSkeleton />
@@ -176,7 +176,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           )}
         </nav>
         {/* Bottom section with buttons like in the design */}
-        <div className="mt-12 flex gap-2">
+        <div className="mt-5 flex gap-2">
           {isLoading ? (
             <>
               <div className="w-full h-12 bg-gray-200 rounded-lg animate-pulse"></div>
@@ -187,14 +187,14 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               <Link
                 href={`/${locale}/contact`}
                 onClick={onClose}
-                className="w-full text-center bg-[#5F361F] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                className="w-full text-center bg-[#5F361F] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {data?.contactUs}
               </Link>
               <Link
                 onClick={onClose}
                 href={`/${locale}/order/price-quote`}
-                className="w-full text-center border border-gray-300 text-gray-700 px-6 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                className="w-full text-center border border-gray-300 text-gray-700 px-3 py-2  rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {data?.offerPrice}
               </Link>
