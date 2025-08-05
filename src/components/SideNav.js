@@ -43,7 +43,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           </button>
         </div>
         {/* Navigation menu items with icons like in the design */}
-        <nav className="space-y-1 max-h-[60vh] overflow-y-auto">
+        <nav className="space-y-4 max-h-[60vh] overflow-y-auto">
           {isLoading ? (
             <>
               <MenuItemSkeleton />
@@ -126,7 +126,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 />
                 {data?.manufacturingSteps || "خطوات التصنيع"}
               </Link>
-              <SmoothScrollLink
+              {/* <SmoothScrollLink
                 elementId="visual-feeding"
                 locale={locale}
                 className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
@@ -140,8 +140,8 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.visualFeeding}
-              </SmoothScrollLink>
-              <SmoothScrollLink
+              </SmoothScrollLink> */}
+              {/* <SmoothScrollLink
                 elementId="blogs"
                 locale={locale}
                 className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
@@ -155,7 +155,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.blogs}
-              </SmoothScrollLink>
+              </SmoothScrollLink> */}
 
               <SmoothScrollLink
                 elementId="contactUs"
