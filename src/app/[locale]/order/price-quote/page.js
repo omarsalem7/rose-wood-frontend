@@ -148,23 +148,37 @@ export default function OfferPricePage({ params }) {
     try {
       setIsSubmitting(true);
 
-      let productIds;
-      if (chooseAllProducts) {
-        // If "choose all products" is checked, use all product IDs
-        productIds = products.map((product) => product.documentId.toString());
-      } else {
-        // Use selected products from the form
-        productIds = data.products.map((p) => p.productId);
-      }
-
-      const res = {
-        ...data,
-        products: { connect: productIds },
-        chooseAllProducts,
+      // Prepare the data according to the Strapi schema
+      const formData = {
+        fullName: data.fullName,
+        companyName: data.companyName || "",
+        phone: data.phone,
+        email: data.email,
+        city: data.city,
+        address: data.address,
+        specialRequests: data.specialRequests || "",
+        chooseAllProducts: chooseAllProducts,
       };
 
+      // Handle order_items based on chooseAllProducts flag
+      if (chooseAllProducts) {
+        // If "choose all products" is checked, create order_items for all products
+        formData.order_items = products.map((product) => ({
+          product: product.documentId,
+          quantity: 1,
+        }));
+      } else {
+        // Create order_items for selected products with their quantities
+        formData.order_items = data.products
+          .filter((p) => p.productId && p.quantity)
+          .map((p) => ({
+            product: p.productId,
+            quantity: p.quantity,
+          }));
+      }
+
       // Submit the form data to the API
-      await submitPriceQuote(res);
+      await submitPriceQuote(formData);
 
       // Show success dialog
       setDialogState({
