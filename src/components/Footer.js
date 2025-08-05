@@ -12,8 +12,9 @@ import {
   Mail,
 } from "lucide-react";
 import { fetchFooterData } from "@/lib/api/cms";
+import Link from "next/link";
 
-const Footer = () => {
+const Footer = ({ locale }) => {
   const [footerData, setFooterData] = useState({
     verticalText: "مـنتجات صممت بحب لكم",
     location: "بجوار مول العرب, 6 اكتوبر",
@@ -128,24 +129,24 @@ const Footer = () => {
               </h3>
               <ul className="space-y-3">
                 <li>
-                  <a
-                    href="/"
+                  <Link
+                    href={`/${locale}`}
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
                     {footerData.rosewoodLinks?.home || "الصفحة الرئيسية"}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="/about-us"
+                  <Link
+                    href={`/${locale}/about-us`}
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
                     {footerData.rosewoodLinks?.whoUs || "من نـحن"}
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a
-                    href="/wholesale"
+                    href={`/${locale}/wholesale`}
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
                     {footerData.rosewoodLinks?.whyUs || "لـماذا الاخشاب"}
@@ -153,7 +154,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="/contact"
+                    href={`/${locale}/contact`}
                     className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                   >
                     {footerData.rosewoodLinks?.contactUs || "تواصل معنا"}
@@ -189,12 +190,12 @@ const Footer = () => {
               <ul className="space-y-3">
                 {footerData.ourProducts?.items?.map((item) => (
                   <li key={item.id}>
-                    <a
-                      href={item.url || "#"}
+                    <Link
+                      href={`${locale}/${item.url}`}
                       className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                     >
                       {item.text}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -210,6 +211,8 @@ const Footer = () => {
                   <li key={item.id}>
                     <a
                       href={item.url || "#"}
+                      target="_blank"
+                      rel="noopener"
                       className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
                     >
                       {item.text}

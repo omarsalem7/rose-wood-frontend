@@ -57,7 +57,7 @@ export default function SharedLayout({ children }) {
       {children}
 
       <KitchenHeroSection locale={locale} />
-      <Footer />
+      <Footer locale={locale} />
       <GlobalModal />
       <ScrollToTop />
     </ModalProvider>
