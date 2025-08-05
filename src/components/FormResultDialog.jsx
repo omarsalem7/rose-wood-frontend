@@ -44,7 +44,10 @@ const FormResultDialog = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md bg-white border-0 shadow-2xl font-sans">
+      <DialogContent
+        className="sm:max-w-md bg-white border-0 shadow-2xl"
+        style={{ fontFamily: '"Alexandria", sans-serif' }}
+      >
         <DialogHeader className="text-center">
           <div className="flex justify-center mb-6">
             <div className={`relative p-4 rounded-full bg-gray-100`}>
@@ -66,10 +69,16 @@ const FormResultDialog = ({
               </div>
             </div>
           </div>
-          <DialogTitle className="text-xl text-center font-bold text-gray-800 mb-3">
+          <DialogTitle
+            className="text-xl text-center font-bold text-gray-800 mb-3"
+            style={{ fontFamily: '"Alexandria", sans-serif' }}
+          >
             {title}
           </DialogTitle>
-          <DialogDescription className="text-base text-center text-gray-600 leading-relaxed">
+          <DialogDescription
+            className="text-base text-center text-gray-600 leading-relaxed"
+            style={{ fontFamily: '"Alexandria", sans-serif' }}
+          >
             {message}
           </DialogDescription>
         </DialogHeader>
@@ -77,6 +86,7 @@ const FormResultDialog = ({
           <Button
             onClick={isSuccess ? handleSuccessAction : handleErrorAction}
             className={`${buttonColor} text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 min-w-[140px] cursor-pointer`}
+            style={{ fontFamily: '"Alexandria", sans-serif' }}
           >
             {isSuccess ? successButtonText : errorButtonText}
           </Button>

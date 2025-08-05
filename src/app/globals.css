@@ -31,3 +31,20 @@ div,
 span {
   font-family: var(--font-ibm-plex-arabic), var(--font-alexandria), sans-serif;
 }
+
+/* Force Alexandria font on dialog elements */
+[data-radix-dialog-content],
+[data-radix-dialog-content] * {
+  font-family: "Alexandria", var(--font-alexandria), sans-serif !important;
+}
+
+/* Specific targeting for dialog elements */
+[data-radix-dialog-content] h1,
+[data-radix-dialog-content] h2,
+[data-radix-dialog-content] h3,
+[data-radix-dialog-content] p,
+[data-radix-dialog-content] span,
+[data-radix-dialog-content] button,
+[data-radix-dialog-content] div {
+  font-family: "Alexandria", var(--font-alexandria), sans-serif !important;
+}
