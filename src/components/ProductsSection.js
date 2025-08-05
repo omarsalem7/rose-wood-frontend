@@ -27,6 +27,7 @@ const swiperStyles = `
 `;
 
 const ProductsSection = ({ products, locale }) => {
+  console.log(products);
   const t = locale === "ar" ? ar : en;
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
