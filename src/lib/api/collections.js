@@ -21,11 +21,11 @@ export async function fetchBlogsHomePage() {
 
 export async function fetchProductsBHomePage() {
   const json = await apiCall(
-    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=500"
+    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6"
   );
 
   return (json.data || []).map((product) => {
-    // Normalize colors with images
+    // Normalize colors with images and color codes
     const colors = Array.isArray(product.colors)
       ? product.colors.map((color) => {
           let imgUrl = null;
@@ -34,25 +34,26 @@ export async function fetchProductsBHomePage() {
           }
           return {
             id: color.id,
-            text: color.text,
+            color: color.color, // hex color code
             imgUrl,
           };
         })
       : [];
-    const images = {
-      dark: colors[0] ? colors[0]?.imgUrl : null,
-      medium: colors[1] ? colors[1]?.imgUrl : null,
-      light: colors[2] ? colors[2]?.imgUrl : null,
-    };
-    const image = getFullImageUrl(product.mainImageUrl.url);
+
+    console.log(colors);
+
+    const image = product.mainImageUrl?.url
+      ? getFullImageUrl(product.mainImageUrl.url)
+      : null;
 
     return {
       id: product.documentId,
       name: product.name,
       description: product.description,
       features: product.features,
-      images,
+
       image,
+      colors, // Include the full colors array for flexibility
       category: product.category?.name,
     };
   });

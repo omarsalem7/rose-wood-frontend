@@ -47,9 +47,10 @@ export const getAllproducts = async ({
 
 export const getProductById = async (id) => {
   const json = await apiCall(
-    `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery`
+    `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery&populate=colors`
   );
   const product = json.data;
+  console.log(product);
   return {
     ...product,
     mainImageUrl: getFullImageUrl(product.mainImageUrl.url),
@@ -65,7 +66,7 @@ export const getRelatedProducts = async (categoryId, productId) => {
   return (json.data || [])
     .filter((product) => product.documentId !== productId) // Filter out current product
     .map((product) => {
-      // Normalize colors with images
+      // Normalize colors with images and color codes
       const colors = Array.isArray(product.colors)
         ? product.colors.map((color) => {
             let imgUrl = null;
@@ -74,16 +75,12 @@ export const getRelatedProducts = async (categoryId, productId) => {
             }
             return {
               id: color.id,
-              text: color.text,
+              color: color.color, // hex color code
               imgUrl,
             };
           })
         : [];
-      const images = {
-        dark: colors[0] ? colors[0]?.imgUrl : null,
-        medium: colors[1] ? colors[1]?.imgUrl : null,
-        light: colors[2] ? colors[2]?.imgUrl : null,
-      };
+
       const image = getFullImageUrl(product.mainImageUrl.url);
 
       return {
@@ -91,7 +88,7 @@ export const getRelatedProducts = async (categoryId, productId) => {
         name: product.name,
         description: product.description,
         features: product.features,
-        images,
+        colors,
         image,
         category: product.category?.name,
       };

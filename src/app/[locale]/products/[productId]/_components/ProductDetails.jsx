@@ -57,17 +57,23 @@ const ProductDetails = ({ locale, product }) => {
                   </Button>
                 </div>
               </div>
-              <div>
-                <span className="text-[#5F361F] font-bold">{t.colors}</span>
-                <div className="flex gap-4    py-3 items-center">
-                  <Button className="bg-[#DB9D5F] rounded-xl w-[40px] h-[40px]"></Button>
-                  <Button className="bg-[#BA806D] rounded-xl w-[40px] h-[40px]"></Button>
-                  <Button className="bg-[#4D2E26] rounded-xl w-[40px] h-[40px]"></Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">
-                    {t.customColor}
-                  </Button>
+              {product.colors && product.colors.length > 0 && (
+                <div>
+                  <span className="text-[#5F361F] font-bold">{t.colors}</span>
+                  <div className="flex gap-4 py-3 items-center">
+                    {product.colors.map((colorData) => (
+                      <Button
+                        key={colorData.id}
+                        className="rounded-xl w-[40px] h-[40px]"
+                        style={{ backgroundColor: colorData.color }}
+                      />
+                    ))}
+                    <Button className="bg-[#F4F8FF] rounded-xl">
+                      {t.customColor}
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             {/* Image Section */}
             <div className="w-full md:w-[50%]">

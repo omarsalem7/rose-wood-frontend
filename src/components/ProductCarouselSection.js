@@ -13,7 +13,7 @@ import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 
 const ProductCarouselSection = ({ title, categories, locale }) => {
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const t = locale === "ar" ? ar : en;
   const [api, setApi] = useState();
   const [current, setCurrent] = useState(0);
@@ -71,6 +71,11 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
     setIsDragging(false);
   };
 
+  const handleViewDetailsClick = (id) => {
+    closeModal();
+    router.push(`/${locale}/products/${id}`);
+  };
+
   const createModalContent = (product) => {
     return (
       <div className="w-full">
@@ -101,9 +106,10 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
           href={`/${locale}/products?${
             product.id ? `categoryId=${product.id}` : ""
           }`}
+          onClick={() => handleViewDetailsClick(product.id)}
           className="w-full flex items-center justify-center gap-2 text-[#5F361F] hover:text-amber-900 py-3 rounded-lg font-semibold text-lg transition focus:outline-none cursor-pointer"
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={20} className="rtl:rotate-180" />
           {t.viewDetails}
         </Link>
       </div>

@@ -136,8 +136,15 @@ const ProductsSection = ({ products, locale }) => {
                 }}
               >
                 {currentProducts.map((product, index) => {
-                  const selectedColor = selectedColors[product.id] || "medium";
-                  const currentImage = product.images[selectedColor];
+                  const selectedColor = selectedColors[product.id];
+                  // Use main product image as default, or color image if color is selected
+                  const currentImage =
+                    selectedColor !== undefined &&
+                    product.colors &&
+                    product.colors[selectedColor] &&
+                    product.colors[selectedColor].imgUrl
+                      ? product.colors[selectedColor].imgUrl
+                      : product.image || product.mainImageUrl;
 
                   return (
                     <SwiperSlide key={product.id} className="h-auto">
@@ -182,27 +189,26 @@ const ProductsSection = ({ products, locale }) => {
                         </div>
 
                         {/* Color Selection */}
-                        <div className="flex justify-center gap-3 mb-6 flex-shrink-0">
-                          {Object.keys(product.images).map((color) => (
-                            <button
-                              key={color}
-                              onClick={() =>
-                                handleColorChange(product.id, color)
-                              }
-                              className={`w-7 h-7 rounded-full border-3 transition-all ${
-                                selectedColor === color
-                                  ? "border-white ring-[1.5px] ring-black"
-                                  : "border-white hover:border-gray-400"
-                              } ${
-                                color === "dark"
-                                  ? "bg-[#4D2E26]"
-                                  : color === "medium"
-                                  ? "bg-[#BA806D]"
-                                  : "bg-[#DB9D5F]"
-                              }`}
-                            />
-                          ))}
-                        </div>
+                        {product.colors && product.colors.length > 0 && (
+                          <div className="flex justify-center gap-3 mb-6 flex-shrink-0">
+                            {product.colors.map((colorData, index) => {
+                              return (
+                                <button
+                                  key={colorData.id}
+                                  onClick={() =>
+                                    handleColorChange(product.id, index)
+                                  }
+                                  className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                    selectedColor === index
+                                      ? "border-white ring-[1.5px] ring-black"
+                                      : "border-white hover:border-gray-400"
+                                  }`}
+                                  style={{ backgroundColor: colorData.color }}
+                                />
+                              );
+                            })}
+                          </div>
+                        )}
 
                         {/* Add to Cart Button */}
                         <Link
@@ -220,8 +226,15 @@ const ProductsSection = ({ products, locale }) => {
             ) : (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 auto-rows-fr">
                 {currentProducts.map((product, index) => {
-                  const selectedColor = selectedColors[product.id] || "medium";
-                  const currentImage = product.images[selectedColor];
+                  const selectedColor = selectedColors[product.id];
+                  // Use main product image as default, or color image if color is selected
+                  const currentImage =
+                    selectedColor !== undefined &&
+                    product.colors &&
+                    product.colors[selectedColor] &&
+                    product.colors[selectedColor].imgUrl
+                      ? product.colors[selectedColor].imgUrl
+                      : product.image || product.mainImageUrl;
 
                   return (
                     <div
@@ -266,25 +279,26 @@ const ProductsSection = ({ products, locale }) => {
                       </div>
 
                       {/* Color Selection */}
-                      <div className="flex justify-center gap-3 mb-6 flex-shrink-0">
-                        {Object.keys(product.images).map((color) => (
-                          <button
-                            key={color}
-                            onClick={() => handleColorChange(product.id, color)}
-                            className={`w-7 h-7 rounded-full border-3 transition-all ${
-                              selectedColor === color
-                                ? "border-white ring-[1.5px] ring-black"
-                                : "border-white hover:border-gray-400"
-                            } ${
-                              color === "dark"
-                                ? "bg-[#4D2E26]"
-                                : color === "medium"
-                                ? "bg-[#BA806D]"
-                                : "bg-[#DB9D5F]"
-                            }`}
-                          />
-                        ))}
-                      </div>
+                      {product.colors && product.colors.length > 0 && (
+                        <div className="flex justify-center gap-3 mb-6 flex-shrink-0">
+                          {product.colors.map((colorData, index) => {
+                            return (
+                              <button
+                                key={colorData.id}
+                                onClick={() =>
+                                  handleColorChange(product.id, index)
+                                }
+                                className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                  selectedColor === index
+                                    ? "border-white ring-[1.5px] ring-black"
+                                    : "border-white hover:border-gray-400"
+                                }`}
+                                style={{ backgroundColor: colorData.color }}
+                              />
+                            );
+                          })}
+                        </div>
+                      )}
 
                       {/* Add to Cart Button */}
                       <Link
