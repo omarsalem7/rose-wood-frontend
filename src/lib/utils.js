@@ -18,7 +18,7 @@ export const getApiConfig = () => {
   return {
     apiUrl: baseUrl,
     cache: "default", // Use default caching with revalidation
-    revalidate: isDev ? 10 : 3600, // 1 hour in dev, 24 hours in prod (fallback)
+    revalidate: isDev ? 10 : 15, // 1 hour in dev, 24 hours in prod (fallback)
   };
 };
 
