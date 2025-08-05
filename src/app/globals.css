@@ -18,6 +18,7 @@ body {
   background-color: #fff;
   color: #171717;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 h1,

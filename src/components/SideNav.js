@@ -16,14 +16,14 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
 
   return (
     <div
-      className={`fixed top-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-80 bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
+      className={`fixed top-0 bottom-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-80 bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
       ${
         isOpen ? "translate-x-0" : "ltr:translate-x-full rtl:-translate-x-full"
       }`}
     >
-      <div className="p-6 ">
+      <div className="p-6">
         {/* Header with logo and close button */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center pb-8">
           <Link href={`/${locale}`}>
             <Image
               className="w-auto h-auto"
@@ -202,7 +202,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           )}
         </div>
         {/* Social media icons */}
-        <div className="absolute bottom-5 flex justify-center gap-4 mt-8">
+        <div className="absolute bottom-10 flex justify-center gap-4 ">
           <a
             href={data?.linkedin}
             className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
