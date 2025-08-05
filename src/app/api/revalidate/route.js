@@ -19,14 +19,23 @@ export async function POST(request) {
       "api::page.page": "pages",
       "api::page": "page",
       "api::article.article": "articles",
+      // Product endpoints with specific queries
+      "api::product.product:populate": "products-populate",
       // Add more mappings as needed
     };
 
     // Get the appropriate cache tag
-    const cacheTag = cacheTagMap[model] || "default";
+    let cacheTag = cacheTagMap[model] || "default";
 
-    // Revalidate the specific content type
-    revalidateTag(cacheTag);
+    // Handle specific product endpoints
+    if (model === "api::product.product") {
+      // Revalidate both general products and populated products
+      revalidateTag("products");
+      revalidateTag("products-populate");
+      cacheTag = "products,products-populate";
+    } else {
+      revalidateTag(cacheTag);
+    }
 
     // Also revalidate the home page since it displays multiple content types
     revalidateTag("home");
