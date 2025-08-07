@@ -75,7 +75,7 @@ const ProductsSection = ({ products, locale }) => {
   return (
     <>
       <style>{swiperStyles}</style>
-      <section className="py-16 px-6 font-alexandria">
+      <section className="py-16 font-alexandria">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div
@@ -123,7 +123,11 @@ const ProductsSection = ({ products, locale }) => {
                 spaceBetween={20}
                 slidesPerView={1.1}
                 centeredSlides={false}
-                style={{ paddingLeft: "6vw", paddingRight: "6vw" }}
+                style={{
+                  paddingLeft: "6vw",
+                  paddingRight: "6vw",
+                  paddingBottom: "30px",
+                }}
                 className="equal-height-swiper"
                 breakpoints={{
                   320: {
@@ -150,7 +154,7 @@ const ProductsSection = ({ products, locale }) => {
                   return (
                     <SwiperSlide key={product.id} className="h-auto">
                       <div
-                        className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0"
+                        className="bg-white rounded-2xl p-3 shadow-md md:shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0"
                         data-aos="fade-up"
                         data-aos-duration="600"
                         data-aos-delay={200 + index * 100}

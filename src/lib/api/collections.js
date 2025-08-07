@@ -11,12 +11,26 @@ export async function fetchCategories() {
   return json.data || [];
 }
 
-export async function fetchBlogsHomePage() {
-  const json = await apiCall(
-    "/blogs?populate=*&pagination[page]=1&pagination[pageSize]=500"
-  );
+export async function fetchBlogsHomePage({
+  page = 1,
+  pageSize = 30,
+  search = "",
+} = {}) {
+  // Build query params
+  let params = [];
+  if (page) params.push(`pagination[page]=${page}`);
+  if (pageSize) params.push(`pagination[pageSize]=${pageSize}`);
+  if (search)
+    params.push(`filters[title][$containsi]=${encodeURIComponent(search)}`);
 
-  return transformBlog(json.data);
+  const queryString = params.length > 0 ? `&${params.join("&")}` : "";
+
+  const json = await apiCall(`/blogs?populate=*&${queryString}`);
+
+  return {
+    items: transformBlog(json.data),
+    totalCount: json.meta?.pagination?.total || 0,
+  };
 }
 
 export async function fetchProductsBHomePage() {
@@ -39,8 +53,6 @@ export async function fetchProductsBHomePage() {
           };
         })
       : [];
-
-    console.log(colors);
 
     const image = product.mainImageUrl?.url
       ? getFullImageUrl(product.mainImageUrl.url)

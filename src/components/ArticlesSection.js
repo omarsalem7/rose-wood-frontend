@@ -210,8 +210,15 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
               data-aos-duration="800"
               data-aos-delay="400"
             >
-              {/* Navigation Arrows */}
+              {/* Show All Blogs Button */}
+              <Link
+                href={`/${locale}/blog`}
+                className="bg-white text-[#8B5A3C] font-bold rounded-full px-6 py-2 shadow hover:bg-gray-100 transition-colors duration-200 border border-[#8B5A3C]"
+              >
+                عرض كل المدونات
+              </Link>
 
+              {/* Navigation Arrows */}
               <div className="hidden md:flex items-center gap-4">
                 <button
                   onClick={goToPrevious}

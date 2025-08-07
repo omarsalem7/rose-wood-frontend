@@ -42,7 +42,7 @@ export default async function Home({ params }) {
       />
       <VideoSection videoData={videoSection} />
       <WhyChooseRosewoodSection />
-      <ArticlesSection blogs={blogs} title={blogsTitle} locale={locale} />
+      <ArticlesSection blogs={blogs.items} title={blogsTitle} locale={locale} />
       <ContactSection locale={locale} />
     </HomeWithAnimations>
   );

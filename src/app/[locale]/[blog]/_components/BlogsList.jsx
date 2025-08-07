@@ -2,15 +2,15 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Pagination from "./Pagination";
-import Filter from "./Filter";
 import Link from "next/link";
-import { getAllproducts } from "@/lib/api/products";
+import { fetchBlogsHomePage } from "@/lib/api/collections";
+// Reuse Filter and Pagination if available, otherwise create simple versions below
+import Filter from "../../products/_components/Filter";
+import Pagination from "../../products/_components/Pagination";
 
 const PAGE_SIZE = 12;
 
-// Skeleton component for loading state
-const ProductSkeleton = () => (
+const BlogSkeleton = () => (
   <div className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-8 animate-pulse min-h-[350px]">
     <div className="bg-gray-200 rounded-full w-[160px] h-[100px] mt-4 mb-6" />
     <div className="bg-gray-200 rounded h-7 w-2/3 mb-2" />
@@ -18,11 +18,9 @@ const ProductSkeleton = () => (
   </div>
 );
 
-const ProductsList = ({ locale }) => {
+const BlogsList = ({ locale }) => {
   const searchParams = useSearchParams();
-  const categoryId = searchParams.get("categoryId");
-
-  const [products, setProducts] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
@@ -30,29 +28,27 @@ const ProductsList = ({ locale }) => {
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
-  const fetchProducts = async (page = 1, searchValue = "") => {
+  const fetchBlogs = async (page = 1, searchValue = "") => {
     setLoading(true);
     try {
-      const filters = searchValue ? { name: { $containsi: searchValue } } : {};
-      const res = await getAllproducts({
-        categoryId,
-        filters,
+      const res = await fetchBlogsHomePage({
         page,
         pageSize: PAGE_SIZE,
+        search: searchValue,
       });
-      setProducts(res.items || []);
+      setBlogs(res.items || []);
       setTotalCount(res.totalCount || 0);
     } catch (e) {
-      setProducts([]);
+      setBlogs([]);
       setTotalCount(0);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchProducts(currentPage, search);
+    fetchBlogs(currentPage, search);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, search, categoryId]);
+  }, [currentPage, search]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -76,15 +72,15 @@ const ProductsList = ({ locale }) => {
             data-aos-delay="300"
             className="py-4"
           >
-            كل المنتجات ({totalCount})
+            كل المدونات ({totalCount})
           </div>
           {loading ? (
             <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
               {Array.from({ length: 3 }).map((_, i) => (
-                <ProductSkeleton key={i} />
+                <BlogSkeleton key={i} />
               ))}
             </div>
-          ) : products.length === 0 ? (
+          ) : blogs.length === 0 ? (
             <div
               data-aos="fade-up"
               data-aos-duration="900"
@@ -94,25 +90,22 @@ const ProductsList = ({ locale }) => {
                 <div className="mb-6">
                   <img
                     src="/assets/noProducts.png"
-                    alt="No products found"
+                    alt="No blogs found"
                     className="w-32 h-32 mx-auto opacity-60"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                  لا توجد منتجات
+                  لا توجد مدونات
                 </h3>
-                <p className="text-gray-500 text-sm">
-                  {categoryId ? "لا توجد منتجات في هذه الفئة" : ""}
-                </p>
               </div>
             </div>
           ) : (
             <>
               <div className="items py-2 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
-                {products.map((product, index) => (
+                {blogs.map((blog, index) => (
                   <Link
-                    href={`/${locale}/products/${product.documentId}`}
-                    key={product.id}
+                    href={`/${locale}/blog/${blog.id}`}
+                    key={blog.id}
                     data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay={index * 100}
@@ -120,18 +113,21 @@ const ProductsList = ({ locale }) => {
                   >
                     <div className="flex justify-center w-full">
                       <Image
-                        src={product.mainImageUrl || product.image}
-                        alt=""
+                        src={blog.image}
+                        alt={blog.title}
                         width={220}
                         height={140}
                         className="object-contain mb-6 drop-shadow-md"
                       />
                     </div>
                     <h2 className="text-2xl font-semibold text-[#223132] text-center mb-2">
-                      {product.name}
+                      {blog.title}
                     </h2>
-                    <span className="text-base text-[#7B8B8E] text-center">
-                      {product.availableQuantities}
+                    <span className="text-base text-[#7B8B8E] text-center mb-2">
+                      {blog.description}
+                    </span>
+                    <span className="text-xs text-gray-400 text-center">
+                      {new Date(blog.date).toLocaleDateString(locale)}
                     </span>
                   </Link>
                 ))}
@@ -155,4 +151,4 @@ const ProductsList = ({ locale }) => {
   );
 };
 
-export default ProductsList;
+export default BlogsList;
