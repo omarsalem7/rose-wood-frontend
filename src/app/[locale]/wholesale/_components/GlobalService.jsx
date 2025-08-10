@@ -5,7 +5,7 @@ import React from "react";
 const GlobalService = ({ global, locale }) => {
   return (
     <>
-      <section className="px-6  pt-30 md:pt-60">
+      <section className="px-6  pt-30 md:pt-60 mt-16">
         <div className="max-w-7xl mx-auto">
           <div className="text-center pb-8 ">
             <h2 className="font-medium text-2xl leading-12">{global.title}</h2>

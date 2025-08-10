@@ -5,19 +5,19 @@ import Link from "next/link";
 const GlobalService = ({ stepsData, locale }) => {
   return (
     <>
-      <section className="px-6 pt-30 md:pt-60">
+      <section className="px-6 pt-30 md:pt-60 mt-16">
         <div className="max-w-7xl mx-auto">
           <div className="text-center pb-8 ">
             <h2
               data-aos="fade-down"
-              data-aos-duration="800"
-              className="font-medium text-2xl leading-12"
+              data-aos-duration="400"
+              className="font-medium text-2xl leading-12 py-2"
             >
               {stepsData.title}
             </h2>
             <p
               data-aos="fade-up"
-              data-aos-duration="800"
+              data-aos-duration="600"
               data-aos-delay="200"
               className="text-[#586675] text-lg"
             >
