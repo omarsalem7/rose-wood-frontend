@@ -13,6 +13,14 @@
   font-family: var(--font-ibm-plex-arabic), var(--font-alexandria), sans-serif;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
   font-family: var(--font-alexandria), var(--font-ibm-plex-arabic), sans-serif;
   background-color: #fff;

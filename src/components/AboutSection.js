@@ -10,11 +10,14 @@ export default function AboutSection({
   locale,
 }) {
   return (
-    <section id="about-us" className="py-8 md:py-24 px-6 bg-white">
+    <section
+      id="about-us"
+      className="py-8 md:py-24 px-6 bg-white h-full w-full overflow-x-hidden"
+    >
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-12 items-stretch h-full">
           {/* Content */}
-          <div className="text-start flex flex-col justify-center h-full">
+          <div className="text-start flex flex-col justify-center ">
             <div className="mb-8" data-aos="fade-right" data-aos-duration="600">
               <div className="flex items-center justify-start gap-2 mb-4">
                 <Image
