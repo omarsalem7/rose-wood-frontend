@@ -33,5 +33,9 @@
   "filterButton": "Filter Search",
   "searchButton": "Search",
   "allBlogs": "All Blogs",
-  "noBlogsFound": "No blogs found"
+  "noBlogsFound": "No blogs found",
+  "viewAllBlogs": "View All Blogs",
+  "allProducts": "All Products",
+  "noProductsFound": "No products found",
+  "noProductsInCategory": "No products in this category"
 }

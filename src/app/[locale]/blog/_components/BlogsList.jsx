@@ -84,11 +84,7 @@ const BlogsList = ({ locale }) => {
               ))}
             </div>
           ) : blogs.length === 0 ? (
-            <div
-              data-aos="fade-up"
-              data-aos-duration="900"
-              className="py-16 pb-24 text-center"
-            >
+            <div className="py-16 pb-24 text-center">
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
                   <img
@@ -136,11 +132,7 @@ const BlogsList = ({ locale }) => {
                   </Link>
                 ))}
               </div>
-              <div
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="500"
-              >
+              <div>
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}

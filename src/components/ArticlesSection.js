@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
 import Link from "next/link";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
 
 // Custom styles for equal height Swiper slides
 const swiperStyles = `
@@ -30,6 +32,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const articlesPerPage = 3;
+  const t = locale === "ar" ? ar : en;
 
   useEffect(() => {
     const handleResize = () => {
@@ -203,7 +206,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           </div>
 
           {/* Bottom Section with Button and Navigation */}
-          {blogs.length > 0 && (
+          {blogs.length > 3 && (
             <div
               className="flex items-center justify-between px-8"
               data-aos="fade-up"
@@ -213,9 +216,9 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
               {/* Show All Blogs Button */}
               <Link
                 href={`/${locale}/blog`}
-                className="bg-white text-[#8B5A3C] font-bold rounded-full px-6 py-2 shadow hover:bg-gray-100 transition-colors duration-200 border border-[#8B5A3C]"
+                className="bg-white/90 rounded-xl text-primary-800 backdrop-blur-sm  hover:bg-white px-12 py-3 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
-                عرض كل المدونات
+                {t.viewAllBlogs}
               </Link>
 
               {/* Navigation Arrows */}

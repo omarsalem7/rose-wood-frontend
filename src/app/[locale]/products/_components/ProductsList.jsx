@@ -6,6 +6,8 @@ import Pagination from "./Pagination";
 import Filter from "./Filter";
 import Link from "next/link";
 import { getAllproducts } from "@/lib/api/products";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
 
 const PAGE_SIZE = 12;
 
@@ -27,6 +29,7 @@ const ProductsList = ({ locale }) => {
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
@@ -76,7 +79,7 @@ const ProductsList = ({ locale }) => {
             data-aos-delay="300"
             className="py-4"
           >
-            كل المنتجات ({totalCount})
+            {t.allProducts} ({totalCount})
           </div>
           {loading ? (
             <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
@@ -85,11 +88,7 @@ const ProductsList = ({ locale }) => {
               ))}
             </div>
           ) : products.length === 0 ? (
-            <div
-              data-aos="fade-up"
-              data-aos-duration="900"
-              className="py-16 pb-24 text-center"
-            >
+            <div className="py-16 pb-24 text-center">
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
                   <img
@@ -99,10 +98,10 @@ const ProductsList = ({ locale }) => {
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                  لا توجد منتجات
+                  {t.noProductsFound}
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  {categoryId ? "لا توجد منتجات في هذه الفئة" : ""}
+                  {categoryId ? t.noProductsInCategory : ""}
                 </p>
               </div>
             </div>
@@ -136,11 +135,7 @@ const ProductsList = ({ locale }) => {
                   </Link>
                 ))}
               </div>
-              <div
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="500"
-              >
+              <div>
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}
