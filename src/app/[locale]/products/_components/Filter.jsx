@@ -50,7 +50,7 @@ const Filter = ({ onFilter = () => {} }) => {
             className="items flex justify-between items-center gap-2 md:gap-6"
           >
             <div
-              className="w-[80%] rounded-full px-2 flex items-center"
+              className="w-[80%] py-2 rounded-full px-2 flex items-center"
               style={{ backgroundColor: "#FFF8F6" }}
             >
               <input
@@ -62,14 +62,14 @@ const Filter = ({ onFilter = () => {} }) => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button
+              {/* <Button
                 type="button"
                 className=" text-[#5F361F]  cursor-pointer"
                 onClick={() => onFilter(search)}
               >
                 {t.filterButton}
                 <SlidersHorizontal />
-              </Button>
+              </Button> */}
             </div>
             <div className="w-[20%]">
               <Button

@@ -32,5 +32,7 @@
   "productsTitle": "مـنتــجات روز وود",
   "searchPlaceholder": "ابحث عن ما تريد هنا...",
   "filterButton": "فلتر البحث",
-  "searchButton": "ابحث"
+  "searchButton": "ابحث",
+  "allBlogs": "كل المدونات",
+  "noBlogsFound": "لا توجد مدونات"
 }

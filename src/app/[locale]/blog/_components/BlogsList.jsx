@@ -7,6 +7,8 @@ import { fetchBlogsHomePage } from "@/lib/api/collections";
 // Reuse Filter and Pagination if available, otherwise create simple versions below
 import Filter from "../../products/_components/Filter";
 import Pagination from "../../products/_components/Pagination";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
 
 const PAGE_SIZE = 12;
 
@@ -25,6 +27,7 @@ const BlogsList = ({ locale }) => {
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
@@ -72,7 +75,7 @@ const BlogsList = ({ locale }) => {
             data-aos-delay="300"
             className="py-4"
           >
-            كل المدونات ({totalCount})
+            {t.allBlogs} ({totalCount})
           </div>
           {loading ? (
             <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
@@ -95,13 +98,13 @@ const BlogsList = ({ locale }) => {
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                  لا توجد مدونات
+                  {t.noBlogsFound}
                 </h3>
               </div>
             </div>
           ) : (
             <>
-              <div className="items py-2 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
+              <div className="items py-2 grid grid-cols-1 lg:grid-cols-3  gap-6">
                 {blogs.map((blog, index) => (
                   <Link
                     href={`/${locale}/blog/${blog.id}`}
@@ -109,18 +112,19 @@ const BlogsList = ({ locale }) => {
                     data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay={index * 100}
-                    className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:scale-105 min-h-fit md:min-h-[350px]"
+                                         className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-shadow hover:shadow-xl min-h-fit md:min-h-[300px]"
                   >
-                    <div className="flex justify-center w-full">
-                      <Image
-                        src={blog.image}
-                        alt={blog.title}
-                        width={220}
-                        height={140}
-                        className="object-contain mb-6 drop-shadow-md"
-                      />
-                    </div>
-                    <h2 className="text-2xl font-semibold text-[#223132] text-center mb-2">
+                                         <div className="w-full rounded-lg -mx-4 md:-mx-8 mb-2 h-48 overflow-hidden">
+                       <Image
+                         src={blog.image}
+                         alt={blog.title}
+                         width={0}
+                         height={0}
+                         sizes="100vw"
+                         className="w-full h-full object-cover drop-shadow-md"
+                       />
+                     </div>
+                    <h2 className="text-xl font-semibold text-[#223132] text-center mb-2">
                       {blog.title}
                     </h2>
                     <span className="text-base text-[#7B8B8E] text-center mb-2">

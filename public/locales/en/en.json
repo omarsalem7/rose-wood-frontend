@@ -31,5 +31,7 @@
   "productsTitle": "Rose Wood Products",
   "searchPlaceholder": "Search for what you want here...",
   "filterButton": "Filter Search",
-  "searchButton": "Search"
+  "searchButton": "Search",
+  "allBlogs": "All Blogs",
+  "noBlogsFound": "No blogs found"
 }

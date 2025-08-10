@@ -203,7 +203,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           </div>
 
           {/* Bottom Section with Button and Navigation */}
-          {blogs.length > 3 && (
+          {blogs.length > 0 && (
             <div
               className="flex items-center justify-between px-8"
               data-aos="fade-up"

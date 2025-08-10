@@ -97,7 +97,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 />
                 {data?.wholesaleExport}
               </Link>
-              <SmoothScrollLink
+              {/* <SmoothScrollLink
                 elementId="whyUseRosewood"
                 locale={locale}
                 onClick={onClose}
@@ -111,7 +111,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.whyUseRosewood}
-              </SmoothScrollLink>
+              </SmoothScrollLink> */}
               <Link
                 onClick={onClose}
                 href={`/${locale}/wood-steps`}
@@ -125,6 +125,21 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.manufacturingSteps || "خطوات التصنيع"}
+              </Link>
+
+              <Link
+                onClick={onClose}
+                href={`/${locale}/blog`}
+                className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <Image
+                  width={25}
+                  height={25}
+                  src="/icons/rose-icon.svg"
+                  alt="manufacturingSteps"
+                  className="text-white"
+                />
+                {data?.blogs || "مدوناتنا"}
               </Link>
               {/* <SmoothScrollLink
                 elementId="visual-feeding"
