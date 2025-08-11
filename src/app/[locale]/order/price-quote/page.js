@@ -44,6 +44,7 @@ const organizeProductsByCategory = (products) => {
     categories[categoryName].push({
       value: product.documentId.toString(),
       label: product.name,
+      image: product.mainImageUrl || null,
     });
   });
 
@@ -420,6 +421,16 @@ export default function OfferPricePage({ params }) {
                                             <SelectItem
                                               key={product.value}
                                               value={product.value}
+                                              textValue={product.label}
+                                              left={
+                                                product.image ? (
+                                                  <img
+                                                    src={product.image}
+                                                    alt={product.label}
+                                                    className="h-6 w-6 rounded object-cover"
+                                                  />
+                                                ) : null
+                                              }
                                             >
                                               {product.label}
                                             </SelectItem>

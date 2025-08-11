@@ -97,8 +97,13 @@ export const getRelatedProducts = async (categoryId, productId) => {
 
 export const getLookupProducts = async () => {
   const json = await apiCall(
-    `/products?fields=name&populate=category&pagination[page]=1&pagination[pageSize]=1000`
+    `/products?fields=name&populate[mainImageUrl][fields]=url&populate=category&pagination[page]=1&pagination[pageSize]=1000`
   );
 
-  return json.data;
+  return json.data.map((item) => {
+    return {
+      ...item,
+      mainImageUrl: getFullImageUrl(item.mainImageUrl.url),
+    };
+  });
 };

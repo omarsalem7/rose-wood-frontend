@@ -116,7 +116,7 @@ const SelectLabel = React.forwardRef(function SelectLabel(
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const SelectItem = React.forwardRef(function SelectItem(
-  { className, children, ...props },
+  { className, children, left, textValue, ...props },
   ref
 ) {
   return (
@@ -126,6 +126,7 @@ const SelectItem = React.forwardRef(function SelectItem(
         "relative flex w-full  hover:bg-gray-100 cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-gray-100 focus:text-gray-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[state=checked]:bg-[#5f381f19] font-alexandria",
         className
       )}
+      textValue={textValue}
       {...props}
     >
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
@@ -133,6 +134,8 @@ const SelectItem = React.forwardRef(function SelectItem(
           <Check className="h-4 w-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
+
+      {left ? <span className="mr-2 flex items-center">{left}</span> : null}
 
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
