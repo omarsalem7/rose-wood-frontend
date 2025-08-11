@@ -1,0 +1,49 @@
+import React from "react";
+import { fetchContactPageData } from "@/lib/api/cms";
+import ContactForm from "./ContactForm";
+import ContactInfo from "./ContactInfo";
+import en from "@/../public/locales/en/contact.json";
+import ar from "@/../public/locales/ar/contact.json";
+
+const ContactWrapper = async ({ locale }) => {
+  const t = locale === "ar" ? ar : en;
+  let data = null;
+  let error = null;
+  try {
+    data = await fetchContactPageData();
+  } catch (err) {
+    error = err;
+  }
+
+  if (error || !data) {
+    return (
+      <section className="px-6 py-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center text-[40px] font-extrabold pb-7">
+            {t.title}
+          </div>
+          <div className="flex justify-center items-center h-64">
+            <div className="text-lg text-red-500">Error loading contact data</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="px-6 py-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center text-[40px] font-extrabold pb-7">
+          {t.title}
+        </div>
+        <div className="items flex flex-col gap-6 md:flex-row">
+          <ContactForm btnText={data.sendButton} contactForm={data.contactForm} locale={locale} t={t} />
+          <ContactInfo contactInfo={data} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ContactWrapper;
+
