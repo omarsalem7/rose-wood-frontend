@@ -6,7 +6,6 @@ export async function POST(request) {
     const body = await request.json();
 
     // Log the webhook payload for debugging
-    console.log("Strapi webhook received:", body);
 
     // Extract the model/collection type from the webhook
     const model = body.data?.type || body.model;

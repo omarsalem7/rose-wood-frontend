@@ -50,7 +50,7 @@ export const getProductById = async (id) => {
     `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery&populate=colors`
   );
   const product = json.data;
-  console.log(product);
+
   return {
     ...product,
     mainImageUrl: getFullImageUrl(product.mainImageUrl.url),

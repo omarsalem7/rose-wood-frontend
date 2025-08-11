@@ -28,8 +28,6 @@ export const submitPriceQuote = async (data) => {
           quantity: orderItem.quantity,
         };
 
-        console.log("Creating order item with data:", orderItemData);
-
         const orderItemResponse = await apiCall("/order-items", {
           method: "POST",
           headers: {
@@ -38,12 +36,9 @@ export const submitPriceQuote = async (data) => {
           body: JSON.stringify({ data: orderItemData }),
         });
 
-        console.log("Order item created:", orderItemResponse.data);
         orderItemIds.push(orderItemResponse.data.documentId);
       }
     }
-
-    console.log("Collected order item IDs:", orderItemIds);
 
     // Step 2: Create price quotation and connect order items
     const strapiData = {
@@ -60,8 +55,6 @@ export const submitPriceQuote = async (data) => {
       // requestStatus will default to "new" as per schema
     };
 
-    console.log("Creating price quotation with data:", strapiData);
-
     const response = await apiCall("/price-quotations", {
       method: "POST",
       headers: {
@@ -69,8 +62,6 @@ export const submitPriceQuote = async (data) => {
       },
       body: JSON.stringify({ data: strapiData }),
     });
-
-    console.log("Price quotation created:", response.data);
 
     return response;
   } catch (error) {

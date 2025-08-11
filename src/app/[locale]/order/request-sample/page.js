@@ -75,7 +75,7 @@ export default function RequestSamplePage({ params }) {
       try {
         setLoading(true);
         const productsData = await getLookupProducts();
-        console.log(productsData);
+
         setProducts(productsData);
       } catch (error) {
         console.error("Error fetching products:", error);

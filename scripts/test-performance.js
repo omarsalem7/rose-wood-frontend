@@ -7,8 +7,6 @@ async function testNavigationPerformance() {
   // Enable performance monitoring
   await page.setCacheEnabled(false);
 
-  console.log("Testing navigation performance...\n");
-
   const routes = [
     "/ar",
     "/ar/products",
@@ -19,8 +17,6 @@ async function testNavigationPerformance() {
   ];
 
   for (const route of routes) {
-    console.log(`Testing route: ${route}`);
-
     const startTime = Date.now();
     await page.goto(`http://localhost:3000${route}`, {
       waitUntil: "networkidle0",
@@ -45,20 +41,9 @@ async function testNavigationPerformance() {
             ?.startTime || 0,
       };
     });
-
-    console.log(`  Load Time: ${loadTime}ms`);
-    console.log(
-      `  DOM Content Loaded: ${metrics.domContentLoaded.toFixed(2)}ms`
-    );
-    console.log(`  First Paint: ${metrics.firstPaint.toFixed(2)}ms`);
-    console.log(
-      `  First Contentful Paint: ${metrics.firstContentfulPaint.toFixed(2)}ms`
-    );
-    console.log("");
   }
 
   await browser.close();
-  console.log("Performance testing completed!");
 }
 
 // Run the test if this file is executed directly

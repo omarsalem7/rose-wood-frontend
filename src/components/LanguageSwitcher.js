@@ -15,18 +15,20 @@ const LanguageSwitcher = () => {
           variant="outline"
           size="sm"
           onClick={() => switchLanguage("en")}
+          title="Switch to English"
           className="text-sm rounded-xl flex items-center gap-1 cursor-pointer"
         >
-          <Globe size={16} /> English
+          <Globe size={16} /> En
         </Button>
       ) : (
         <Button
           variant="outline"
           size="sm"
+          title="Switch to Arabic"
           onClick={() => switchLanguage("ar")}
           className="text-sm rounded-xl flex items-center gap-1 cursor-pointer"
         >
-          <Globe size={16} /> العربية
+          <Globe size={16} /> ع
         </Button>
       )}
     </div>
