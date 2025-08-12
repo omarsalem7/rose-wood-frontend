@@ -6,7 +6,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import PerformanceDashboard from "@/components/PerformanceDashboard";
+import { generateMetadata } from "@/lib/metadata";
 
+export { generateMetadata };
 // Configure Alexandria font
 const alexandria = Alexandria({
   subsets: ["latin", "arabic"],

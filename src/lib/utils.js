@@ -1,5 +1,4 @@
 import { getCurrentLocale } from "./locale-utils";
-import { getFullImageUrl, transformImages } from "./image";
 /**
  * Utility function for combining class names with Tailwind CSS
  */

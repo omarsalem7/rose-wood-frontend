@@ -1,3 +1,4 @@
+import next from "next";
 import { getFullImageUrl } from "../image";
 import { apiCall } from "../utils";
 export async function fetchCategories() {
@@ -81,6 +82,16 @@ function transformBlog(data) {
       date: blog.createdAt,
     };
   });
+}
+
+export async function getBlogMetadata(id) {
+  const { data } = await apiCall(`/blogs/${id}?fields=title,description`, {
+    next: {
+      revalidate: 3600,
+    },
+  });
+
+  return data;
 }
 
 export async function getBlogById(id) {

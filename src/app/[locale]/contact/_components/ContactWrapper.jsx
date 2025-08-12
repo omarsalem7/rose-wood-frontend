@@ -1,4 +1,3 @@
-import React from "react";
 import { fetchContactPageData } from "@/lib/api/cms";
 import ContactForm from "./ContactForm";
 import ContactInfo from "./ContactInfo";

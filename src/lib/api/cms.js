@@ -3,6 +3,16 @@ import { apiCall } from "../utils";
 
 // ----------------------
 
+export async function fetchSiteSettings() {
+  const json = await apiCall("/seo", { next: { revalidate: 3600 } });
+
+  if (!json.data) {
+    throw new Error("Site settings not found");
+  }
+
+  return json.data;
+}
+
 export async function fetchAllHomePageData() {
   try {
     const json = await apiCall(

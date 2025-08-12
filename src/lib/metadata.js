@@ -1,95 +1,77 @@
-import { fetchAllHomePageData } from "./api/cms";
+import { fetchSiteSettings } from "./api/cms";
 
 export async function generateMetadata() {
   try {
-    // Fetch all data in parallel
-    // const [homeData, siteSettings] = await Promise.all([
-    //   fetchAllHomePageData(),
-    //   fetchSiteSettings(),
-    // ]);
-
-    const homeData = await fetchAllHomePageData();
-
-    const { hero, about, features } = homeData;
+    const { title, description, keywords } = await fetchSiteSettings();
 
     // Construct metadata from fetched data
     const metadata = {
-      title: hero?.title || "Rosewood Kitchenware",
-      description:
-        hero?.subTitle ||
-        about?.description ||
-        "Premium wooden kitchenware manufacturer",
+      metadataBase: new URL(
+        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+      ),
+      title: {
+        default: title,
+        template: `%s | ${title}`,
+        absolute: "",
+      },
+      description: description || "Premium wooden kitchenware manufacturer",
 
       // Keywords from various sections
-      keywords: [
-        "wooden kitchenware",
-        "kitchen utensils",
-        "natural wood products",
-        "eco-friendly kitchen tools",
-        // Add feature-based keywords
-        ...(features?.cards?.map((card) => card.text) || []),
-        // Add about section keywords
-        ...(about?.list?.map((item) => item.item) || []),
-      ]
-        .filter(Boolean)
-        .join(", "),
+      keywords:
+        keywords +
+        " , " +
+        [
+          "wooden kitchenware",
+          "kitchen utensils",
+          "natural wood products",
+          "eco-friendly kitchen tools",
+        ]
+          .filter(Boolean)
+          .join(", "),
 
       // Open Graph metadata
       openGraph: {
-        title: hero?.title || "Rosewood Kitchenware",
-        description:
-          hero?.subTitle ||
-          about?.description ||
-          "Premium wooden kitchenware manufacturer",
+        title: title || "Rosewood Kitchenware",
+        description: description || "Premium wooden kitchenware manufacturer",
         url:
-          process.env.NEXT_PUBLIC_SITE_URL ||
-          "https://rosewood-kitchenware.com",
-        siteName: "Rosewood Kitchenware",
+          process.env.NEXT_PUBLIC_API_URL || "https://rosewood-kitchenware.com",
+        siteName: "Rosewood",
         type: "website",
-        locale: "ar_EG", // Arabic Saudi Arabia
+        locale: "ar",
         images: [
-          // Hero image as primary
-          ...(hero?.imageUrl
-            ? [
-                {
-                  url: hero.imageUrl,
-                  width: 1200,
-                  height: 630,
-                  alt: hero.title || "Rosewood Kitchenware Hero Image",
-                },
-              ]
-            : []),
-          // About section images
-          ...(about?.images?.slice(0, 3).map((img) => ({
-            url: img.img,
-            width: 800,
+          {
+            url: "/assets/rose-v-logo.png",
+            width: 600,
             height: 600,
-            alt: img.alt || "Rosewood Kitchenware Product",
-          })) || []),
-        ].filter(Boolean),
+            alt: "Rosewood Kitchenware",
+          },
+          {
+            url: "/assets/rose-h-logo.png",
+            width: 1200,
+            height: 630,
+            alt: "Rosewood Kitchenware",
+          },
+        ],
       },
 
       // Twitter metadata
       twitter: {
-        card: "summary_large_image",
-        title: hero?.title || "Rosewood Kitchenware",
-        description:
-          hero?.subTitle ||
-          about?.description ||
-          "Premium wooden kitchenware manufacturer",
-        images: hero?.imageUrl ? [hero.imageUrl] : [],
+        card: "summary",
+        title: title || "Rosewood Kitchenware",
+        description: description || "Premium wooden kitchenware manufacturer",
+        images: ["/assets/rose-v-logo.png"],
       },
 
       // Additional metadata
-      authors: [{ name: "Rosewood Kitchenware" }],
-      creator: "Rosewood Kitchenware",
-      publisher: "Rosewood Kitchenware",
+      authors: [{ name: title }],
+      creator: title,
+      publisher: title,
 
       // Language and region
       alternates: {
         languages: {
-          "ar-SA": "/",
-          "en-US": "/en", // If you have English version
+          ar: "/ar",
+          en: "/en", // If you have English version
         },
       },
 
@@ -100,14 +82,14 @@ export async function generateMetadata() {
         "format-detection": "telephone=yes",
         "mobile-web-app-capable": "yes",
         "apple-mobile-web-app-status-bar-style": "default",
-        "application-name": "Rosewood Kitchenware",
+        "application-name": "Rosewood",
         "msapplication-TileColor": "#8B4513",
         "msapplication-config": "/favicon/browserconfig.xml",
       },
 
       // Structured data for SEO
       category: "business",
-      classification: "Kitchen Utensils Manufacturing",
+      classification: "Kitchenware Manufacturing",
 
       // Robots configuration
       robots: {
@@ -123,11 +105,11 @@ export async function generateMetadata() {
       },
 
       // Verification tags (add your actual verification codes)
-      verification: {
-        google: "your-google-verification-code",
-        yandex: "your-yandex-verification-code",
-        yahoo: "your-yahoo-verification-code",
-      },
+      // verification: {
+      //   google: "",
+      //   yandex: "",
+      //   yahoo: "",
+      // },
     };
 
     return metadata;
@@ -136,7 +118,7 @@ export async function generateMetadata() {
 
     // Return fallback metadata
     return {
-      title: "Rosewood Kitchenware - Premium Wooden Kitchen Utensils",
+      title: "Rosewood",
       description:
         "Premium wooden kitchenware manufacturer. High-quality, eco-friendly kitchen tools and utensils made from natural wood.",
       keywords:
@@ -149,13 +131,12 @@ export async function generateMetadata() {
         url:
           process.env.NEXT_PUBLIC_SITE_URL ||
           "https://rosewood-kitchenware.com",
-        siteName: "Rosewood Kitchenware",
+        siteName: "Rosewood",
         type: "website",
-        locale: "ar_EG",
+        locale: "ar",
       },
 
       twitter: {
-        card: "summary_large_image",
         title: "Rosewood Kitchenware - Premium Wooden Kitchen Utensils",
         description:
           "Premium wooden kitchenware manufacturer. High-quality, eco-friendly kitchen tools and utensils made from natural wood.",

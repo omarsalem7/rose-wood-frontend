@@ -1,10 +1,39 @@
-import React from "react";
+
 import BlogContentIntroSection from "./_components/BlogContentIntroSection";
 import BlogMainContentSection from "./_components/BlogMainContentSection";
 import BlogTagsAndShareSection from "./_components/BlogTagsAndShareSection";
 import RelatedBlogs from "./_components/RelatedBlogs";
-import { getBlogById } from "@/lib/api/collections";
+import { getBlogById, getBlogMetadata } from "@/lib/api/collections";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({ params }) {
+  const { blogId } = await params;
+  const { title, description } = await getBlogMetadata(blogId);
+  
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      type: 'article',
+      images: [
+        {
+          url: '/assets/rose-h-logo.png',
+          width: 1200,
+          height: 630,
+          alt: 'Rosewood Kitchenware',
+        },
+      ],
+    },
+    twitter: {
+      title: title,
+      description: description,
+      card: 'summary',
+      images: ["/assets/rose-v-logo.png"],
+    },
+  };
+}
 
 const BlogDetails = async ({ params }) => {
   const resolvedParams = await params;
@@ -21,7 +50,6 @@ const BlogDetails = async ({ params }) => {
     notFound();
   }
 
-  try {
     // Fetch blog data
     const blog = await getBlogById(blogId);
 
@@ -38,10 +66,6 @@ const BlogDetails = async ({ params }) => {
         <RelatedBlogs blogId={blogId} locale={locale} />
       </>
     );
-  } catch (error) {
-    console.error("Error fetching blog:", error);
-    notFound();
-  }
 };
 
 export default BlogDetails;

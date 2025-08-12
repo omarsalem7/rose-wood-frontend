@@ -45,6 +45,15 @@ export const getAllproducts = async ({
   };
 };
 
+export const getProductMetadata = async (id) => {
+  const json = await apiCall(`/products/${id}?fields=name,description`, {
+    next: {
+      revalidate: 3600,
+    },
+  });
+  return json.data;
+};
+
 export const getProductById = async (id) => {
   const json = await apiCall(
     `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery&populate=colors`
@@ -54,7 +63,9 @@ export const getProductById = async (id) => {
   return {
     ...product,
     mainImageUrl: getFullImageUrl(product.mainImageUrl.url),
-    productDetailsImage: getFullImageUrl(product.productDetailsImage.url),
+    productDetailsImage: product.productDetailsImage?.url
+      ? getFullImageUrl(product.productDetailsImage.url)
+      : null,
     gallery: product.gallery ? transformImages(product.gallery) : [],
   };
 };

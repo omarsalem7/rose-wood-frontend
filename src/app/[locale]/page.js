@@ -14,10 +14,8 @@ import {
   fetchBlogsHomePage,
   fetchProductsBHomePage,
 } from "@/lib/api/collections";
-import { generateMetadata } from "@/lib/metadata";
-import { fetchVisualFeedingsHomePage } from "@/lib/api/categories";
 
-export { generateMetadata };
+import { fetchVisualFeedingsHomePage } from "@/lib/api/categories";
 
 export default async function Home({ params }) {
   const resolvedParams = await params;

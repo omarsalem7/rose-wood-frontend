@@ -4,7 +4,17 @@ import RelatedProducts from "./_components/RelatedProducts";
 import MakeOrder from "./_components/MakeOrder";
 import ProductInfo from "./_components/ProductInfo";
 import HowWork from "../../about-us/_components/HowWork";
-import { getProductById } from "@/lib/api/products";
+import { getProductById, getProductMetadata } from "@/lib/api/products";
+
+export async function generateMetadata({ params }) {
+  const { productId } = await params;
+  const { name, description } = await getProductMetadata(productId);
+
+  return {
+    title: name,
+    description: description,
+  };
+}
 
 const Product = async ({ params }) => {
   const resolvedParams = await params;
