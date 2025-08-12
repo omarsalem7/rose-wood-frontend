@@ -8,11 +8,32 @@ import { getProductById, getProductMetadata } from "@/lib/api/products";
 
 export async function generateMetadata({ params }) {
   const { productId } = await params;
-  const { name, description } = await getProductMetadata(productId);
+  const { name, description, mainImageUrl } = await getProductMetadata(
+    productId
+  );
 
   return {
     title: name,
     description: description,
+    openGraph: {
+      title: name,
+      description: description,
+      type: "website",
+      images: [
+        {
+          url: mainImageUrl,
+          width: 1200,
+          height: 630,
+          alt: name,
+        },
+      ],
+    },
+    twitter: {
+      title: name,
+      description: description,
+      card: "summary_large_image",
+      images: [mainImageUrl],
+    },
   };
 }
 

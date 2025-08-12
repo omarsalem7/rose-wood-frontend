@@ -4,6 +4,14 @@ import GlobalService from "./_components/GlobalService";
 import LocalService from "./_components/LocalService";
 import { fetchWhaleSalePage } from "@/lib/api/cms";
 
+export async function generateMetadata({ params }) {
+  const { locale } =await params;
+  return {
+    title: locale === "ar" ? "التصدير" : "Export",
+    description: "رووز وود شريكك التجاري الموثوق – محليًا ودوليًا",
+  };
+}
+
 const WhaleSale = async ({ params }) => {
   const resolvedParams = await params;
   const { locale } = resolvedParams;

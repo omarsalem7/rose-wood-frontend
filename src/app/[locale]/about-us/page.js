@@ -7,6 +7,13 @@ import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
 import AboutWithAnimations from "./_components/AboutWithAnimations";
 import { fetchAllAboutPageData } from "@/lib/api/cms";
 
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  return {
+    title: locale === "ar" ? "تواصل معنا" : "Contact Us",
+    description: "Get in touch with Rose Wood for inquiries and support",
+  };
+}
 export default async function About({ params }) {
   const resolvedParams = await params;
   const { locale } = resolvedParams;

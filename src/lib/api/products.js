@@ -46,12 +46,20 @@ export const getAllproducts = async ({
 };
 
 export const getProductMetadata = async (id) => {
-  const json = await apiCall(`/products/${id}?fields=name,description`, {
-    next: {
-      revalidate: 3600,
-    },
-  });
-  return json.data;
+  const json = await apiCall(
+    `/products/${id}?fields=name,description&populate=mainImageUrl`,
+    {
+      next: {
+        revalidate: 3600,
+      },
+    }
+  );
+  return {
+    ...json.data,
+    mainImageUrl: json.data.mainImageUrl?.url
+      ? getFullImageUrl(json.data.mainImageUrl.url)
+      : null,
+  };
 };
 
 export const getProductById = async (id) => {
