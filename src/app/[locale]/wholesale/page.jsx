@@ -7,7 +7,7 @@ import { fetchWhaleSalePage } from "@/lib/api/cms";
 export async function generateMetadata({ params }) {
   const { locale } =await params;
   return {
-    title: locale === "ar" ? "التصدير" : "Export",
+    title: locale === "ar" ? "الجملة والتصدير" : "Wholesale",
     description: "رووز وود شريكك التجاري الموثوق – محليًا ودوليًا",
   };
 }
