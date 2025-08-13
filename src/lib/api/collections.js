@@ -1,4 +1,3 @@
-import next from "next";
 import { getFullImageUrl } from "../image";
 import { apiCall } from "../utils";
 export async function fetchCategories() {
