@@ -99,7 +99,7 @@ export default function AboutSection({
             >
               <div className="h-18 w-18 md:h-36 md:w-36 backdrop-blur-md bg-[#FFFFFF6E] rounded-full shadow-lg">
                 <Image
-                  src="/assets/rose-v-logo.png"
+                  src="/assets/rose-v-logo.svg"
                   alt="Rosewood Logo"
                   className="px-2 py-5 md:px-6 md:py-9 max-sm:w-[95px]"
                   width={150}

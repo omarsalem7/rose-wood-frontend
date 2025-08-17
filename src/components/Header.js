@@ -19,7 +19,7 @@ const Header = ({ onMenuClick, contactUs, locale, isLoading = false }) => (
       <Link href={`/${locale}`} className="flex items-center">
         <Image
           className="w-auto h-auto"
-          src="/assets/rose-h-logo.png"
+          src="/assets/rose-h-logo.svg"
           alt="Rosewood Logo"
           width={200}
           height={50}

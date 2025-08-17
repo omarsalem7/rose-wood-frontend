@@ -40,13 +40,13 @@ export async function generateMetadata() {
         locale: "ar",
         images: [
           {
-            url: "/assets/rose-v-logo.png",
+            url: "/assets/rose-v-logo.svg",
             width: 600,
             height: 600,
             alt: "Rosewood Kitchenware",
           },
           {
-            url: "/assets/rose-h-logo.png",
+            url: "/assets/rose-h-logo.svg",
             width: 1200,
             height: 630,
             alt: "Rosewood Kitchenware",
@@ -59,7 +59,7 @@ export async function generateMetadata() {
         card: "summary",
         title: title || "Rosewood Kitchenware",
         description: description || "Premium wooden kitchenware manufacturer",
-        images: ["/assets/rose-v-logo.png"],
+        images: ["/assets/rose-v-logo.svg"],
       },
 
       // Additional metadata

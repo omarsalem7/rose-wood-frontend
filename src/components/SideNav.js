@@ -27,7 +27,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           <Link href={`/${locale}`}>
             <Image
               className="w-auto h-auto"
-              src="/assets/rose-h-logo.png"
+              src="/assets/rose-h-logo.svg"
               alt="Rosewood Logo"
               width={200}
               height={100}

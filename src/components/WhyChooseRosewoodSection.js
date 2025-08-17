@@ -144,7 +144,7 @@ const WhyChooseRosewoodSection = async () => {
             {/* Central Logo */}
             <div className="absolute w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center z-10 border border-gray-200">
               <Image
-                src="/assets/rose-v-logo.png"
+                src="/assets/rose-v-logo.svg"
                 alt="Rosewood Logo"
                 width={56}
                 height={56}
