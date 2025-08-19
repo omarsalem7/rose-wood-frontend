@@ -52,7 +52,7 @@ const WhyChooseRosewoodSection = async () => {
     <>
       {/* Desktop/Tablet Layout */}
       <section className="py-20 px-6 max-lg:hidden" id="whyUseRosewood">
-        <h2 className="text-center  font-semibold text-3xl">
+        <h2 className="text-center text-[18px] md:text-[32px] font-medium">
           {whyChooseData.title || "لماذا تختار روز وود"}
         </h2>
         <div className="max-w-7xl mx-auto">

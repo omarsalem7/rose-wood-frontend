@@ -77,7 +77,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
             data-aos="fade-down"
             data-aos-duration="800"
           >
-            <h2 className="text-2xl md:text-3xl md:font-semibold text-white mb-4 font-alexandria">
+            <h2 className="text-[18px] md:text-[32px] font-medium text-white mb-4 font-alexandria">
               {title}
             </h2>
           </div>
