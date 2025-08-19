@@ -51,37 +51,40 @@ const VideoSection = ({ videoData }) => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-6">
-        {/* Title */}
-        <h2
-          className="text-2xl md:text-3xl md:font-semibold text-center mb-6 font-alexandria"
-          data-aos="fade-down"
-          data-aos-duration="600"
-          data-aos-delay="200"
-        >
-          {videoData.title}
-        </h2>
+      <div className="relative z-10 flex flex-col items-center justify-between h-full text-white px-6 py-12">
+        {/* Top Section - Title and Description */}
+        <div className="text-center">
+          {/* Title */}
+          <h2
+            className="text-[18px] md:text-[32px] font-medium text-center mb-4 font-alexandria"
+            data-aos="fade-down"
+            data-aos-duration="600"
+            data-aos-delay="200"
+          >
+            {videoData.title}
+          </h2>
 
-        {/* Subtitle */}
-        <p
-          className="text-lg md:text-xl text-center mb-12 max-w-3xl leading-relaxed font-alexandria"
-          data-aos="fade-up"
-          data-aos-duration="600"
-          data-aos-delay="400"
-        >
-          {videoData.description}
-        </p>
+          {/* Subtitle */}
+          <p
+            className="text-sm md:text-[24px] font-normal text-center max-w-3xl leading-relaxed font-alexandria"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="400"
+          >
+            {videoData.description}
+          </p>
+        </div>
 
-        {/* Play Button */}
+        {/* Center Section - Play Button */}
         <div
-          className="mb-8"
+          className="flex-1 flex items-center justify-center"
           data-aos="zoom-in"
           data-aos-duration="600"
           data-aos-delay="600"
         >
           <button
             onClick={handlePlayClick}
-            className="group relative w-20 h-20 md:w-24 md:h-24 bg-[#ffffff33] backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white border-opacity-50 hover:bg-opacity-30 transition-all duration-300 hover:scale-105"
+            className="group relative w-20 h-20 md:w-24 md:h-24 bg-[#ffffff55] backdrop-blur-sm rounded-full flex items-center justify-center  hover:bg-opacity-30 transition-all duration-300 hover:scale-105"
           >
             <Play
               size={32}
@@ -91,9 +94,9 @@ const VideoSection = ({ videoData }) => {
           </button>
         </div>
 
-        {/* Duration */}
+        {/* Bottom Section - Duration */}
         <div
-          className="flex items-center space-x-2 text-sm font-alexandria"
+          className="flex items-center justify-center space-x-2 text-sm font-alexandria"
           data-aos="fade-up"
           data-aos-duration="600"
           data-aos-delay="800"
