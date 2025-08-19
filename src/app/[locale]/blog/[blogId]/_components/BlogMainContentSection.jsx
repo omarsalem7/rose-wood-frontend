@@ -6,7 +6,7 @@ const BlogMainContentSection = ({ blog }) => {
     <>
       <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
         <div>
-          <div className="text-[32px] font-medium text-[#063046] pb-3">
+          <div className="text-[18px] md:text-[32px] font-medium text-[#063046] pb-3">
             {blog.subTitle}
           </div>
           <div className="items flex flex-col md:flex-row gap-6 ">

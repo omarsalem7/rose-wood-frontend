@@ -80,7 +80,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
     return (
       <div className="w-full">
         {/* Product Image */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6 min-h-[250px]">
           <Image
             src={product.visualFeeding}
             alt={product.name}
@@ -91,15 +91,13 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
         </div>
 
         {/* Product Title */}
-        <h3 className="text-2xl font-bold text-gray-800 mb-4">
-          {product.name}
-        </h3>
+        <h3 className="text-[18px]  font-medium mb-4">{product.name}</h3>
 
         {/* Description */}
-        <p className="text-gray-600 text-base mb-2">{product.description}</p>
+        <p className="text-gray-400 text-sm mb-2">{product.description}</p>
 
         {/* Features */}
-        <p className="text-gray-400 text-sm mb-6">{product.features}</p>
+        <p className="text-gray-400 text-sm mb-2">{product.features}</p>
 
         {/* Action Button */}
         <Link
@@ -125,7 +123,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl md:font-semibold text-gray-800 mb-4">
+          <h2 className="text-[18px] md:text-[32px] font-medium mb-4">
             {title}
           </h2>
         </div>

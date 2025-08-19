@@ -4,7 +4,7 @@ const BlogTagsAndShareSection = ({ blog }) => {
     <>
       <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
         <div className="border-b-5 border-[#727580] pb-10">
-          <div className="text-[32px] font-medium text-[#063046] pb-3">
+          <div className="text-[18px] md:text-[32px] font-medium text-[#063046] pb-3">
             {blog.subTitle2}
           </div>
           <ul className="space-y-5 mb-6 list-disc list-inside">
