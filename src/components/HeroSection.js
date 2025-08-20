@@ -21,7 +21,7 @@ const HeroSection = ({ title, subTitle, imageUrl, mobileImg }) => {
       <div className="relative z-10 flex items-center justify-center min-h-[70vh] px-6">
         <div className="text-center max-w-6xl">
           <h1
-            className="text-3xl md:text-6xl font-semibold md:font-bold mb-6 !leading-[100%] text-black"
+            className="text-[32px] leading-[45px] md:text-[48px] font-medium mb-6 md:!leading-[100%] text-black"
             data-aos="fade-down"
             data-aos-duration="600"
             data-aos-delay="300"
@@ -29,7 +29,7 @@ const HeroSection = ({ title, subTitle, imageUrl, mobileImg }) => {
             {title || "جودة طبيعية... لأدوات مطبخ صحية"}
           </h1>
           <p
-            className="text-lg md:text-2xl mb-8 !leading-[40px] text-[#586675] max-w-3xl mx-auto"
+            className="text-[14px] md:text-[24px] mb-8 md:!leading-[40px] text-[#586675] max-w-3xl mx-auto"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-delay="600"

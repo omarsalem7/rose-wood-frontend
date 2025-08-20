@@ -103,7 +103,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     style={{ width: "84vw", maxWidth: 400, height: "auto" }}
                     className="h-auto"
                   >
-                    <Link href={`/${locale}/blog/${article.id}`}>
+                    <div>
                       <Card className="bg-[#F2ECE9] max-sm:w-[70vw] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                         {/* Article Image */}
                         <div className="aspect-video  overflow-hidden flex-shrink-0 p-3">
@@ -117,13 +117,20 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                         </div>
                         <CardContent className="px-3 flex flex-col flex-grow gap-2">
                           {/* Article Title */}
-                          <h3 className="text-xl font-medium text-gray-600  font-alexandria leading-relaxed flex-shrink-0">
+                          <h3 className="text-sm font-medium text-[#4D4E5F]  font-alexandria leading-relaxed flex-shrink-0">
                             {article.title}
                           </h3>
                           {/* Article Excerpt */}
-                          <p className="text-gray-600 text-sm leading-relaxed  font-alexandria line-clamp-4 flex-grow">
-                            {article.description}
+                          <p className="text-[#727580] text-xs leading-relaxed  font-alexandria flex-grow">
+                            {article.description}{" "}
+                            <Link
+                              className="font-medium underline"
+                              href={`/${locale}/blog/${article.id}`}
+                            >
+                              ... {t.readMore}
+                            </Link>
                           </p>
+
                           {/* Article Meta */}
                           <div className="flex items-center justify-between text-gray-500 text-sm flex-shrink-0 mt-auto">
                             <div className="flex items-center space-x-4">
@@ -145,7 +152,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                           </div>
                         </CardContent>
                       </Card>
-                    </Link>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -176,7 +183,13 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                         </h3>
                         {/* Article Excerpt */}
                         <p className="text-gray-600 text-sm leading-relaxed font-alexandria line-clamp-4 flex-grow">
-                          {article.description}
+                          {article.description}{" "}
+                          <Link
+                            className="font-medium underline"
+                            href={`/${locale}/blog/${article.id}`}
+                          >
+                            ... {t.readMore}
+                          </Link>
                         </p>
                         {/* Article Meta */}
                         <hr className="p-[1px] bg-[#96979e24] mt-2" />

@@ -323,7 +323,7 @@ const ProductsSection = ({ products, locale }) => {
           <div className="text-center">
             <Link
               href={`/${locale}/categories`}
-              className="bg-[#5F361F] hover:bg-amber-900 text-white px-4 md:px-12 py-3 rounded-lg text-sm"
+              className="bg-[#5F361F] hover:bg-amber-900 text-white px-12 py-3 rounded-lg text-sm"
             >
               {t.viewAllProducts}
             </Link>

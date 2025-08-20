@@ -143,7 +143,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
               {categories.map((item, index) => (
                 <CarouselItem
                   key={item?.id}
-                  className="basis-[65%] flex-shrink-0"
+                  className="basis-[85%] md:basis-[65%] flex-shrink-0"
                 >
                   <div
                     className={`relative group cursor-pointer transition-all duration-700 ease-in-out transform  ${getCardScale(
@@ -151,7 +151,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
                     )} ${getCardOpacity(index)} mx-2`}
                     onClick={() => openModal(createModalContent(item))}
                   >
-                    <div className="aspect-[7/4] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
+                    <div className="aspect-[7/6] md:aspect-[7/4] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <Image
                         src={item.visualFeeding}
                         alt={item.name ?? `categoryImage ${index}`}
@@ -176,7 +176,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
           {/* Navigation Arrows */}
           <button
             onClick={() => api?.scrollPrev()}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+            className="absolute left-1 md:left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
             aria-label="Previous slide"
           >
             <ChevronLeft size={20} className="text-gray-700" />
@@ -184,7 +184,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
 
           <button
             onClick={() => api?.scrollNext()}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+            className="absolute right-1 md:right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
             aria-label="Next slide"
           >
             <ChevronLeft size={20} className="text-gray-700 rotate-180" />

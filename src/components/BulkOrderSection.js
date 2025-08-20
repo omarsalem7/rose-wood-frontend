@@ -5,10 +5,8 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
     <section className="py-12 md:py-16 px-6  bg-white">
       <div className="mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-[18px] md:text-[32px] font-medium mb-4">
-            {title}
-          </h2>
+        <div className="text-center mb-4 md:mb-12">
+          <h2 className="text-[18px] md:text-[32px] font-medium">{title}</h2>
         </div>
 
         {/* Cards Grid */}
