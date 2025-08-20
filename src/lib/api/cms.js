@@ -216,16 +216,15 @@ export async function fetchContactPageData() {
 function transformHeroData(heroData) {
   if (!heroData) return null;
 
-  const { title, subTitle, image } = heroData;
+  const { title, subTitle, image, mobileImg } = heroData;
 
   return {
     title: title || "Rosewood Kitchenware",
     subTitle: subTitle || "Premium wooden kitchenware",
-    imageUrl: image?.url
-      ? getFullImageUrl(image?.url)
-      : image?.url
-      ? getFullImageUrl(image?.url)
-      : null,
+    imageUrl: image?.url ? getFullImageUrl(image?.url) : "/assets/hero-bg.png",
+    mobileImg: mobileImg?.url
+      ? getFullImageUrl(mobileImg?.url)
+      : getFullImageUrl(image?.url),
   };
 }
 function transformHeroAboutPage(heroData) {

@@ -39,9 +39,9 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
 
   const getCardScale = (index) => {
     if (index === activeIndex) {
-      return "scale-75"; // Center card is smaller
+      return "scale-x-[0.85] md:scale-x-75 scale-y-[0.8]"; // Center card is smaller
     }
-    return "scale-110"; // Side cards are larger
+    return "scale-x-125 scale-y-100"; // Side cards are larger
   };
 
   const getCardOpacity = (index) => {
@@ -118,9 +118,9 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
     <section
       id="visual-feeding"
       style={{ direction: "ltr" }}
-      className="py-16 px-0 bg-gray-50 font-alexandria"
+      className="py-16 px-0 font-alexandria "
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-[18px] md:text-[32px] font-medium mb-4">
@@ -143,15 +143,15 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
               {categories.map((item, index) => (
                 <CarouselItem
                   key={item?.id}
-                  className="basis-[80%] md:basis-2/3 lg:basis-3/5 flex-shrink-0"
+                  className="basis-[65%] flex-shrink-0"
                 >
                   <div
-                    className={`relative group cursor-pointer transition-all duration-700 ease-in-out transform ${getCardScale(
+                    className={`relative group cursor-pointer transition-all duration-700 ease-in-out transform  ${getCardScale(
                       index
                     )} ${getCardOpacity(index)} mx-2`}
                     onClick={() => openModal(createModalContent(item))}
                   >
-                    <div className="aspect-[7/5] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
+                    <div className="aspect-[7/4] overflow-hidden rounded-lg bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-xl">
                       <Image
                         src={item.visualFeeding}
                         alt={item.name ?? `categoryImage ${index}`}
@@ -160,9 +160,12 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                       {/* Plus icon overlay */}
-                      <div className="absolute top-4 left-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
-                        <Plus size={16} className="text-gray-600" />
-                      </div>
+
+                      {index === activeIndex && (
+                        <div className="absolute top-6 left-6 w-6 h-6 md:w-8 md:h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
+                          <Plus size={16} className="text-gray-600" />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </CarouselItem>
