@@ -21,11 +21,8 @@ const swiperStyles = `
 `;
 
 function formatArabicDate(dateString) {
-  return new Date(dateString).toLocaleDateString("ar-EG", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  const date = new Date(dateString);
+  return ` ${date.getDate()} / ${date.getMonth() + 1} / ${date.getFullYear()} `;
 }
 
 const ArticlesSection = ({ blogs = [], title, locale }) => {
@@ -68,7 +65,10 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
       <section
         id="blogs"
         className="py-16 px-0 md:px-8"
-        style={{ backgroundColor: "#8B5A3C" }}
+        style={{
+          backgroundColor: "#804524",
+          boxShadow: "0px 4px 4px 0px #8173640D",
+        }}
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Title */}
@@ -104,24 +104,24 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     className="h-auto"
                   >
                     <Link href={`/${locale}/blog/${article.id}`}>
-                      <Card className="bg-white max-sm:w-[70vw] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
+                      <Card className="bg-[#F2ECE9] max-sm:w-[70vw] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                         {/* Article Image */}
-                        <div className="aspect-video  overflow-hidden flex-shrink-0">
+                        <div className="aspect-video  overflow-hidden flex-shrink-0 p-3">
                           <Image
                             src={article.image}
                             alt={article.title}
                             width={200}
                             height={200}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover rounded-xl"
                           />
                         </div>
-                        <CardContent className="p-6 flex flex-col flex-grow">
+                        <CardContent className="px-3 flex flex-col flex-grow gap-2">
                           {/* Article Title */}
-                          <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed flex-shrink-0">
+                          <h3 className="text-xl font-medium text-gray-600  font-alexandria leading-relaxed flex-shrink-0">
                             {article.title}
                           </h3>
                           {/* Article Excerpt */}
-                          <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4 flex-grow">
+                          <p className="text-gray-600 text-sm leading-relaxed  font-alexandria line-clamp-4 flex-grow">
                             {article.description}
                           </p>
                           {/* Article Meta */}
@@ -154,48 +154,37 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                 {currentArticles.map((article, index) => (
                   <Link key={article.id} href={`/${locale}/blog/${article.id}`}>
                     <Card
-                      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+                      className="bg-[#F2ECE9] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
                       data-aos="fade-up"
                       data-aos-duration="800"
                       data-aos-delay={300 + index * 100}
                     >
                       {/* Article Image */}
-                      <div className="aspect-video overflow-hidden flex-shrink-0">
+                      <div className="aspect-video p-3  overflow-hidden flex-shrink-0">
                         <Image
                           src={article.image}
                           alt={article.title}
                           width={200}
                           height={200}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full rounded-xl h-full object-cover"
                         />
                       </div>
-                      <CardContent className="p-6 flex flex-col flex-grow">
+                      <CardContent className="px-3 flex flex-col flex-grow gap-2">
                         {/* Article Title */}
-                        <h3 className="text-xl font-medium text-gray-600 mb-4 font-alexandria leading-relaxed flex-shrink-0">
+                        <h3 className="text-xl font-medium text-gray-600 font-alexandria leading-relaxed flex-shrink-0">
                           {article.title}
                         </h3>
                         {/* Article Excerpt */}
-                        <p className="text-gray-600 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4 flex-grow">
+                        <p className="text-gray-600 text-sm leading-relaxed font-alexandria line-clamp-4 flex-grow">
                           {article.description}
                         </p>
                         {/* Article Meta */}
-                        <div className="flex items-center justify-between text-gray-500 text-sm flex-shrink-0 mt-auto">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-1">
-                              <Calendar size={16} />
-                              <span className="font-alexandria">
-                                {formatArabicDate(article.date)}
-                              </span>
-                            </div>
-                            {/* <div className="flex items-center space-x-1">
-                          <MessageCircle size={16} />
-                          <span>{article.comments}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Eye size={16} />
-                          <span>{article.views}</span>
-                        </div> */}
-                          </div>
+                        <hr className="p-[1px] bg-[#96979e24] mt-2" />
+                        <div className="flex items-center gap-2 text-gray-500 text-sm">
+                          <Calendar size={16} />
+                          <span className="font-alexandria">
+                            {formatArabicDate(article.date)}
+                          </span>
                         </div>
                       </CardContent>
                     </Card>
@@ -216,7 +205,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
               {/* Show All Blogs Button */}
               <Link
                 href={`/${locale}/blog`}
-                className="bg-white/90 rounded-xl text-primary-800 backdrop-blur-sm  hover:bg-white px-12 py-3 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="rounded-xl text-white hover:bg-white hover:text-primary-900  px-12 py-3 text-base font-medium border border-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 {t.viewAllBlogs}
               </Link>

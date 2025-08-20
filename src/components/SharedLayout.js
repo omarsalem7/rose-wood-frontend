@@ -52,9 +52,9 @@ export default function SharedLayout({ children }) {
       />
       {/* Overlay for SideNav */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black/50 z-20" onClick={toggleMenu} />
+        <div className="fixed inset-0 bg-black/50 z-40" onClick={toggleMenu} />
       )}
-      {children}
+      <main className="pt-[80px]">{children}</main>
 
       <KitchenHeroSection locale={locale} />
       <Footer locale={locale} />

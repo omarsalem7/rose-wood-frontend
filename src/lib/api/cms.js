@@ -361,6 +361,9 @@ export async function fetchQuotationSection() {
       id: resData.id,
       title: resData.title || "اشترِ طبيك الدن معنا واطلب كميتك",
       buttonText: resData.buttonText || "عرض سعر مخصص",
+      image: resData.image?.url
+        ? getFullImageUrl(resData.image.url)
+        : "/assets/kitchen-bg.png",
     };
   } catch (error) {
     console.error("Error fetching WhyChooseRoseWood data:", error);

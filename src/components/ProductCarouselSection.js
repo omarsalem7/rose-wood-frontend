@@ -173,6 +173,23 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
             </CarouselContent>
           </Carousel>
 
+          {/* Navigation Arrows */}
+          <button
+            onClick={() => api?.scrollPrev()}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft size={20} className="text-gray-700" />
+          </button>
+
+          <button
+            onClick={() => api?.scrollNext()}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 z-10"
+            aria-label="Next slide"
+          >
+            <ChevronLeft size={20} className="text-gray-700 rotate-180" />
+          </button>
+
           {/* Progress indicator */}
           <div className="flex justify-center mt-6">
             <div className="flex items-center space-x-2">
