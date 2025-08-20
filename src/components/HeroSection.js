@@ -1,11 +1,19 @@
-const HeroSection = ({ title, subTitle, imageUrl }) => {
+const HeroSection = ({ title, subTitle, imageUrl, mobileImg }) => {
   return (
     <div className="relative h-[calc(100vh-78px)] bg-gray-100 font-alexandria">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${imageUrl || "/assets/hero-bg.png"})`,
+          backgroundImage: `url(${mobileImg})`,
+        }}
+      />
+
+      {/* Desktop Background Image - Hidden on mobile */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden md:block"
+        style={{
+          backgroundImage: `url(${imageUrl})`,
         }}
       />
 
@@ -21,7 +29,7 @@ const HeroSection = ({ title, subTitle, imageUrl }) => {
             {title || "جودة طبيعية... لأدوات مطبخ صحية"}
           </h1>
           <p
-            className="text-lg md:text-2xl mb-8 text-black max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-2xl mb-8 text-[#586675] max-w-3xl mx-auto leading-relaxed"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-delay="600"

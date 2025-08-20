@@ -25,8 +25,8 @@ const ProductDetails = ({ locale, product }) => {
     <>
       <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
         <div className="border-t border-gray-300 relative ">
-          <span className="absolute left-0 top-0 z-50 w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
-          <span className="absolute right-0 top-0 w-1.5 z-50 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
+          <span className="absolute left-0 top-0  w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
+          <span className="absolute right-0 top-0 w-1.5  h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
 
           <div className="items flex flex-col md:flex-row justify-between   gap-2 md:gap-6 py-12  ">
             <div className="w-full md:w-[50%]    px-2   flex flex-col gap-4">

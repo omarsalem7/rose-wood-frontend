@@ -42,7 +42,7 @@ const Product = async ({ params }) => {
   const { locale, productId } = resolvedParams;
   const product = await getProductById(productId);
   return (
-    <>
+    <div className="h-full w-full overflow-x-hidden">
       <ProductDetails locale={locale} product={product} />
       <MakeOrder locale={locale} />
       <ProductInfo locale={locale} product={product} />
@@ -60,7 +60,7 @@ const Product = async ({ params }) => {
           categoryId={product?.category?.documentId}
         />
       )}
-    </>
+    </div>
   );
 };
 

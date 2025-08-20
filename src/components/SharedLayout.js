@@ -8,7 +8,7 @@ import KitchenHeroSection from "./KitchenHeroSection";
 import { fetchNavbarData as getNavbarData } from "@/lib/api/cms";
 import { ModalProvider } from "@/lib/ModalContext";
 import GlobalModal from "./GlobalModal";
-import ScrollToTop from "./ScrollToTop";
+// import ScrollToTop from "./ScrollToTop";
 
 export default function SharedLayout({ children }) {
   const params = useParams();
@@ -59,7 +59,7 @@ export default function SharedLayout({ children }) {
       <KitchenHeroSection locale={locale} />
       <Footer locale={locale} />
       <GlobalModal />
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
     </ModalProvider>
   );
 }

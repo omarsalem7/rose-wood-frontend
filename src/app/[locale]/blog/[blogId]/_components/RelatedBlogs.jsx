@@ -12,7 +12,7 @@ const RelatedBlogs = async ({ blogId, locale }) => {
     <>
       <section className="py-8 max-w-7xl mx-auto px-6 2xl:px-0">
         <div>
-          <div className="text-[32px] font-medium text-[#063046] pb-3">
+          <div className="text-[18px] md:text-[32px] font-medium text-[#063046] pb-3">
             {t.relatedBlogs}
           </div>
           <div className="items grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -52,7 +52,7 @@ const WhyChooseRosewoodSection = async () => {
     <>
       {/* Desktop/Tablet Layout */}
       <section className="py-20 px-6 max-lg:hidden" id="whyUseRosewood">
-        <h2 className="text-center  font-semibold text-3xl">
+        <h2 className="text-center text-[18px] md:text-[32px] font-medium">
           {whyChooseData.title || "لماذا تختار روز وود"}
         </h2>
         <div className="max-w-7xl mx-auto">
@@ -144,7 +144,7 @@ const WhyChooseRosewoodSection = async () => {
             {/* Central Logo */}
             <div className="absolute w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center z-10 border border-gray-200">
               <Image
-                src="/assets/rose-v-logo.png"
+                src="/assets/rose-v-logo.svg"
                 alt="Rosewood Logo"
                 width={56}
                 height={56}

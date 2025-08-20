@@ -20,13 +20,15 @@ export default async function About({ params }) {
   const data = await fetchAllAboutPageData();
 
   return (
-    <AboutWithAnimations>
-      <Hero {...data.hero} />
-      <HowWork isButtonshow={true} locale={locale} />
-      <OurMessage {...data.ourMessage} />
-      <Vision {...data.ourVision} />
-      <SectorSection {...data.sectorSection} />
-      <WhyChooseRosewoodSection title="لماذا تختار روز وود" />
-    </AboutWithAnimations>
+    <div className="h-full w-full overflow-hidden ">
+      <AboutWithAnimations>
+        <Hero {...data.hero} />
+        <HowWork isButtonshow={true} locale={locale} />
+        <OurMessage {...data.ourMessage} />
+        <Vision {...data.ourVision} />
+        <SectorSection {...data.sectorSection} />
+        <WhyChooseRosewoodSection title="لماذا تختار روز وود" />
+      </AboutWithAnimations>
+    </div>
   );
 }

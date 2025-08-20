@@ -27,7 +27,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           <Link href={`/${locale}`}>
             <Image
               className="w-auto h-auto"
-              src="/assets/rose-h-logo.png"
+              src="/assets/rose-h-logo.svg"
               alt="Rosewood Logo"
               width={200}
               height={100}
@@ -141,10 +141,10 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 />
                 {data?.blogs || "مدوناتنا"}
               </Link>
-              {/* <SmoothScrollLink
+              <SmoothScrollLink
                 elementId="visual-feeding"
                 locale={locale}
-                className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+                className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
                 onClick={onClose}
               >
                 <Image
@@ -155,7 +155,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.visualFeeding}
-              </SmoothScrollLink> */}
+              </SmoothScrollLink>
               {/* <SmoothScrollLink
                 elementId="blogs"
                 locale={locale}
@@ -172,7 +172,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 {data?.blogs}
               </SmoothScrollLink> */}
 
-              <SmoothScrollLink
+              {/* <SmoothScrollLink
                 elementId="contactUs"
                 locale={locale}
                 onClick={onClose}
@@ -186,7 +186,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   className="text-white"
                 />
                 {data?.contactUs}
-              </SmoothScrollLink>
+              </SmoothScrollLink> */}
             </>
           )}
         </nav>

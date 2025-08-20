@@ -6,7 +6,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
       <div className="mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl md:font-semibold text-black mb-4">
+          <h2 className="text-[18px] md:text-[32px] font-medium mb-4">
             {title}
           </h2>
         </div>
@@ -14,12 +14,18 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
         {/* Cards Grid */}
         <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto min-h-[40vh]">
           {/* Bulk Order Card */}
-          <div className="bg-gradient-to-r  min-h-[38vh] from-[#fdf2ef] to-[#FFF8F600]  rounded-2xl p-4 md:p-8 shadow-sm relative overflow-hidden">
+          <div
+            className="min-h-[38vh] rounded-lg p-4 md:p-8 shadow-sm relative overflow-hidden"
+            style={{
+              backgroundImage: `linear-gradient(to bottom, rgba(253, 242, 239), rgba(255, 248, 246, 0.89)), url('/assets/bulk-bg.png')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             <div className="mb-8">
-              <h3 className="md:text-xl font-semibold md:font-bold text-black mb-4">
-                {card1.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-8">
+              <h3 className="md:text-[24px] font-medium mb-4">{card1.title}</h3>
+              <p className="leading-relaxed text-[#4E5F73]  text-[20px] mb-8">
                 {card1.description}
               </p>
 
@@ -43,12 +49,18 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
           </div>
 
           {/* Global Export Card */}
-          <div className="bg-gradient-to-r min-h-[38vh] from-[#fdf2ef] to-[#FFF8F600] rounded-2xl p-8 shadow-sm relative overflow-hidden">
+          <div
+            className="min-h-[38vh] rounded-lg p-8 shadow-sm relative overflow-hidden"
+            style={{
+              backgroundImage: `linear-gradient(to bottom, rgba(253, 242, 239), rgba(255, 248, 246, 0.89)), url('/assets/bulk-bg.png')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             <div className="mb-8">
-              <h3 className="md:text-xl font-semibold md:font-bold text-black mb-4">
-                {card2.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-8">
+              <h3 className="md:text-[24px] font-medium mb-4">{card2.title}</h3>
+              <p className="leading-relaxed text-[#4E5F73]  text-[20px] mb-8">
                 {card2.description}
               </p>
 

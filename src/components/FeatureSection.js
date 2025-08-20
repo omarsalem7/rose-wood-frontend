@@ -10,7 +10,7 @@ const FeaturesSection = ({ cards, title }) => {
           data-aos="fade-down"
           data-aos-duration="600"
         >
-          <h3 className="text-2xl md:text-3xl md:font-semibold text-black mb-4">
+          <h3 className="text-[18px] md:text-[32px] font-medium mb-4">
             {title}
           </h3>
         </div>
@@ -53,7 +53,7 @@ const FeaturesSection = ({ cards, title }) => {
               </div>
 
               {/* Title */}
-              <h3 className="text-sm md:text-lg font-semibold text-gray-800">
+              <h3 className="text-sm md:text-[20px] font-medium">
                 {feature.text}
               </h3>
             </div>

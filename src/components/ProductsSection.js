@@ -82,7 +82,7 @@ const ProductsSection = ({ products, locale }) => {
             data-aos="fade-down"
             data-aos-duration="600"
           >
-            <h2 className="text-2xl md:text-3xl md:font-bold text-gray-800 mb-8">
+            <h2 className="text-[18px] md:text-[32px] font-medium mb-8">
               {t.roseWoodProducts}
             </h2>
 
@@ -153,13 +153,13 @@ const ProductsSection = ({ products, locale }) => {
                   return (
                     <SwiperSlide key={product.id} className="h-auto">
                       <div
-                        className="bg-white rounded-2xl p-3 shadow-md md:shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0"
+                        className="bg-white border border-[#E5E5E5] rounded-lg hover:shadow-lg transition-shadow h-full flex flex-col w-full min-w-0 p-4"
                         data-aos="fade-up"
                         data-aos-duration="600"
                         data-aos-delay={200 + index * 100}
                       >
                         {/* Product Image */}
-                        <div className="w-full h-48 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
+                        <div className="w-full h-36 rounded-xl overflow-hidden flex-shrink-0">
                           {currentImage &&
                           typeof currentImage === "string" &&
                           currentImage.trim() !== "" ? (
@@ -180,11 +180,11 @@ const ProductsSection = ({ products, locale }) => {
                         </div>
 
                         {/* Product Info */}
-                        <div className="text-center mb-6 flex-grow flex flex-col">
-                          <h3 className="text-xl font-bold text-gray-800 mb-2 flex-shrink-0">
+                        <div className="text-center my-4 flex-grow flex flex-col gap-2">
+                          <h3 className="text-xl font-bold text-gray-800  flex-shrink-0">
                             {product.name}
                           </h3>
-                          <p className="text-gray-600 text-sm mb-1 flex-grow">
+                          <p className="text-gray-600 text-sm flex-grow">
                             {product.description}
                           </p>
                           <p className="text-gray-500 text-xs flex-shrink-0">
@@ -202,7 +202,7 @@ const ProductsSection = ({ products, locale }) => {
                                   onClick={() =>
                                     handleColorChange(product.id, index)
                                   }
-                                  className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                  className={`w-5 h-5 rounded-full border-3 transition-all ${
                                     selectedColor === index
                                       ? "border-white ring-[1.5px] ring-black"
                                       : "border-white hover:border-gray-400"
@@ -243,19 +243,19 @@ const ProductsSection = ({ products, locale }) => {
                   return (
                     <div
                       key={product.id}
-                      className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
+                      className="bg-white border border-[#E5E5E5] rounded-lg p-3 md:p-8  hover:shadow-lg transition-shadow h-full flex flex-col"
                       data-aos="fade-up"
                       data-aos-duration="600"
                       data-aos-delay={200 + index * 100}
                     >
                       {/* Product Image */}
-                      <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0">
+                      <div className="w-full h-24 md:h-48 rounded-xl overflow-hidden flex-shrink-0">
                         {currentImage &&
                         typeof currentImage === "string" &&
                         currentImage.trim() !== "" ? (
                           <Image
-                            width={200}
-                            height={200}
+                            width={150}
+                            height={150}
                             src={currentImage}
                             alt={product.name}
                             loading="lazy"
@@ -270,11 +270,11 @@ const ProductsSection = ({ products, locale }) => {
                       </div>
 
                       {/* Product Info */}
-                      <div className="text-center mb-6 flex-grow flex flex-col">
-                        <h3 className="md:text-xl md:font-bold text-gray-800 mb-2 flex-shrink-0">
+                      <div className="text-center my-4 flex-grow flex flex-col gap-2">
+                        <h3 className="md:text-xl md:font-bold text-gray-800 flex-shrink-0">
                           {product.name}
                         </h3>
-                        <p className="text-gray-600 text-sm mb-1 flex-grow">
+                        <p className="text-gray-600 text-sm flex-grow">
                           {product.description}
                         </p>
                         <p className="text-gray-500 text-xs flex-shrink-0">
@@ -292,7 +292,7 @@ const ProductsSection = ({ products, locale }) => {
                                 onClick={() =>
                                   handleColorChange(product.id, index)
                                 }
-                                className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                className={`w-5 h-5 rounded-full border-3 transition-all ${
                                   selectedColor === index
                                     ? "border-white ring-[1.5px] ring-black"
                                     : "border-white hover:border-gray-400"
@@ -323,7 +323,7 @@ const ProductsSection = ({ products, locale }) => {
           <div className="text-center">
             <Link
               href={`/${locale}/products`}
-              className="bg-[#5F361F] hover:bg-amber-900 text-white px-4 md:px-8 py-3 rounded-lg text-sm"
+              className="bg-[#5F361F] hover:bg-amber-900 text-white px-4 md:px-12 py-3 rounded-lg text-sm"
             >
               {t.viewAllProducts}
             </Link>

@@ -18,7 +18,7 @@ export default function AboutSection({
         <div className="grid lg:grid-cols-2 gap-12 items-stretch h-full">
           {/* Content */}
           <div className="text-start flex flex-col justify-center ">
-            <div className="mb-8" data-aos="fade-right" data-aos-duration="600">
+            <div data-aos="fade-right" data-aos-duration="600">
               <div className="flex items-center justify-start gap-2 mb-4">
                 <Image
                   src="/icons/rose-icon.svg"
@@ -26,7 +26,9 @@ export default function AboutSection({
                   height={30}
                   alt="Rosewood Logo"
                 />
-                <h2 className="text-2xl md:text-3xl  text-black">{title}</h2>
+                <h2 className="text-2xl md:text-3xl font-medium  text-[#2B3A4A]">
+                  {title}
+                </h2>
               </div>
 
               <p className="text-gray-600 text-lg leading-relaxed mb-8">
@@ -99,7 +101,7 @@ export default function AboutSection({
             >
               <div className="h-18 w-18 md:h-36 md:w-36 backdrop-blur-md bg-[#FFFFFF6E] rounded-full shadow-lg">
                 <Image
-                  src="/assets/rose-v-logo.png"
+                  src="/assets/rose-v-logo.svg"
                   alt="Rosewood Logo"
                   className="px-2 py-5 md:px-6 md:py-9 max-sm:w-[95px]"
                   width={150}

@@ -9,8 +9,8 @@ const AOSWrapper = ({ children }) => {
     AOS.init({
       duration: 600, // Reduced from 1000 to 600ms
       easing: "ease-in-out",
-      once: false, // Animations repeat on scroll
-      mirror: true, // Animate out on scroll up
+      once: true, // Animations repeat on scroll
+      mirror: false, // Animate out on scroll up
       offset: 100,
       delay: 0,
     });

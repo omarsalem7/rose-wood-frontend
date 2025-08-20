@@ -24,7 +24,7 @@ body {
 body {
   font-family: var(--font-alexandria), var(--font-ibm-plex-arabic), sans-serif;
   background-color: #fff;
-  color: #171717;
+  color: #2b3a4a;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
