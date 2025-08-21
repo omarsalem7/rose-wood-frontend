@@ -134,7 +134,6 @@ export async function getRelatedBlogs(blogId) {
 export async function getTags() {
   try {
     const json = await apiCall("/tags?populate=products");
-    console.log({ json });
 
     if (!json.data) {
       return [];
@@ -157,7 +156,6 @@ export async function getProductsByTag(tagId = null) {
     }
 
     const json = await apiCall(apiUrl);
-    console.log({ json });
 
     if (!json.data) {
       return [];
