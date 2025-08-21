@@ -2,7 +2,9 @@ import { apiCall } from "../utils";
 import { getFullImageUrl } from "../image";
 
 export async function fetchVisualFeedingsHomePage() {
-  const json = await apiCall("/categories?populate=visualFeeding");
+  const json = await apiCall(
+    "/categories?populate=visualFeeding&sort=sortOrder"
+  );
   const res = (json.data || []).map((category) => {
     return {
       ...category,
@@ -18,7 +20,7 @@ export async function fetchRelatedCategories(categoryId) {
   const filterQuery = categoryId ? `&filters[id][$ne]=${categoryId}` : "";
 
   const json = await apiCall(
-    `/categories?populate=mainImage&pagination[limit]=100${filterQuery}`
+    `/categories?populate=mainImage&pagination[limit]=100&sort=sortOrder${filterQuery}`
   );
   const res = (json.data || []).map((category) => {
     return {
@@ -54,7 +56,7 @@ export async function fetchCategories({ filters = {}, page, pageSize } = {}) {
     filterParams.length > 0 ? `&${filterParams.join("&")}` : "";
 
   const json = await apiCall(
-    `/categories?fields=name&populate=mainImage${queryString}`
+    `/categories?fields=name&populate=mainImage&sort=sortOrder${queryString}`
   );
   const list = (json.data || []).map((category) => {
     return {

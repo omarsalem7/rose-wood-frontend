@@ -32,7 +32,9 @@ export const getAllproducts = async ({
   const queryString =
     filterParams.length > 0 ? `&${filterParams.join("&")}` : "";
 
-  const json = await apiCall(`/products?populate=mainImageUrl${queryString}`);
+  const json = await apiCall(
+    `/products?populate=mainImageUrl&sort=sortOrder${queryString}`
+  );
   const list = (json.data || []).map((product) => {
     return {
       ...product,
@@ -80,7 +82,7 @@ export const getProductById = async (id) => {
 
 export const getRelatedProducts = async (categoryId, productId) => {
   const json = await apiCall(
-    `/products?populate=mainImageUrl&populate=colors.img&filters[category][documentId][$eq]=${categoryId}&pagination[limit]=100`
+    `/products?populate=mainImageUrl&populate=colors.img&sort=sortOrder&filters[category][documentId][$eq]=${categoryId}&pagination[limit]=100`
   );
   return (json.data || [])
     .filter((product) => product.documentId !== productId) // Filter out current product
@@ -116,7 +118,7 @@ export const getRelatedProducts = async (categoryId, productId) => {
 
 export const getLookupProducts = async () => {
   const json = await apiCall(
-    `/products?fields=name&populate[mainImageUrl][fields]=url&populate=category&pagination[page]=1&pagination[pageSize]=1000`
+    `/products?fields=name&populate[mainImageUrl][fields]=url&populate=category&pagination[page]=1&pagination[pageSize]=1000&sort=sortOrder`
   );
 
   return json.data.map((item) => {

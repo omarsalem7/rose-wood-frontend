@@ -184,12 +184,9 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                         {/* Article Excerpt */}
                         <p className="text-gray-600 text-sm leading-relaxed font-alexandria line-clamp-4 flex-grow">
                           {article.description}{" "}
-                          <Link
-                            className="font-medium underline"
-                            href={`/${locale}/blog/${article.id}`}
-                          >
+                          <span className="font-medium underline">
                             ... {t.readMore}
-                          </Link>
+                          </span>
                         </p>
                         {/* Article Meta */}
                         <hr className="p-[1px] bg-[#96979e24] mt-2" />

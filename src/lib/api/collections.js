@@ -35,7 +35,7 @@ export async function fetchBlogsHomePage({
 
 export async function fetchProductsBHomePage() {
   const json = await apiCall(
-    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6"
+    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6&sort=sortOrder"
   );
 
   return (json.data || []).map((product) => {
