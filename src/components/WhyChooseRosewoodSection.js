@@ -142,15 +142,14 @@ const WhyChooseRosewoodSection = async () => {
             </svg>
 
             {/* Central Logo */}
-            <div className="absolute w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center z-10 border border-gray-200">
-              <Image
-                src="/assets/rose-v-logo.svg"
-                alt="Rosewood Logo"
-                width={56}
-                height={56}
-                className="h-14 w-auto"
-              />
-            </div>
+            <Image
+              src="/icons/why-choose-rosewood-logo.svg"
+              alt="Rosewood Logo"
+              width={56}
+              height={56}
+              className="absolute w-48 h-48 bg-white rounded-full"
+              draggable={false}
+            />
 
             {/* Feature Text Boxes */}
             {features.map((feature) => {
