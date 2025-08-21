@@ -154,7 +154,7 @@ const ContactSection = ({ locale }) => {
   };
 
   return (
-    <section id="contactUs" className="py-8 md:py-24 bg-gray-50">
+    <section id="contactUs" className="py-8 md:py-24">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Right Side - Title */}
