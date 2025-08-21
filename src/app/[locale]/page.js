@@ -10,10 +10,7 @@ import BulkOrderSection from "@/components/BulkOrderSection";
 import ProductsSection from "@/components/ProductsSection";
 import HomeWithAnimations from "./_components/HomeWithAnimations";
 import { fetchAllHomePageData } from "@/lib/api/cms";
-import {
-  fetchBlogsHomePage,
-  fetchProductsBHomePage,
-} from "@/lib/api/collections";
+import { fetchBlogsHomePage } from "@/lib/api/collections";
 
 import { fetchVisualFeedingsHomePage } from "@/lib/api/categories";
 
@@ -22,7 +19,6 @@ export default async function Home({ params }) {
   const { locale } = resolvedParams;
   const { hero, about, features, bulkOrder, title, videoSection, blogsTitle } =
     await fetchAllHomePageData();
-  const products = await fetchProductsBHomePage();
   const categories = await fetchVisualFeedingsHomePage();
   const blogs = await fetchBlogsHomePage();
 
@@ -31,7 +27,7 @@ export default async function Home({ params }) {
       <HeroSection {...hero} />
       <AboutSection {...about} locale={locale} />
       <FeatureSection {...features} />
-      <ProductsSection products={products} locale={locale} />
+      <ProductsSection locale={locale} />
       <BulkOrderSection {...bulkOrder} locale={locale} />
       <ProductCarouselSection
         title={title}

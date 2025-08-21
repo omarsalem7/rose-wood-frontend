@@ -33,43 +33,43 @@ export async function fetchBlogsHomePage({
   };
 }
 
-export async function fetchProductsBHomePage() {
-  const json = await apiCall(
-    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6&sort=sortOrder"
-  );
+// export async function fetchProductsBHomePage() {
+//   const json = await apiCall(
+//     "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6&sort=sortOrder"
+//   );
 
-  return (json.data || []).map((product) => {
-    // Normalize colors with images and color codes
-    const colors = Array.isArray(product.colors)
-      ? product.colors.map((color) => {
-          let imgUrl = null;
-          if (color.img && color.img.url) {
-            imgUrl = getFullImageUrl(color.img.url);
-          }
-          return {
-            id: color.id,
-            color: color.color, // hex color code
-            imgUrl,
-          };
-        })
-      : [];
+//   return (json.data || []).map((product) => {
+//     // Normalize colors with images and color codes
+//     const colors = Array.isArray(product.colors)
+//       ? product.colors.map((color) => {
+//           let imgUrl = null;
+//           if (color.img && color.img.url) {
+//             imgUrl = getFullImageUrl(color.img.url);
+//           }
+//           return {
+//             id: color.id,
+//             color: color.color, // hex color code
+//             imgUrl,
+//           };
+//         })
+//       : [];
 
-    const image = product.mainImageUrl?.url
-      ? getFullImageUrl(product.mainImageUrl.url)
-      : null;
+//     const image = product.mainImageUrl?.url
+//       ? getFullImageUrl(product.mainImageUrl.url)
+//       : null;
 
-    return {
-      id: product.documentId,
-      name: product.name,
-      description: product.description,
-      features: product.features,
+//     return {
+//       id: product.documentId,
+//       name: product.name,
+//       description: product.description,
+//       features: product.features,
 
-      image,
-      colors, // Include the full colors array for flexibility
-      category: product.category?.name,
-    };
-  });
-}
+//       image,
+//       colors, // Include the full colors array for flexibility
+//       category: product.category?.name,
+//     };
+//   });
+// }
 
 function transformBlog(data) {
   return data.map((blog) => {
