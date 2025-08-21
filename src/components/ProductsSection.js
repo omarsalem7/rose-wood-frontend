@@ -458,7 +458,7 @@ const ProductsSection = ({ locale }) => {
                 <button
                   key={colorData.id}
                   onClick={() => handleColorChange(product.id, colorIndex)}
-                  className={`w-5 h-5 rounded-full border-3 transition-all ${
+                  className={`w-6 h-6 rounded-full border-3 transition-all ${
                     selectedColor === colorIndex
                       ? "border-white ring-[1.5px] ring-black"
                       : "border-white hover:border-gray-400"

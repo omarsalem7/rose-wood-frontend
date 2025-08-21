@@ -214,7 +214,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                     return (
                       <div
                         key={product.id}
-                        className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
+                        className="bg-white rounded-lg p-3 md:p-8 border border-[#DEDAD4] hover:shadow-md transition-shadow h-full flex flex-col"
                       >
                         {/* Product Image */}
                         <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0">
@@ -258,7 +258,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                                   onClick={() =>
                                     handleColorChange(product.id, index)
                                   }
-                                  className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                  className={`w-6 h-6 rounded-full border-3 transition-all ${
                                     selectedColor === index
                                       ? "border-white ring-[1.5px] ring-black"
                                       : "border-white hover:border-gray-400"
