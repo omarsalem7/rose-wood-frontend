@@ -40,6 +40,8 @@
   "viewAllBlogs": "عرض كل المدونات",
   "readMore": "أقرا الـمزيـد",
   "allProducts": "كل المنتجات",
+  "clearFilters": "مسح الفلاتر",
   "noProductsFound": "لا توجد منتجات",
+  "noProductsDescription": "عذراً، لا توجد منتجات متاحة في هذا التصنيف حالياً. جرب تصنيف آخر أو عد لاحقاً.",
   "noProductsInCategory": "لا توجد منتجات في هذه الفئة"
 }

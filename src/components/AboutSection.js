@@ -75,7 +75,7 @@ export default function AboutSection({
               data-aos-delay="400"
             >
               <Link
-                href={`${locale}/products`}
+                href={`${locale}/categories`}
                 className="bg-[#5F361F] text-white  px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {buttons[0].text}

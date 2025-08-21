@@ -39,6 +39,8 @@
   "viewAllBlogs": "View All Blogs",
   "readMore": "Read More",
   "allProducts": "All Products",
+  "clearFilters": "Clear Filters",
   "noProductsFound": "No products found",
+  "noProductsDescription": "Sorry, no products are available in this category at the moment. Try another category or check back later.",
   "noProductsInCategory": "No products in this category"
 }
