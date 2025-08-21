@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const BulkOrderSection = ({ title, card1, card2, locale }) => {
   return (
@@ -32,16 +33,19 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
                 href={`/${locale}/order/local-export`}
                 className="bg-[#5F361F] absolute min-w-36 text-center md:bottom-10 md:right-10 bottom-2  right-2 text-white  px-2 md:px-8  py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
-                {card1.buttonText}
+                {card1.btnText}
               </Link>
             </div>
 
             {/* Product Image - Bottom Left */}
-            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-48 md:h-48">
-              <img
-                src="/lovable-uploads/f1a06fcb-5d2c-46fa-8e51-90b3cfab4133.png"
+            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52">
+              <Image
+                src={card1.image}
                 alt="Bulk Order Products"
+                width={192}
+                height={192}
                 className="w-full h-full object-contain"
+                priority
               />
             </div>
           </div>
@@ -67,16 +71,19 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
                 href={`/${locale}/order/international-export`}
                 className="absolute md:bottom-10 md:right-10 bottom-2  right-2 bg-[#5A6E51]  text-white px-4 min-w-36 text-center md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-green-800 transition-colors duration-200"
               >
-                {card2.buttonText}
+                {card2.btnText}
               </Link>
             </div>
 
             {/* Product Image - Bottom Left */}
-            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-56 md:h-56">
-              <img
-                src="/lovable-uploads/9d836571-687a-4ae1-8ef1-7473e1c9ccae.png"
+            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52">
+              <Image
+                src={card2.image}
                 alt="Export Products"
+                width={224}
+                height={224}
                 className="w-full h-full object-contain"
+                priority
               />
             </div>
           </div>
