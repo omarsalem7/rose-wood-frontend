@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -207,7 +207,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           {/* Bottom Section with Button and Navigation */}
           {blogs.length > 3 && (
             <div
-              className="flex items-center justify-between px-8"
+              className="flex items-center md:justify-between justify-center px-8"
               data-aos="fade-up"
               data-aos-duration="800"
               data-aos-delay="400"
@@ -234,7 +234,11 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                   data-aos-duration="400"
                   data-aos-delay="500"
                 >
-                  <ArrowRight size={20} className="text-white ltr:rotate-180" />
+                  {" "}
+                  <ChevronRight
+                    size={20}
+                    className="text-white ltr:rotate-180"
+                  />
                 </button>
                 <button
                   onClick={goToNext}
@@ -248,7 +252,10 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                   data-aos-duration="400"
                   data-aos-delay="600"
                 >
-                  <ArrowLeft size={20} className="text-white ltr:rotate-180" />
+                  <ChevronLeft
+                    size={20}
+                    className="text-white ltr:rotate-180"
+                  />
                 </button>
               </div>
             </div>

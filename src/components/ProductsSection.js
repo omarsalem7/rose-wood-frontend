@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -216,17 +216,6 @@ const ProductsSection = ({ locale }) => {
     goToPrevPage,
     resetToFirstPage,
   } = usePagination(productsToShow, itemsPerPage);
-
-  // Debug logging
-  console.log("ProductsSection State:", {
-    selectedTag,
-    productsCount: products.length,
-    filteredProductsCount: filteredProducts.length,
-    productsToShowCount: productsToShow.length,
-    currentItemsCount: currentItems.length,
-    isLoading,
-    error,
-  });
 
   // Effects
   useEffect(() => {
