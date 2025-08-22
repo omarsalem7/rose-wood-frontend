@@ -48,6 +48,7 @@ const KitchenHeroSection = ({ locale }) => {
                   className="mx-auto"
                   width={200}
                   height={100}
+                  style={{ width: "auto", height: "auto" }}
                 />
               </div>
             </div>
@@ -80,6 +81,7 @@ const KitchenHeroSection = ({ locale }) => {
               className="mx-auto"
               width={200}
               height={100}
+              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </div>
