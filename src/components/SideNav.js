@@ -31,6 +31,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               alt="Rosewood Logo"
               width={200}
               height={100}
+              priority
               onClick={onClose}
             />
           </Link>

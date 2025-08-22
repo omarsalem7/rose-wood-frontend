@@ -41,6 +41,7 @@ const Header = ({ onMenuClick, contactUs, locale, isLoading = false }) => {
             alt="Rosewood Logo"
             width={200}
             height={50}
+            priority
           />
         </Link>
         {/* Left side - Language switcher, Contact button and search */}

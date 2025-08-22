@@ -1,10 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import { fetchQuotationSection } from "@/lib/api/cms";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 const KitchenHeroSection = ({ locale }) => {
   const [data, setData] = useState({
@@ -31,12 +30,20 @@ const KitchenHeroSection = ({ locale }) => {
 
   if (loading) {
     return (
-      <section
-        className="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url(/assets/kitchen-bg.png)",
-        }}
-      >
+      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/assets/kitchen-bg.png"
+            alt="Kitchen background"
+            fill
+            priority
+            quality={85}
+            sizes="(max-width: 768px) 100vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+
         <div className="absolute inset-0 bg-[#0a0a0a9e]"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <div className="animate-pulse">
@@ -61,12 +68,20 @@ const KitchenHeroSection = ({ locale }) => {
   }
 
   return (
-    <section
-      className="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(${data.image})`,
-      }}
-    >
+    <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={data.image || "/assets/kitchen-bg.png"}
+          alt="Kitchen background"
+          fill
+          priority
+          quality={85}
+          sizes="(max-width: 768px) 100vw, 100vw"
+          className="object-cover"
+        />
+      </div>
+
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-[#0a0a0a9e]"></div>
 

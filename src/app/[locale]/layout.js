@@ -9,21 +9,26 @@ import PerformanceDashboard from "@/components/PerformanceDashboard";
 import { generateMetadata } from "@/lib/metadata";
 
 export { generateMetadata };
-// Configure Alexandria font
+
+// Optimize font loading - only load essential weights
 const alexandria = Alexandria({
   subsets: ["latin", "arabic"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"], // Reduced from 9 weights to 4 essential ones
   variable: "--font-alexandria",
   display: "swap",
+  preload: true,
 });
 
-// Configure IBM Plex Sans Arabic font
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"], // Reduced from 7 weights to 3 essential ones
   variable: "--font-ibm-plex-arabic",
   display: "swap",
+  preload: true,
 });
+
+// Add caching configuration
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function LocaleLayout({ children, params }) {
   const resolvedParams = await params;
@@ -31,7 +36,6 @@ export default async function LocaleLayout({ children, params }) {
   const isRTL = locale === "ar";
   const direction = isRTL ? "rtl" : "ltr";
 
-  // Apply font classes to a wrapping div
   return (
     <LanguageProvider locale={locale}>
       <div
@@ -39,9 +43,13 @@ export default async function LocaleLayout({ children, params }) {
         dir={direction}
         className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}
       >
-        <PerformanceMonitor />
+        {process.env.NODE_ENV === "development" && (
+          <>
+            <PerformanceMonitor />
+            <PerformanceDashboard />
+          </>
+        )}
         <SharedLayout>{children}</SharedLayout>
-        <PerformanceDashboard />
         <SpeedInsights debug={process.env.NODE_ENV === "development"} />
       </div>
     </LanguageProvider>

@@ -1,23 +1,37 @@
+import Image from "next/image";
+
 const HeroSection = ({ title, subTitle, imageUrl, mobileImg }) => {
   return (
-    <div className="relative h-[calc(100vh-78px)] bg-gray-100 font-alexandria">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${mobileImg})`,
-        }}
-      />
+    <div className="relative h-[calc(100vh-78px)] bg-gray-100 font-alexandria overflow-hidden">
+      {/* Mobile Background Image */}
+      <div className="md:hidden absolute inset-0">
+        <Image
+          src={mobileImg || "/assets/hero-bg.png"}
+          alt="Hero background mobile"
+          fill
+          priority
+          quality={85}
+          sizes="(max-width: 768px) 100vw"
+          className="object-cover"
+          style={{ objectPosition: "center" }}
+        />
+      </div>
 
-      {/* Desktop Background Image - Hidden on mobile */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat hidden md:block"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
+      {/* Desktop Background Image */}
+      <div className="hidden md:block absolute inset-0">
+        <Image
+          src={imageUrl || "/assets/hero-bg.png"}
+          alt="Hero background desktop"
+          fill
+          priority
+          quality={85}
+          sizes="(min-width: 768px) 100vw"
+          className="object-cover"
+          style={{ objectPosition: "center" }}
+        />
+      </div>
 
-      {/* Hero Content - Updated text color to black */}
+      {/* Hero Content */}
       <div className="relative z-10 flex items-center justify-center min-h-[70vh] px-6">
         <div className="text-center max-w-6xl">
           <h1
