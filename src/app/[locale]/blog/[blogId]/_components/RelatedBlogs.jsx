@@ -18,6 +18,7 @@ const RelatedBlogs = async ({ blogId, locale }) => {
           <div className="items grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedBlogs.map((blog) => (
               <Link
+                key={blog.documentId}
                 href={`/${locale}/blog/${blog.documentId}`}
                 className="rounded-lg p-3 shadow-lg relative"
               >
