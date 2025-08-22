@@ -34,7 +34,7 @@ const Header = ({ onMenuClick, contactUs, locale, isLoading = false }) => {
           <Menu size={35} className="text-[#5F361F]" />
         </button>
         {/* Center - Logo using the provided image */}
-        <Link href={`/${locale}`} className="flex items-center">
+        <Link href={`/${locale}`} className="flex items-center md:ms-16">
           <Image
             className="w-auto h-auto"
             src="/assets/rose-h-logo.svg"
