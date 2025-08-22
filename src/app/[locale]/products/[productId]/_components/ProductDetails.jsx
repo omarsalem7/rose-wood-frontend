@@ -38,17 +38,20 @@ const ProductDetails = ({ locale, product }) => {
 
   return (
     <>
-      <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
+      <section className="pt-16 max-w-7xl mx-auto px-6 2xl:px-0">
         <div className="border-t border-gray-300 relative ">
           <span className="absolute left-0 top-0  w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <span className="absolute right-0 top-0 w-1.5  h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
 
-          <div className="items flex flex-col md:flex-row justify-between   gap-2 md:gap-6 py-12  ">
-            <div className="w-full md:w-[50%]    px-2   flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 py-12">
+            <div className="w-full px-2 flex flex-col gap-4 md:gap-8">
               <h1 className=" font-medium text-[40px]">{product.name}</h1>
-              <p>
-                {t.from}: {product.brand}
-              </p>
+              <div className="flex items-center gap-2">
+                <span>{t.from}: </span>
+                <span className="text-[#9C3C28] text-xl"> {product.brand}</span>
+
+                <img src="/icons/rose-icon.svg" alt="rosewood" />
+              </div>
               <div>
                 <span className="text-[#5F361F] font-bold">
                   {t.noteOverView}
@@ -75,11 +78,11 @@ const ProductDetails = ({ locale, product }) => {
               {product.colors && product.colors.length > 0 && (
                 <div>
                   <span className="text-[#5F361F] font-bold">{t.colors}</span>
-                  <div className="flex gap-4 py-3 items-center">
+                  <div className="flex gap-4 py-2 md:py-3 items-center">
                     {product.colors.map((colorData) => (
                       <Button
                         key={colorData.id}
-                        className="rounded-xl w-[40px] h-[40px]"
+                        className="rounded-xl w-[30px] h-[30px] md:w-[40px] md:h-[40px]"
                         style={{ backgroundColor: colorData.color }}
                       />
                     ))}
@@ -91,8 +94,8 @@ const ProductDetails = ({ locale, product }) => {
               )}
             </div>
             {/* Image Section */}
-            <div className="w-full md:w-[50%]">
-              <div className="h-[450px] flex justify-center items-center bg-gray-50 rounded-xl overflow-hidden">
+            <div className="w-full">
+              <div className="h-[270px] md:h-[450px] flex justify-center items-center bg-gray-50 rounded-xl overflow-hidden">
                 {selectedImage ? (
                   <Image
                     src={selectedImage}
@@ -123,7 +126,7 @@ const ProductDetails = ({ locale, product }) => {
                       <Button
                         key={img.id}
                         onClick={() => handleImageSelect(img.id)}
-                        className={`h-[118px] w-[25%] rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
+                        className={`h-[80px] md:h-[118px] w-[25%] rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
                           img.id === selectedImageId
                             ? "opacity-100 ring-2 ring-[#5F361F]"
                             : "opacity-60 bg-black hover:opacity-90"

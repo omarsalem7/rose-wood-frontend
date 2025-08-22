@@ -10,6 +10,14 @@ const ProductInfo = ({ locale, product }) => {
       <div className="">
         <div className="text-center mb-2">
           <h2 className="text-2xl font-semibold mb-1">{t.productDetails}</h2>
+          <p className="text-[#7B8B8E] md:text-xl pt-3">
+            {t.productCode}: {product.code}{" "}
+            {product.dimension && (
+              <>
+                - {t.dimension}: {product.dimension}
+              </>
+            )}
+          </p>
           {/* <div className="text-[#7B8B8E] text-base">{product.subtitle}</div> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 items-center">

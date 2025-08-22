@@ -287,14 +287,6 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
 
             {/* Navigation Controls - Web View Only */}
             <div className="hidden md:flex justify-between items-center mb-8">
-              {/* Left: Button */}
-              <Link
-                href={`/${locale}/products`}
-                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
-              >
-                {t.viewAllProducts}
-              </Link>
-
               {/* Right: Navigation Arrows */}
               <div className="flex gap-4">
                 {currentProducts.length > 3 && (
@@ -317,6 +309,13 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                   </>
                 )}
               </div>
+              {/* Left: Button */}
+              <Link
+                href={`/${locale}/products`}
+                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
+              >
+                {t.viewAllProducts}
+              </Link>
             </div>
 
             {/* Mobile View All Products Button */}

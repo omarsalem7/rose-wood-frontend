@@ -42,5 +42,7 @@
   "clearFilters": "Clear Filters",
   "noProductsFound": "No products found",
   "noProductsDescription": "Sorry, no products are available in this category at the moment. Try another category or check back later.",
-  "noProductsInCategory": "No products in this category"
+  "noProductsInCategory": "No products in this category",
+  "productCode": "Product Code",
+  "dimension": "Dimension"
 }

@@ -43,5 +43,7 @@
   "clearFilters": "مسح الفلاتر",
   "noProductsFound": "لا توجد منتجات",
   "noProductsDescription": "عذراً، لا توجد منتجات متاحة في هذا التصنيف حالياً. جرب تصنيف آخر أو عد لاحقاً.",
-  "noProductsInCategory": "لا توجد منتجات في هذه الفئة"
+  "noProductsInCategory": "لا توجد منتجات في هذه الفئة",
+  "productCode": "المنتج رقم",
+  "dimension": "بمقاس"
 }

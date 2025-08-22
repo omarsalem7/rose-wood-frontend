@@ -138,14 +138,6 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
           {/* Button and Arrows Row - Only show on desktop */}
           {!isMobile && (
             <div className="flex items-center justify-between mt-10">
-              <div>
-                <Link
-                  href={`/${locale}/categories`}
-                  className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
-                >
-                  {t.viewAllCategories}
-                </Link>
-              </div>
               {/* Right: Arrows */}
               <div className="flex gap-4">
                 {categories.length > 3 && (
@@ -166,6 +158,14 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
                     </button>
                   </>
                 )}
+              </div>
+              <div>
+                <Link
+                  href={`/${locale}/categories`}
+                  className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
+                >
+                  {t.viewAllCategories}
+                </Link>
               </div>
             </div>
           )}
