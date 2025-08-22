@@ -1,5 +1,7 @@
 import Image from "next/image";
 import React from "react";
+import Skeleton from "@/components/ui/skeleton";
+
 const BlogContentIntroSection = ({ blog }) => {
   return (
     <>
@@ -14,7 +16,7 @@ const BlogContentIntroSection = ({ blog }) => {
             </p>
           </div>
           {/* <div className="items rounded-lg shadow-xl flex flex-col md:flex-row justify-between p-6 mb-10">
-            <div className="w-full md:w-[40%] border-b md:border-b-0 ltr:border-r ltr:border-l-0 ltr:pr-5 ltr:pl-5 pb-3 md:border-l border-gray-200  md:pl-10">
+            <div className="w-full md:w-[40%] border-b md:border-b-0 ltr:border-b-0 ltr:border-r ltr:border-l-0 ltr:pr-5 ltr:pl-5 pb-3 md:border-l border-gray-200  md:pl-10">
               <div className="flex gap-3 pb-3">
                 <div className="">
                   <Image
@@ -57,22 +59,30 @@ const BlogContentIntroSection = ({ blog }) => {
           </div> */}
           <div className="items pb-5 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="w-full">
-              <Image
-                src={blog.image}
-                alt={blog.title}
-                width={600}
-                height={600}
-                className="w-full h-[50vh] object-cover rounded-xl"
-              />
+              {blog.image ? (
+                <Image
+                  src={blog.image}
+                  alt={blog.title}
+                  width={600}
+                  height={600}
+                  className="w-full h-[50vh] object-cover rounded-xl"
+                />
+              ) : (
+                <Skeleton variant="article" className="w-full h-[50vh]" />
+              )}
             </div>
             <div className="w-full">
-              <Image
-                src={blog.image2}
-                alt={blog.title}
-                width={600}
-                height={600}
-                className="w-full h-[50vh] object-cover rounded-xl"
-              />
+              {blog.image2 ? (
+                <Image
+                  src={blog.image2}
+                  alt={blog.title}
+                  width={600}
+                  height={600}
+                  className="w-full h-[50vh] object-cover rounded-xl"
+                />
+              ) : (
+                <Skeleton variant="article" className="w-full h-[50vh]" />
+              )}
             </div>
           </div>
           <div className="text-xl font-medium text-[#727580] leading-8">

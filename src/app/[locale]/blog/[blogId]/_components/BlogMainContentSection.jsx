@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Skeleton from "@/components/ui/skeleton";
 
 const BlogMainContentSection = ({ blog }) => {
   return (
@@ -11,13 +12,17 @@ const BlogMainContentSection = ({ blog }) => {
           </div>
           <div className="items flex flex-col md:flex-row gap-6 ">
             <div className="w-full md:w-1/2 h-[405px]">
-              <Image
-                src={blog.subImage ?? "/assets/blog-details-maincontent.png"}
-                alt={blog.title}
-                width={500}
-                height={500}
-                className="w-full h-full object-cover  rounded-xl"
-              />
+              {blog.subImage ? (
+                <Image
+                  src={blog.subImage}
+                  alt={blog.title}
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-cover  rounded-xl"
+                />
+              ) : (
+                <Skeleton variant="article" className="w-full h-full" />
+              )}
             </div>
             <div className="w-full md:w-1/2 pl-3">
               <p className="text-[#727580] text-xl pb-14 leading-[36px]">
