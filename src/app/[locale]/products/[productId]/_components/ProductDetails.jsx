@@ -10,6 +10,7 @@ const ProductDetails = ({ locale, product }) => {
   const [selectedImageId, setSelectedImageId] = useState(
     product?.gallery?.[0]?.id || 1
   );
+  const [currentPage, setCurrentPage] = useState(0);
 
   const selectedImage =
     product?.gallery?.find((img) => img.id === selectedImageId)?.img ||
@@ -19,6 +20,20 @@ const ProductDetails = ({ locale, product }) => {
 
   const handleImageSelect = (id) => {
     setSelectedImageId(id);
+  };
+
+  const imagesPerPage = 4;
+  const totalPages = Math.ceil((product?.gallery?.length || 0) / imagesPerPage);
+  const startIndex = currentPage * imagesPerPage;
+  const endIndex = startIndex + imagesPerPage;
+  const currentImages = product?.gallery?.slice(startIndex, endIndex) || [];
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
   };
 
   return (
@@ -96,34 +111,89 @@ const ProductDetails = ({ locale, product }) => {
                 )}
               </div>
               {product.gallery && product.gallery.length > 0 && (
-                <div className="flex justify-center items-center mt-4 gap-3">
-                  {product.gallery.map((img) => (
-                    <Button
-                      key={img.id}
-                      onClick={() => handleImageSelect(img.id)}
-                      className={`h-[118px] w-full rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
-                        img.id === selectedImageId
-                          ? "opacity-100 ring-2 ring-[#5F361F]"
-                          : "opacity-60 bg-black hover:opacity-90"
-                      }`}
-                    >
-                      {img.img ? (
-                        <Image
-                          src={img.img}
-                          width={300}
-                          height={300}
-                          quality={70}
-                          loading="lazy"
-                          alt={img.alt || "Product image"}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
-                          📷
-                        </div>
+                <div className="relative group">
+                  <div
+                    className={`flex ${
+                      currentImages.length === 1
+                        ? "justify-start"
+                        : "justify-center"
+                    } items-center mt-4 gap-3`}
+                  >
+                    {currentImages.map((img) => (
+                      <Button
+                        key={img.id}
+                        onClick={() => handleImageSelect(img.id)}
+                        className={`h-[118px] w-[25%] rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
+                          img.id === selectedImageId
+                            ? "opacity-100 ring-2 ring-[#5F361F]"
+                            : "opacity-60 bg-black hover:opacity-90"
+                        }`}
+                      >
+                        {img.img ? (
+                          <Image
+                            src={img.img}
+                            width={300}
+                            height={300}
+                            quality={70}
+                            loading="lazy"
+                            alt={img.alt || "Product image"}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                            📷
+                          </div>
+                        )}
+                      </Button>
+                    ))}
+                  </div>
+
+                  {/* Navigation Arrows - Only show when hovering over gallery using group-hover */}
+                  {product.gallery.length > 4 && (
+                    <>
+                      {/* Left Arrow - Only show if there are previous pages */}
+                      {currentPage > 0 && (
+                        <button
+                          onClick={handlePreviousPage}
+                          className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 bg-white text-gray-700 hover:bg-gray-100 shadow-md opacity-0 group-hover:opacity-100"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m15 18-6-6 6-6" />
+                          </svg>
+                        </button>
                       )}
-                    </Button>
-                  ))}
+
+                      {/* Right Arrow - Only show if there are next pages */}
+                      {currentPage < totalPages - 1 && (
+                        <button
+                          onClick={handleNextPage}
+                          className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 bg-white text-gray-700 hover:bg-gray-100 shadow-md opacity-0 group-hover:opacity-100"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="m9 18 6-6-6-6" />
+                          </svg>
+                        </button>
+                      )}
+                    </>
+                  )}
                 </div>
               )}
             </div>
