@@ -8,15 +8,7 @@ import { Plus, Trash2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-  SelectLabel,
-} from "@/components/ui/select";
+import { Select } from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -72,6 +64,9 @@ export default function LocalExportPage({ params }) {
 
   // State for "choose all products" checkbox
   const [chooseAllProducts, setChooseAllProducts] = React.useState(false);
+
+  // State for product search
+  const [productSearch, setProductSearch] = React.useState("");
 
   // Fetch products on component mount
   useEffect(() => {
@@ -135,6 +130,8 @@ export default function LocalExportPage({ params }) {
   useEffect(() => {
     form.clearErrors();
     form.setValue("products", [{ productId: "" }]);
+    // Clear search when switching between choose all and individual products
+    setProductSearch("");
   }, [chooseAllProducts, form]);
 
   const onSubmit = async (data) => {
@@ -170,6 +167,8 @@ export default function LocalExportPage({ params }) {
       // Reset the form after successful submission
       form.reset();
       setChooseAllProducts(false);
+      // Clear search when form is reset
+      setProductSearch("");
     } catch (error) {
       console.error("Error submitting form:", error);
 
@@ -187,6 +186,8 @@ export default function LocalExportPage({ params }) {
 
   const addProduct = () => {
     append({ productId: "" });
+    // Clear search when adding new product
+    setProductSearch("");
   };
 
   const removeProduct = (index) => {
@@ -321,18 +322,6 @@ export default function LocalExportPage({ params }) {
                   <h3 className="text-xl font-semibold text-foreground">
                     {t.products}
                   </h3>
-                  {!chooseAllProducts && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addProduct}
-                      className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
-                    >
-                      <Plus className="h-4 w-4" />
-                      {t.addProduct}
-                    </Button>
-                  )}
                 </div>
 
                 {/* Choose All Products Checkbox */}
@@ -368,55 +357,32 @@ export default function LocalExportPage({ params }) {
                                   index + 1
                                 }`}</FormLabel>
                                 <Select
-                                  onValueChange={field.onChange}
-                                  defaultValue={field.value}
-                                  disabled={loading}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger className="bg-white border mb-0 border-gray-200 rounded-md placeholder:text-gray-400">
-                                      <SelectValue
-                                        placeholder={
-                                          loading
-                                            ? t.loadingProducts
-                                            : t.selectProduct
+                                  options={organizeProductsByCategory(products)}
+                                  value={
+                                    field.value
+                                      ? {
+                                          value: field.value,
+                                          label:
+                                            products.find(
+                                              (p) =>
+                                                p.documentId.toString() ===
+                                                field.value
+                                            )?.name || field.value,
                                         }
-                                      />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {loading ? (
-                                      <div className="px-2 py-1.5 text-sm text-gray-600">
-                                        {t.loadingProducts}
-                                      </div>
-                                    ) : (
-                                      Object.entries(
-                                        organizeProductsByCategory(products)
-                                      ).map(([category, categoryProducts]) => (
-                                        <SelectGroup key={category}>
-                                          <SelectLabel>{category}</SelectLabel>
-                                          {categoryProducts.map((product) => (
-                                            <SelectItem
-                                              key={product.value}
-                                              value={product.value}
-                                              textValue={product.label}
-                                              left={
-                                                product.image ? (
-                                                  <img
-                                                    src={product.image}
-                                                    alt={product.label}
-                                                    className="h-6 w-6 rounded object-cover"
-                                                  />
-                                                ) : null
-                                              }
-                                            >
-                                              {product.label}
-                                            </SelectItem>
-                                          ))}
-                                        </SelectGroup>
-                                      ))
-                                    )}
-                                  </SelectContent>
-                                </Select>
+                                      : null
+                                  }
+                                  onChange={(selectedOption) => {
+                                    field.onChange(selectedOption?.value || "");
+                                  }}
+                                  placeholder={
+                                    loading
+                                      ? t.loadingProducts
+                                      : t.selectProduct
+                                  }
+                                  isDisabled={loading}
+                                  isLoading={loading}
+                                  isSearchable={true}
+                                />
                                 <FormMessage className="absolute" />
                               </FormItem>
                             )}
@@ -451,7 +417,18 @@ export default function LocalExportPage({ params }) {
                   </div>
                 )}
               </div>
-
+              {!chooseAllProducts && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={addProduct}
+                  className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  {t.addProduct}
+                </Button>
+              )}
               {/* Special Requests */}
               <FormField
                 control={form.control}

@@ -8,15 +8,7 @@ import { Plus, Trash2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-  SelectLabel,
-} from "@/components/ui/select";
+import { Select } from "@/components/ui/select";
 import {
   Form,
   FormControl,
@@ -344,18 +336,6 @@ export default function OfferPricePage({ params }) {
                   <h3 className="text-xl font-semibold text-foreground">
                     {t.products}
                   </h3>
-                  {!chooseAllProducts && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addProduct}
-                      className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
-                    >
-                      <Plus className="h-4 w-4" />
-                      {t.addProduct}
-                    </Button>
-                  )}
                 </div>
 
                 {/* Choose All Products Checkbox */}
@@ -375,11 +355,11 @@ export default function OfferPricePage({ params }) {
                 </div>
 
                 {!chooseAllProducts && (
-                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
+                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-0 md:p-4">
                     {fields.map((field, index) => (
                       <div
                         key={field.id}
-                        className="flex gap-4 items-end p-4 rounded-lg bg-muted/50"
+                        className="flex gap-2 md:gap-4 items-end p-4 rounded-lg bg-muted/50"
                       >
                         <div className="flex-1">
                           <FormField
@@ -391,62 +371,39 @@ export default function OfferPricePage({ params }) {
                                   index + 1
                                 }`}</FormLabel>
                                 <Select
-                                  onValueChange={field.onChange}
-                                  defaultValue={field.value}
-                                  disabled={loading}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger className="bg-white border mb-0 border-gray-200 rounded-md placeholder:text-gray-400">
-                                      <SelectValue
-                                        placeholder={
-                                          loading
-                                            ? t.loadingProducts
-                                            : t.selectProduct
+                                  options={organizeProductsByCategory(products)}
+                                  value={
+                                    field.value
+                                      ? {
+                                          value: field.value,
+                                          label:
+                                            products.find(
+                                              (p) =>
+                                                p.documentId.toString() ===
+                                                field.value
+                                            )?.name || field.value,
                                         }
-                                      />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {loading ? (
-                                      <div className="px-2 py-1.5 text-sm text-gray-600">
-                                        {t.loadingProducts}
-                                      </div>
-                                    ) : (
-                                      Object.entries(
-                                        organizeProductsByCategory(products)
-                                      ).map(([category, categoryProducts]) => (
-                                        <SelectGroup key={category}>
-                                          <SelectLabel>{category}</SelectLabel>
-                                          {categoryProducts.map((product) => (
-                                            <SelectItem
-                                              key={product.value}
-                                              value={product.value}
-                                              textValue={product.label}
-                                              left={
-                                                product.image ? (
-                                                  <img
-                                                    src={product.image}
-                                                    alt={product.label}
-                                                    className="h-6 w-6 rounded object-cover"
-                                                  />
-                                                ) : null
-                                              }
-                                            >
-                                              {product.label}
-                                            </SelectItem>
-                                          ))}
-                                        </SelectGroup>
-                                      ))
-                                    )}
-                                  </SelectContent>
-                                </Select>
+                                      : null
+                                  }
+                                  onChange={(selectedOption) => {
+                                    field.onChange(selectedOption?.value || "");
+                                  }}
+                                  placeholder={
+                                    loading
+                                      ? t.loadingProducts
+                                      : t.selectProduct
+                                  }
+                                  isDisabled={loading}
+                                  isLoading={loading}
+                                  isSearchable={true}
+                                />
                                 <FormMessage className="absolute" />
                               </FormItem>
                             )}
                           />
                         </div>
 
-                        <div className="w-24">
+                        <div className="w-12 md:w-24">
                           <FormField
                             control={form.control}
                             name={`products.${index}.quantity`}
@@ -501,7 +458,18 @@ export default function OfferPricePage({ params }) {
                   </div>
                 )}
               </div>
-
+              {!chooseAllProducts && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={addProduct}
+                  className="font-bold cursor-pointer  hover:bg-gray-100 rounded-md flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  {t.addProduct}
+                </Button>
+              )}
               {/* Special Requests */}
               <FormField
                 control={form.control}
