@@ -78,7 +78,7 @@ export default function SharedLayout({ children }) {
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black/50 z-40" onClick={toggleMenu} />
       )}
-      <main className="pt-[80px]">{children}</main>
+      <main className="pt-[80px] overflow-x-hidden">{children}</main>
 
       <KitchenHeroSection locale={locale} />
       <Footer locale={locale} />

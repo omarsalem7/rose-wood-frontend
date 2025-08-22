@@ -17,7 +17,7 @@ export default function AboutSection({
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch h-full">
           {/* Content */}
-          <div className="text-start flex flex-col justify-center ">
+          <div className="text-start flex flex-col">
             <div data-aos="fade-right" data-aos-duration="600">
               <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 mb-4">
                 <Image

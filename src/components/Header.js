@@ -39,8 +39,8 @@ const Header = ({ onMenuClick, contactUs, locale, isLoading = false }) => {
             className="w-auto h-auto"
             src="/assets/rose-h-logo.svg"
             alt="Rosewood Logo"
-            width={200}
-            height={50}
+            width={300}
+            height={100}
             priority
           />
         </Link>
