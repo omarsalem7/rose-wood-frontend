@@ -5,33 +5,47 @@ import React from "react";
 const LocalService = ({ local, locale }) => {
   return (
     <>
-      <section className="relative px-6  md:py-26 ">
+      <section className="relative px-6  md:py-26 md:mt-24">
         <div className="max-w-7xl mx-auto">
-          <div className=" ">
+          <div className="hidden md:flex">
             <Image
               src="/assets/whale-line.png"
-              alt="line"
+              alt="line-ar"
               width={400}
               height={400}
-              className="hidden md:flex absolute top-[-180px] left-[40%] z-5 w-[417px] h-[419px]"
+              className="absolute top-[-240px] left-[40%] z-5 w-[417px] h-[419px] ltr:hidden"
+            />
+            <Image
+              src="/assets/whale-line-En.png"
+              alt="line-en"
+              width={400}
+              height={400}
+              className="absolute ltr:top-[-300px] top-[-240px] left-[40%] z-5 w-[417px] h-[419px] rtl:hidden"
             />
           </div>
+
           {/*  */}
-          <div className="items flex flex-col gap-16 md:flex-row py-16">
+          <div className="items flex flex-col gap-10 md:gap-16 md:flex-row py-8 md:py-16">
             <div className=" relative item w-full md:w-[50%] h-[300px]  md:h-[480px] border border-gray-300 rounded-2xl">
               <Image
                 src={local.image1}
                 alt="whale-localservice(1)"
                 width={400}
                 height={400}
-                className="w-[48%] md:w-[290px] md:h-[261px] absolute top-6 left-6 z-10"
+                className="w-[48%] md:w-[290px] md:h-[261px] absolute top-6  z-10"
+                style={{
+                  insetInlineEnd: "1.5rem",
+                }}
               />
               <Image
                 src={local.image2}
                 alt="whale-localservice(2)"
                 width={400}
                 height={400}
-                className="w-[48%] md:w-[290px] md:h-[261px]  absolute bottom-6 right-6 z-50"
+                className="w-[48%] md:w-[290px] md:h-[261px]  absolute bottom-6  z-10"
+                style={{
+                  insetInlineStart: "1.5rem",
+                }}
               />
             </div>
             <div className="item w-full md:w-[50%] flex flex-col gap-4">

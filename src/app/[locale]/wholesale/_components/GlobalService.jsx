@@ -16,7 +16,7 @@ const GlobalService = ({ global, locale }) => {
             <span className="absolute right-0 top-0 w-1.5 z-50 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
           </div>
           {/*  */}
-          <div className="items flex flex-col-reverse gap-16 md:flex-row py-16">
+          <div className="items flex flex-col-reverse gap-10 md:gap-16 md:flex-row py-8 md:py-16">
             <div className="item w-full md:w-[50%] flex flex-col gap-4">
               <h3 className="text-lg font-medium text-[#1D252E]">
                 {global.service.title}
@@ -36,20 +36,26 @@ const GlobalService = ({ global, locale }) => {
                 {global.service.buttontext}
               </Link>
             </div>
-            <div className=" relative item w-full md:w-[50%] h-[300px]  md:h-[480px] border border-gray-300 rounded-2xl">
+            <div className="relative item w-full md:w-[50%] h-[300px]  md:h-[480px] border border-gray-300 rounded-2xl">
               <Image
                 src={global.service.image1}
                 alt="whale-globalservice"
                 width={400}
                 height={400}
-                className="w-[48%] md:w-[290px] md:h-[261px] absolute top-6 left-6 z-10"
+                className="w-[48%] md:w-[290px] md:h-[261px] absolute top-6  z-10"
+                style={{
+                  insetInlineEnd: "1.5rem",
+                }}
               />
               <Image
                 src={global.service.image2}
                 alt="whale-globalservice2"
                 width={400}
                 height={400}
-                className="w-[48%] md:w-[290px] md:h-[261px]  absolute bottom-6 right-6 z-50"
+                className="w-[48%] md:w-[290px] md:h-[261px]  absolute bottom-6  z-10"
+                style={{
+                  insetInlineStart: "1.5rem",
+                }}
               />
             </div>
           </div>
