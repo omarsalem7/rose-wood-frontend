@@ -10,6 +10,14 @@ const ProductInfo = ({ locale, product }) => {
       <div className="">
         <div className="text-center mb-2">
           <h2 className="text-2xl font-semibold mb-1">{t.productDetails}</h2>
+          <p className="text-[#7B8B8E] md:text-xl pt-3">
+            {t.productCode}: {product.code}{" "}
+            {product.dimension && (
+              <>
+                - {t.dimension}: {product.dimension}
+              </>
+            )}
+          </p>
           {/* <div className="text-[#7B8B8E] text-base">{product.subtitle}</div> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 items-center">
@@ -134,14 +142,24 @@ const ProductInfo = ({ locale, product }) => {
           {/* Left: Product Image */}
           <div className="w-full flex items-center justify-center ">
             <div className="w-full ">
-              <Image
-                src={product.productDetailsImage}
-                alt="product-image"
-                width={1000}
-                height={600}
-                className="w-full  object-contain rounded-xl"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
+              {product.productDetailsImage ? (
+                <Image
+                  src={product.productDetailsImage}
+                  alt="product-image"
+                  width={1000}
+                  height={600}
+                  className="w-full object-contain rounded-xl"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="w-full h-[600px] bg-gray-200 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-32 h-32 bg-gray-300 rounded-lg mx-auto mb-4"></div>
+                    <div className="h-4 bg-gray-300 rounded w-40 mx-auto mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-28 mx-auto"></div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

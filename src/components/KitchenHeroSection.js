@@ -34,17 +34,16 @@ const KitchenHeroSection = ({ locale }) => {
       <section
         className="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage:
-            "url(/lovable-uploads/cdead82f-785e-45b4-9366-a2dc6818c380.png)",
+          backgroundImage: "url(/assets/kitchen-bg.png)",
         }}
       >
-        <div className="absolute inset-0 bg-[#0a0a0ab5]"></div>
+        <div className="absolute inset-0 bg-[#0a0a0a9e]"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <div className="animate-pulse">
             <div className="mb-8">
               <div className="mb-4">
                 <Image
-                  src="/lovable-uploads/2c379c90-3310-45a8-966a-20888683a80a.png"
+                  src="/icons/rose-white.svg"
                   alt="Rosewood Kitchen Collections Logo"
                   className="mx-auto"
                   width={200}
@@ -64,12 +63,11 @@ const KitchenHeroSection = ({ locale }) => {
     <section
       className="relative min-h-[50vh] flex items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage:
-          "url(/lovable-uploads/cdead82f-785e-45b4-9366-a2dc6818c380.png)",
+        backgroundImage: `url(${data.image})`,
       }}
     >
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-[#0a0a0ab5]"></div>
+      <div className="absolute inset-0 bg-[#0a0a0a9e]"></div>
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
@@ -77,7 +75,7 @@ const KitchenHeroSection = ({ locale }) => {
         <div className="mb-8">
           <div className="mb-4">
             <Image
-              src="/lovable-uploads/2c379c90-3310-45a8-966a-20888683a80a.png"
+              src="/icons/rose-white.svg"
               alt="Rosewood Kitchen Collections Logo"
               className="mx-auto"
               width={200}
@@ -87,14 +85,14 @@ const KitchenHeroSection = ({ locale }) => {
         </div>
 
         {/* Main Arabic Text */}
-        <h1 className="text-2xl md:text-4xl md:font-semibold mb-12 leading-9 md:leading-tight">
+        <h1 className="text-[20px] md:text-[40px] md:font-medium mb-12 leading-9 md:leading-tight">
           {data.title}
         </h1>
 
         {/* Call to Action Button */}
         <Link
           href={`/${locale}/order/price-quote`}
-          className="bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white px-12 py-3 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+          className="bg-white/90 backdrop-blur-sm text-primary-900 hover:bg-white px-12 py-3 text-base font-medium border-0 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
           style={{ borderRadius: "12px" }}
         >
           {data.buttonText}

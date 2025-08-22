@@ -33,43 +33,43 @@ export async function fetchBlogsHomePage({
   };
 }
 
-export async function fetchProductsBHomePage() {
-  const json = await apiCall(
-    "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6"
-  );
+// export async function fetchProductsBHomePage() {
+//   const json = await apiCall(
+//     "/products?populate=colors.img&populate=mainImageUrl&pagination[page]=1&pagination[pageSize]=6&sort=sortOrder"
+//   );
 
-  return (json.data || []).map((product) => {
-    // Normalize colors with images and color codes
-    const colors = Array.isArray(product.colors)
-      ? product.colors.map((color) => {
-          let imgUrl = null;
-          if (color.img && color.img.url) {
-            imgUrl = getFullImageUrl(color.img.url);
-          }
-          return {
-            id: color.id,
-            color: color.color, // hex color code
-            imgUrl,
-          };
-        })
-      : [];
+//   return (json.data || []).map((product) => {
+//     // Normalize colors with images and color codes
+//     const colors = Array.isArray(product.colors)
+//       ? product.colors.map((color) => {
+//           let imgUrl = null;
+//           if (color.img && color.img.url) {
+//             imgUrl = getFullImageUrl(color.img.url);
+//           }
+//           return {
+//             id: color.id,
+//             color: color.color, // hex color code
+//             imgUrl,
+//           };
+//         })
+//       : [];
 
-    const image = product.mainImageUrl?.url
-      ? getFullImageUrl(product.mainImageUrl.url)
-      : null;
+//     const image = product.mainImageUrl?.url
+//       ? getFullImageUrl(product.mainImageUrl.url)
+//       : null;
 
-    return {
-      id: product.documentId,
-      name: product.name,
-      description: product.description,
-      features: product.features,
+//     return {
+//       id: product.documentId,
+//       name: product.name,
+//       description: product.description,
+//       features: product.features,
 
-      image,
-      colors, // Include the full colors array for flexibility
-      category: product.category?.name,
-    };
-  });
-}
+//       image,
+//       colors, // Include the full colors array for flexibility
+//       category: product.category?.name,
+//     };
+//   });
+// }
 
 function transformBlog(data) {
   return data.map((blog) => {
@@ -129,4 +129,70 @@ export async function getRelatedBlogs(blogId) {
   });
 
   return res;
+}
+
+export async function getTags() {
+  try {
+    const json = await apiCall("/tags?populate=products");
+
+    if (!json.data) {
+      return [];
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Failed to fetch tags:", error);
+    return [];
+  }
+}
+
+export async function getProductsByTag(tagId = null) {
+  try {
+    let apiUrl = `/products?populate=colors.img&populate=mainImageUrl&sort=sortOrder`;
+
+    // Add tag filter only if tagId is provided
+    if (tagId) {
+      apiUrl += `&filters[tag][id][$eq]=${tagId}`;
+    }
+
+    const json = await apiCall(apiUrl);
+
+    if (!json.data) {
+      return [];
+    }
+
+    return json.data.map((product) => {
+      // Normalize colors with images and color codes
+      const colors = Array.isArray(product.colors)
+        ? product.colors.map((color) => {
+            let imgUrl = null;
+            if (color.img && color.img.url) {
+              imgUrl = getFullImageUrl(color.img.url);
+            }
+            return {
+              id: color.id,
+              color: color.color, // hex color code
+              imgUrl,
+            };
+          })
+        : [];
+
+      const image = product.mainImageUrl?.url
+        ? getFullImageUrl(product.mainImageUrl.url)
+        : null;
+
+      return {
+        id: product.documentId,
+        name: product.name,
+        description: product.description,
+        features: product.features,
+        image,
+        colors,
+        category: product.category?.name,
+      };
+    });
+  } catch (error) {
+    console.error(`Failed to fetch products for tag ${tagId}:`, error);
+    return [];
+  }
 }

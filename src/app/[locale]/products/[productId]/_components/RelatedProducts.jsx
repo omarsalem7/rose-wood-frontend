@@ -214,7 +214,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                     return (
                       <div
                         key={product.id}
-                        className="bg-white rounded-2xl p-3 md:p-8 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col"
+                        className="bg-white rounded-lg p-3 md:p-8 border border-[#DEDAD4] hover:shadow-md transition-shadow h-full flex flex-col"
                       >
                         {/* Product Image */}
                         <div className="w-full h-24 md:h-64 mb-6 rounded-xl overflow-hidden flex-shrink-0">
@@ -258,7 +258,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                                   onClick={() =>
                                     handleColorChange(product.id, index)
                                   }
-                                  className={`w-7 h-7 rounded-full border-3 transition-all ${
+                                  className={`w-6 h-6 rounded-full border-3 transition-all ${
                                     selectedColor === index
                                       ? "border-white ring-[1.5px] ring-black"
                                       : "border-white hover:border-gray-400"
@@ -287,14 +287,6 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
 
             {/* Navigation Controls - Web View Only */}
             <div className="hidden md:flex justify-between items-center mb-8">
-              {/* Left: Button */}
-              <Link
-                href={`/${locale}/products`}
-                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
-              >
-                {t.viewAllProducts}
-              </Link>
-
               {/* Right: Navigation Arrows */}
               <div className="flex gap-4">
                 {currentProducts.length > 3 && (
@@ -317,6 +309,13 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                   </>
                 )}
               </div>
+              {/* Left: Button */}
+              <Link
+                href={`/${locale}/products`}
+                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
+              >
+                {t.viewAllProducts}
+              </Link>
             </div>
 
             {/* Mobile View All Products Button */}

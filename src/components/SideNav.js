@@ -16,7 +16,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
 
   return (
     <div
-      className={`fixed top-0 bottom-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-80 bg-white shadow-2xl z-30 transform transition-transform duration-300 ease-in-out
+      className={`fixed  z-50  top-0 bottom-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
       ${
         isOpen ? "translate-x-0" : "ltr:translate-x-full rtl:-translate-x-full"
       }`}
@@ -218,30 +218,38 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
         </div>
         {/* Social media icons */}
         <div className="absolute bottom-10 flex justify-center gap-4 ">
-          <a
-            href={data?.linkedin}
-            className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
-          >
-            <Linkedin size={16} />
-          </a>
-          <a
-            href={data?.facebook}
-            className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
-          >
-            <Facebook size={16} />
-          </a>
-          <a
-            href={data?.x}
-            className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
-          >
-            <X size={16} />
-          </a>
-          <a
-            href={data?.youtube}
-            className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
-          >
-            <Youtube size={16} />
-          </a>
+          {data?.linkedin && (
+            <a
+              href={data?.linkedin}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <Linkedin size={16} />
+            </a>
+          )}
+          {data?.facebook && (
+            <a
+              href={data?.facebook}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <Facebook size={16} />
+            </a>
+          )}
+          {data?.x && (
+            <a
+              href={data?.x}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <X size={16} />
+            </a>
+          )}
+          {data?.youtube && (
+            <a
+              href={data?.youtube}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <Youtube size={16} />
+            </a>
+          )}
         </div>
       </div>
     </div>

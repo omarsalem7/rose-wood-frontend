@@ -43,7 +43,7 @@ const Filter = ({ onFilter = () => {} }) => {
           <span className="absolute left-0 top-0  w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <span className="absolute right-0 top-0 w-1.5  h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <div className="text-center text-[18px] md:text-[32px] font-medium py-5">
-            <h1>{t.productsTitle}</h1>
+            <h1>{t.categoriesTitle}</h1>
           </div>
           <form
             onSubmit={handleSubmit}

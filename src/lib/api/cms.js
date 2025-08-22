@@ -16,7 +16,7 @@ export async function fetchSiteSettings() {
 export async function fetchAllHomePageData() {
   try {
     const json = await apiCall(
-      "/home-page?populate[hero][populate]=*&populate[aboutSection][populate]=*&populate[videoSection][populate]=*&populate[bulkOrder][populate]=*&populate[featureSection][populate][cards][populate]=*"
+      "/home-page?populate[hero][populate]=*&populate[aboutSection][populate]=*&populate[videoSection][populate]=*&populate[bulkOrder][populate][card1][populate]=*&populate[bulkOrder][populate][card2][populate]=*&populate[featureSection][populate][cards][populate]=*"
     );
 
     if (!json.data) {
@@ -29,7 +29,7 @@ export async function fetchAllHomePageData() {
       hero: transformHeroData(data.hero),
       about: transformAboutData(data.aboutSection),
       features: transformFeatureData(data.featureSection),
-      bulkOrder: data.bulkOrder,
+      bulkOrder: transformBulkOrderData(data.bulkOrder),
       title: data.ProductCarouselSectionTitle,
       videoSection: transformVideoData(data.videoSection),
       whyChooseTitle: data.whyChooseTitle,
@@ -361,6 +361,9 @@ export async function fetchQuotationSection() {
       id: resData.id,
       title: resData.title || "اشترِ طبيك الدن معنا واطلب كميتك",
       buttonText: resData.buttonText || "عرض سعر مخصص",
+      image: resData.image?.url
+        ? getFullImageUrl(resData.image.url)
+        : "/assets/kitchen-bg.png",
     };
   } catch (error) {
     console.error("Error fetching WhyChooseRoseWood data:", error);
@@ -528,6 +531,28 @@ function transformWoodStepsPageData(data) {
         })) || [],
       btnProducts: data.steps?.btnProducts,
       btnSample: data.steps?.btnSample,
+    },
+  };
+}
+
+function transformBulkOrderData(data) {
+  return {
+    title: data.title || "",
+    card1: {
+      title: data.card1.title || "",
+      description: data.card1.description || "",
+      btnText: data.card1.buttonText || "",
+      image: data.card1.image?.url
+        ? getFullImageUrl(data.card1.image.url)
+        : null,
+    },
+    card2: {
+      title: data.card2.title || "",
+      description: data.card2.description || "",
+      btnText: data.card2.buttonText || "",
+      image: data.card2.image?.url
+        ? getFullImageUrl(data.card2.image.url)
+        : null,
     },
   };
 }

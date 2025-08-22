@@ -115,7 +115,7 @@ const ProductsList = ({ locale }) => {
                     data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay={index * 100}
-                    className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:scale-105 min-h-fit md:min-h-[350px]"
+                    className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-3 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit md:min-h-[350px]"
                   >
                     <div className="flex justify-center w-full">
                       <Image
@@ -126,7 +126,7 @@ const ProductsList = ({ locale }) => {
                         className="object-contain mb-6 drop-shadow-md"
                       />
                     </div>
-                    <h2 className="text-2xl font-semibold text-[#223132] text-center mb-2">
+                    <h2 className="text-2xl font-semibold text-[#223132] text-center">
                       {product.name}
                     </h2>
                     <span className="text-base text-[#7B8B8E] text-center">

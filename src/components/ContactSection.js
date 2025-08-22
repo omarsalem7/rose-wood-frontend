@@ -7,6 +7,7 @@ import { submitContactForm } from "@/lib/api/order";
 import FormResultDialog from "@/components/FormResultDialog";
 import en from "@/../public/locales/en/contact.json";
 import ar from "@/../public/locales/ar/contact.json";
+import Image from "next/image";
 
 const ContactSection = ({ locale }) => {
   const t = locale === "ar" ? ar : en;
@@ -153,13 +154,15 @@ const ContactSection = ({ locale }) => {
   };
 
   return (
-    <section id="contactUs" className="py-8 md:py-24 bg-gray-50">
+    <section id="contactUs" className="py-8 md:py-24">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Right Side - Title */}
           <div className="text-start">
-            <p className="text-[#8B4513] text-lg mb-4">{contactData.title}</p>
-            <h2 className="text-5xl md:text-6xl font-bold text-[#8B4513] leading-tight">
+            <p className="text-[#5A6E51] text-2xl font-bold mb-4">
+              {contactData.title}
+            </p>
+            <h2 className="text-5xl md:text-[80px] font-medium text-[#9C3C28] leading-[100px] tracking-[2%]">
               {contactData.subTitle}
             </h2>
           </div>
@@ -258,13 +261,18 @@ const ContactSection = ({ locale }) => {
                   className={`cursor-pointer rounded-full w-16 h-16 p-0 flex items-center justify-center transition-all duration-300 ${
                     isSubmitting
                       ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-[#8B4513] hover:bg-[#654321] hover:scale-105"
+                      : "bg-[#5F361F] hover:bg-primary-800 hover:scale-105"
                   } text-white`}
                 >
                   {isSubmitting ? (
-                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   ) : (
-                    <ArrowLeft className="w-6 h-6 ltr:rotate-180" />
+                    <Image
+                      src="/icons/arrow-left.svg"
+                      alt="arrow-left"
+                      width={30}
+                      height={30}
+                    />
                   )}
                 </Button>
               </div>

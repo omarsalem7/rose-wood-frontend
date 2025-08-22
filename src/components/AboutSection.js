@@ -19,19 +19,19 @@ export default function AboutSection({
           {/* Content */}
           <div className="text-start flex flex-col justify-center ">
             <div data-aos="fade-right" data-aos-duration="600">
-              <div className="flex items-center justify-start gap-2 mb-4">
+              <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 mb-4">
                 <Image
                   src="/icons/rose-icon.svg"
                   width={30}
                   height={30}
                   alt="Rosewood Logo"
                 />
-                <h2 className="text-2xl md:text-3xl font-medium  text-[#2B3A4A]">
+                <h2 className="text-[18px] md:text-[32px] font-medium  text-[#2B3A4A]">
                   {title}
                 </h2>
               </div>
 
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
+              <p className="text-[#4E5F73] text-base md:text-[18px] leading-relaxed mb-8">
                 {description}
               </p>
             </div>
@@ -60,7 +60,9 @@ export default function AboutSection({
                       className="text-white"
                     />
                   </div>
-                  <span className="text-gray-700">{feature.text}</span>
+                  <span className="text-gray-700 text-sm md:text-[18px]">
+                    {feature.text}
+                  </span>
                 </div>
               ))}
             </div>
@@ -73,14 +75,14 @@ export default function AboutSection({
               data-aos-delay="400"
             >
               <Link
-                href={`${locale}/products`}
+                href={`${locale}/categories`}
                 className="bg-[#5F361F] text-white  px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {buttons[0].text}
               </Link>
               <Link
-                href={`${locale}/order/request-sample`}
-                className="border border-gray-300 text-gray-700 px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                href={`${locale}/wood-steps`}
+                className="border border-primary-900 text-primary-900 px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {buttons[1].text}
               </Link>

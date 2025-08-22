@@ -91,7 +91,7 @@ const WhyChooseRosewoodSection = async () => {
                     />
 
                     {/* Feature Circle */}
-                    <circle
+                    {/* <circle
                       cx={featurePos.x}
                       cy={featurePos.y}
                       r="50"
@@ -99,19 +99,19 @@ const WhyChooseRosewoodSection = async () => {
                       stroke="#e5e7eb"
                       strokeWidth="1"
                       filter="drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))"
-                    />
+                    /> */}
 
                     {/* Feature Image */}
                     <foreignObject
-                      x={featurePos.x - 40}
-                      y={featurePos.y - 40}
-                      width="80"
-                      height="80"
+                      x={featurePos.x - 50}
+                      y={featurePos.y - 50}
+                      width="100"
+                      height="100"
                     >
                       <div
                         style={{
-                          width: 80,
-                          height: 80,
+                          width: 100,
+                          height: 100,
                           borderRadius: "50%",
                           overflow: "hidden",
                         }}
@@ -119,8 +119,8 @@ const WhyChooseRosewoodSection = async () => {
                         <Image
                           src={feature.image}
                           alt={feature.text}
-                          width={80}
-                          height={80}
+                          width={100}
+                          height={100}
                           style={{ objectFit: "cover" }}
                         />
                       </div>
@@ -142,15 +142,14 @@ const WhyChooseRosewoodSection = async () => {
             </svg>
 
             {/* Central Logo */}
-            <div className="absolute w-48 h-48 bg-white rounded-full shadow-lg flex items-center justify-center z-10 border border-gray-200">
-              <Image
-                src="/assets/rose-v-logo.svg"
-                alt="Rosewood Logo"
-                width={56}
-                height={56}
-                className="h-14 w-auto"
-              />
-            </div>
+            <Image
+              src="/icons/why-choose-rosewood-logo.svg"
+              alt="Rosewood Logo"
+              width={56}
+              height={56}
+              className="absolute w-48 h-48 bg-white rounded-full"
+              draggable={false}
+            />
 
             {/* Feature Text Boxes */}
             {features.map((feature) => {
@@ -169,18 +168,11 @@ const WhyChooseRosewoodSection = async () => {
                 >
                   <div
                     className={`
-                  bg-[#fff8f6] 
-                  rounded-lg 
-                  px-4 py-3 
-                  shadow-md
+                  bg-[#FFF6F4] 
+                  rounded-xl 
+                  p-4 
                   w-48
-                  ${
-                    textPos.align === "right"
-                      ? "text-right"
-                      : textPos.align === "left"
-                      ? "text-left"
-                      : "text-center"
-                  }
+                  text-start
                 `}
                   >
                     <p className="text-sm font-medium text-gray-800 leading-relaxed">

@@ -117,7 +117,7 @@ const Footer = ({ locale }) => {
   }
 
   return (
-    <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6">
+    <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6 overflow-y-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-24">
           {/* Upper Section - Navigation Links */}
@@ -228,17 +228,20 @@ const Footer = ({ locale }) => {
                 {footerData.socialMedia?.title || "تواصل معنا"}
               </h3>
               <div className="flex gap-3 flex-wrap">
-                {footerData.socialMedia?.items?.map((social) => (
-                  <a
-                    key={social.id}
-                    href={social.url || "#"}
-                    target="_blank"
-                    rel="noopener"
-                    className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
-                  >
-                    {getSocialIcon(social.text)}
-                  </a>
-                ))}
+                {footerData.socialMedia?.items?.map(
+                  (social) =>
+                    social.url && (
+                      <a
+                        key={social.id}
+                        href={social.url || "#"}
+                        target="_blank"
+                        rel="noopener"
+                        className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
+                      >
+                        {getSocialIcon(social.text)}
+                      </a>
+                    )
+                )}
               </div>
             </div>
 
