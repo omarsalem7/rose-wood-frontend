@@ -7,6 +7,8 @@ import { fetchBlogsHomePage } from "@/lib/api/collections";
 // Reuse Filter and Pagination if available, otherwise create simple versions below
 import Filter from "../../products/_components/Filter";
 import Pagination from "../../products/_components/Pagination";
+import { Card, CardContent } from "@/components/ui/card";
+import { Calendar } from "lucide-react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 
@@ -100,7 +102,7 @@ const BlogsList = ({ locale }) => {
             </div>
           ) : (
             <>
-              <div className="items py-2 grid grid-cols-1 lg:grid-cols-3  gap-6">
+              <div className="items py-2 grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {blogs.map((blog, index) => (
                   <Link
                     href={`/${locale}/blog/${blog.id}`}
@@ -108,27 +110,45 @@ const BlogsList = ({ locale }) => {
                     data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay={index * 100}
-                                         className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-shadow hover:shadow-xl min-h-fit md:min-h-[300px]"
                   >
-                                         <div className="w-full rounded-lg -mx-4 md:-mx-8 mb-2 h-48 overflow-hidden">
-                       <Image
-                         src={blog.image}
-                         alt={blog.title}
-                         width={0}
-                         height={0}
-                         sizes="100vw"
-                         className="w-full h-full object-cover drop-shadow-md"
-                       />
-                     </div>
-                    <h2 className="text-xl font-semibold text-[#223132] text-center mb-2">
-                      {blog.title}
-                    </h2>
-                    <span className="text-base text-[#7B8B8E] text-center mb-2">
-                      {blog.description}
-                    </span>
-                    <span className="text-xs text-gray-400 text-center">
-                      {new Date(blog.date).toLocaleDateString(locale)}
-                    </span>
+                    <Card
+                      className="bg-[#f2ece9ce] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                      data-aos-delay={300 + index * 100}
+                    >
+                      {/* Article Image */}
+                      <div className="aspect-video p-3 overflow-hidden flex-shrink-0">
+                        <Image
+                          src={blog.image}
+                          alt={blog.title}
+                          width={200}
+                          height={200}
+                          className="w-full rounded-xl h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="px-3 flex flex-col flex-grow gap-2">
+                        {/* Article Title */}
+                        <h3 className="text-xl font-medium text-gray-600 font-alexandria leading-relaxed flex-shrink-0">
+                          {blog.title}
+                        </h3>
+                        {/* Article Excerpt */}
+                        <p className="text-gray-600 text-sm leading-relaxed font-alexandria line-clamp-4 flex-grow">
+                          {blog.description}{" "}
+                          <span className="font-medium underline">
+                            ... {t.readMore}
+                          </span>
+                        </p>
+                        {/* Article Meta */}
+                        <hr className="p-[1px] bg-[#96979e24] mt-2" />
+                        <div className="flex items-center gap-2 text-gray-500 text-sm">
+                          <Calendar size={16} />
+                          <span className="font-alexandria">
+                            {new Date(blog.date).toLocaleDateString(locale)}
+                          </span>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </Link>
                 ))}
               </div>
