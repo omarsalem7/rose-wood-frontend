@@ -33,8 +33,9 @@ export const getAllproducts = async ({
     filterParams.length > 0 ? `&${filterParams.join("&")}` : "";
 
   const json = await apiCall(
-    `/products?populate=mainImageUrl&sort=sortOrder${queryString}`
+    `/products?fields=name,availableQuantities&populate=mainImageUrl&sort=sortOrder${queryString}`
   );
+
   const list = (json.data || []).map((product) => {
     return {
       ...product,

@@ -176,49 +176,6 @@ export const navigateToSection = (locale, elementId, router) => {
 };
 
 /**
- * Performance monitoring utilities
- */
-export const performanceUtils = {
-  // Track navigation performance
-  trackNavigation: (from, to) => {
-    if (typeof window !== "undefined" && window.performance) {
-      const navigation = performance.getEntriesByType("navigation")[0];
-      console.log("Navigation Performance:", {
-        from,
-        to,
-        loadTime: navigation?.loadEventEnd - navigation?.loadEventStart,
-        domContentLoaded:
-          navigation?.domContentLoadedEventEnd -
-          navigation?.domContentLoadedEventStart,
-        firstPaint: performance.getEntriesByName("first-paint")[0]?.startTime,
-        firstContentfulPaint: performance.getEntriesByName(
-          "first-contentful-paint"
-        )[0]?.startTime,
-      });
-    }
-  },
-
-  // Track API call performance
-  trackApiCall: (endpoint, startTime) => {
-    const duration = performance.now() - startTime;
-    console.log(
-      `API Call Performance - ${endpoint}:`,
-      `${duration.toFixed(2)}ms`
-    );
-    return duration;
-  },
-
-  // Measure component render time
-  measureRender: (componentName, callback) => {
-    const start = performance.now();
-    const result = callback();
-    const duration = performance.now() - start;
-    console.log(`${componentName} render time:`, `${duration.toFixed(2)}ms`);
-    return result;
-  },
-};
-
-/**
  * Debounce function to prevent excessive API calls
  */
 export const debounce = (func, wait) => {

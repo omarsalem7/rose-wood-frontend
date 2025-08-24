@@ -116,6 +116,7 @@ const CategoryList = ({ locale }) => {
                         width={220}
                         height={140}
                         className="object-contain mb-6 drop-shadow-md"
+                        style={{ width: "auto", height: "auto" }}
                       />
                     </div>
                     <h2 className="text-2xl font-semibold text-[#223132] text-center mb-2">

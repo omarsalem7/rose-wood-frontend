@@ -120,10 +120,10 @@ const ProductsList = ({ locale }) => {
                     <div className="flex justify-center w-full">
                       <Image
                         src={product.mainImageUrl || product.image}
-                        alt=""
+                        alt={product.name}
                         width={220}
                         height={140}
-                        className="object-contain mb-6 drop-shadow-md"
+                        className="object-contain mb-6 drop-shadow-md h-auto w-auto"
                       />
                     </div>
                     <h2 className="text-2xl font-semibold text-[#223132] text-center">

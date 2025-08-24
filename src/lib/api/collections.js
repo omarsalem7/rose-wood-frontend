@@ -148,7 +148,7 @@ export async function getTags() {
 
 export async function getProductsByTag(tagId = null) {
   try {
-    let apiUrl = `/products?populate=colors.img&populate=mainImageUrl&sort=sortOrder`;
+    let apiUrl = `/products?fields=name,description,features&populate=colors.img&populate=mainImageUrl&sort=sortOrder`;
 
     // Add tag filter only if tagId is provided
     if (tagId) {
@@ -188,7 +188,6 @@ export async function getProductsByTag(tagId = null) {
         features: product.features,
         image,
         colors,
-        category: product.category?.name,
       };
     });
   } catch (error) {

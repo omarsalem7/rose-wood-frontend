@@ -4,8 +4,6 @@ import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import SharedLayout from "@/components/SharedLayout";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/lib/LanguageContext";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
-import PerformanceDashboard from "@/components/PerformanceDashboard";
 import { generateMetadata } from "@/lib/metadata";
 
 export { generateMetadata };
@@ -43,12 +41,6 @@ export default async function LocaleLayout({ children, params }) {
         dir={direction}
         className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}
       >
-        {process.env.NODE_ENV === "development" && (
-          <>
-            <PerformanceMonitor />
-            <PerformanceDashboard />
-          </>
-        )}
         <SharedLayout>{children}</SharedLayout>
         <SpeedInsights debug={process.env.NODE_ENV === "development"} />
       </div>
