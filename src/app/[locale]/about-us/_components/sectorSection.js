@@ -58,7 +58,7 @@ const SectorSection = ({ card }) => {
                   {item.subTitle}
                 </p>
               </div>
-              <ul className="list-none flex flex-col gap-4 text-gray-500">
+              <ul className="list-none text-start flex flex-col gap-4 text-gray-500">
                 {item.list &&
                   item.list.map((li) => <li key={li.id}>{li.text}</li>)}
               </ul>

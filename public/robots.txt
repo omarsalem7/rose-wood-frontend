@@ -9,7 +9,6 @@ Sitemap: https://rosewood-kitchenware.com/sitemap.xml
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /static/
-Disallow: /lovable-uploads/
 
 # Allow important directories including Strapi API content
 Allow: /assets/

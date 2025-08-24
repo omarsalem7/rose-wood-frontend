@@ -3,11 +3,11 @@ const Vision = ({ title, description }) => {
     <section
       className="relative py-20 mb-20 w-full md:max-w-7xl mx-auto px-6 2xl:px-0 rounded-3xl bg-cover bg-center"
       style={{
-        backgroundImage: `url('/lovable-uploads/cdead82f-785e-45b4-9366-a2dc6818c380.png')`,
+        backgroundImage: `url('/assets/vision-bg.png')`,
       }}
     >
       {/* Dark overlay - only on background */}
-      <div className="absolute inset-0  rounded-3xl bg-[#1a100ae5]"></div>
+      <div className="absolute inset-0  rounded-3xl bg-[#1a100ad8]"></div>
 
       {/* Content */}
       <div className="relative container mx-auto px-4 z-10">

@@ -32,8 +32,6 @@ Sitemap: https://rosewood-kitchenware.com/sitemap.xml
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
-Disallow: /static/
-Disallow: /lovable-uploads/
 
 # Allow important directories
 Allow: /assets/
