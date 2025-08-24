@@ -1,5 +1,6 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 const WoodHero = ({ heroData }) => {
   return (
@@ -67,26 +68,28 @@ const WoodHero = ({ heroData }) => {
             data-aos-delay="600"
             className=" shrink-0"
           >
-            <Image
+            <SafeImage
               src={heroData.image1}
               alt="hero1"
               width={400}
               height={400}
               className="w-[149px] h-[175px] md:w-[400px] md:h-[365px] rounded-3xl"
+              fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
           <div
             data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="800"
-            className="mt-[-60px]  shrink-0  "
+            className="mt-[-60px] shrink-0"
           >
-            <Image
+            <SafeImage
               src={heroData.image2}
               alt="hero2"
               width={400}
               height={400}
               className=" w-[256px] h-[252px] md:w-[400px] md:h-[381px] rounded-3xl"
+              fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
           <div
@@ -95,12 +98,13 @@ const WoodHero = ({ heroData }) => {
             data-aos-delay="1000"
             className=" shrink-0"
           >
-            <Image
+            <SafeImage
               src={heroData.image3}
               alt="hero3"
               width={400}
               height={400}
               className="w-[149px] h-[175px] md:w-[400px] md:h-[365px] rounded-3xl"
+              fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
         </div>

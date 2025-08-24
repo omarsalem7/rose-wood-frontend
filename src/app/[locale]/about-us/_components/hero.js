@@ -6,11 +6,11 @@ const Hero = ({ title, description, imageUrl }) => {
       <section className="relative bg-white py-20">
         <div className="max-w-7xl mx-auto px-6 2xl:px-0">
           {/* Title and Description */}
-          <div className="flex flex-col items-center justify-center mb-12">
+          <div className="flex flex-col items-center justify-center mb-12 max-w-4xl mx-auto">
             <h1
               data-aos="fade-down"
               data-aos-duration="800"
-              className="text-3xl leading-16 text-center font-semibold max-w-4xl text-gray-900 mb-6"
+              className="text-[20px] md:text-[40px] leading-[45px] md:leading-[75px] text-center font-semibold text-gray-900 mb-4"
             >
               {title ||
                 "روز وود هو مصنع مصري متخصص في صناعة 🏭 أدوات المطبخ 🍴 الخشبية الصحية والآمنة."}
@@ -19,7 +19,7 @@ const Hero = ({ title, description, imageUrl }) => {
               data-aos="fade-up"
               data-aos-duration="800"
               data-aos-delay="200"
-              className="text-lg text-gray-600 text-center max-w-4xl mx-auto leading-relaxed"
+              className="text-lg text-gray-600 text-center  leading-relaxed"
             >
               {description ||
                 "نستخدم أخشاب طبيعية مجففة، ونشطها بزيوت ونموذج آمنة للطعام، مع خطوط إنتاج حديثة وتصاميم تجمع بين الأناقة والوظيفة."}

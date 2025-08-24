@@ -1,6 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import SafeImage from "@/components/SafeImage";
+import Image from "next/image";
 
 const LocalService = ({ local, locale }) => {
   return (
@@ -27,7 +28,7 @@ const LocalService = ({ local, locale }) => {
           {/*  */}
           <div className="items flex flex-col gap-10 md:gap-16 md:flex-row py-8 md:py-16">
             <div className=" relative item w-full md:w-[50%] h-[300px]  md:h-[480px] border border-gray-300 rounded-2xl">
-              <Image
+              <SafeImage
                 src={local.image1}
                 alt="whale-localservice(1)"
                 width={400}
@@ -36,8 +37,9 @@ const LocalService = ({ local, locale }) => {
                 style={{
                   insetInlineEnd: "1.5rem",
                 }}
+                fallbackClassName="w-[48%] md:w-[290px] md:h-[261px] absolute top-6 z-10 bg-gray-200 rounded-lg flex items-center justify-center"
               />
-              <Image
+              <SafeImage
                 src={local.image2}
                 alt="whale-localservice(2)"
                 width={400}
@@ -46,6 +48,7 @@ const LocalService = ({ local, locale }) => {
                 style={{
                   insetInlineStart: "1.5rem",
                 }}
+                fallbackClassName="w-[48%] md:w-[290px] md:h-[261px] absolute bottom-6 z-10 bg-gray-200 rounded-lg flex items-center justify-center"
               />
             </div>
             <div className="item w-full md:w-[50%] flex flex-col gap-4">

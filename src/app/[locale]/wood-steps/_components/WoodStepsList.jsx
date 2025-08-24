@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import React from "react";
+import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 
 const GlobalService = ({ stepsData, locale }) => {
@@ -72,19 +72,21 @@ const GlobalService = ({ stepsData, locale }) => {
                           idx % 2 === 0 ? "right-[-30px]" : "left-[-30px]"
                         }    flex flex-col gap-6`}
                       >
-                        <Image
+                        <SafeImage
                           src={item?.img1}
                           alt=""
                           width={400}
                           height={400}
                           className="w-[276px] h-[150px] md:w-[373px] md:h-[203px]"
+                          fallbackClassName="w-[276px] h-[150px] md:w-[373px] md:h-[203px] bg-gray-200 rounded-lg flex items-center justify-center"
                         />
-                        <Image
+                        <SafeImage
                           src={item?.img2}
                           alt=""
                           width={400}
                           height={400}
                           className=" w-[276px] h-[150px] md:w-[373px] md:h-[203px]"
+                          fallbackClassName="w-[276px] h-[150px] md:w-[373px] md:h-[203px] bg-gray-200 rounded-lg flex items-center justify-center"
                         />
                       </div>
                     </div>
@@ -102,7 +104,7 @@ const GlobalService = ({ stepsData, locale }) => {
             className="flex justify-center items-center gap-6 py-14"
           >
             <Link
-              href={`/${locale}/products`}
+              href={`/${locale}/categories`}
               className="text-center w-[186px] rounded-lg text-white bg-[#804524] py-2"
             >
               {stepsData.btnProducts}

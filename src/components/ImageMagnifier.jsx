@@ -1,6 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
+import React, { useState, useRef, useEffect } from "react";
+import SafeImage from "./SafeImage";
 
 const ImageMagnifier = ({
   src,
@@ -99,7 +99,7 @@ const ImageMagnifier = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Image
+      <SafeImage
         src={src}
         alt={alt}
         width={width}
@@ -114,6 +114,7 @@ const ImageMagnifier = ({
               }%, ${((50 - mousePosition.y) * (zoomLevel - 1)) / zoomLevel}%)`
             : "scale(1) translate(0%, 0%)",
         }}
+        fallbackClassName="w-full h-full bg-gray-200 flex items-center justify-center"
       />
     </div>
   );

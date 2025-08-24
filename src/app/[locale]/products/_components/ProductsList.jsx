@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Pagination from "./Pagination";
 import Filter from "./Filter";
@@ -8,17 +7,10 @@ import Link from "next/link";
 import { getAllproducts } from "@/lib/api/products";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import ProductSkeleton from "@/components/ProductSkeleton";
+import SafeImage from "@/components/SafeImage";
 
 const PAGE_SIZE = 12;
-
-// Skeleton component for loading state
-const ProductSkeleton = () => (
-  <div className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-8 animate-pulse min-h-[350px]">
-    <div className="bg-gray-200 rounded-full w-[160px] h-[100px] mt-4 mb-6" />
-    <div className="bg-gray-200 rounded h-7 w-2/3 mb-2" />
-    <div className="bg-gray-100 rounded h-4 w-1/2" />
-  </div>
-);
 
 const ProductsList = ({ locale }) => {
   const searchParams = useSearchParams();
@@ -118,12 +110,13 @@ const ProductsList = ({ locale }) => {
                     className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-3 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit md:min-h-[350px]"
                   >
                     <div className="flex justify-center w-full">
-                      <Image
+                      <SafeImage
                         src={product.mainImageUrl || product.image}
                         alt={product.name}
                         width={220}
                         height={140}
                         className="object-contain mb-6 drop-shadow-md h-auto w-auto"
+                        fallbackClassName="w-[220px] h-[140px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
                       />
                     </div>
                     <h2 className="text-2xl font-semibold text-[#223132] text-center">

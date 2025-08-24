@@ -1,6 +1,5 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { fetchBlogsHomePage } from "@/lib/api/collections";
@@ -11,16 +10,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar } from "lucide-react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import BlogSkeleton from "@/components/BlogSkeleton";
+import SafeImage from "@/components/SafeImage";
 
 const PAGE_SIZE = 12;
-
-const BlogSkeleton = () => (
-  <div className="item bg-white shadow-lg rounded-2xl w-full flex flex-col items-center gap-4 p-8 animate-pulse min-h-[350px]">
-    <div className="bg-gray-200 rounded-full w-[160px] h-[100px] mt-4 mb-6" />
-    <div className="bg-gray-200 rounded h-7 w-2/3 mb-2" />
-    <div className="bg-gray-100 rounded h-4 w-1/2" />
-  </div>
-);
 
 const BlogsList = ({ locale }) => {
   const searchParams = useSearchParams();
@@ -119,12 +112,13 @@ const BlogsList = ({ locale }) => {
                     >
                       {/* Article Image */}
                       <div className="aspect-video p-3 overflow-hidden flex-shrink-0">
-                        <Image
+                        <SafeImage
                           src={blog.image}
                           alt={blog.title}
                           width={200}
                           height={200}
                           className="w-full rounded-xl h-full object-cover"
+                          fallbackClassName="w-full h-full bg-gray-200 rounded-xl flex items-center justify-center"
                         />
                       </div>
                       <CardContent className="px-3 flex flex-col flex-grow gap-2">

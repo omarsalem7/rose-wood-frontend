@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import SafeImage from "@/components/SafeImage";
 
 const GlobalService = ({ global, locale }) => {
   return (
@@ -37,7 +37,7 @@ const GlobalService = ({ global, locale }) => {
               </Link>
             </div>
             <div className="relative item w-full md:w-[50%] h-[300px]  md:h-[480px] border border-gray-300 rounded-2xl">
-              <Image
+              <SafeImage
                 src={global.service.image1}
                 alt="whale-globalservice"
                 width={400}
@@ -46,8 +46,9 @@ const GlobalService = ({ global, locale }) => {
                 style={{
                   insetInlineEnd: "1.5rem",
                 }}
+                fallbackClassName="w-[48%] md:w-[290px] md:h-[261px] absolute top-6 z-10 bg-gray-200 rounded-lg flex items-center justify-center"
               />
-              <Image
+              <SafeImage
                 src={global.service.image2}
                 alt="whale-globalservice2"
                 width={400}
@@ -56,6 +57,7 @@ const GlobalService = ({ global, locale }) => {
                 style={{
                   insetInlineStart: "1.5rem",
                 }}
+                fallbackClassName="w-[48%] md:w-[290px] md:h-[261px] absolute bottom-6 z-10 bg-gray-200 rounded-lg flex items-center justify-center"
               />
             </div>
           </div>

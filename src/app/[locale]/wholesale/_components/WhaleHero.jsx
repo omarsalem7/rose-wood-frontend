@@ -1,5 +1,6 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 const WhaleHero = ({ hero }) => {
   return (
@@ -60,30 +61,33 @@ const WhaleHero = ({ hero }) => {
         {/*  */}
         <div className="flex w-full justify-center overflow-hidden absolute bottom-[-30px] md:bottom-[-180px] pt-16  gap-8     ">
           <div className=" shrink-0">
-            <Image
+            <SafeImage
               src={hero.image1}
               alt="whale-hero(1)"
               width={400}
               height={400}
               className="w-[149px] h-[175px] md:w-[400px] md:h-[365px] rounded-3xl"
+              fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
           <div className="mt-[-60px]  shrink-0  ">
-            <Image
+            <SafeImage
               src={hero.image2}
               alt="whale-hero(2)"
               width={400}
               height={400}
               className=" w-[256px] h-[252px] md:w-[400px] md:h-[381px] rounded-3xl"
+              fallbackClassName="w-[256px] h-[252px] md:w-[400px] md:h-[381px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
           <div className=" shrink-0">
-            <Image
+            <SafeImage
               src={hero.image3}
               alt="whale-hero(3)"
               width={400}
               height={400}
               className="w-[149px] h-[175px] md:w-[400px] md:h-[365px] rounded-3xl"
+              fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
         </div>

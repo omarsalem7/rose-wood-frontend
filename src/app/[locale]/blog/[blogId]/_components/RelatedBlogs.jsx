@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React from "react";
 import { getRelatedBlogs } from "@/lib/api/collections";
 import { Card, CardContent } from "@/components/ui/card";
+import SafeImage from "@/components/SafeImage";
 import { Calendar } from "lucide-react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
@@ -34,12 +34,13 @@ const RelatedBlogs = async ({ blogId, locale }) => {
                 >
                   {/* Article Image */}
                   <div className="aspect-video p-3 overflow-hidden flex-shrink-0">
-                    <Image
+                    <SafeImage
                       src={blog.image}
                       alt={blog.title}
                       width={200}
                       height={200}
                       className="w-full rounded-xl h-full object-cover"
+                      fallbackClassName="w-full h-full bg-gray-200 rounded-xl flex items-center justify-center"
                     />
                   </div>
                   <CardContent className="px-3 flex flex-col flex-grow gap-2">

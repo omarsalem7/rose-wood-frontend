@@ -7,6 +7,7 @@ import "swiper/css";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 import Link from "next/link";
+import SafeImage from "@/components/SafeImage";
 
 // Custom styles for equal height Swiper slides
 const swiperStyles = `
@@ -97,10 +98,13 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
                     href={`/${locale}/products?categoryId=${cat.id}`}
                     className="bg-white border hover:shadow-lg border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center min-h-[320px] shadow-sm transition-shadow h-full w-full"
                   >
-                    <img
+                    <SafeImage
                       src={cat.image}
                       alt={cat.name}
+                      width={160}
+                      height={160}
                       className="h-40 object-contain mb-6 mt-2"
+                      fallbackClassName="h-40 w-full bg-gray-200 rounded-lg flex items-center justify-center mb-6 mt-2"
                     />
                     <div className="font-bold text-2xl text-[#1A3447] mb-2">
                       {cat.name}
@@ -121,10 +125,13 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
                   key={cat.id || idx}
                   className="bg-white border hover:shadow-lg border-gray-200 rounded-2xl p-6 flex flex-col items-center text-center min-h-[320px] shadow-sm transition-shadow"
                 >
-                  <img
+                  <SafeImage
                     src={cat.image}
                     alt={cat.name}
+                    width={160}
+                    height={160}
                     className="h-40 object-contain mb-6 mt-2"
+                    fallbackClassName="h-40 w-full bg-gray-200 rounded-lg flex items-center justify-center mb-6 mt-2"
                   />
                   <div className="font-bold text-2xl text-[#1A3447] mb-2">
                     {cat.name}
