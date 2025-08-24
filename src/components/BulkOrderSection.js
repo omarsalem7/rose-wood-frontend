@@ -39,14 +39,20 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
 
             {/* Product Image - Bottom Left */}
             <div className="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52">
-              <Image
-                src={card1.image}
-                alt="Bulk Order Products"
-                width={192}
-                height={192}
-                className="w-full h-full object-contain"
-                priority
-              />
+              {card1.image && card1.image.trim() !== "" ? (
+                <Image
+                  src={card1.image}
+                  alt="Bulk Order Products"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-contain"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50 rounded-lg">
+                  <span className="text-sm">No Image</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -77,14 +83,20 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
 
             {/* Product Image - Bottom Left */}
             <div className="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52">
-              <Image
-                src={card2.image}
-                alt="Export Products"
-                width={224}
-                height={224}
-                className="w-full h-full object-contain"
-                priority
-              />
+              {card2.image && card2.image.trim() !== "" ? (
+                <Image
+                  src={card2.image}
+                  alt="Export Products"
+                  width={224}
+                  height={224}
+                  className="w-full h-full object-contain"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50 rounded-lg">
+                  <span className="text-sm">No Image</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
