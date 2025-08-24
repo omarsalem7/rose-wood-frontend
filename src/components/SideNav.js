@@ -16,7 +16,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
 
   return (
     <div
-      className={`fixed  z-50  top-0 bottom-0 ltr:left-0 rtl:right-0 h-full w-64 md:w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
+      className={`fixed  z-50  top-0 bottom-0 ltr:left-0 rounded-e-xl rtl:right-0 h-full w-72 md:w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
       ${
         isOpen ? "translate-x-0" : "ltr:-translate-x-full rtl:translate-x-full"
       }`}
@@ -192,7 +192,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           )}
         </nav>
         {/* Bottom section with buttons like in the design */}
-        <div className="mt-5 flex gap-2">
+        <div className="mt-6 flex flex-col gap-4 w-[186px]">
           {isLoading ? (
             <>
               <div className="w-full h-12 bg-gray-200 rounded-lg animate-pulse"></div>
@@ -203,14 +203,14 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               <Link
                 href={`/${locale}/contact`}
                 onClick={onClose}
-                className="w-full text-center bg-[#5F361F] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                className="w-full text-center bg-[#5F361F] text-white px-3 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
               >
                 {data?.contactUs}
               </Link>
               <Link
                 onClick={onClose}
                 href={`/${locale}/order/price-quote`}
-                className="w-full text-center border border-gray-300 text-gray-700 px-3 py-2  rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                className="w-full text-center border border-gray-300 text-gray-700 px-3 py-3  rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {data?.offerPrice}
               </Link>
