@@ -67,7 +67,7 @@ export const getProductMetadata = async (id) => {
 
 export const getProductById = async (id) => {
   const json = await apiCall(
-    `/products/${id}?populate=productDetailsImage&populate=mainImageUrl&populate=category&populate=gallery&populate=colors`
+    `/products/${id}?populate=productDetailsImage&populate=colors.img&populate=mainImageUrl&populate=category&populate=gallery&populate=colors`
   );
   const product = json.data;
 
@@ -78,6 +78,15 @@ export const getProductById = async (id) => {
       ? getFullImageUrl(product.productDetailsImage.url)
       : null,
     gallery: product.gallery ? transformImages(product.gallery) : [],
+    colors: product.colors
+      ? product.colors.map((color) => {
+          return {
+            id: color.id,
+            color: color.color,
+            imgUrl: getFullImageUrl(color.img.url),
+          };
+        })
+      : [],
   };
 };
 

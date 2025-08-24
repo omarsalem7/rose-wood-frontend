@@ -12,22 +12,43 @@ const ProductDetails = ({ locale, product }) => {
     product?.gallery?.[0]?.id || 1
   );
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(null);
 
-  const selectedImage =
-    product?.gallery?.find((img) => img.id === selectedImageId)?.img ||
-    product?.mainImageUrl ||
-    product?.image ||
-    null;
+  // Always use selectedImageId to determine selected image
+  let selectedImage = null;
+  if (selectedColor) {
+    // Find the color object and use its imgUrl if available
+    const colorObj = product.colors?.find((color) => color.id === selectedColor);
+    selectedImage = colorObj?.imgUrl ||
+      product?.gallery?.find((img) => img.id === selectedImageId)?.img ||
+      product?.mainImageUrl ||
+      product?.image ||
+      null;
+  } else {
+    selectedImage =
+      product?.gallery?.find((img) => img.id === selectedImageId)?.img ||
+      product?.mainImageUrl ||
+      product?.image ||
+      null;
+  }
+
+  // When a color is selected, set selectedImageId to the color's image if available
+  const handleColorSelect = (colorData) => {
+    setSelectedImageId(product.gallery?.[0]?.id || 1);
+    setSelectedColor(colorData.id);
+  };
 
   const handleImageSelect = (id) => {
     setSelectedImageId(id);
+    setSelectedColor(null); // Deselect color if user picks from gallery
   };
 
   const imagesPerPage = 4;
-  const totalPages = Math.ceil((product?.gallery?.length || 0) / imagesPerPage);
+  const filteredGallery = product?.gallery || [];
+  const totalPages = Math.ceil((filteredGallery.length || 0) / imagesPerPage);
   const startIndex = currentPage * imagesPerPage;
   const endIndex = startIndex + imagesPerPage;
-  const currentImages = product?.gallery?.slice(startIndex, endIndex) || [];
+  const currentImages = filteredGallery.slice(startIndex, endIndex) || [];
 
   const handlePreviousPage = () => {
     setCurrentPage((prev) => Math.max(0, prev - 1));
@@ -83,7 +104,12 @@ const ProductDetails = ({ locale, product }) => {
                     {product.colors.map((colorData) => (
                       <Button
                         key={colorData.id}
-                        className="rounded-xl w-[30px] h-[30px] md:w-[40px] md:h-[40px]"
+                        onClick={() => handleColorSelect(colorData)}
+                        className={`rounded-xl w-[30px] h-[30px] md:w-[40px] md:h-[40px] transition-all duration-200 ${
+                          selectedColor === colorData.id
+                            ? "ring-2 ring-[#5F361F] scale-110"
+                            : "hover:scale-105"
+                        }`}
                         style={{ backgroundColor: colorData.color }}
                       />
                     ))}
@@ -115,6 +141,7 @@ const ProductDetails = ({ locale, product }) => {
                   </div>
                 )}
               </div>
+              {/* Always show gallery thumbnails from product.gallery */}
               {product.gallery && product.gallery.length > 0 && (
                 <div className="relative group">
                   <div
@@ -129,7 +156,7 @@ const ProductDetails = ({ locale, product }) => {
                         key={img.id}
                         onClick={() => handleImageSelect(img.id)}
                         className={`h-[80px] md:h-[118px] w-[25%] rounded-xl p-0 overflow-hidden transition-opacity duration-200 ${
-                          img.id === selectedImageId
+                          !selectedColor && img.id === selectedImageId
                             ? "opacity-100 ring-2 ring-[#5F361F]"
                             : "opacity-60 bg-black hover:opacity-90"
                         }`}
@@ -154,7 +181,7 @@ const ProductDetails = ({ locale, product }) => {
                   </div>
 
                   {/* Navigation Arrows - Only show when hovering over gallery using group-hover */}
-                  {product.gallery.length > 4 && (
+                  {filteredGallery.length > 4 && (
                     <>
                       {/* Left Arrow - Only show if there are previous pages */}
                       {currentPage > 0 && (
