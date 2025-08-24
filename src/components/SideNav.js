@@ -72,7 +72,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               </Link>
               <Link
                 onClick={onClose}
-                href={`/${locale}/products`}
+                href={`/${locale}/categories`}
                 className="flex items-center gap-3 text-xl font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
               >
                 <Image
