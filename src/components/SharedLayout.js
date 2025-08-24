@@ -10,8 +10,8 @@ import { ModalProvider } from "@/lib/ModalContext";
 import GlobalModal from "./GlobalModal";
 
 // Cache navbar data to reduce API calls
-let navbarDataCache = null;
-let cacheTimestamp = 0;
+let navbarDataCache = {};
+let cacheTimestamps = {};
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export default function SharedLayout({ children }) {
@@ -27,9 +27,12 @@ export default function SharedLayout({ children }) {
   const fetchData = useMemo(
     () => async () => {
       try {
-        // Check cache first
-        if (navbarDataCache && Date.now() - cacheTimestamp < CACHE_DURATION) {
-          setNavbarData(navbarDataCache);
+        // Check cache first for current locale
+        if (
+          navbarDataCache[locale] &&
+          Date.now() - cacheTimestamps[locale] < CACHE_DURATION
+        ) {
+          setNavbarData(navbarDataCache[locale]);
           setIsLoading(false);
           return;
         }
@@ -37,22 +40,22 @@ export default function SharedLayout({ children }) {
         setIsLoading(true);
         const data = await getNavbarData();
 
-        // Update cache
-        navbarDataCache = data;
-        cacheTimestamp = Date.now();
+        // Update cache for current locale
+        navbarDataCache[locale] = data;
+        cacheTimestamps[locale] = Date.now();
 
         setNavbarData(data);
       } catch (error) {
         console.error("Error fetching navbar data:", error);
-        // Use cached data if available, even if expired
-        if (navbarDataCache) {
-          setNavbarData(navbarDataCache);
+        // Use cached data if available for current locale, even if expired
+        if (navbarDataCache[locale]) {
+          setNavbarData(navbarDataCache[locale]);
         }
       } finally {
         setIsLoading(false);
       }
     },
-    []
+    [locale]
   );
 
   useEffect(() => {

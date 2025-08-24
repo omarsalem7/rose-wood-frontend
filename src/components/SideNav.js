@@ -16,9 +16,9 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
 
   return (
     <div
-      className={`fixed  z-50  top-0 bottom-0 ltr:right-0 rtl:left-0 h-full w-64 md:w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
+      className={`fixed  z-50  top-0 bottom-0 ltr:left-0 rtl:right-0 h-full w-64 md:w-80 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
       ${
-        isOpen ? "translate-x-0" : "ltr:translate-x-full rtl:-translate-x-full"
+        isOpen ? "translate-x-0" : "ltr:-translate-x-full rtl:translate-x-full"
       }`}
     >
       <div className="p-6">
