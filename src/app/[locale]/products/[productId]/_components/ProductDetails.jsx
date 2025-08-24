@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import ImageMagnifier from "@/components/ImageMagnifier";
 const ProductDetails = ({ locale, product }) => {
   const t = locale === "ar" ? ar : en;
 
@@ -97,14 +98,15 @@ const ProductDetails = ({ locale, product }) => {
             <div className="w-full">
               <div className="h-[270px] md:h-[450px] flex justify-center items-center bg-gray-50 rounded-xl overflow-hidden">
                 {selectedImage ? (
-                  <Image
+                  <ImageMagnifier
                     src={selectedImage}
-                    className="w-full h-full object-fill"
+                    className="w-full h-full"
                     width={800}
                     height={800}
                     quality={95}
                     priority={true}
                     alt="Selected product image"
+                    zoomLevel={1.7}
                   />
                 ) : (
                   <div className="text-gray-400 text-center">
@@ -158,14 +160,14 @@ const ProductDetails = ({ locale, product }) => {
                       {currentPage > 0 && (
                         <button
                           onClick={handlePreviousPage}
-                          className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 bg-white text-gray-700 hover:bg-gray-100 shadow-md opacity-0 group-hover:opacity-100"
+                          className="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-10 bg-[#0000007e] rounded-s-md  flex items-center justify-center transition-all duration-200  text-gray-700  shadow-md opacity-0 group-hover:opacity-100"
                         >
                           <svg
-                            width="16"
-                            height="16"
+                            width="20"
+                            height="20"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="#fff"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -179,14 +181,14 @@ const ProductDetails = ({ locale, product }) => {
                       {currentPage < totalPages - 1 && (
                         <button
                           onClick={handleNextPage}
-                          className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 bg-white text-gray-700 hover:bg-gray-100 shadow-md opacity-0 group-hover:opacity-100"
+                          className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-10 bg-[#0000007e] rounded-e-md flex items-center justify-center transition-all duration-200 text-gray-700shadow-md opacity-0 group-hover:opacity-100"
                         >
                           <svg
-                            width="16"
-                            height="16"
+                            width="20"
+                            height="20"
                             viewBox="0 0 24 24"
                             fill="none"
-                            stroke="currentColor"
+                            stroke="#fff"
                             strokeWidth="2"
                             strokeLinecap="round"
                             strokeLinejoin="round"
