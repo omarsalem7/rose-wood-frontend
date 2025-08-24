@@ -78,6 +78,7 @@ const WhaleHero = ({ hero }) => {
               height={400}
               className=" w-[256px] h-[252px] md:w-[400px] md:h-[381px] rounded-3xl"
               fallbackClassName="w-[256px] h-[252px] md:w-[400px] md:h-[381px] bg-gray-200 rounded-3xl flex items-center justify-center"
+              priority={true}
             />
           </div>
           <div className=" shrink-0">

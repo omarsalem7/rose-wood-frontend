@@ -1,12 +1,13 @@
 import Image from "next/image";
 import StyledText from "@/components/ui/styledText";
 
-import { fetchHowWorkSection } from "@/lib/api/cms";
+import { fetchProductInfoSection } from "@/lib/api/cms";
 import Link from "next/link";
+import SafeImage from "@/components/SafeImage";
 
 const HowWork = async ({ isButtonshow, locale }) => {
   const { title, subTitle, images, buttons, list } =
-    await fetchHowWorkSection();
+    await fetchProductInfoSection();
 
   return (
     <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
@@ -69,7 +70,7 @@ const HowWork = async ({ isButtonshow, locale }) => {
                   key={btn.id || idx}
                   href={
                     idx === 0
-                      ? `/${locale}/categories`
+                      ? `/${locale}/products`
                       : `/${locale}/order/request-sample`
                   }
                   className={
@@ -93,15 +94,15 @@ const HowWork = async ({ isButtonshow, locale }) => {
           data-aos-delay="300"
           className="grid grid-cols-5 gap-4"
         >
-          <Image
+          <SafeImage
             src={images && images[0] ? images[0].img : "/assets/spoons.png"}
             alt="product-meta2"
             width={294}
             height={120}
             className="col-span-2 h-full"
           />
-          <Image
-            src={images && images[1] ? images[1].img : ""}
+          <SafeImage
+            src={images && images[1] ? images[1].img : "/product-meta1.png"}
             alt="product-meta1"
             width={400}
             className=" col-span-3 h-full"

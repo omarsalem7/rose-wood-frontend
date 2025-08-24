@@ -3,7 +3,7 @@ import OtherCategory from "./_components/OtherCategory";
 import RelatedProducts from "./_components/RelatedProducts";
 import MakeOrder from "./_components/MakeOrder";
 import ProductInfo from "./_components/ProductInfo";
-import HowWork from "../../about-us/_components/HowWork";
+import HowWork from "./_components/HowWork";
 import { getProductById, getProductMetadata } from "@/lib/api/products";
 
 export async function generateMetadata({ params }) {

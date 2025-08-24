@@ -10,6 +10,7 @@ const SafeImage = ({
   className = "",
   style = {},
   showFallback = true,
+  priority = false,
   ...props
 }) => {
   // Check if src is valid - handles null, undefined, empty string, and whitespace-only strings
@@ -30,7 +31,14 @@ const SafeImage = ({
   }
 
   return (
-    <Image src={src} alt={alt} className={className} style={style} {...props} />
+    <Image
+      src={src}
+      alt={alt}
+      className={className}
+      style={style}
+      priority={priority}
+      {...props}
+    />
   );
 };
 

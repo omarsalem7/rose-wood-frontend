@@ -85,6 +85,26 @@ export async function fetchHowWorkSection() {
   }
 }
 
+export async function fetchProductInfoSection() {
+  try {
+    const json = await apiCall(
+      "/product-detail?populate[productInfo][populate]=*"
+    );
+
+    if (!json.data) {
+      throw new Error("how work section data not found");
+    }
+
+    return {
+      ...json.data.productInfo,
+      images: transformImages(json.data.productInfo.images),
+    };
+  } catch (error) {
+    console.error("Error fetching how work section data:", error);
+    throw error;
+  }
+}
+
 export async function fetchAllAboutPageData() {
   try {
     const json = await apiCall(
