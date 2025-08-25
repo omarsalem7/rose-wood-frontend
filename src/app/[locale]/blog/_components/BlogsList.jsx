@@ -21,7 +21,8 @@ const BlogsList = ({ locale }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Start with loading true
+  const [hasLoaded, setHasLoaded] = useState(false); // Track if initial load is complete
   const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
@@ -36,9 +37,11 @@ const BlogsList = ({ locale }) => {
       });
       setBlogs(res.items || []);
       setTotalCount(res.totalCount || 0);
+      setHasLoaded(true); // Mark that initial load is complete
     } catch (e) {
       setBlogs([]);
       setTotalCount(0);
+      setHasLoaded(true); // Mark that initial load is complete even on error
     }
     setLoading(false);
   };
@@ -59,7 +62,7 @@ const BlogsList = ({ locale }) => {
 
   return (
     <>
-      <div data-aos="fade-down" data-aos-duration="800">
+      <div>
         <Filter onFilter={handleFilter} />
       </div>
       <section className="px-6">
@@ -78,7 +81,7 @@ const BlogsList = ({ locale }) => {
                 <BlogSkeleton key={i} />
               ))}
             </div>
-          ) : blogs.length === 0 ? (
+          ) : hasLoaded && blogs.length === 0 ? (
             <div className="py-16 pb-24 text-center">
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
@@ -93,7 +96,7 @@ const BlogsList = ({ locale }) => {
                 </h3>
               </div>
             </div>
-          ) : (
+          ) : hasLoaded && blogs.length > 0 ? (
             <>
               <div className="items py-2 grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {blogs.map((blog, index) => (
@@ -154,7 +157,7 @@ const BlogsList = ({ locale }) => {
                 />
               </div>
             </>
-          )}
+          ) : null}
         </div>
       </section>
     </>
