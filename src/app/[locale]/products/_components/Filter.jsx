@@ -16,9 +16,18 @@ const Filter = ({ onFilter = () => {} }) => {
 
   // Focus input on mount only for larger screens (desktop/tablet)
   useEffect(() => {
-    if (inputRef.current && window.innerWidth > 800) {
-      inputRef.current.focus();
-    }
+    // Use a timeout to ensure we're fully client-side and avoid hydration issues
+    const timer = setTimeout(() => {
+      if (
+        inputRef.current &&
+        typeof window !== "undefined" &&
+        window.innerWidth > 800
+      ) {
+        inputRef.current.focus();
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Debounce effect

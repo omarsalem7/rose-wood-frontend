@@ -20,11 +20,14 @@ const ProductsList = ({ locale }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Start with false to avoid hydration mismatch
+  const [hasInitialized, setHasInitialized] = useState(false); // Track if we've made first API call
   const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
   const fetchProducts = async (page = 1, searchValue = "") => {
+    setIsLoading(true);
     try {
       const filters = searchValue ? { name: { $containsi: searchValue } } : {};
       const res = await getAllproducts({
@@ -38,6 +41,9 @@ const ProductsList = ({ locale }) => {
     } catch (e) {
       setProducts([]);
       setTotalCount(0);
+    } finally {
+      setIsLoading(false);
+      setHasInitialized(true);
     }
   };
 
@@ -55,6 +61,12 @@ const ProductsList = ({ locale }) => {
     setCurrentPage(1);
   };
 
+  // Show loading only after we've initialized and are actually loading
+  const shouldShowLoading = isLoading && hasInitialized;
+  // Show no products only after we've initialized and have no results
+  const shouldShowNoProducts =
+    hasInitialized && !isLoading && products.length === 0;
+
   return (
     <>
       <div>
@@ -70,7 +82,20 @@ const ProductsList = ({ locale }) => {
           >
             {t.allProducts} ({totalCount})
           </div>
-          {products.length === 0 ? (
+
+          {/* Only render content after client-side initialization to prevent hydration mismatch */}
+          {!hasInitialized ? (
+            // Initial state - render nothing to ensure server/client match
+            <div className="py-8">
+              {/* Empty div to maintain layout but prevent hydration issues */}
+            </div>
+          ) : shouldShowLoading ? (
+            <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <ProductSkeleton key={i} />
+              ))}
+            </div>
+          ) : shouldShowNoProducts ? (
             <div className="py-16 pb-24 text-center">
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
@@ -88,7 +113,7 @@ const ProductsList = ({ locale }) => {
                 </p>
               </div>
             </div>
-          ) : (
+          ) : products.length > 0 ? (
             <>
               <div className="items py-2 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
                 {products.map((product, index) => (
@@ -127,7 +152,7 @@ const ProductsList = ({ locale }) => {
                 />
               </div>
             </>
-          )}
+          ) : null}
         </div>
       </section>
     </>

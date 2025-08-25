@@ -83,7 +83,7 @@ export const getProductById = async (id) => {
           return {
             id: color.id,
             color: color.color,
-            imgUrl: getFullImageUrl(color.img.url),
+            imgUrl: getFullImageUrl(color?.img?.url),
           };
         })
       : [],

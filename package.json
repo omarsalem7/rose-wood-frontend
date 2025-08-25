@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development next dev --turbopack",
-    "dev:windows": "set NODE_ENV=development && next dev --turbopack",
+    "dev:windows": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
