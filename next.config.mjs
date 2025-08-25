@@ -12,14 +12,18 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ["lucide-react"],
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
-      },
-    },
+    // Disable turbo for production to avoid MIME type issues
+    turbo:
+      process.env.NODE_ENV === "development"
+        ? {
+            rules: {
+              "*.svg": {
+                loaders: ["@svgr/webpack"],
+                as: "*.js",
+              },
+            },
+          }
+        : false,
   },
 
   // Image optimization
@@ -45,7 +49,8 @@ const nextConfig = {
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy:
+      "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
@@ -53,7 +58,7 @@ const nextConfig = {
   // Compression and optimization
   compress: true,
 
-  // HTTP headers for better caching
+  // HTTP headers for better caching and MIME type handling
   async headers() {
     return [
       {
@@ -70,6 +75,26 @@ const nextConfig = {
           {
             key: "X-XSS-Protection",
             value: "1; mode=block",
+          },
+          // Fix MIME type issues
+          {
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:;",
+          },
+        ],
+      },
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+          // Ensure proper MIME types for static assets
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
         ],
       },
@@ -108,6 +133,20 @@ const nextConfig = {
           },
         },
       };
+
+      // Fix MIME type issues in production
+      config.module.rules.push({
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: false,
+            },
+          },
+        ],
+      });
     }
     return config;
   },
