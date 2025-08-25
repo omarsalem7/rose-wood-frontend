@@ -118,7 +118,7 @@ const ProductCarouselSection = ({ title, categories, locale }) => {
     <section
       id="visual-feeding"
       style={{ direction: "ltr" }}
-      className="py-16 px-0 font-alexandria "
+      className="py-20 px-0 font-alexandria "
     >
       <div className="w-full mx-auto">
         {/* Section Header */}

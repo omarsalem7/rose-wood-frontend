@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import { Play, X } from "lucide-react";
 import { useModal } from "@/lib/ModalContext";
+import Image from "next/image";
 
 const VideoSection = ({ videoData }) => {
   const { openModal } = useModal();
@@ -66,7 +67,7 @@ const VideoSection = ({ videoData }) => {
 
           {/* Subtitle */}
           <p
-            className="text-sm md:text-[24px] font-normal text-center max-w-3xl leading-relaxed font-alexandria"
+            className="text-sm md:text-[24px] text-center max-w-3xl leading-relaxed font-alexandria"
             data-aos="fade-up"
             data-aos-duration="600"
             data-aos-delay="400"
@@ -96,13 +97,19 @@ const VideoSection = ({ videoData }) => {
 
         {/* Bottom Section - Duration */}
         <div
-          className="flex items-center justify-center space-x-2 text-sm font-alexandria"
+          className="flex  items-center justify-center gap-2 text-sm font-alexandria"
           data-aos="fade-up"
           data-aos-duration="600"
           data-aos-delay="800"
         >
-          <span className="w-2 h-2 bg-white rounded-full opacity-60"></span>
-          <span className="opacity-80">
+          <Image
+            src="/icons/time.svg"
+            alt="clock"
+            width={20}
+            height={20}
+            className="opacity-80"
+          />
+          <span className="md:text-xl text-sm">
             {duration > 0 ? formatDuration(duration) : "3 دقائق"}
           </span>
         </div>
