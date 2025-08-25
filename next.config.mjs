@@ -8,6 +8,18 @@ const withBundleAnalyzer =
 
 const nextConfig = {
   reactStrictMode: true,
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+    turbo: {
+      rules: {
+        "*.svg": {
+          loaders: ["@svgr/webpack"],
+          as: "*.js",
+        },
+      },
+    },
+  },
   images: {
     remotePatterns: [
       {
@@ -32,10 +44,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  // Performance optimizations
-  experimental: {
-    optimizePackageImports: ["lucide-react"],
-  },
+
   // Compression
   compress: true,
 };
