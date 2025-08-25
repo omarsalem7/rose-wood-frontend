@@ -14,9 +14,9 @@ const Filter = ({ onFilter = () => {} }) => {
   const debounceRef = useRef();
   const inputRef = useRef();
 
-  // Focus input on mount
+  // Focus input on mount only for larger screens (desktop/tablet)
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && window.innerWidth > 800) {
       inputRef.current.focus();
     }
   }, []);
