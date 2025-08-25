@@ -254,7 +254,7 @@ const ContactSection = ({ locale }) => {
                 )}
               </div>
 
-              <div className="pt-8">
+              <div className="md:pt-8 flex max-sm:justify-center">
                 <Button
                   type="submit"
                   disabled={isSubmitting}

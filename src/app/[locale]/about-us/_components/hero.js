@@ -3,7 +3,7 @@ const Hero = ({ title, description, imageUrl }) => {
   return (
     <div className=" bg-gray-50">
       {/* Header Section with Manufacturing Facility */}
-      <section className="relative bg-white py-20">
+      <section className="relative bg-white py-14">
         <div className="max-w-7xl mx-auto px-6 2xl:px-0">
           {/* Title and Description */}
           <div className="flex flex-col items-center justify-center mb-12 max-w-4xl mx-auto">

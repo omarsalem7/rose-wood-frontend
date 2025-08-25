@@ -30,7 +30,7 @@ const KitchenHeroSection = ({ locale }) => {
 
   if (loading) {
     return (
-      <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+      <section className="relative md:min-h-[50vh] min-h-[30vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -68,7 +68,7 @@ const KitchenHeroSection = ({ locale }) => {
   }
 
   return (
-    <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden">
+    <section className="relative  md:min-h-[50vh] min-h-[30vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image

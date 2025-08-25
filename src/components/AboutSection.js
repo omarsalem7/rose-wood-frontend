@@ -12,7 +12,7 @@ export default function AboutSection({
   return (
     <section
       id="about-us"
-      className="py-8 md:py-24 px-6 bg-white h-full w-full overflow-x-hidden"
+      className="py-8 md:py-24 md:pt-40 px-6 bg-white h-full w-full overflow-x-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-stretch h-full">

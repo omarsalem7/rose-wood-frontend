@@ -9,7 +9,7 @@ const HowWork = async ({ isButtonshow, locale }) => {
     await fetchHowWorkSection();
 
   return (
-    <section className="py-16 max-w-7xl mx-auto px-6 2xl:px-0">
+    <section className="max-w-7xl mx-auto px-6 2xl:px-0">
       <div className="">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -74,8 +74,8 @@ const HowWork = async ({ isButtonshow, locale }) => {
                   }
                   className={
                     idx === 0
-                      ? "bg-[#5F361F] text-white max-sm:w-full px-2 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
-                      : "border border-gray-300 text-gray-700 max-sm:w-full px-2 md:px-12 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                      ? "bg-[#5F361F] text-white text-center max-sm:w-full px-2 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                      : "border border-gray-300 text-center text-gray-700 max-sm:w-full px-2 md:px-12 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
                   }
                 >
                   {btn.text}

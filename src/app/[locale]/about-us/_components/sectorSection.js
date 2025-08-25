@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import en from "@/../public/locales/en/en.json";
+import ar from "@/../public/locales/ar/ar.json";
 
-const SectorSection = ({ card }) => {
+const SectorSection = ({ card, locale }) => {
+  const t = locale === "ar" ? ar : en;
   const cards = card || [
     {
       title: "التصدير الدولي",
@@ -28,7 +31,7 @@ const SectorSection = ({ card }) => {
   ];
 
   return (
-    <section className="py-20 max-w-7xl mx-auto px-6 2xl:px-0">
+    <section className="py-14 max-w-7xl mx-auto px-6 2xl:px-0">
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-8">
         {cards.map((item, idx) => (
           <Card
@@ -50,30 +53,34 @@ const SectorSection = ({ card }) => {
             </div>
             <CardContent className="py-6 px-0">
               <div className="text-center">
-                <h3 className="text-xl font-medium text-[#5F361F] mb-4 font-alexandria leading-relaxed">
+                <h3 className="md:text-[24px] text-[18px] font-medium text-[#5F361F] mb-4 font-alexandria leading-relaxed">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 font-alexandria line-clamp-4">
+                <p className="text-gray-500 text-base font-semibold leading-relaxed mb-6 font-alexandria line-clamp-4">
                   {item.subTitle}
                 </p>
               </div>
               <ul className="list-none text-start flex flex-col gap-4 text-gray-500">
                 {item.list &&
-                  item.list.map((li) => <li key={li.id}>{li.text}</li>)}
+                  item.list.map((li) => (
+                    <li className="md:text-[18px] text-[14px]" key={li.id}>
+                      {li.text}
+                    </li>
+                  ))}
               </ul>
             </CardContent>
           </Card>
         ))}
       </div>
-      {/* <div className="flex gap-4 justify-center mt-8">
-        <button className="bg-[#5F361F] text-white px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
-          عــرض كل المـنتجات
+      <div className="flex justify-center md:gap-8 gap-4 md:mt-8 mt-6">
+        <button className="bg-[#5F361F]  w-[180px] text-white md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+          {t.viewAllProducts}
         </button>
-        <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
-          تواصل معنا
+        <button className="border w-[180px] border-gray-300 text-gray-700 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
+          {t.contactUs}
         </button>
-      </div> */}
+      </div>
     </section>
   );
 };

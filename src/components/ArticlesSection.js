@@ -64,7 +64,7 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
       <style>{swiperStyles}</style>
       <section
         id="blogs"
-        className="py-16 px-0 md:px-8"
+        className="max-sm:my-12 py-8 px-0 md:px-8"
         style={{
           backgroundColor: "#804524",
           boxShadow: "0px 4px 4px 0px #8173640D",

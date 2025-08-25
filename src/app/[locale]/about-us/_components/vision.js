@@ -1,7 +1,7 @@
 const Vision = ({ title, description }) => {
   return (
     <section
-      className="relative py-20 mb-20 w-full md:max-w-7xl mx-auto px-6 2xl:px-0 rounded-3xl bg-cover bg-center"
+      className="relative py-20 my-10 w-full md:max-w-7xl md:mx-auto px-6 2xl:px-0 rounded-3xl  bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('/assets/vision-bg.png')`,
       }}
@@ -15,7 +15,7 @@ const Vision = ({ title, description }) => {
           <h2
             data-aos="fade-down"
             data-aos-duration="800"
-            className="text-3xl font-semibold text-white mb-8"
+            className="md:text-[24px] text-[18px] font-medium text-white mb-8"
           >
             {title}
           </h2>

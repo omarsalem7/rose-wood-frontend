@@ -25,8 +25,10 @@ export default async function About({ params }) {
         <Hero {...data.hero} />
         <HowWork isButtonshow={true} locale={locale} />
         <OurMessage {...data.ourMessage} />
-        <Vision {...data.ourVision} />
-        <SectorSection {...data.sectorSection} />
+        <div className="max-sm:mx-5">
+          <Vision {...data.ourVision} />
+        </div>
+        <SectorSection {...data.sectorSection} locale={locale} />
         <WhyChooseRosewoodSection title="لماذا تختار روز وود" />
       </AboutWithAnimations>
     </div>

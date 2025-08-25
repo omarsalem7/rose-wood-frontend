@@ -529,7 +529,7 @@ const ProductsSection = ({ locale }) => {
         <button
           key={tag.id}
           onClick={() => handleTagClick(tag.id)}
-          className={`p-3 transition-all ${
+          className={`p-3 transition-all text-[14px] md:text-[18px] ${
             selectedTag === tag.id
               ? "text-[#5F361F] font-medium"
               : "text-[#7B8B8E] hover:text-primary-900 hover:bg-[#F2ECE9] rounded-lg"

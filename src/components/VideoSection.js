@@ -39,7 +39,7 @@ const VideoSection = ({ videoData }) => {
   };
 
   return (
-    <section className="relative h-[70vh] md:h-screen w-full overflow-hidden">
+    <section className="relative my-8  h-[70vh] md:h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img

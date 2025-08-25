@@ -6,13 +6,11 @@ const FeaturesSection = ({ cards, title }) => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div
-          className="text-center mb-12"
+          className="text-center mb-4 md:mb-8"
           data-aos="fade-down"
           data-aos-duration="600"
         >
-          <h3 className="text-[18px] md:text-[32px] font-medium mb-4">
-            {title}
-          </h3>
+          <h3 className="text-[18px] md:text-[32px] font-medium">{title}</h3>
         </div>
 
         {/* Features Grid */}

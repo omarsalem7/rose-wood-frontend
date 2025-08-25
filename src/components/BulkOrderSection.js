@@ -11,7 +11,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto min-h-[40vh]">
+        <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto min-h-[48vh]">
           {/* Bulk Order Card */}
           <div
             className="min-h-[38vh] rounded-lg p-4 md:p-8 shadow-sm relative overflow-hidden"
@@ -38,7 +38,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
             </div>
 
             {/* Product Image - Bottom Left */}
-            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52">
+            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-56 md:h-56">
               {card1.image && card1.image.trim() !== "" ? (
                 <Image
                   src={card1.image}
@@ -82,7 +82,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
             </div>
 
             {/* Product Image - Bottom Left */}
-            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-52 md:h-52">
+            <div className="absolute bottom-0 left-0 w-36 h-36 md:w-56 md:h-56">
               {card2.image && card2.image.trim() !== "" ? (
                 <Image
                   src={card2.image}
