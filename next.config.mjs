@@ -47,6 +47,24 @@ const nextConfig = {
 
   // Compression
   compress: true,
+
+  // Webpack optimizations
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      // Production optimizations
+      config.optimization.splitChunks = {
+        chunks: "all",
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all",
+          },
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);
