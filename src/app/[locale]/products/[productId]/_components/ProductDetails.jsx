@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 import Image from "next/image";
 import React, { useState } from "react";
 import en from "@/../public/locales/en/en.json";
@@ -91,14 +92,17 @@ const ProductDetails = ({ locale, product }) => {
                 </span>
                 <div className="flex items-center gap-4 py-3">
                   {product.sizes.map((size) => (
-                    <Button
+                    <Tooltip
                       key={size.id}
-                      className="bg-[#F4F8FF] rounded-xl md:min-w-20"
+                      content={size.dimension}
+                      position="bottom"
                     >
-                      {size.name}
-                    </Button>
+                      <Button className="bg-[#F4F8FF] rounded-xl md:min-w-20">
+                        {size.name}
+                      </Button>
+                    </Tooltip>
                   ))}
-                  <Button className="bg-[#F4F8FF] rounded-xl">
+                  <Button className="bg-[#F8F8FF] rounded-xl">
                     {t.custom}
                   </Button>
                 </div>
