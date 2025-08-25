@@ -16,13 +16,11 @@ const CategoryList = ({ locale }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false);
   const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
   const fetchProducts = async (page = 1, searchValue = "") => {
-    setLoading(true);
     try {
       const filters = searchValue ? { name: { $containsi: searchValue } } : {};
       const res = await fetchCategories({
@@ -36,7 +34,6 @@ const CategoryList = ({ locale }) => {
       setCategories([]);
       setTotalCount(0);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -68,13 +65,7 @@ const CategoryList = ({ locale }) => {
           >
             {t.otherCategories} ({totalCount})
           </div>
-          {loading ? (
-            <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <ProductSkeleton key={i} />
-              ))}
-            </div>
-          ) : categories.length === 0 ? (
+          {categories.length === 0 ? (
             <div className="py-16 pb-24 text-center">
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
@@ -109,7 +100,7 @@ const CategoryList = ({ locale }) => {
                         height={140}
                         className="object-contain mb-6 drop-shadow-md"
                         style={{ width: "auto", height: "auto" }}
-                        fallbackClassName="w-[220px] h-[140px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
+                        fallbackClassName="w-[220px] h-[220px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
                       />
                     </div>
                     <h2 className="text-2xl font-semibold text-[#223132] text-center mb-2">

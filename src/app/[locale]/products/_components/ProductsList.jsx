@@ -20,17 +20,11 @@ const ProductsList = ({ locale }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
   const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
   const fetchProducts = async (page = 1, searchValue = "") => {
-    // Only show loading for search operations, not initial load
-    if (searchValue !== search || page !== currentPage) {
-      setIsSearching(true);
-    }
-
     try {
       const filters = searchValue ? { name: { $containsi: searchValue } } : {};
       const res = await getAllproducts({
@@ -44,10 +38,6 @@ const ProductsList = ({ locale }) => {
     } catch (e) {
       setProducts([]);
       setTotalCount(0);
-    }
-
-    if (searchValue !== search || page !== currentPage) {
-      setIsSearching(false);
     }
   };
 
@@ -80,13 +70,7 @@ const ProductsList = ({ locale }) => {
           >
             {t.allProducts} ({totalCount})
           </div>
-          {isSearching ? (
-            <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <ProductSkeleton key={i} />
-              ))}
-            </div>
-          ) : products.length === 0 ? (
+          {products.length === 0 ? (
             <div className="py-16 pb-24 text-center">
               <div className="max-w-md mx-auto">
                 <div className="mb-6">
