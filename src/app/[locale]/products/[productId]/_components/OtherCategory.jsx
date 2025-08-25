@@ -72,7 +72,6 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
           <h2 className="text-2xl font-medium mb-8 pr-2">
             {t.otherCategories}
           </h2>
-
           {/* Mobile Swiper */}
           {isMobile ? (
             <Swiper
@@ -141,41 +140,38 @@ const OtherCategory = ({ currentCategoryId, locale }) => {
               ))}
             </div>
           )}
-
           {/* Button and Arrows Row - Only show on desktop */}
-          {!isMobile && (
-            <div className="flex items-center justify-between mt-10">
-              {/* Right: Arrows */}
-              <div className="flex gap-4">
-                {categories.length > 3 && (
-                  <>
-                    <button
-                      onClick={prevSlide}
-                      disabled={isPrevDisabled}
-                      className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <ChevronRight className="w-5 h-5  text-gray-600" />
-                    </button>
-                    <button
-                      onClick={nextSlide}
-                      disabled={isNextDisabled}
-                      className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <ChevronLeft className="w-5 h-5  text-gray-600" />
-                    </button>
-                  </>
-                )}
-              </div>
-              <div>
-                <Link
-                  href={`/${locale}/categories`}
-                  className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
-                >
-                  {t.viewAllCategories}
-                </Link>
-              </div>
+          <div className="flex items-center justify-center md:justify-between mt-10">
+            {/* Right: Arrows */}
+            <div className="flex gap-4">
+              {categories.length > 3 && !isMobile && (
+                <>
+                  <button
+                    onClick={prevSlide}
+                    disabled={isPrevDisabled}
+                    className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronRight className="w-5 h-5  text-gray-600" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    disabled={isNextDisabled}
+                    className="ltr:rotate-180 w-10 h-10 flex items-center justify-center rounded-full border-2 border-black bg-white hover:bg-gray-50 transition-colors disabled:border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <ChevronLeft className="w-5 h-5  text-gray-600" />
+                  </button>
+                </>
+              )}
             </div>
-          )}
+            <div>
+              <Link
+                href={`/${locale}/categories`}
+                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-lg  font-medium transition-colors"
+              >
+                {t.viewAllCategories}
+              </Link>
+            </div>
+          </div>
         </section>
       )}
     </>

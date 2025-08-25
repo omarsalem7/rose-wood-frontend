@@ -7,22 +7,6 @@ const ProductDetailsSkeleton = () => (
       <span className="absolute right-0 top-0 w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 py-12">
-        {/* Left: Product Images */}
-        <div className="w-full px-2 flex flex-col gap-4 md:gap-8">
-          {/* Main Image */}
-          <div className="bg-gray-200 rounded-lg w-full h-96 animate-pulse" />
-
-          {/* Gallery Thumbnails */}
-          <div className="flex gap-2">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="bg-gray-200 rounded-lg w-20 h-20 animate-pulse"
-              />
-            ))}
-          </div>
-        </div>
-
         {/* Right: Product Info */}
         <div className="w-full px-2 flex flex-col gap-4 md:gap-8">
           {/* Product Title */}
@@ -65,6 +49,21 @@ const ProductDetailsSkeleton = () => (
                 />
               ))}
             </div>
+          </div>
+        </div>
+        {/* Left: Product Images */}
+        <div className="w-full px-2 flex flex-col gap-4 md:gap-8">
+          {/* Main Image */}
+          <div className="bg-gray-200 rounded-lg w-full h-96 animate-pulse" />
+
+          {/* Gallery Thumbnails */}
+          <div className="flex gap-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="bg-gray-200 rounded-lg w-20 h-20 animate-pulse"
+              />
+            ))}
           </div>
         </div>
       </div>

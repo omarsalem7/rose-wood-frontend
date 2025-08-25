@@ -67,9 +67,10 @@ export const getProductMetadata = async (id) => {
 
 export const getProductById = async (id) => {
   const json = await apiCall(
-    `/products/${id}?populate=productDetailsImage&populate=colors.img&populate=mainImageUrl&populate=category&populate=gallery&populate=colors`
+    `/products/${id}?populate=productDetailsImage&populate=colors.img&populate=mainImageUrl&populate=category&populate=gallery&populate=colors&populate=sizes`
   );
   const product = json.data;
+  console.log("aaaa", product);
 
   return {
     ...product,

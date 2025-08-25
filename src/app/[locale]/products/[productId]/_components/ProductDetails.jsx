@@ -18,8 +18,11 @@ const ProductDetails = ({ locale, product }) => {
   let selectedImage = null;
   if (selectedColor) {
     // Find the color object and use its imgUrl if available
-    const colorObj = product.colors?.find((color) => color.id === selectedColor);
-    selectedImage = colorObj?.imgUrl ||
+    const colorObj = product.colors?.find(
+      (color) => color.id === selectedColor
+    );
+    selectedImage =
+      colorObj?.imgUrl ||
       product?.gallery?.find((img) => img.id === selectedImageId)?.img ||
       product?.mainImageUrl ||
       product?.image ||
@@ -87,11 +90,14 @@ const ProductDetails = ({ locale, product }) => {
                   {t.availableSizes}
                 </span>
                 <div className="flex items-center gap-4 py-3">
-                  <Button className="bg-[#F4F8FF] rounded-xl">{t.large}</Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">
-                    {t.medium}
-                  </Button>
-                  <Button className="bg-[#F4F8FF] rounded-xl">{t.small}</Button>
+                  {product.sizes.map((size) => (
+                    <Button
+                      key={size.id}
+                      className="bg-[#F4F8FF] rounded-xl md:min-w-20"
+                    >
+                      {size.name}
+                    </Button>
+                  ))}
                   <Button className="bg-[#F4F8FF] rounded-xl">
                     {t.custom}
                   </Button>

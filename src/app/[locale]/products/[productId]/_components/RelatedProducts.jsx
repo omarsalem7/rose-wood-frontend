@@ -127,10 +127,10 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
                         : product.image || product.mainImageUrl;
 
                     return (
-                      <SwiperSlide key={product.id} className="h-auto">
-                        <div className="bg-white rounded-2xl p-3 shadow-lg hover:shadow-xl transition-shadow h-full flex flex-col w-full min-w-0">
+                      <SwiperSlide key={product.id} className="h-auto mb-2">
+                        <div className="bg-white  p-3 border border-[#DEDAD4] rounded-lg  h-full flex flex-col w-full min-w-0">
                           {/* Product Image */}
-                          <div className="w-full h-48 mb-6 rounded-xl overflow-hidden flex-shrink-0 bg-gray-50">
+                          <div className="w-full h-48 mb-6 rounded-xl overflow-hidden flex-shrink-0 ">
                             {currentImage &&
                             typeof currentImage === "string" &&
                             currentImage.trim() !== "" ? (
@@ -312,7 +312,7 @@ const RelatedProducts = ({ locale, categoryId, productId }) => {
               {/* Left: Button */}
               <Link
                 href={`/${locale}/products`}
-                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-xl  font-medium transition-colors"
+                className="bg-[#5F361F] hover:bg-amber-900 text-white px-8 py-2 rounded-lg  font-medium transition-colors"
               >
                 {t.viewAllProducts}
               </Link>
