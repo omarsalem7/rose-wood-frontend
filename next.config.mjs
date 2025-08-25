@@ -12,7 +12,7 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ["lucide-react"],
-    // Disable turbo for production to avoid MIME type issues
+    // Configure turbo properly for Next.js 15
     turbo:
       process.env.NODE_ENV === "development"
         ? {
@@ -23,7 +23,7 @@ const nextConfig = {
               },
             },
           }
-        : false,
+        : undefined,
   },
 
   // Image optimization
@@ -133,20 +133,6 @@ const nextConfig = {
           },
         },
       };
-
-      // Fix MIME type issues in production
-      config.module.rules.push({
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: false,
-            },
-          },
-        ],
-      });
     }
     return config;
   },
