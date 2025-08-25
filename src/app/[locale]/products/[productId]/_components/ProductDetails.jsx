@@ -71,7 +71,9 @@ const ProductDetails = ({ locale, product }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 py-12">
             <div className="w-full px-2 flex flex-col gap-4 md:gap-8">
-              <h1 className=" font-medium text-[40px]">{product.name}</h1>
+              <h1 className=" font-medium text-[30px] md:text-[40px] md:leading-[75px]">
+                {product.name}
+              </h1>
               <div className="flex items-center gap-2">
                 <span>{t.from}: </span>
                 <span className="text-[#9C3C28] text-xl"> {product.brand}</span>
@@ -152,7 +154,7 @@ const ProductDetails = ({ locale, product }) => {
                 )}
               </div>
               {/* Always show gallery thumbnails from product.gallery */}
-              {product.gallery && product.gallery.length > 0 && (
+              {product.gallery && product.gallery.length > 1 && (
                 <div className="relative group">
                   <div
                     className={`flex ${

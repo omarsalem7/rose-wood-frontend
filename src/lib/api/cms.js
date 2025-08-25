@@ -166,6 +166,16 @@ export async function fetchWoodStepsPageData() {
   }
 }
 
+export async function getCatalogUrl() {
+  try {
+    const json = await apiCall("/resource?fields=catelogUrl");
+    return json.data.catelogUrl;
+  } catch (error) {
+    console.error("Error fetching catalog url:", error);
+    throw error;
+  }
+}
+
 export async function fetchWhaleSalePage() {
   try {
     const json = await apiCall(

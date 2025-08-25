@@ -64,8 +64,8 @@ const CategoryList = ({ locale }) => {
 
   return (
     <>
-      <div>
-        <Filter onFilter={handleFilter} />
+      <div className="flex gap-4 items-center">
+        <Filter onFilter={handleFilter} isCategoryDownload={true} />
       </div>
       <section className="px-6">
         <div className="max-w-7xl mx-auto">
