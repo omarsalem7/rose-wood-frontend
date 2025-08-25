@@ -8,25 +8,6 @@ const withBundleAnalyzer =
 
 const nextConfig = {
   reactStrictMode: true,
-
-  // Performance optimizations
-  experimental: {
-    optimizePackageImports: ["lucide-react"],
-    // Configure turbo properly for Next.js 15
-    turbo:
-      process.env.NODE_ENV === "development"
-        ? {
-            rules: {
-              "*.svg": {
-                loaders: ["@svgr/webpack"],
-                as: "*.js",
-              },
-            },
-          }
-        : undefined,
-  },
-
-  // Image optimization
   images: {
     remotePatterns: [
       {
@@ -49,85 +30,14 @@ const nextConfig = {
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-
-  // Compression and optimization
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
+  // Compression
   compress: true,
-
-  // HTTP headers for better caching and MIME type handling
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-        ],
-      },
-      {
-        source: "/_next/static/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-          // Ensure proper MIME types for static assets
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-        ],
-      },
-      {
-        source: "/assets/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/icons/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
-  },
-
-  // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Production optimizations
-      config.optimization.splitChunks = {
-        chunks: "all",
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
-        },
-      };
-    }
-    return config;
-  },
 };
 
 export default withBundleAnalyzer(nextConfig);
