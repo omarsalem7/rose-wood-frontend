@@ -57,7 +57,7 @@ const ProductsList = ({ locale }) => {
 
   return (
     <>
-      <div data-aos="fade-down" data-aos-duration="800">
+      <div>
         <Filter onFilter={handleFilter} />
       </div>
       <section className="px-6">

@@ -60,6 +60,50 @@ const nextConfig = {
 
   // HTTP headers for better caching and MIME type handling
   async headers() {
+    // Environment-specific CSP
+    const isDev = process.env.NODE_ENV === "development";
+
+    const cspDirectives = isDev
+      ? {
+          // Development: More permissive for localhost
+          "default-src": ["'self'"],
+          "script-src": [
+            "'self'",
+            "'unsafe-eval'",
+            "'unsafe-inline'",
+            "https://va.vercel-scripts.com",
+          ],
+          "style-src": ["'self'", "'unsafe-inline'"],
+          "font-src": ["'self'", "data:"],
+          "img-src": ["'self'", "data:", "https:", "http://localhost:1337"],
+          "connect-src": [
+            "'self'",
+            "https:",
+            "http://localhost:1337",
+            "ws://localhost:*",
+          ],
+          "media-src": ["'self'", "https:", "http://localhost:1337"],
+        }
+      : {
+          // Production: More restrictive
+          "default-src": ["'self'"],
+          "script-src": [
+            "'self'",
+            "'unsafe-eval'",
+            "'unsafe-inline'",
+            "https://va.vercel-scripts.com",
+          ],
+          "style-src": ["'self'", "'unsafe-inline'"],
+          "font-src": ["'self'", "data:"],
+          "img-src": ["'self'", "data:", "https:"],
+          "connect-src": ["'self'", "https:"],
+          "media-src": ["'self'", "https:"],
+        };
+
+    const cspValue = Object.entries(cspDirectives)
+      .map(([key, values]) => `${key} ${values.join(" ")}`)
+      .join("; ");
+
     return [
       {
         source: "/(.*)",
@@ -76,11 +120,10 @@ const nextConfig = {
             key: "X-XSS-Protection",
             value: "1; mode=block",
           },
-          // Fix MIME type issues
+          // Environment-specific CSP
           {
             key: "Content-Security-Policy",
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:;",
+            value: cspValue,
           },
         ],
       },
