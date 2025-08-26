@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development next dev --turbopack",
-    "dev:windows": "next dev --turbopack",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -32,6 +31,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.53.0",
     "react-leaflet": "^5.0.0",
+    "react-phone-input-2": "^2.15.1",
     "react-select": "^5.10.2",
     "swiper": "^11.2.10",
     "tailwind-merge": "^2.5.2",

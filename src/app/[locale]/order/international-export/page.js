@@ -23,6 +23,10 @@ import { submitInternationalExports } from "@/lib/api/order";
 import FormResultDialog from "@/components/FormResultDialog";
 import en from "@/../public/locales/en/internationalExport.json";
 import ar from "@/../public/locales/ar/internationalExport.json";
+import arPhone from "react-phone-input-2/lang/ar.json";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { countryNameMapping } from "@/lib/utils";
 
 // Function to organize products by category
 const organizeProductsByCategory = (products) => {
@@ -114,7 +118,7 @@ export default function InternationalExportPage({ params }) {
       email: "",
       phone: "",
       city: "",
-      country: "",
+      country: locale === "ar" ? "مصر" : "Egypt", // Set default country based on locale
       website: "",
       activity: "",
       products: [{ productId: "" }],
@@ -132,6 +136,12 @@ export default function InternationalExportPage({ params }) {
     form.clearErrors();
     form.setValue("products", [{ productId: "" }]);
   }, [chooseAllProducts, form]);
+
+  // Initialize country field with default value based on phone input default country
+  useEffect(() => {
+    const defaultCountry = locale === "ar" ? "مصر" : "Egypt";
+    form.setValue("country", defaultCountry);
+  }, [locale, form]);
 
   const onSubmit = async (data) => {
     try {
@@ -248,10 +258,30 @@ export default function InternationalExportPage({ params }) {
                     <FormItem>
                       <FormLabel>{t.phone}</FormLabel>
                       <FormControl>
-                        <Input
+                        <PhoneInput
+                          country={"eg"}
+                          value={field.value}
+                          disableSearchIcon={true}
+                          onChange={(phone, country) => {
+                            field.onChange(phone);
+                            // Set the country name in the country field
+                            // Convert to Arabic if locale is Arabic
+                            const countryName =
+                              locale === "ar" &&
+                              countryNameMapping[country.name]
+                                ? countryNameMapping[country.name]
+                                : country.name;
+                            form.setValue("country", countryName);
+                          }}
+                          enableSearch={true}
+                          searchPlaceholder={
+                            locale === "ar"
+                              ? "البحث عن البلد..."
+                              : "Search country..."
+                          }
+                          preferredCountries={["ae", "eg", "sa"]}
                           placeholder={t.phone}
-                          className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                          {...field}
+                          localization={locale === "ar" ? arPhone : undefined}
                         />
                       </FormControl>
                       <FormMessage />
