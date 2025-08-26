@@ -115,9 +115,9 @@ const CategoryList = ({ locale }) => {
                     data-aos="zoom-in"
                     data-aos-duration="600"
                     data-aos-delay={index * 100}
-                    className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit md:min-h-[350px]"
+                    className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit"
                   >
-                    <div className="flex justify-center w-full">
+                    <div className="flex justify-center w-full flex-grow">
                       <SafeImage
                         src={category.mainImageUrl || category.image}
                         alt={category.name || "Category image"}
