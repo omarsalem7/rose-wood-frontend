@@ -54,10 +54,10 @@ const Filter = ({ onFilter = () => {}, isCategoryDownload = false }) => {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="items flex justify-between items-center gap-2 md:gap-6"
+            className="items flex max-md:flex-wrap md:justify-between items-center gap-2 md:gap-6"
           >
             <div
-              className="w-[80%] py-2 rounded-full px-2 flex items-center"
+              className="w-full md:w-[80%] py-2 rounded-full px-2 flex items-center"
               style={{ backgroundColor: "#FFF8F6" }}
             >
               <input
@@ -85,14 +85,14 @@ const Filter = ({ onFilter = () => {}, isCategoryDownload = false }) => {
                   href={catalogUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-10 px-4 py-2 flex items-center justify-center  bg-white min-w-48 cursor-pointer rounded-full border border-primary-900 text-primary-900"
+                  className="h-10 px-4 py-2 flex items-center justify-center  bg-white max-md:w-3/5 md:min-w-48 cursor-pointer rounded-full border border-primary-900 text-primary-900"
                 >
                   {t.downloadAllProducts}
                 </a>
-                <div className="">
+                <div className="max-md:flex-grow">
                   <Button
                     type="submit"
-                    className="bg-[#5F361F] min-w-48 cursor-pointer rounded-full text-white"
+                    className="bg-[#5F361F] w-full md:min-w-48 cursor-pointer rounded-full text-white"
                   >
                     {t.searchButton}
                   </Button>
