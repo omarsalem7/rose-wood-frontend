@@ -23,6 +23,8 @@ import { submitPriceQuote } from "@/lib/api/order";
 import FormResultDialog from "@/components/FormResultDialog";
 import en from "@/../public/locales/en/offerPrice.json";
 import ar from "@/../public/locales/ar/offerPrice.json";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 // Function to organize products by category
 const organizeProductsByCategory = (products) => {
@@ -267,10 +269,21 @@ export default function OfferPricePage({ params }) {
                     <FormItem>
                       <FormLabel>{t.phone}</FormLabel>
                       <FormControl>
-                        <Input
+                        <PhoneInput
+                          country={"eg"}
+                          value={field.value}
+                          disableSearchIcon={true}
+                          onChange={(phone, country) => {
+                            field.onChange(phone);
+                          }}
+                          enableSearch={true}
+                          searchPlaceholder={
+                            locale === "ar"
+                              ? "البحث عن البلد..."
+                              : "Search country..."
+                          }
+                          preferredCountries={["ae", "eg", "sa"]}
                           placeholder={t.phone}
-                          className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                          {...field}
                         />
                       </FormControl>
                       <FormMessage />

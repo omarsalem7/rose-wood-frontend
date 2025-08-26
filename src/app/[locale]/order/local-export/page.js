@@ -23,6 +23,8 @@ import { submitLocalExports } from "@/lib/api/order";
 import FormResultDialog from "@/components/FormResultDialog";
 import en from "@/../public/locales/en/localExport.json";
 import ar from "@/../public/locales/ar/localExport.json";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 // Function to organize products by category
 const organizeProductsByCategory = (products) => {
@@ -253,16 +255,28 @@ export default function LocalExportPage({ params }) {
                     <FormItem>
                       <FormLabel>{t.phone}</FormLabel>
                       <FormControl>
-                        <Input
+                        <PhoneInput
+                          country={"eg"}
+                          value={field.value}
+                          disableSearchIcon={true}
+                          onChange={(phone, country) => {
+                            field.onChange(phone);
+                          }}
+                          enableSearch={true}
+                          searchPlaceholder={
+                            locale === "ar"
+                              ? "البحث عن البلد..."
+                              : "Search country..."
+                          }
+                          preferredCountries={["ae", "eg", "sa"]}
                           placeholder={t.phone}
-                          className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
-                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
                   name="email"
