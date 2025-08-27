@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+  <!-- Homepage - will redirect to /ar/ -->
   <url>
-    <loc>https://rosewood-kitchenware.com/</loc>
+    <loc>https://rosewoodeg.com/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,15 +10,23 @@
   
   <!-- Arabic Homepage -->
   <url>
-    <loc>https://rosewood-kitchenware.com/ar/</loc>
+    <loc>https://rosewoodeg.com/ar/</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
-  <!-- About Us -->
+  <!-- English Homepage -->
   <url>
-    <loc>https://rosewood-kitchenware.com/about-us</loc>
+    <loc>https://rosewoodeg.com/en/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- About Us - will redirect to /ar/about-us -->
+  <url>
+    <loc>https://rosewoodeg.com/about-us</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -26,15 +34,23 @@
   
   <!-- Arabic About Us -->
   <url>
-    <loc>https://rosewood-kitchenware.com/ar/about-us</loc>
+    <loc>https://rosewoodeg.com/ar/about-us</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
-  <!-- Products -->
+  <!-- English About Us -->
   <url>
-    <loc>https://rosewood-kitchenware.com/products</loc>
+    <loc>https://rosewoodeg.com/en/about-us</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Products - will redirect to /ar/products -->
+  <url>
+    <loc>https://rosewoodeg.com/products</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -42,15 +58,23 @@
   
   <!-- Arabic Products -->
   <url>
-    <loc>https://rosewood-kitchenware.com/ar/products</loc>
+    <loc>https://rosewoodeg.com/ar/products</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
-  <!-- Blog -->
+  <!-- English Products -->
   <url>
-    <loc>https://rosewood-kitchenware.com/blog</loc>
+    <loc>https://rosewoodeg.com/en/products</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Blog - will redirect to /ar/blog -->
+  <url>
+    <loc>https://rosewoodeg.com/blog</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -58,15 +82,23 @@
   
   <!-- Arabic Blog -->
   <url>
-    <loc>https://rosewood-kitchenware.com/ar/blog</loc>
+    <loc>https://rosewoodeg.com/ar/blog</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
-  <!-- Contact -->
+  <!-- English Blog -->
   <url>
-    <loc>https://rosewood-kitchenware.com/contact</loc>
+    <loc>https://rosewoodeg.com/en/blog</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Contact - will redirect to /ar/contact -->
+  <url>
+    <loc>https://rosewoodeg.com/contact</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -74,15 +106,23 @@
   
   <!-- Arabic Contact -->
   <url>
-    <loc>https://rosewood-kitchenware.com/ar/contact</loc>
+    <loc>https://rosewoodeg.com/ar/contact</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
-  <!-- Wholesale -->
+  <!-- English Contact -->
   <url>
-    <loc>https://rosewood-kitchenware.com/wholesale</loc>
+    <loc>https://rosewoodeg.com/en/contact</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Wholesale - will redirect to /ar/wholesale -->
+  <url>
+    <loc>https://rosewoodeg.com/wholesale</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -90,9 +130,65 @@
   
   <!-- Arabic Wholesale -->
   <url>
-    <loc>https://rosewood-kitchenware.com/ar/wholesale</loc>
+    <loc>https://rosewoodeg.com/ar/wholesale</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <!-- English Wholesale -->
+  <url>
+    <loc>https://rosewoodeg.com/en/wholesale</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Categories - will redirect to /ar/categories -->
+  <url>
+    <loc>https://rosewoodeg.com/categories</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Arabic Categories -->
+  <url>
+    <loc>https://rosewoodeg.com/ar/categories</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- English Categories -->
+  <url>
+    <loc>https://rosewoodeg.com/en/categories</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Wood Steps - will redirect to /ar/wood-steps -->
+  <url>
+    <loc>https://rosewoodeg.com/wood-steps</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Arabic Wood Steps -->
+  <url>
+    <loc>https://rosewoodeg.com/ar/wood-steps</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- English Wood Steps -->
+  <url>
+    <loc>https://rosewoodeg.com/en/wood-steps</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset> 

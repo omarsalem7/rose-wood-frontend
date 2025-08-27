@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location - Update this with your actual domain
-Sitemap: https://rosewood-kitchenware.com/sitemap.xml
+Sitemap: https://rosewoodeg.com/sitemap.xml
 
 # Disallow admin and private areas only
 Disallow: /admin/

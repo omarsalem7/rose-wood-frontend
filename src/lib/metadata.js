@@ -128,9 +128,7 @@ export async function generateMetadata() {
         title: "Rosewood Kitchenware - Premium Wooden Kitchen Utensils",
         description:
           "Premium wooden kitchenware manufacturer. High-quality, eco-friendly kitchen tools and utensils made from natural wood.",
-        url:
-          process.env.NEXT_PUBLIC_SITE_URL ||
-          "https://rosewood-kitchenware.com",
+        url: process.env.NEXT_PUBLIC_SITE_URL || "https://rosewoodeg.com",
         siteName: "Rosewood",
         type: "website",
         locale: "ar",
