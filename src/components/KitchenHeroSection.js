@@ -30,7 +30,7 @@ const KitchenHeroSection = ({ locale }) => {
 
   if (loading) {
     return (
-      <section className="relative md:min-h-[50vh] min-h-[30vh] flex items-center justify-center overflow-hidden">
+      <section className="relative md:min-h-[60vh] min-h-[35vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -47,7 +47,7 @@ const KitchenHeroSection = ({ locale }) => {
         <div className="absolute inset-0 bg-[#0a0a0a9e]"></div>
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           <div className="animate-pulse">
-            <div className="mb-8">
+            <div className="">
               <div className="mb-4">
                 <Image
                   src="/icons/rose-white.svg"
@@ -68,7 +68,7 @@ const KitchenHeroSection = ({ locale }) => {
   }
 
   return (
-    <section className="relative  md:min-h-[50vh] min-h-[30vh] flex items-center justify-center overflow-hidden">
+    <section className="relative  md:min-h-[60vh] min-h-[35vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -88,21 +88,20 @@ const KitchenHeroSection = ({ locale }) => {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
         {/* Logo */}
-        <div className="mb-8">
+        <div className="">
           <div className="mb-4">
             <Image
               src="/icons/rose-white.svg"
               alt="Rosewood Kitchen Collections Logo"
-              className="mx-auto"
-              width={200}
+              className="mx-auto w-auto md:w-48 h-auto md:h-20"
+              width={300}
               height={100}
-              style={{ width: "auto", height: "auto" }}
             />
           </div>
         </div>
 
         {/* Main Arabic Text */}
-        <h1 className="text-[20px] md:text-[40px] md:font-medium mb-12 leading-9 md:leading-tight">
+        <h1 className="text-[20px]  md:text-[40px] md:font-medium mb-20 leading-9 md:leading-tight">
           {data.title}
         </h1>
 

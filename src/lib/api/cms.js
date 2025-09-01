@@ -410,7 +410,7 @@ export async function fetchQuotationSection() {
 export async function fetchFooterData() {
   try {
     const json = await apiCall(
-      "/footer?populate[socialMedia][populate]=*&populate[ourProducts][populate]=*&populate[importantLinks][populate]=*&populate[services][populate]=*&populate[rosewoodLinks][populate]=*"
+      "/footer?populate[socialMedia][populate]=*&populate[ourProducts][populate]=*&populate[importantLinks][populate]=*&populate[rosewoodLinks][populate]=*"
     );
 
     if (!json.data) {
@@ -675,6 +675,7 @@ export async function fetchNavbarData() {
       visualFeeding: "التغذية البصرية",
       contactUs: "تواصل معنا",
       offerPrice: "عرض سعر",
+      catalog: "كتالوج",
       facebook: "",
       linkedin: "",
       x: "",

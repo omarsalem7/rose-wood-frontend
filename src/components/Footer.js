@@ -8,6 +8,7 @@ import {
   Facebook,
   Heart,
   MapPin,
+  Instagram,
   Phone,
   Mail,
 } from "lucide-react";
@@ -46,15 +47,7 @@ const Footer = ({ locale }) => {
         { id: 234, text: "عرض كل المنتجات", url: null },
       ],
     },
-    services: {
-      title: "خدماتنا",
-      items: [
-        { id: 224, text: "اسم الخدمة هنا", url: null },
-        { id: 225, text: "اسم الخدمة هنا", url: null },
-        { id: 226, text: "اسم الخدمة هنا", url: null },
-        { id: 227, text: "اسم الخدمة هنا", url: null },
-      ],
-    },
+
     rosewoodLinks: {
       title: "روز وود",
       home: "الصفحة الرئيسية",
@@ -87,6 +80,11 @@ const Footer = ({ locale }) => {
     if (lowerText.includes("youtube")) return <Youtube size={16} />;
     if (lowerText.includes("linkedin")) return <Linkedin size={16} />;
     if (lowerText.includes("facebook")) return <Facebook size={16} />;
+    if (lowerText.includes("instagram")) return <Instagram size={16} />;
+    if (lowerText.includes("tiktok"))
+      return (
+        <Image src="/icons/tiktok.svg" alt="tiktok" width={16} height={16} />
+      );
     return <X size={16} />; // default
   };
 
@@ -121,7 +119,7 @@ const Footer = ({ locale }) => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-24">
           {/* Upper Section - Navigation Links */}
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
             {/* Rosewood Links Section */}
             <div className="lg:col-span-1">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
@@ -160,25 +158,6 @@ const Footer = ({ locale }) => {
                     {footerData.rosewoodLinks?.contactUs || "تواصل معنا"}
                   </a>
                 </li>
-              </ul>
-            </div>
-
-            {/* Services Section */}
-            <div className="lg:col-span-1">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                {footerData.services?.title || "خدماتنا"}
-              </h3>
-              <ul className="space-y-3">
-                {footerData.services?.items?.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={item.url || "#"}
-                      className="text-gray-600 hover:text-amber-800 transition-colors duration-200 text-sm"
-                    >
-                      {item.text}
-                    </a>
-                  </li>
-                ))}
               </ul>
             </div>
 
@@ -238,7 +217,7 @@ const Footer = ({ locale }) => {
                         rel="noopener"
                         className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
                       >
-                        {getSocialIcon(social.text)}
+                        {getSocialIcon(social.url)}
                       </a>
                     )
                 )}

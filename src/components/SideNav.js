@@ -2,10 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import SmoothScrollLink from "./ui/SmoothScrollLink";
-
-import { Youtube, X, Linkedin, Facebook } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Youtube, X, Linkedin, Facebook, Instagram } from "lucide-react";
+import { getCatalogUrl } from "@/lib/api/cms";
 
 const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
+  const [catalogUrl, setCatalogUrl] = useState("");
+
+  useEffect(() => {
+    getCatalogUrl().then((url) => setCatalogUrl(url));
+  }, []);
+
   // Skeleton component for loading state
   const MenuItemSkeleton = () => (
     <div className="flex items-center gap-3 py-3">
@@ -157,6 +164,38 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                 />
                 {data?.visualFeeding}
               </SmoothScrollLink>
+
+              <a
+                onClick={onClose}
+                href={catalogUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-lg font-medium text-gray-900 hover:text-amber-800 transition-colors duration-200 py-3"
+              >
+                <svg
+                  width="25px"
+                  height="25px"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#5f361f"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      fill="none"
+                      stroke="#5f361f"
+                      stroke-width="1.032"
+                      d="M5,6 L1,4.5 L1,18.443038 L12,23 L23,18.443038 L23,4 L19,6 M5,16 L5,2 L12,5 L19,2 L19,16 L12,19 L5,16 Z M11.95,5 L11.95,19"
+                    ></path>{" "}
+                  </g>
+                </svg>
+                {data?.catalog || "كتالوج"}
+              </a>
               {/* <SmoothScrollLink
                 elementId="blogs"
                 locale={locale}
@@ -210,7 +249,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               <Link
                 onClick={onClose}
                 href={`/${locale}/order/price-quote`}
-                className="w-full text-center border border-gray-300 text-gray-700 px-3 py-3  rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                className="w-full text-center border border-primary-900 text-primary-900 px-3 py-3  rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {data?.offerPrice}
               </Link>
@@ -235,6 +274,19 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               <Facebook size={16} />
             </a>
           )}
+          {data?.tiktok && (
+            <a
+              href={data?.tiktok}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <Image
+                src="/icons/tiktok.svg"
+                alt="tiktok"
+                width={16}
+                height={16}
+              />
+            </a>
+          )}
           {data?.x && (
             <a
               href={data?.x}
@@ -243,6 +295,30 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               <X size={16} />
             </a>
           )}
+
+          {data?.tiktok && (
+            <a
+              href={data?.tiktok}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <Tiktok size={16} />
+            </a>
+          )}
+          <a
+            href={data?.instagram}
+            className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+          >
+            <Instagram size={16} />
+          </a>
+          {data?.instagram && (
+            <a
+              href={data?.instagram}
+              className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
+            >
+              <Instagram size={16} />
+            </a>
+          )}
+
           {data?.youtube && (
             <a
               href={data?.youtube}

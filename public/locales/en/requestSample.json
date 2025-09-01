@@ -9,7 +9,7 @@
   "address": "Address",
   "products": "Products",
   "addProduct": "Add another product",
-  "qty": "Qty",
+  "qty": "Quantity per carton",
   "specialRequests": "Special Requests (Optional)",
   "submit": "Submit Request Sample",
   "selectProduct": "Select a product",

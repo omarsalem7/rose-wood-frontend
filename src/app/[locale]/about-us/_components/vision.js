@@ -15,7 +15,7 @@ const Vision = ({ title, description }) => {
           <h2
             data-aos="fade-down"
             data-aos-duration="800"
-            className="md:text-[24px] text-[18px] font-medium text-white mb-8"
+            className="text-[18px] md:text-[24px]  font-medium text-white mb-8"
           >
             {title}
           </h2>

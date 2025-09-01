@@ -16,7 +16,7 @@ const HowWork = async ({ isButtonshow, locale }) => {
           <h2
             data-aos="fade-down"
             data-aos-duration="800"
-            className="text-3xl  font-semibold text-gray-900 mb-4"
+            className="text-[18px] md:text-[24px]  font-medium text-gray-900 mb-4"
           >
             {title || "كيف نعمل"}
           </h2>
@@ -74,8 +74,8 @@ const HowWork = async ({ isButtonshow, locale }) => {
                   }
                   className={
                     idx === 0
-                      ? "bg-[#5F361F] text-white text-center max-sm:w-full px-2 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
-                      : "border border-gray-300 text-center text-gray-700 max-sm:w-full px-2 md:px-12 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                      ? "bg-[#5F361F] text-white text-center max-sm:w-full px-2 md:px-8 py-3 rounded-[12px] text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+                      : "border border-primary-900 text-center text-primary-900 max-sm:w`-full px-2 md:px-12 py-3 rounded-[12px] text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
                   }
                 >
                   {btn.text}

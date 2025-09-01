@@ -29,7 +29,7 @@ const OurMessage = ({ title, subTitle, endDescription, cards }) => {
           <h2
             data-aos="fade-down"
             data-aos-duration="800"
-            className="text-[24px] font-medium text-gray-800 mb-4"
+            className="text-[18px] md:text-[24px]  font-medium text-gray-800 mb-4"
           >
             {title || "رسالتنا"}
           </h2>
