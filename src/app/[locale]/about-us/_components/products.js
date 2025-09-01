@@ -2,6 +2,7 @@ import { getCategoriesInAboutPage } from "@/lib/api/categories";
 import Image from "next/image";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import Link from "next/link";
 
 const ProductsAbout = async ({ locale }) => {
   const t = locale === "ar" ? ar : en;
@@ -21,7 +22,8 @@ const ProductsAbout = async ({ locale }) => {
       {/* Product Cards Section */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-12">
         {categories.map((category) => (
-          <div
+          <Link
+            href={`/${locale}/products?categoryId=${category.id}`}
             key={category.id}
             className="flex py-4 flex-col items-center border border-[#E5E5E5] rounded-lg"
           >
@@ -37,7 +39,7 @@ const ProductsAbout = async ({ locale }) => {
             <h3 className="text-[12px] md:text-[18px] font-medium text-gray-900">
               {category.name}
             </h3>
-          </div>
+          </Link>
         ))}
       </div>
 
