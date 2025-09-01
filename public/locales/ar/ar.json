@@ -47,5 +47,9 @@
   "productCode": "المنتج رقم",
   "dimension": "بمقاس",
   "downloadAllProducts": "تحميل كاتالوج المنتجات",
-  "contactUs": "تواصل معنا"
+  "contactUs": "تواصل معنا",
+  "productsAbout": "منتجات روز وود",
+  "productsAboutSubtitle": "نقدم أكثر من 120 منتج تشمل",
+  "productsAboutDescription": "كل منتج متاح بمقاسات وأشكال مختلفة، ويمكن تخصيصه حسب الحاجة (مقاس - لون - شعار - تغليف).",
+  "productsAboutCTA": "تجهيزات خشبية حسب الطلب"
 }

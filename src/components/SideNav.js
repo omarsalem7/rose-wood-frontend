@@ -179,17 +179,17 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#5f361f"
                 >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g
                     id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></g>
                   <g id="SVGRepo_iconCarrier">
                     <path
                       fill="none"
                       stroke="#5f361f"
-                      stroke-width="1.032"
+                      strokeWidth="1.032"
                       d="M5,6 L1,4.5 L1,18.443038 L12,23 L23,18.443038 L23,4 L19,6 M5,16 L5,2 L12,5 L19,2 L19,16 L12,19 L5,16 Z M11.95,5 L11.95,19"
                     ></path>{" "}
                   </g>

@@ -72,3 +72,15 @@ export async function fetchCategories({ filters = {}, page, pageSize } = {}) {
     totalCount: json.meta?.pagination?.total || 0,
   };
 }
+
+export const getCategoriesInAboutPage = async () => {
+  const json = await apiCall(
+    `/categories?fields=name&populate[mainImage][fields]=url&pagination[page]=1&pagination[pageSize]=4&sort=sortOrder`
+  );
+  return json.data.map((item) => {
+    return {
+      ...item,
+      mainImageUrl: getFullImageUrl(item.mainImage.url),
+    };
+  });
+};

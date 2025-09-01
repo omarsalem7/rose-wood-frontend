@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import Link from "next/link";
 
 const SectorSection = ({ card, locale }) => {
   const t = locale === "ar" ? ar : en;
@@ -73,13 +74,19 @@ const SectorSection = ({ card, locale }) => {
           </Card>
         ))}
       </div>
-      <div className="flex justify-center md:gap-8 gap-4 md:mt-8 mt-6">
-        <button className="bg-[#5F361F]  w-[180px] text-white md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200">
+      <div className="flex justify-center text-center md:gap-8 gap-4 md:mt-8 mt-6">
+        <Link
+          href={`/${locale}/categories`}
+          className="bg-[#5F361F]   w-[180px] text-white md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
+        >
           {t.viewAllProducts}
-        </button>
-        <button className="border w-[180px] border-gray-300 text-gray-700 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200">
+        </Link>
+        <Link
+          href={`/${locale}/contact`}
+          className="border w-[180px] border-primary-900 text-primary-900 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+        >
           {t.contactUs}
-        </button>
+        </Link>
       </div>
     </section>
   );

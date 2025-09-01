@@ -46,5 +46,9 @@
   "productCode": "Product Code",
   "dimension": "Dimension",
   "downloadAllProducts": "Download All Products",
-  "contactUs": "Contact Us"
+  "contactUs": "Contact Us",
+  "productsAbout": "Products About",
+  "productsAboutSubtitle": "We offer more than 120 products including",
+  "productsAboutDescription": "All products are available in different sizes and shapes, and can be customized according to your needs (size - color - logo - packaging).",
+  "productsAboutCTA": "Wooden products on order"
 }

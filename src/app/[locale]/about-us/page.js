@@ -6,6 +6,7 @@ import SectorSection from "./_components/sectorSection";
 import WhyChooseRosewoodSection from "@/components/WhyChooseRosewoodSection";
 import AboutWithAnimations from "./_components/AboutWithAnimations";
 import { fetchAllAboutPageData } from "@/lib/api/cms";
+import ProductsAbout from "./_components/products";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -28,6 +29,8 @@ export default async function About({ params }) {
         <div className="max-sm:mx-5">
           <Vision {...data.ourVision} />
         </div>
+
+        <ProductsAbout locale={locale} />
         <SectorSection {...data.sectorSection} locale={locale} />
         <WhyChooseRosewoodSection title="لماذا تختار روز وود" />
       </AboutWithAnimations>
