@@ -7,7 +7,7 @@ const ProductsAbout = async ({ locale }) => {
   const t = locale === "ar" ? ar : en;
   const categories = await getCategoriesInAboutPage();
   return (
-    <div className="max-w-7xl mx-auto px-6 2xl:px-0 text-center">
+    <div className="max-w-7xl mx-auto px-6 2xl:px-0 text-center py-4 md:py-8">
       {/* Header Section */}
       <div className="mb-12">
         <h2 className="text-[18px] md:text-[24px] font-medium text-gray-900 mb-4">
