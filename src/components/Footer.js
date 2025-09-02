@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import localFont from "next/font/local";
 import {
   Youtube,
   X,
@@ -14,6 +15,11 @@ import {
 } from "lucide-react";
 import { fetchFooterData } from "@/lib/api/cms";
 import Link from "next/link";
+
+const myFont = localFont({
+  src: "../../public/fonts/Blenny_Black_24726.otf",
+  variable: "--font-blenny-black",
+});
 
 const Footer = ({ locale }) => {
   const [footerData, setFooterData] = useState({
@@ -119,7 +125,7 @@ const Footer = ({ locale }) => {
       <div className="max-w-7xl mx-auto">
         <div className="mb-24">
           {/* Upper Section - Navigation Links */}
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Rosewood Links Section */}
             <div className="lg:col-span-1">
               <h3 className="text-lg font-semibold text-gray-800 mb-4">
@@ -202,30 +208,31 @@ const Footer = ({ locale }) => {
             </div>
 
             {/* Social Media Section */}
-            <div className="lg:col-span-1">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                {footerData.socialMedia?.title || "تواصل معنا"}
-              </h3>
-              <div className="flex gap-3 flex-wrap">
-                {footerData.socialMedia?.items?.map(
-                  (social) =>
-                    social.url && (
-                      <a
-                        key={social.id}
-                        href={social.url || "#"}
-                        target="_blank"
-                        rel="noopener"
-                        className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
-                      >
-                        {getSocialIcon(social.url)}
-                      </a>
-                    )
-                )}
+            <div className="lg:col-span-1 flex justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  {footerData.socialMedia?.title || "تواصل معنا"}
+                </h3>
+                <div className="flex gap-3 flex-wrap">
+                  {footerData.socialMedia?.items?.map(
+                    (social) =>
+                      social.url && (
+                        <a
+                          key={social.id}
+                          href={social.url || "#"}
+                          target="_blank"
+                          rel="noopener"
+                          className="w-10 h-10 bg-[#9C3C28] rounded-full flex items-center justify-center text-white hover:bg-red-800 transition-colors duration-200"
+                        >
+                          {getSocialIcon(social.url)}
+                        </a>
+                      )
+                  )}
+                </div>
               </div>
-            </div>
 
-            {/* Vertical Text and Heart */}
-            <div className="lg:col-span-1 flex justify-end">
+              {/* Vertical Text and Heart */}
+
               <div className="flex items-center gap-2">
                 <div className="flex flex-col items-center">
                   <p className="[writing-mode:vertical-rl] font-semibold text-xl text-gray-800">
@@ -236,28 +243,35 @@ const Footer = ({ locale }) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row gap-8 md:gap-24 border-t border-gray-300 pt-4 text-gray-600 text-sm">
-            {footerData.email && (
+          <div className="font-alexandria flex flex-col md:flex-row gap-8 md:justify-between border-t border-gray-300 pt-4 text-gray-600 text-sm">
+            {footerData.location && (
               <div className="flex items-center gap-2">
-                <Mail size={16} className="text-amber-800" />
-                <a
-                  href={`mailto:${footerData.email}`}
-                  className="hover:text-amber-800 transition-colors duration-200"
-                >
-                  {footerData.email}
-                </a>
+                <MapPin size={20} className="text-amber-800" />
+                <span className="text-[#002B36] font-medium md:text-[16px]">
+                  {footerData.location}
+                </span>
               </div>
             )}
             {footerData.phone && (
               <div className="flex items-center gap-2">
-                <Phone size={16} className="text-amber-800" />
-                <span>{footerData.phone}</span>
+                <Phone size={20} className="text-amber-800" />
+                <span
+                  className="text-[#002B36] font-medium md:text-[16px]"
+                  style={{ direction: "ltr" }}
+                >
+                  {footerData.phone}
+                </span>
               </div>
             )}
-            {footerData.location && (
+            {footerData.email && (
               <div className="flex items-center gap-2">
-                <MapPin size={16} className="text-amber-800" />
-                <span>{footerData.location}</span>
+                <Mail size={20} className="text-amber-800" />
+                <a
+                  href={`mailto:${footerData.email}`}
+                  className="text-[#002B36] font-medium md:text-[16px] "
+                >
+                  {footerData.email}
+                </a>
               </div>
             )}
           </div>
@@ -271,8 +285,10 @@ const Footer = ({ locale }) => {
           {/* Contact Information */}
 
           {/* Large Brand Text Background */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-            <h2 className="text-4xl md:text-7xl lg:text-[9rem] xl:text-[12rem] font-bold text-[oklch(0.56 0 0)] whitespace-nowrap">
+          <div className="absolute  inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <h2
+              className={`md:w-full md:tracking-widest text-7xl lg:text-[9rem] xl:text-[12rem] font-bold text-[oklch(0.46 0.01 0.5);] whitespace-nowrap ${myFont.className}`}
+            >
               ROSEWOOD
             </h2>
           </div>
