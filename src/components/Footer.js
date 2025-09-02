@@ -123,7 +123,7 @@ const Footer = ({ locale }) => {
   return (
     <footer className="bg-gradient-to-r from-[#DAD0C7] to-[#F6F3F1] py-16 pb-24 px-6 overflow-y-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-24">
+        <div className="mb-16 md:mb-24">
           {/* Upper Section - Navigation Links */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Rosewood Links Section */}
