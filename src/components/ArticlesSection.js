@@ -205,22 +205,22 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
           </div>
 
           {/* Bottom Section with Button and Navigation */}
-          {blogs.length > 3 && (
-            <div
-              className="flex items-center md:justify-between justify-center px-8"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="400"
-            >
-              {/* Show All Blogs Button */}
-              <Link
-                href={`/${locale}/blog`}
-                className="rounded-xl text-white hover:bg-white hover:text-primary-900  px-12 py-3 text-base font-medium border border-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-              >
-                {t.viewAllBlogs}
-              </Link>
 
-              {/* Navigation Arrows */}
+          <div
+            className="flex items-center md:justify-between justify-center px-8"
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-delay="400"
+          >
+            {/* Show All Blogs Button */}
+            <Link
+              href={`/${locale}/blog`}
+              className="rounded-xl text-white hover:bg-white hover:text-primary-900  px-12 py-3 text-base font-medium border border-white shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+            >
+              {t.viewAllBlogs}
+            </Link>
+            {/* Navigation Arrows */}
+            {blogs.length > 3 && (
               <div className="hidden md:flex items-center gap-4">
                 <button
                   onClick={goToPrevious}
@@ -234,7 +234,6 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                   data-aos-duration="400"
                   data-aos-delay="500"
                 >
-                  {" "}
                   <ChevronRight
                     size={20}
                     className="text-white ltr:rotate-180"
@@ -258,8 +257,8 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                   />
                 </button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
     </>

@@ -26,18 +26,13 @@ const Hero = ({ title, description, imageUrl }) => {
             </p>
           </div>
 
-          <div
-            data-aos="zoom-in"
-            data-aos-duration="1000"
-            data-aos-delay="400"
-            className="rounded-2xl "
-          >
+          <div data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
             <Image
               width={1200}
-              height={600}
+              height={500}
               src={imageUrl || "/assets/about-hero.png"}
               alt="مصنع روز وود - خط الإنتاج الأول"
-              className="w-full  object-cover"
+              className="w-full h-[200px] md:h-[600px] object-cover rounded-2xl"
             />
           </div>
         </div>

@@ -63,7 +63,7 @@ const LocalService = ({ local, locale }) => {
               </ul>
               <Link
                 href={`/${locale}/order/local-export`}
-                className="cursor-pointer w-fit px-10 rounded-lg text-white bg-[#5A6E51] py-2"
+                className="cursor-pointer w-fit px-10 rounded-lg text-white bg-[#5F361F] py-2 text-center"
               >
                 {local.buttontext}
               </Link>
