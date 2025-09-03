@@ -31,7 +31,7 @@ const WoodHero = ({ heroData }) => {
                 data-aos="fade-left"
                 data-aos-duration="800"
                 data-aos-delay="400"
-                className="   w-[56px] h-[56px] md:w-[104px] md:h-[104px] flex   rounded-2xl bg-white absolute top-0 left-10 rotate-[-30deg]"
+                className="w-[56px] h-[56px] md:w-[104px] md:h-[104px] flex rounded-2xl bg-white absolute top-0 left-10 rotate-[-30deg]"
               >
                 <Image
                   src="/assets/whale-earth.png"
@@ -61,7 +61,7 @@ const WoodHero = ({ heroData }) => {
           </div>
         </div>
         {/*  */}
-        <div className="flex w-full justify-center overflow-hidden absolute bottom-[-30px] md:bottom-[-180px] pt-16  gap-8     ">
+        <div className="flex w-full justify-center overflow-hidden absolute bottom-[-30px] md:bottom-[-180px] pt-16 gap-5 md:gap-8">
           <div
             data-aos="zoom-in"
             data-aos-duration="800"
@@ -73,7 +73,7 @@ const WoodHero = ({ heroData }) => {
               alt="hero1"
               width={400}
               height={400}
-              className="w-[149px] h-[175px] md:w-[400px] md:h-[365px] rounded-3xl"
+              className="w-[149px] h-[175px] md:w-[320px] md:h-[330px] rounded-3xl"
               fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
@@ -88,7 +88,7 @@ const WoodHero = ({ heroData }) => {
               alt="hero2"
               width={400}
               height={400}
-              className=" w-[256px] h-[252px] md:w-[400px] md:h-[381px] rounded-3xl"
+              className="w-[256px] h-[238px] md:w-[560px] md:h-[400px] rounded-3xl"
               fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>
@@ -103,7 +103,7 @@ const WoodHero = ({ heroData }) => {
               alt="hero3"
               width={400}
               height={400}
-              className="w-[149px] h-[175px] md:w-[400px] md:h-[365px] rounded-3xl"
+              className="w-[149px] h-[175px] md:w-[320px] md:h-[330px] rounded-3xl"
               fallbackClassName="w-[149px] h-[175px] md:w-[400px] md:h-[365px] bg-gray-200 rounded-3xl flex items-center justify-center"
             />
           </div>

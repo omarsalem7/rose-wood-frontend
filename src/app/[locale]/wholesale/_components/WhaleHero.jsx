@@ -59,7 +59,7 @@ const WhaleHero = ({ hero }) => {
           </div>
         </div>
         {/*  */}
-        <div className="flex w-full justify-center overflow-hidden absolute bottom-[-30px] md:bottom-[-180px] pt-16  gap-8     ">
+        <div className="flex w-full justify-center overflow-hidden absolute bottom-[-30px] md:bottom-[-180px] pt-16  gap-5 md:gap-8">
           <div className=" shrink-0">
             <SafeImage
               src={hero.image1}

@@ -254,7 +254,7 @@ const ContactSection = ({ locale }) => {
                 )}
               </div>
 
-              <div className="md:pt-8 flex max-sm:justify-center">
+              <div className="md:pt-8 flex justify-center">
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -270,6 +270,7 @@ const ContactSection = ({ locale }) => {
                     <Image
                       src="/icons/arrow-left.svg"
                       alt="arrow-left"
+                      className="ltr:rotate-180"
                       width={30}
                       height={30}
                     />
