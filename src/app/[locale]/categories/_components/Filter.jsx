@@ -85,7 +85,7 @@ const Filter = ({ onFilter = () => {}, isCategoryDownload = false }) => {
                   href={catalogUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-10 px-4 py-2 flex items-center justify-center  bg-white max-md:w-3/5 md:min-w-48 cursor-pointer rounded-full border border-primary-900 text-primary-900"
+                  className="h-10 px-4 py-2 flex items-center justify-center  bg-white max-md:w-3/5 md:min-w-48 ltr:min-w-56 cursor-pointer rounded-full border border-primary-900 text-primary-900"
                 >
                   {t.downloadAllProducts}
                 </a>
