@@ -35,7 +35,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "dedicated-love-884c9d4b3b.strapiapp.com",
+        hostname: "dedicated-love-884c9d4b3b.media.strapiapp.com",
         pathname: "/**",
       },
     ],

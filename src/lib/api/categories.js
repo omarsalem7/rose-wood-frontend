@@ -61,7 +61,7 @@ export async function fetchCategories({ filters = {}, page, pageSize } = {}) {
   const list = (json.data || []).map((category) => {
     return {
       ...category,
-      mainImageUrl: category?.mainImage?.url
+      mainImage: category?.mainImage?.url
         ? getFullImageUrl(category.mainImage.url)
         : null,
     };
