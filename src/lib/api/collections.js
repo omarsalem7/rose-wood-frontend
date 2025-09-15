@@ -148,7 +148,7 @@ export async function getTags() {
 
 export async function getProductsByTag(tagId = null) {
   try {
-    let apiUrl = `/products?fields=name,description,features&populate=colors.img&populate=mainImageUrl&sort=sortOrder`;
+    let apiUrl = `/products?filters[isHidden][$eq]=false&fields=name,description,features&populate=colors.img&populate=mainImageUrl&sort=sortOrder`;
 
     // Add tag filter only if tagId is provided
     if (tagId) {
