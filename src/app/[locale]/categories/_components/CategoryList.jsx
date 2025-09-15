@@ -120,7 +120,7 @@ const CategoryList = ({ locale }) => {
                   >
                     <div className="flex justify-center w-full flex-grow">
                       <SafeImage
-                        src={category.mainImageUrl}
+                        src={category.mainImage}
                         alt={category.name || "Category image"}
                         width={220}
                         height={140}
