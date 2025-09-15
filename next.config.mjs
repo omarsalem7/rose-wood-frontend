@@ -30,12 +30,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "exuberant-smile-8788e41b5a.strapiapp.com",
+        hostname: "dedicated-love-884c9d4b3b.strapiapp.com",
         pathname: "/uploads/**",
       },
       {
         protocol: "https",
-        hostname: "exuberant-smile-8788e41b5a.media.strapiapp.com",
+        hostname: "dedicated-love-884c9d4b3b.strapiapp.com",
         pathname: "/**",
       },
     ],
