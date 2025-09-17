@@ -118,18 +118,18 @@ const CategoryList = ({ locale }) => {
                     data-aos-delay={index * 100}
                     className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-4 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit"
                   >
-                    <div className="flex justify-center h-[250px] w-full flex-grow">
+                    <div className="flex justify-center h-[150px] md:h-[250px] w-full flex-grow">
                       <SafeImage
                         src={category.mainImage}
                         alt={category.name || "Category image"}
                         width={220}
                         height={140}
-                        className="object-contain mb-6 drop-shadow-md"
+                        className="object-contain mb-2 md:mb-6 drop-shadow-md"
                         style={{ width: "auto", height: "auto" }}
                         fallbackClassName="w-[220px] h-[220px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
                       />
                     </div>
-                    <h2 className="text-2xl font-semibold text-[#223132] text-center mb-2">
+                    <h2 className="text-lg md:text-2xl font-medium md:font-semibold text-[#223132] text-center mb-2">
                       {category.name}
                     </h2>
                   </Link>

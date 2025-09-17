@@ -12,8 +12,8 @@ const GlobalService = ({ global, locale }) => {
             <p className="text-[#586675] text-lg">{global.description}</p>
           </div>
           <div className="bg-[#804524] w-[60%] flex mx-auto md:hidden h-0.5 relative">
-            <span className="absolute left-0 top-0 z-50 w-1.5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
-            <span className="absolute right-0 top-0 w-1.5 z-50 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
+            <span className="absolute left-0 top-0 z-5 w-1.5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
+            <span className="absolute right-0 top-0 w-1.5 z-5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
           </div>
           {/*  */}
           <div className="items flex flex-col-reverse gap-10 md:gap-16 md:flex-row py-8 md:py-16">

@@ -30,8 +30,8 @@ const GlobalService = ({ stepsData, locale }) => {
             data-aos-delay="400"
             className="bg-[#804524] w-[60%] md:w-[20%] flex mx-auto   h-0.5 relative mb-12"
           >
-            <span className="absolute left-0 top-0 z-50 w-1.5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
-            <span className="absolute right-0 top-0 w-1.5 z-50 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
+            <span className="absolute left-0 top-0 z-5 w-1.5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
+            <span className="absolute right-0 top-0 w-1.5 z-5 h-1.5 bg-[#804524] rounded-full -translate-y-1/2"></span>
           </div>
           {/*  */}
           <div className="flex flex-col gap-4">

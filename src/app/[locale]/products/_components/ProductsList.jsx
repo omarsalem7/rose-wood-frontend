@@ -125,21 +125,21 @@ const ProductsList = ({ locale }) => {
                     data-aos-delay={index * 100}
                     className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-3 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit "
                   >
-                    <div className="flex justify-center h-[250px] w-full flex-grow">
+                    <div className="flex justify-center h-[150px] md:h-[250px]  w-full flex-grow">
                       <SafeImage
                         src={product.mainImageUrl || product.image}
                         alt={product.name}
                         width={220}
                         height={140}
-                        className="object-contain mb-6 drop-shadow-md h-auto w-auto"
+                        className="object-contain mb-2 md:mb-6 drop-shadow-md h-auto w-auto"
                         fallbackClassName="w-[220px] h-[140px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
                       />
                     </div>
-                    <h2 className="text-2xl font-semibold text-[#223132] text-center">
+                    <h2 className="text-lg md:text-2xl font-semibold text-[#223132] text-center">
                       {product.name}
                     </h2>
                     <span className="text-base text-[#7B8B8E] text-center">
-                      {product.availableQuantities}
+                      {product?.availableQuantities}
                     </span>
                   </Link>
                 ))}
