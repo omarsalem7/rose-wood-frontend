@@ -84,7 +84,7 @@ export default function AboutSection({
                 href={`${locale}/wood-steps`}
                 className="border border-primary-900 text-primary-900 px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
-                {buttons[1].text}
+                {buttons[1]?.text}
               </Link>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function AboutSection({
             </div>
             <div className="space-y-4 flex flex-col h-full">
               <Image
-                src={images[1].img}
+                src={images[1]?.img}
                 width={600}
                 height={600}
                 alt="Wooden bowls and kitchen items"
@@ -137,7 +137,7 @@ export default function AboutSection({
                 data-aos-delay="600"
               />
               <Image
-                src={images[2].img}
+                src={images[2]?.img}
                 width={600}
                 height={600}
                 alt="Wooden bowls and utensils set"

@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import SafeImage from "./SafeImage";
 
 // Custom styles for equal height Swiper slides
 const swiperStyles = `
@@ -107,12 +108,13 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                       <Card className="bg-[#F2ECE9] max-sm:w-[70vw] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
                         {/* Article Image */}
                         <div className="aspect-video  overflow-hidden flex-shrink-0 p-3">
-                          <Image
+                          <SafeImage
                             src={article.image}
                             alt={article.title}
                             width={200}
                             height={200}
-                            className="w-full h-full object-cover rounded-xl"
+                            className="w-full rounded-xl h-full object-cover"
+                            fallbackClassName="w-full h-full bg-gray-200 rounded-xl flex items-center justify-center"
                           />
                         </div>
                         <CardContent className="px-3 flex flex-col flex-grow gap-2">
@@ -168,12 +170,13 @@ const ArticlesSection = ({ blogs = [], title, locale }) => {
                     >
                       {/* Article Image */}
                       <div className="aspect-video p-3  overflow-hidden flex-shrink-0">
-                        <Image
+                        <SafeImage
                           src={article.image}
                           alt={article.title}
                           width={200}
                           height={200}
                           className="w-full rounded-xl h-full object-cover"
+                          fallbackClassName="w-full h-full bg-gray-200 rounded-xl flex items-center justify-center"
                         />
                       </div>
                       <CardContent className="px-3 flex flex-col flex-grow gap-2">

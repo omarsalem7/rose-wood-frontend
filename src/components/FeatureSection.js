@@ -44,8 +44,8 @@ const FeaturesSection = ({ cards, title }) => {
                   <Image
                     width={32}
                     height={32}
-                    src={feature.image}
-                    alt={feature.text}
+                    src={feature?.image}
+                    alt={feature?.text}
                   />
                 </div>
               </div>
