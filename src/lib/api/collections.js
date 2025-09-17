@@ -77,7 +77,7 @@ function transformBlog(data) {
       id: blog.documentId,
       title: blog.title,
       description: blog.description,
-      image: getFullImageUrl(blog.image.url),
+      image: getFullImageUrl(blog?.image?.url),
       date: blog.createdAt,
     };
   });

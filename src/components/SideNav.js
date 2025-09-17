@@ -257,7 +257,10 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           )}
         </div>
         {/* Social media icons */}
-        <div className="absolute bottom-10 flex justify-center gap-4 ">
+        <div
+          className="absolute bottom-10 flex justify-center flex-wrap gap-4 "
+          style={{ insetInlineStart: "2px" }}
+        >
           {data?.linkedin && (
             <a
               href={data?.linkedin}

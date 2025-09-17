@@ -533,13 +533,13 @@ function transformWoodStepsPageData(data) {
       title: data.hero?.title || "",
       description: data.hero?.description || "",
       image1: data.hero?.image1?.url
-        ? getFullImageUrl(data.hero.image1.url)
+        ? getFullImageUrl(data?.hero?.image1.url)
         : null,
       image2: data.hero?.image2?.url
-        ? getFullImageUrl(data.hero.image2.url)
+        ? getFullImageUrl(data?.hero?.image2.url)
         : null,
       image3: data.hero?.image3?.url
-        ? getFullImageUrl(data.hero.image3.url)
+        ? getFullImageUrl(data?.hero?.image3.url)
         : null,
     },
     steps: {
@@ -555,9 +555,9 @@ function transformWoodStepsPageData(data) {
               id: item.id,
               text: item.text,
             })) || [],
-          bgImg: step.bgImg?.url ? getFullImageUrl(step.bgImg.url) : null,
-          img1: step.img1?.[0]?.url ? getFullImageUrl(step.img1[0].url) : null,
-          img2: step.img2?.url ? getFullImageUrl(step.img2.url) : null,
+          bgImg: step?.bgImg?.url ? getFullImageUrl(step.bgImg.url) : null,
+          img1: step?.img1?.[0]?.url ? getFullImageUrl(step.img1[0].url) : null,
+          img2: step?.img2?.url ? getFullImageUrl(step.img2.url) : null,
         })) || [],
       btnProducts: data.steps?.btnProducts,
       btnSample: data.steps?.btnSample,
@@ -572,16 +572,16 @@ function transformBulkOrderData(data) {
       title: data.card1.title || "",
       description: data.card1.description || "",
       btnText: data.card1.buttonText || "",
-      image: data.card1.image?.url
-        ? getFullImageUrl(data.card1.image.url)
+      image: data.card1?.image?.url
+        ? getFullImageUrl(data.card1?.image.url)
         : null,
     },
     card2: {
       title: data.card2.title || "",
       description: data.card2.description || "",
       btnText: data.card2.buttonText || "",
-      image: data.card2.image?.url
-        ? getFullImageUrl(data.card2.image.url)
+      image: data.card2?.image?.url
+        ? getFullImageUrl(data.card2?.image.url)
         : null,
     },
   };
@@ -594,13 +594,13 @@ function transformWhaleSalePageData(data) {
       title: data.hero?.title || "",
       description: data.hero?.description || "",
       image1: data.hero?.image1?.url
-        ? getFullImageUrl(data.hero.image1.url)
+        ? getFullImageUrl(data.hero?.image1.url)
         : null,
       image2: data.hero?.image2?.url
-        ? getFullImageUrl(data.hero.image2.url)
+        ? getFullImageUrl(data.hero?.image2.url)
         : null,
       image3: data.hero?.image3?.url
-        ? getFullImageUrl(data.hero.image3.url)
+        ? getFullImageUrl(data.hero?.image3.url)
         : null,
     },
     global: {
@@ -616,10 +616,10 @@ function transformWhaleSalePageData(data) {
             text: item.text,
           })) || [],
         image1: data.global?.service?.image1?.url
-          ? getFullImageUrl(data.global.service.image1.url)
+          ? getFullImageUrl(data.global.service?.image1.url)
           : null,
         image2: data.global?.service?.image2?.url
-          ? getFullImageUrl(data.global.service.image2.url)
+          ? getFullImageUrl(data.global.service?.image2.url)
           : null,
       },
     },
@@ -633,10 +633,10 @@ function transformWhaleSalePageData(data) {
           text: item.text,
         })) || [],
       image1: data.local?.image1?.url
-        ? getFullImageUrl(data.local.image1.url)
+        ? getFullImageUrl(data.local?.image1.url)
         : null,
       image2: data.local?.image2?.url
-        ? getFullImageUrl(data.local.image2.url)
+        ? getFullImageUrl(data.local?.image2.url)
         : null,
     },
   };

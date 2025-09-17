@@ -4,12 +4,24 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   // Page numbers in normal order for RTL (1 to totalPages)
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const handlePrev = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1);
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+      scrollToTop();
+    }
   };
 
   const handleNext = () => {
-    if (currentPage < totalPages) onPageChange(currentPage + 1);
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+      scrollToTop();
+    }
   };
 
   return (
@@ -26,7 +38,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       {pageNumbers.map((page) => (
         <button
           key={page}
-          onClick={() => onPageChange(page)}
+          onClick={() => {
+            onPageChange(page);
+            scrollToTop();
+          }}
           className={`w-10 h-10 flex items-center justify-center rounded-md 
             ${
               currentPage === page
