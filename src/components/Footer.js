@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { fetchFooterData } from "@/lib/api/cms";
 import Link from "next/link";
-
+import Image from "next/image";
 const myFont = localFont({
   src: "../../public/fonts/Blenny_Black_24726.otf",
   variable: "--font-blenny-black",

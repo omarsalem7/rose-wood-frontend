@@ -125,7 +125,7 @@ const ProductsList = ({ locale }) => {
                     data-aos-delay={index * 100}
                     className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-3 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit "
                   >
-                    <div className="flex justify-center w-full flex-grow">
+                    <div className="flex justify-center h-[250px] w-full flex-grow">
                       <SafeImage
                         src={product.mainImageUrl || product.image}
                         alt={product.name}

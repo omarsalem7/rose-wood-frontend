@@ -2,7 +2,6 @@ import "../globals.css";
 import { Alexandria } from "next/font/google";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import SharedLayout from "@/components/SharedLayout";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import { generateMetadata } from "@/lib/metadata";
 
@@ -42,7 +41,6 @@ export default async function LocaleLayout({ children, params }) {
         className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}
       >
         <SharedLayout>{children}</SharedLayout>
-        <SpeedInsights debug={process.env.NODE_ENV === "development"} />
       </div>
     </LanguageProvider>
   );

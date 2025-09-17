@@ -301,7 +301,12 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               href={data?.tiktok}
               className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
             >
-              <Tiktok size={16} />
+              <Image
+                src="/icons/tiktok.svg"
+                alt="tiktok"
+                width={16}
+                height={16}
+              />
             </a>
           )}
           <a
