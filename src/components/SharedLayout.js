@@ -26,12 +26,12 @@ export default function SharedLayout({ children }) {
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 

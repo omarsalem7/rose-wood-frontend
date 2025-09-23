@@ -51,7 +51,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           </button>
         </div>
         {/* Navigation menu items with icons like in the design */}
-        <nav className="space-y-2 md:space-y-4 max-h-[50vh] md:max-h-[55vh] overflow-y-auto">
+        <nav className="space-y-2 md:space-y-3 max-h-[calc(100vh-350px-theme('spacing.3'))] overflow-y-auto">
           {isLoading ? (
             <>
               <MenuItemSkeleton />
@@ -258,7 +258,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
         </div>
         {/* Social media icons */}
         <div
-          className="absolute bottom-10 flex justify-center flex-wrap gap-4 "
+          className="absolute bottom-3 flex justify-center flex-wrap gap-4 "
           style={{ insetInlineStart: "2px" }}
         >
           {data?.linkedin && (
