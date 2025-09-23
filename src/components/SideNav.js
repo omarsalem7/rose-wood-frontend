@@ -30,7 +30,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
     >
       <div className="p-6">
         {/* Header with logo and close button */}
-        <div className="flex justify-between items-center pb-8">
+        <div className="flex justify-between items-center pb-2">
           <Link href={`/${locale}`}>
             <Image
               className="w-auto h-auto"
@@ -231,7 +231,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           )}
         </nav>
         {/* Bottom section with buttons like in the design */}
-        <div className="mt-6 flex flex-col gap-4 w-[186px]">
+        <div className="pt-4 md:pt-6 flex flex-col gap-4 w-[186px]">
           {isLoading ? (
             <>
               <div className="w-full h-12 bg-gray-200 rounded-lg animate-pulse"></div>
