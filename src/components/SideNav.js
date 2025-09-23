@@ -51,7 +51,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           </button>
         </div>
         {/* Navigation menu items with icons like in the design */}
-        <nav className="space-y-4 max-h-[50vh] overflow-y-auto">
+        <nav className="space-y-2 md:space-y-4 max-h-[50vh] md:max-h-[55vh] overflow-y-auto">
           {isLoading ? (
             <>
               <MenuItemSkeleton />
@@ -312,12 +312,6 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
               />
             </a>
           )}
-          <a
-            href={data?.instagram}
-            className="w-10 h-10 bg-[#5F361F] rounded-full flex items-center justify-center text-white hover:bg-amber-900 transition-colors duration-200"
-          >
-            <Instagram size={16} />
-          </a>
           {data?.instagram && (
             <a
               href={data?.instagram}

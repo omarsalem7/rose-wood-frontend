@@ -23,6 +23,18 @@ export default function SharedLayout({ children }) {
   const [navbarData, setNavbarData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   // Memoize the fetch function to prevent unnecessary re-renders
   const fetchData = useMemo(
     () => async () => {
@@ -81,7 +93,7 @@ export default function SharedLayout({ children }) {
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black/50 z-40" onClick={toggleMenu} />
       )}
-      <main className="pt-[80px]  overflow-hidden">{children}</main>
+      <main className="pt-[80px] overflow-hidden">{children}</main>
 
       <KitchenHeroSection locale={locale} />
       <Footer locale={locale} />
