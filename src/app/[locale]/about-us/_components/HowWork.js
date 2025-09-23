@@ -75,7 +75,7 @@ const HowWork = async ({ isButtonshow, locale }) => {
                   className={
                     idx === 0
                       ? "bg-[#5F361F] text-white text-center max-sm:w-full px-2 md:px-8 py-3 rounded-[12px] text-sm font-medium hover:bg-amber-900 transition-colors duration-200"
-                      : "border border-primary-900 text-center text-primary-900 max-sm:w`-full px-2 md:px-12 py-3 rounded-[12px] text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+                      : "border border-primary-900 text-center text-primary-900 max-sm:w-full px-2 md:px-12 py-3 rounded-[12px] text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
                   }
                 >
                   {btn.text}
