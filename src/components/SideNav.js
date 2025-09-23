@@ -51,7 +51,7 @@ const SideNav = ({ isOpen, onClose, data, locale, isLoading = false }) => {
           </button>
         </div>
         {/* Navigation menu items with icons like in the design */}
-        <nav className="space-y-4 max-h-[55vh] overflow-y-auto">
+        <nav className="space-y-4 max-h-[50vh] overflow-y-auto">
           {isLoading ? (
             <>
               <MenuItemSkeleton />
