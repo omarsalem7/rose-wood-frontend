@@ -2,10 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Tooltip } from "@/components/ui/tooltip";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 import ImageMagnifier from "@/components/ImageMagnifier";
+import { trackProductView } from "@/lib/analytics";
 const ProductDetails = ({ locale, product }) => {
   const t = locale === "ar" ? ar : en;
 
@@ -14,6 +15,17 @@ const ProductDetails = ({ locale, product }) => {
   );
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedColor, setSelectedColor] = useState(null);
+
+  // Track product view when component mounts
+  useEffect(() => {
+    if (product?.id) {
+      trackProductView(
+        product?.id,
+        product?.name,
+        product?.category?.name || "unknown"
+      );
+    }
+  }, [product?.id, product?.name, product?.category?.name]);
 
   // Always use selectedImageId to determine selected image
   let selectedImage = null;

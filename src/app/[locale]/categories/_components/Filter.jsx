@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 import { getCatalogUrl } from "@/lib/api/cms";
+import { trackSearch } from "@/lib/analytics";
 
 const Filter = ({ onFilter = () => {}, isCategoryDownload = false }) => {
   const params = useParams();
@@ -40,6 +41,9 @@ const Filter = ({ onFilter = () => {}, isCategoryDownload = false }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (search.trim()) {
+      trackSearch(search.trim());
+    }
     onFilter(search);
   };
 

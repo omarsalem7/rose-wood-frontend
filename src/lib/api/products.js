@@ -70,7 +70,6 @@ export const getProductById = async (id) => {
     `/products/${id}?populate=productDetailsImage&populate=colors.img&populate=mainImageUrl&populate=category&populate=gallery&populate=colors&populate=sizes`
   );
   const product = json.data;
-  console.log("aaaa", product);
 
   return {
     ...product,

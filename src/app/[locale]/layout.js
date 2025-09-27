@@ -4,6 +4,7 @@ import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import SharedLayout from "@/components/SharedLayout";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import { generateMetadata } from "@/lib/metadata";
+import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 
 export { generateMetadata };
 
@@ -40,7 +41,9 @@ export default async function LocaleLayout({ children, params }) {
         dir={direction}
         className={`${alexandria.variable} ${ibmPlexSansArabic.variable}`}
       >
-        <SharedLayout>{children}</SharedLayout>
+        <AnalyticsWrapper>
+          <SharedLayout>{children}</SharedLayout>
+        </AnalyticsWrapper>
       </div>
     </LanguageProvider>
   );

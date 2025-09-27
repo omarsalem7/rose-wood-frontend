@@ -5,8 +5,9 @@ import { SlidersHorizontal } from "lucide-react";
 import { useParams } from "next/navigation";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
+import { trackSearch } from "@/lib/analytics";
 
-const Filter = ({ onFilter = () => {} }) => {
+const Filter = ({ onFilter = () => {}, isBlog = false }) => {
   const params = useParams();
   const locale = params.locale;
   const t = locale === "ar" ? ar : en;
@@ -42,17 +43,20 @@ const Filter = ({ onFilter = () => {} }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (search.trim()) {
+      trackSearch(search.trim());
+    }
     onFilter(search);
   };
 
   return (
     <>
-      <section className="p-6  ">
+      <section className="p-6">
         <div className="max-w-7xl mx-auto border-t border-gray-300 relative">
           <span className="absolute left-0 top-0  w-1.5 h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <span className="absolute right-0 top-0 w-1.5  h-1.5 bg-gray-400 rounded-full -translate-y-1/2"></span>
           <div className="text-center text-[32px] font-medium py-5">
-            <h1>{t.productsTitle}</h1>
+            <h1>{isBlog ? t.blogs : t.productsTitle}</h1>
           </div>
           <form
             onSubmit={handleSubmit}

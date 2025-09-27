@@ -32,7 +32,6 @@ const CategoryList = ({ locale }) => {
         pageSize: PAGE_SIZE,
       });
       setCategories(res.items || []);
-      console.log('cat: ', res.items );
       setTotalCount(res.totalCount || 0);
     } catch (e) {
       setCategories([]);

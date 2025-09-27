@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
 import { fetchContactUsData } from "@/lib/api/cms";
 import { submitContactForm } from "@/lib/api/order";
 import FormResultDialog from "@/components/FormResultDialog";

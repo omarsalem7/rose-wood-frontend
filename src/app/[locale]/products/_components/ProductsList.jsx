@@ -9,6 +9,7 @@ import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 import ProductSkeleton from "@/components/ProductSkeleton";
 import SafeImage from "@/components/SafeImage";
+import { trackSearch } from "@/lib/analytics";
 
 const PAGE_SIZE = 12;
 
@@ -38,6 +39,11 @@ const ProductsList = ({ locale }) => {
       });
       setProducts(res.items || []);
       setTotalCount(res.totalCount || 0);
+      
+      // Track search results if there's a search term
+      if (searchValue.trim()) {
+        trackSearch(searchValue.trim(), res.totalCount || 0);
+      }
     } catch (e) {
       setProducts([]);
       setTotalCount(0);

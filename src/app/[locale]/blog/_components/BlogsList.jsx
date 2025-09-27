@@ -28,7 +28,6 @@ const BlogsList = ({ locale }) => {
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
 
   const fetchBlogs = async (page = 1, searchValue = "") => {
-    console.log('test');
     setLoading(true);
     try {
       const res = await fetchBlogsHomePage({
@@ -37,7 +36,6 @@ const BlogsList = ({ locale }) => {
         search: searchValue,
       });
       setBlogs(res.items || []);
-      console.log('sss',res);
       setTotalCount(res.totalCount || 0);
       setHasLoaded(true); // Mark that initial load is complete
     } catch (e) {
@@ -66,7 +64,7 @@ const BlogsList = ({ locale }) => {
   return (
     <>
       <div>
-        <Filter onFilter={handleFilter} />
+        <Filter isBlog={true} onFilter={handleFilter} />
       </div>
       <section className="px-6">
         <div className="max-w-7xl mx-auto">

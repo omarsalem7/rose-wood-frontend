@@ -50,7 +50,6 @@ const ContactForm = ({ btnText, contactForm, locale, t }) => {
   const onSubmit = async (data) => {
     try {
       setIsSubmitting(true);
-    
 
       // Submit the form data to the API
       await submitContactForm(data);
