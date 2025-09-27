@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SafeImage from "./SafeImage";
 
 const FeaturesSection = ({ cards, title }) => {
   return (
@@ -41,11 +42,12 @@ const FeaturesSection = ({ cards, title }) => {
                   }}
                   className="w-20 h-20 rounded-full flex items-center justify-center mx-auto shadow-sm"
                 >
-                  <Image
+                  <SafeImage
                     width={32}
                     height={32}
                     src={feature?.image}
                     alt={feature?.text}
+                    fallbackClassName="w-full h-full flex items-center justify-center"
                   />
                 </div>
               </div>
