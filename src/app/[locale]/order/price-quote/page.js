@@ -427,14 +427,19 @@ export default function OfferPricePage({ params }) {
                                   <Input
                                     type="number"
                                     min="1"
-                                    placeholder="1"
                                     className="bg-white border border-gray-200 rounded-md placeholder:text-gray-400"
                                     {...field}
-                                    onChange={(e) =>
-                                      field.onChange(
-                                        parseInt(e.target.value) || 1
-                                      )
-                                    }
+                                    onChange={(e) => {
+                                      const value = e.target.value;
+                                      if (value === "") {
+                                        field.onChange("");
+                                      } else {
+                                        const numValue = parseInt(value);
+                                        field.onChange(
+                                          isNaN(numValue) ? 1 : numValue
+                                        );
+                                      }
+                                    }}
                                   />
                                 </FormControl>
                                 <FormMessage />
