@@ -38,6 +38,11 @@ const nextConfig = {
         hostname: "dedicated-love-884c9d4b3b.media.strapiapp.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.rosewoodeg.com",
+        pathname: "/**",
+      },
     ],
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60,
