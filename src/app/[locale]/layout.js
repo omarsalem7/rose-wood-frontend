@@ -3,10 +3,28 @@ import { Alexandria } from "next/font/google";
 import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import SharedLayout from "@/components/SharedLayout";
 import { LanguageProvider } from "@/lib/LanguageContext";
-import { generateMetadata } from "@/lib/metadata";
+import { generateMetadata as baseGenerateMetadata } from "@/lib/metadata";
 import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 
-export { generateMetadata };
+export async function generateMetadata({ params }) {
+  const base = await baseGenerateMetadata();
+  const locale = (await params.locale) === "en" ? "en" : "ar";
+  console.log("sss", locale);
+  return {
+    ...base,
+    alternates: {
+      ...(base.alternates || {}),
+      // Set canonical to locale root; pages can override for deeper routes
+      canonical: `/${locale}/`,
+      languages: {
+        ...(base.alternates?.languages || {}),
+        ar: "https://rosewoodeg.com/ar",
+        en: "https://rosewoodeg.com/en",
+        "x-default": "https://rosewoodeg.com",
+      },
+    },
+  };
+}
 
 // Optimize font loading - only load essential weights
 const alexandria = Alexandria({

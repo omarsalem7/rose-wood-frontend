@@ -39,13 +39,13 @@ export async function generateMetadata() {
         locale: "ar",
         images: [
           {
-            url: "https://rosewoodeg.com/assets/rose-h-logo.svg",
+            url: "https://rosewoodeg.com/assets/banner.png",
             width: 600,
             height: 600,
             alt: "Rosewood Kitchenware",
           },
           {
-            url: "https://rosewoodeg.com/assets/rose-h-logo.svg",
+            url: "https://rosewoodeg.com/assets/banner.png",
             width: 1200,
             height: 630,
             alt: "Rosewood Kitchenware",
@@ -55,10 +55,10 @@ export async function generateMetadata() {
 
       // Twitter metadata
       twitter: {
-        card: "summary",
+        card: "summary_large_image",
         title: title || "Rosewood Kitchenware",
         description: description || "Premium wooden kitchenware manufacturer",
-        images: ["https://rosewoodeg.com/assets/rose-h-logo.svg"],
+        images: ["https://rosewoodeg.com/assets/banner.png"],
       },
 
       // Additional metadata
