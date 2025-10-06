@@ -7,7 +7,7 @@ export async function generateMetadata() {
     // Construct metadata from fetched data
     const metadata = {
       metadataBase: new URL(
-        process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+        process.env.NEXT_PUBLIC_SITE_URL || "https://rosewoodeg.com"
       ),
       title: {
         default: title,
@@ -33,20 +33,19 @@ export async function generateMetadata() {
       openGraph: {
         title: title || "Rosewood Kitchenware",
         description: description || "Premium wooden kitchenware manufacturer",
-        url:
-          process.env.NEXT_PUBLIC_API_URL || "https://rosewood-kitchenware.com",
+        url: process.env.NEXT_PUBLIC_SITE_URL || "https://rosewoodeg.com",
         siteName: "Rosewood",
         type: "website",
         locale: "ar",
         images: [
           {
-            url: "/assets/rose-v-logo.svg",
+            url: "https://rosewoodeg.com/assets/rose-h-logo.svg",
             width: 600,
             height: 600,
             alt: "Rosewood Kitchenware",
           },
           {
-            url: "/assets/rose-h-logo.svg",
+            url: "https://rosewoodeg.com/assets/rose-h-logo.svg",
             width: 1200,
             height: 630,
             alt: "Rosewood Kitchenware",
@@ -59,7 +58,7 @@ export async function generateMetadata() {
         card: "summary",
         title: title || "Rosewood Kitchenware",
         description: description || "Premium wooden kitchenware manufacturer",
-        images: ["/assets/rose-v-logo.svg"],
+        images: ["https://rosewoodeg.com/assets/rose-h-logo.svg"],
       },
 
       // Additional metadata

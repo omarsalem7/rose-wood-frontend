@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage - will redirect to /ar/ -->
-  <url>
-    <loc>https://rosewoodeg.com/</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- Homepage (default locale is Arabic) -->
   
   <!-- Arabic Homepage -->
   <url>
@@ -24,13 +18,7 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- About Us - will redirect to /ar/about-us -->
-  <url>
-    <loc>https://rosewoodeg.com/about-us</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Remove non-locale About Us entry (was redirecting) -->
   
   <!-- Arabic About Us -->
   <url>
@@ -48,13 +36,7 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Products - will redirect to /ar/products -->
-  <url>
-    <loc>https://rosewoodeg.com/products</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- Remove non-locale Products entry (was redirecting) -->
   
   <!-- Arabic Products -->
   <url>
@@ -72,13 +54,7 @@
     <priority>0.9</priority>
   </url>
   
-  <!-- Blog - will redirect to /ar/blog -->
-  <url>
-    <loc>https://rosewoodeg.com/blog</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Remove non-locale Blog entry (was redirecting) -->
   
   <!-- Arabic Blog -->
   <url>
@@ -96,13 +72,7 @@
     <priority>0.7</priority>
   </url>
   
-  <!-- Contact - will redirect to /ar/contact -->
-  <url>
-    <loc>https://rosewoodeg.com/contact</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  <!-- Remove non-locale Contact entry (was redirecting) -->
   
   <!-- Arabic Contact -->
   <url>
@@ -120,13 +90,7 @@
     <priority>0.6</priority>
   </url>
   
-  <!-- Wholesale - will redirect to /ar/wholesale -->
-  <url>
-    <loc>https://rosewoodeg.com/wholesale</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Remove non-locale Wholesale entry (was redirecting) -->
   
   <!-- Arabic Wholesale -->
   <url>
@@ -144,13 +108,7 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Categories - will redirect to /ar/categories -->
-  <url>
-    <loc>https://rosewoodeg.com/categories</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Remove non-locale Categories entry (was redirecting) -->
   
   <!-- Arabic Categories -->
   <url>
@@ -168,13 +126,7 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Wood Steps - will redirect to /ar/wood-steps -->
-  <url>
-    <loc>https://rosewoodeg.com/wood-steps</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Remove non-locale Wood Steps entry (was redirecting) -->
   
   <!-- Arabic Wood Steps -->
   <url>
