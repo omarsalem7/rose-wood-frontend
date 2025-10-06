@@ -82,7 +82,7 @@ const Footer = ({ locale }) => {
 
   const getSocialIcon = (text) => {
     const lowerText = text.toLowerCase();
-    if (lowerText.includes("x")) return <X size={16} />;
+    if (lowerText.includes("x.com")) return <X size={16} />;
     if (lowerText.includes("youtube")) return <Youtube size={16} />;
     if (lowerText.includes("linkedin")) return <Linkedin size={16} />;
     if (lowerText.includes("facebook")) return <Facebook size={16} />;
