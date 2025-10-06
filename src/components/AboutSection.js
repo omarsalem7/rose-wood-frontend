@@ -81,7 +81,7 @@ export default function AboutSection({
                 {buttons[0].text}
               </Link>
               <Link
-                href={`${locale}/wood-steps`}
+                href={`${locale}/order/request-sample`}
                 className="border border-primary-900 text-primary-900 px-4 md:px-8 py-3 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
               >
                 {buttons[1]?.text}
