@@ -1,11 +1,16 @@
 import "./globals.css";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleTagManager, { GTMNoScript } from "@/components/GoogleTagManager";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased">
-        <GoogleAnalytics />
+        <GoogleTagManager
+          containerId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-WP3WQWCS"}
+        />
+        <GTMNoScript
+          containerId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-WP3WQWCS"}
+        />
         {children}
       </body>
     </html>
