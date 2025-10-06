@@ -42,6 +42,7 @@ const Header = ({ onMenuClick, contactUs, locale, isLoading = false }) => {
             width={300}
             height={100}
             priority
+            fetchPriority="high"
           />
         </Link>
         {/* Left side - Language switcher, Contact button and search */}

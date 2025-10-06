@@ -16,7 +16,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
           <div
             className="min-h-[38vh] rounded-lg p-4 md:p-8 shadow-sm relative overflow-hidden"
             style={{
-              backgroundImage: `linear-gradient(to bottom, rgba(253, 242, 239), rgba(255, 248, 246, 0.89)), url('/assets/bulk-bg.png')`,
+              backgroundImage: `linear-gradient(to bottom, rgba(253, 242, 239), rgba(255, 248, 246, 0.89)), url('/assets/bulk-bg.webp')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -60,7 +60,7 @@ const BulkOrderSection = ({ title, card1, card2, locale }) => {
           <div
             className="min-h-[38vh] rounded-lg p-8 shadow-sm relative overflow-hidden"
             style={{
-              backgroundImage: `linear-gradient(to bottom, rgba(253, 242, 239), rgba(255, 248, 246, 0.89)), url('/assets/bulk-bg.png')`,
+              backgroundImage: `linear-gradient(to bottom, rgba(253, 242, 239), rgba(255, 248, 246, 0.89)), url('/assets/bulk-bg.webp')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
