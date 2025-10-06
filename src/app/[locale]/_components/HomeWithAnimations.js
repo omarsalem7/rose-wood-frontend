@@ -5,7 +5,8 @@ const HomeWithAnimations = ({ children }) => {
   return (
     <AOSWrapper>
       <div>
-        <div data-aos="fade-down" data-aos-duration="600">
+        {/* Render HeroSection without AOS attributes to avoid impacting LCP */}
+        <div>
           {children[0]} {/* HeroSection */}
         </div>
 

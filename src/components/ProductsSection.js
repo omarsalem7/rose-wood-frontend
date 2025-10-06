@@ -3,8 +3,7 @@ import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import dynamic from "next/dynamic";
 import en from "@/../public/locales/en/en.json";
 import ar from "@/../public/locales/ar/ar.json";
 import { getTags, getProductsByTag } from "@/lib/api/collections";
@@ -26,6 +25,12 @@ const swiperStyles = `
     max-width: 320px;
   }
 `;
+
+// Lazy-load mobile carousel to reduce initial JS on desktop
+const MobileProductsCarousel = dynamic(
+  () => import("@/components/MobileProductsCarousel"),
+  { ssr: false }
+);
 
 // Custom hook for managing products state
 const useProducts = () => {
@@ -256,56 +261,37 @@ const ProductsSection = ({ locale }) => {
   const renderLoadingState = () => (
     <div className="mb-12">
       {isMobile ? (
-        <Swiper
-          spaceBetween={20}
-          slidesPerView={1.1}
-          centeredSlides={false}
-          style={{
-            paddingLeft: "6vw",
-            paddingRight: "6vw",
-            paddingBottom: "30px",
-          }}
-          className="equal-height-swiper"
-          breakpoints={{
-            320: {
-              slidesPerView: 1.1,
-              spaceBetween: 20,
-            },
-            640: {
-              slidesPerView: 1.5,
-              spaceBetween: 20,
-            },
-          }}
-        >
+        <MobileProductsCarousel>
           {[1, 2, 3].map((index) => (
-            <SwiperSlide key={index} className="h-auto">
-              <div className="bg-white border border-[#E5E5E5] rounded-lg h-full flex flex-col w-full min-w-0 p-4">
-                {/* Skeleton Image */}
-                <div className="w-full h-36 rounded-xl bg-gray-200 animate-pulse mb-4"></div>
+            <div
+              key={index}
+              className="bg-white border border-[#E5E5E5] rounded-lg h-full flex flex-col w-full min-w-0 p-4"
+            >
+              {/* Skeleton Image */}
+              <div className="w-full h-36 rounded-xl bg-gray-200 animate-pulse mb-4"></div>
 
-                {/* Skeleton Title */}
-                <div className="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
+              {/* Skeleton Title */}
+              <div className="h-6 bg-gray-200 rounded animate-pulse mb-2"></div>
 
-                {/* Skeleton Description */}
-                <div className="h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
-                <div className="h-4 bg-gray-200 rounded animate-pulse mb-1 w-3/4"></div>
+              {/* Skeleton Description */}
+              <div className="h-4 bg-gray-200 rounded animate-pulse mb-1"></div>
+              <div className="h-4 bg-gray-200 rounded animate-pulse mb-1 w-3/4"></div>
 
-                {/* Skeleton Features */}
-                <div className="h-3 bg-gray-200 rounded animate-pulse mb-4 w-1/2"></div>
+              {/* Skeleton Features */}
+              <div className="h-3 bg-gray-200 rounded animate-pulse mb-4 w-1/2"></div>
 
-                {/* Skeleton Color Dots */}
-                <div className="flex justify-center gap-3 mb-6">
-                  <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse"></div>
-                  <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse"></div>
-                  <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse"></div>
-                </div>
-
-                {/* Skeleton Button */}
-                <div className="h-8 bg-gray-200 rounded animate-pulse mt-auto"></div>
+              {/* Skeleton Color Dots */}
+              <div className="flex justify-center gap-3 mb-6">
+                <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse"></div>
+                <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse"></div>
+                <div className="w-5 h-5 rounded-full bg-gray-200 animate-pulse"></div>
               </div>
-            </SwiperSlide>
+
+              {/* Skeleton Button */}
+              <div className="h-8 bg-gray-200 rounded animate-pulse mt-auto"></div>
+            </div>
           ))}
-        </Swiper>
+        </MobileProductsCarousel>
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 auto-rows-fr">
           {[1, 2, 3].map((index) => (
@@ -469,22 +455,17 @@ const ProductsSection = ({ locale }) => {
         </>
       );
 
-      if (isMobileView) {
-        return (
-          <SwiperSlide key={product.id} className="h-auto">
-            <div
-              className="bg-white border border-[#E5E5E5] rounded-lg hover:shadow-lg transition-shadow h-full flex flex-col w-full min-w-0 p-4"
-              data-aos="fade-up"
-              data-aos-duration="600"
-              data-aos-delay={200 + index * 100}
-            >
-              {cardContent}
-            </div>
-          </SwiperSlide>
-        );
-      }
-
-      return (
+      return isMobileView ? (
+        <div
+          key={product.id}
+          className="bg-white border border-[#E5E5E5] rounded-lg hover:shadow-lg transition-shadow h-full flex flex-col w-full min-w-0 p-4"
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay={200 + index * 100}
+        >
+          {cardContent}
+        </div>
+      ) : (
         <div
           key={product.id}
           className="bg-white border border-[#E5E5E5] rounded-lg p-3 md:p-8 hover:shadow-lg transition-shadow h-full flex flex-col"
@@ -553,31 +534,13 @@ const ProductsSection = ({ locale }) => {
   const renderProductsGrid = () => {
     if (isMobile) {
       return (
-        <Swiper
-          spaceBetween={20}
-          slidesPerView={1.1}
-          centeredSlides={false}
-          style={{
-            paddingLeft: "6vw",
-            paddingRight: "6vw",
-            paddingBottom: "30px",
-          }}
-          className="equal-height-swiper"
-          breakpoints={{
-            320: {
-              slidesPerView: 1.1,
-              spaceBetween: 20,
-            },
-            640: {
-              slidesPerView: 1.5,
-              spaceBetween: 20,
-            },
-          }}
-        >
-          {currentItems.map((product, index) =>
-            renderProductCard(product, index, true)
-          )}
-        </Swiper>
+        <MobileProductsCarousel>
+          {currentItems.map((product, index) => (
+            <div key={product.id}>
+              {renderProductCard(product, index, true)}
+            </div>
+          ))}
+        </MobileProductsCarousel>
       );
     }
 

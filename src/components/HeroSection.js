@@ -38,6 +38,7 @@ const HeroSection = ({ title, subTitle, imageUrl, mobileImg }) => {
           alt={alt}
           fill
           priority={priority}
+          fetchPriority={priority ? "high" : "auto"}
           quality={85}
           sizes={sizes}
           className={className}
@@ -52,6 +53,7 @@ const HeroSection = ({ title, subTitle, imageUrl, mobileImg }) => {
         alt={alt}
         fill
         priority={priority}
+        fetchPriority={priority ? "high" : "auto"}
         quality={85}
         sizes={sizes}
         className={className}
