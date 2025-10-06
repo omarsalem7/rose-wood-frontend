@@ -43,11 +43,14 @@ export function middleware(request) {
 
     // For root path, redirect to locale root
     if (pathname === "/") {
-      return NextResponse.redirect(new URL(`/${locale}`, request.url));
+      return NextResponse.redirect(new URL(`/${locale}`, request.url), 308);
     }
 
     // For other paths, prepend locale
-    return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
+    return NextResponse.redirect(
+      new URL(`/${locale}${pathname}`, request.url),
+      308
+    );
   }
 
   // Add locale to headers for server components

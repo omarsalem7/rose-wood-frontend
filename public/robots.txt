@@ -7,8 +7,7 @@ Sitemap: https://rosewoodeg.com/sitemap.xml
 
 # Disallow admin and private areas only
 Disallow: /admin/
-Disallow: /_next/
-Disallow: /static/
+
 
 # Allow important directories including Strapi API content
 Allow: /assets/
