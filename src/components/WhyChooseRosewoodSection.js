@@ -198,6 +198,12 @@ const WhyChooseRosewoodSection = async () => {
               key={feature.id}
               className="flex flex-row items-center bg-[#fff8f6] rounded-xl px-3 py-3 shadow-sm"
             >
+              <div className="flex-1 text-start">
+                <p className="text-sm font-medium text-gray-800 leading-relaxed">
+                  {feature.text}
+                </p>
+              </div>
+
               <div className="flex-shrink-0 ml-3">
                 <Image
                   src={feature.image}
@@ -206,11 +212,6 @@ const WhyChooseRosewoodSection = async () => {
                   height={56}
                   className="rounded-full object-cover w-14 h-14"
                 />
-              </div>
-              <div className="flex-1 text-end">
-                <p className="text-sm font-medium text-gray-800 leading-relaxed">
-                  {feature.text}
-                </p>
               </div>
             </div>
           ))}

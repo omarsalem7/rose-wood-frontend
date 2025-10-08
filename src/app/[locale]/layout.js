@@ -8,7 +8,8 @@ import AnalyticsWrapper from "@/components/AnalyticsWrapper";
 
 export async function generateMetadata({ params }) {
   const base = await baseGenerateMetadata();
-  const localeParam = params?.locale;
+  const resolvedParams = await params;
+  const localeParam = resolvedParams?.locale;
   const locale = localeParam === "en" ? "en" : "ar";
 
   return {

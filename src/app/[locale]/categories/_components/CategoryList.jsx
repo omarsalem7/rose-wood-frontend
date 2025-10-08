@@ -16,8 +16,7 @@ const CategoryList = ({ locale }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [search, setSearch] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Start with false to avoid hydration mismatch
-  const [hasInitialized, setHasInitialized] = useState(false); // Track if we've made first API call
+  const [isLoading, setIsLoading] = useState(true);
   const t = locale === "ar" ? ar : en;
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE) || 1;
@@ -38,7 +37,6 @@ const CategoryList = ({ locale }) => {
       setTotalCount(0);
     } finally {
       setIsLoading(false);
-      setHasInitialized(true);
     }
   };
 
@@ -56,11 +54,8 @@ const CategoryList = ({ locale }) => {
     setCurrentPage(1);
   };
 
-  // Show loading only after we've initialized and are actually loading
-  const shouldShowLoading = isLoading && hasInitialized;
-  // Show no categories only after we've initialized and have no results
-  const shouldShowNoCategories =
-    hasInitialized && !isLoading && categories.length === 0;
+  const shouldShowLoading = isLoading;
+  const shouldShowNoCategories = !isLoading && categories.length === 0;
 
   return (
     <>
@@ -78,13 +73,7 @@ const CategoryList = ({ locale }) => {
             {t.otherCategories} ({totalCount})
           </div>
 
-          {/* Only render content after client-side initialization to prevent hydration mismatch */}
-          {!hasInitialized ? (
-            // Initial state - render nothing to ensure server/client match
-            <div className="py-8">
-              {/* Empty div to maintain layout but prevent hydration issues */}
-            </div>
-          ) : shouldShowLoading ? (
+          {shouldShowLoading ? (
             <div className="items py-8 grid grid-cols-2 lg:grid-cols-3 md:gap-10 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
                 <ProductSkeleton key={i} />
@@ -123,7 +112,7 @@ const CategoryList = ({ locale }) => {
                         alt={category.name || "Category image"}
                         width={220}
                         height={140}
-                        className="object-contain mb-2 md:mb-6 drop-shadow-md"
+                        className="object-contain mb-2 md:mb-6"
                         style={{ width: "auto", height: "auto" }}
                         fallbackClassName="w-[220px] h-[220px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
                       />
