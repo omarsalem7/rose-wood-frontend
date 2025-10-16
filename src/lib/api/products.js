@@ -134,7 +134,7 @@ export const getLookupProducts = async () => {
   return json.data.map((item) => {
     return {
       ...item,
-      mainImageUrl: getFullImageUrl(item.mainImageUrl.url),
+      mainImageUrl: getFullImageUrl(item?.mainImageUrl?.url),
     };
   });
 };

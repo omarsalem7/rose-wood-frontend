@@ -2,6 +2,7 @@
 import * as React from "react";
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+import SafeImage from "../SafeImage";
 
 // Dynamically import react-select to avoid SSR issues
 const Select = dynamic(() => import("react-select"), {
@@ -125,12 +126,16 @@ const CustomSelect = React.forwardRef(function CustomSelect(
           isSelected && "bg-[#5f381f19]"
         )}
       >
-        {data.image && (
-          <img
+        {data.image ? (
+          <SafeImage
             src={data.image}
             alt={label}
+            width={50}
+            height={50}
             className="h-6 w-6 rounded object-cover mr-3"
           />
+        ) : (
+          <div className="bg-gray-200 w-6 h-6 rounded-md mr-3"></div>
         )}
         <span className="text-sm font-alexandria">{label}</span>
       </div>
