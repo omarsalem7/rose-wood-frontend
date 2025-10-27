@@ -18,29 +18,42 @@ export const submitRequestSample = async (data) => {
 };
 export const submitPriceQuote = async (data) => {
   try {
-    // Step 1: Create order items first
-    const orderItemIds = [];
+    let orderItemIds = [];
 
-    if (data.order_items && data.order_items.length > 0) {
-      for (const orderItem of data.order_items) {
+    // Step 1: Batch create order items concurrently for performance
+    if (
+      !data.chooseAllProducts &&
+      Array.isArray(data.order_items) &&
+      data.order_items.length > 0
+    ) {
+      const orderItemPromises = data.order_items.map((orderItem) => {
         const orderItemData = {
           product: { connect: [orderItem.product] },
           quantity: orderItem.quantity,
         };
-
-        const orderItemResponse = await apiCall("/order-items", {
+        return apiCall("/order-items", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ data: orderItemData }),
         });
+      });
 
-        orderItemIds.push(orderItemResponse.data.documentId);
+      // Use Promise.allSettled for failure resilience
+      const orderItemResults = await Promise.allSettled(orderItemPromises);
+      orderItemIds = orderItemResults
+        .filter(
+          (result) =>
+            result.status === "fulfilled" && result.value?.data?.documentId
+        )
+        .map((result) => result.value.data.documentId);
+
+      // If any order item failed, optionally log or handle as needed
+      if (orderItemIds.length !== data.order_items.length) {
+        console.warn("Some order items failed to create");
       }
     }
 
-    // Step 2: Create price quotation and connect order items
+    // Step 2: Create price quotation and connect successful order items
     const strapiData = {
       fullName: data.fullName,
       companyName: data.companyName,
@@ -50,16 +63,13 @@ export const submitPriceQuote = async (data) => {
       address: data.address,
       specialRequests: data.specialRequests,
       chooseAllProducts: data.chooseAllProducts,
-      // Connect the created order items
       order_items: { connect: orderItemIds },
-      // requestStatus will default to "new" as per schema
+      // requestStatus defaults to "new"
     };
 
     const response = await apiCall("/price-quotations", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: strapiData }),
     });
 
@@ -69,6 +79,7 @@ export const submitPriceQuote = async (data) => {
     throw error;
   }
 };
+
 export const submitInternationalExports = async (data) => {
   try {
     const response = await apiCall("/international-exports", {
