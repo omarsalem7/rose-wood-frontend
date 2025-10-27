@@ -37,7 +37,7 @@ const organizeProductsByCategory = (products) => {
       categories[categoryName] = [];
     }
     categories[categoryName].push({
-      value: product.documentId.toString(),
+      value: product.id.toString(),
       label: product.name,
       image: product.mainImageUrl || null,
     });
@@ -374,14 +374,12 @@ export default function RequestSamplePage({ params }) {
                                         label:
                                           products.find(
                                             (p) =>
-                                              p.documentId.toString() ===
-                                              field.value
+                                              p.id.toString() === field.value
                                           )?.name || field.value,
                                         image:
                                           products.find(
                                             (p) =>
-                                              p.documentId.toString() ===
-                                              field.value
+                                              p.id.toString() === field.value
                                           )?.mainImageUrl || null,
                                       }
                                     : null

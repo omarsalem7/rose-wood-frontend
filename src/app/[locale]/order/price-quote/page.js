@@ -36,7 +36,7 @@ const organizeProductsByCategory = (products) => {
       categories[categoryName] = [];
     }
     categories[categoryName].push({
-      value: product.documentId.toString(),
+      value: product.id.toString(),
       label: product.name,
       image: product.mainImageUrl || null,
     });
@@ -159,7 +159,7 @@ export default function OfferPricePage({ params }) {
       if (chooseAllProducts) {
         // If "choose all products" is checked, create order_items for all products
         formData.order_items = products.map((product) => ({
-          product: product.documentId,
+          product: product.id,
           quantity: 1,
         }));
       } else {
@@ -392,8 +392,7 @@ export default function OfferPricePage({ params }) {
                                           label:
                                             products.find(
                                               (p) =>
-                                                p.documentId.toString() ===
-                                                field.value
+                                                p.id.toString() === field.value
                                             )?.name || field.value,
                                         }
                                       : null

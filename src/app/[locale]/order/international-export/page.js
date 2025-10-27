@@ -38,7 +38,7 @@ const organizeProductsByCategory = (products) => {
       categories[categoryName] = [];
     }
     categories[categoryName].push({
-      value: product.documentId.toString(),
+      value: product.id.toString(),
       label: product.name,
       image: product.mainImageUrl || null,
     });
@@ -150,7 +150,7 @@ export default function InternationalExportPage({ params }) {
       let productIds;
       if (chooseAllProducts) {
         // If "choose all products" is checked, use all product IDs
-        productIds = products.map((product) => product.documentId.toString());
+        productIds = products.map((product) => product.id.toString());
       } else {
         // Use selected products from the form
         productIds = data.products.map((p) => p.productId);
@@ -429,13 +429,13 @@ export default function InternationalExportPage({ params }) {
                                             label:
                                               products.find(
                                                 (p) =>
-                                                  p.documentId.toString() ===
+                                                  p.id.toString() ===
                                                   field.value
                                               )?.name || field.value,
                                             image:
                                               products.find(
                                                 (p) =>
-                                                  p.documentId.toString() ===
+                                                  p.id.toString() ===
                                                   field.value
                                               )?.mainImageUrl || null,
                                           }
