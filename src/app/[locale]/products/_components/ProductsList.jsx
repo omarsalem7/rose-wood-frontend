@@ -77,8 +77,8 @@ const ProductsList = ({ locale }) => {
         <div className="max-w-7xl mx-auto">
           <div
             data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="300"
+            data-aos-duration="700"
+            data-aos-delay="200"
             className="py-4"
           >
             {t.allProducts} ({totalCount})
@@ -116,18 +116,18 @@ const ProductsList = ({ locale }) => {
                     href={`/${locale}/products/${product.documentId}`}
                     key={product.id}
                     data-aos="zoom-in"
-                    data-aos-duration="600"
-                    data-aos-delay={index * 100}
+                    data-aos-duration="500"
+                    data-aos-delay={index * 50}
                     className="item bg-white border border-[#DEDAD4] rounded-lg w-full flex flex-col items-center gap-3 p-4 md:p-8 transition-transform hover:shadow-md min-h-fit "
                   >
                     <div className="flex justify-center h-[150px] md:h-[250px]  w-full flex-grow">
                       <SafeImage
-                        src={product.mainImageUrl || product.image}
+                        src={product?.mainImageUrl || product?.image}
                         alt={product.name}
                         width={220}
                         height={140}
                         className="object-contain mb-2 md:mb-6 h-auto w-auto"
-                        fallbackClassName="w-[220px] h-[140px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
+                        fallbackClassName="w-full h-[140px] bg-gray-200 rounded-lg flex items-center justify-center mb-6"
                       />
                     </div>
                     <h2 className="text-lg md:text-2xl font-semibold text-[#223132] text-center">

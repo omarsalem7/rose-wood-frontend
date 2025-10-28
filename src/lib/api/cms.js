@@ -26,14 +26,14 @@ export async function fetchAllHomePageData() {
     const data = json.data;
 
     return {
-      hero: transformHeroData(data.hero),
-      about: transformAboutData(data.aboutSection),
-      features: transformFeatureData(data.featureSection),
-      bulkOrder: transformBulkOrderData(data.bulkOrder),
-      title: data.ProductCarouselSectionTitle,
-      videoSection: transformVideoData(data.videoSection),
-      whyChooseTitle: data.whyChooseTitle,
-      blogsTitle: data.blogsTitle,
+      hero: transformHeroData(data?.hero),
+      about: transformAboutData(data?.aboutSection),
+      features: transformFeatureData(data?.featureSection),
+      bulkOrder: transformBulkOrderData(data?.bulkOrder),
+      title: data?.ProductCarouselSectionTitle,
+      videoSection: transformVideoData(data?.videoSection),
+      whyChooseTitle: data?.whyChooseTitle,
+      blogsTitle: data?.blogsTitle,
     };
   } catch (error) {
     console.error("Error fetching all home page data:", error);
@@ -96,8 +96,8 @@ export async function fetchProductInfoSection() {
     }
 
     return {
-      ...json.data.productInfo,
-      images: transformImages(json.data.productInfo.images),
+      ...json.data?.productInfo,
+      images: transformImages(json.data?.productInfo?.images),
     };
   } catch (error) {
     console.error("Error fetching how work section data:", error);
@@ -169,7 +169,7 @@ export async function fetchWoodStepsPageData() {
 export async function getCatalogUrl() {
   try {
     const json = await apiCall("/resource?fields=catelogUrl");
-    return json.data.catelogUrl;
+    return json.data?.catelogUrl;
   } catch (error) {
     console.error("Error fetching catalog url:", error);
     throw error;
@@ -336,7 +336,7 @@ function transformFeatureData(featureData) {
       cards?.map((card) => ({
         id: card.id,
         text: card.text || "",
-        image: card.img?.url ? getFullImageUrl(card.img.url) : null,
+        image: card.img?.url ? getFullImageUrl(card?.img?.url) : null,
       })) || [],
   };
 }
@@ -347,11 +347,11 @@ export async function fetchWhyChooseRoseWood() {
       "/home-page?populate[whyChooseRoseWood][populate][features][populate]=*"
     );
 
-    if (!json.data || !json.data.whyChooseRoseWood) {
+    if (!json.data || !json.data?.whyChooseRoseWood) {
       throw new Error("WhyChooseRoseWood data not found");
     }
 
-    const whyChooseData = json.data.whyChooseRoseWood;
+    const whyChooseData = json.data?.whyChooseRoseWood;
 
     return {
       id: whyChooseData.id,
@@ -381,17 +381,17 @@ export async function fetchQuotationSection() {
       "/home-page?populate[quotationSection][populate]=*"
     );
 
-    if (!json.data || !json.data.quotationSection) {
+    if (!json.data || !json.data?.quotationSection) {
       throw new Error("quotationSection data not found");
     }
 
-    const resData = json.data.quotationSection;
+    const resData = json.data?.quotationSection;
 
     return {
       id: resData.id,
       title: resData.title || "اشترِ طبيك الدن معنا واطلب كميتك",
       buttonText: resData.buttonText || "عرض سعر مخصص",
-      image: resData.image?.url
+      image: resData?.image?.url
         ? getFullImageUrl(resData.image.url)
         : "/assets/kitchen-bg.png",
     };
@@ -432,11 +432,11 @@ export async function fetchContactUsData() {
   try {
     const json = await apiCall("/home-page?populate[contactUs][populate]=*");
 
-    if (!json.data || !json.data.contactUs) {
+    if (!json.data || !json.data?.contactUs) {
       throw new Error("ContactUs data not found");
     }
 
-    const contactData = json.data.contactUs;
+    const contactData = json.data?.contactUs;
 
     return {
       id: contactData.id,
@@ -466,55 +466,55 @@ export async function fetchContactUsData() {
 // Transformation function for about page data
 function transformAboutPageData(data) {
   return {
-    hero: transformHeroAboutPage(data.hero),
-    howWork: data.howWork
+    hero: transformHeroAboutPage(data?.hero),
+    howWork: data?.howWork
       ? {
-          id: data.howWork.id,
-          title: data.howWork.title,
-          subTitle: data.howWork.subTitle,
+          id: data?.howWork.id,
+          title: data?.howWork.title,
+          subTitle: data?.howWork.subTitle,
           list:
-            data.howWork.list?.map((item) => ({
-              id: item.id,
-              text: item.text,
+            data?.howWork?.list?.map((item) => ({
+              id: item?.id,
+              text: item?.text,
             })) || [],
-          images: transformImages(data.howWork.images),
+          images: transformImages(data?.howWork?.images),
           buttons:
-            data.howWork.buttons?.map((btn) => ({
-              id: btn.id,
-              text: btn.text,
-              link: btn.link,
+            data?.howWork?.buttons?.map((btn) => ({
+              id: btn?.id,
+              text: btn?.text,
+              link: btn?.link,
             })) || [],
         }
       : null,
-    ourMessage: data.ourMessage
+    ourMessage: data?.ourMessage
       ? {
-          id: data.ourMessage.id,
-          title: data.ourMessage.title,
-          subTitle: data.ourMessage.subTitle,
-          endDescription: data.ourMessage.endDescription,
+          id: data?.ourMessage.id,
+          title: data?.ourMessage.title,
+          subTitle: data?.ourMessage.subTitle,
+          endDescription: data?.ourMessage.endDescription,
           cards:
-            data.ourMessage.cards?.map((card) => ({
+            data?.ourMessage.cards?.map((card) => ({
               id: card.id,
               text: card.text,
             })) || [],
         }
       : null,
-    ourVision: data.ourVision
+    ourVision: data?.ourVision
       ? {
-          id: data.ourVision.id,
-          title: data.ourVision.title,
-          description: data.ourVision.description,
+          id: data?.ourVision.id,
+          title: data?.ourVision.title,
+          description: data?.ourVision.description,
         }
       : null,
-    sectorSection: data.sectorSection
+    sectorSection: data?.sectorSection
       ? {
-          id: data.sectorSection.id,
+          id: data?.sectorSection.id,
           card:
-            data.sectorSection.card?.map((card) => ({
+            data?.sectorSection?.card?.map((card) => ({
               id: card.id,
               title: card.title,
               subTitle: card.subTitle,
-              image: card.image ? getFullImageUrl(card.image.url) : null,
+              image: card?.image ? getFullImageUrl(card.image.url) : null,
               list:
                 card.list?.map((item) => ({
                   id: item.id,
@@ -530,23 +530,23 @@ function transformAboutPageData(data) {
 function transformWoodStepsPageData(data) {
   return {
     hero: {
-      title: data.hero?.title || "",
-      description: data.hero?.description || "",
-      image1: data.hero?.image1?.url
+      title: data?.hero?.title || "",
+      description: data?.hero?.description || "",
+      image1: data?.hero?.image1?.url
         ? getFullImageUrl(data?.hero?.image1.url)
         : null,
-      image2: data.hero?.image2?.url
+      image2: data?.hero?.image2?.url
         ? getFullImageUrl(data?.hero?.image2.url)
         : null,
-      image3: data.hero?.image3?.url
+      image3: data?.hero?.image3?.url
         ? getFullImageUrl(data?.hero?.image3.url)
         : null,
     },
     steps: {
-      title: data.steps?.title || "",
-      description: data.steps?.description || "",
+      title: data?.steps?.title || "",
+      description: data?.steps?.description || "",
       stepsList:
-        data.steps?.stepsList?.map((step) => ({
+        data?.steps?.stepsList?.map((step) => ({
           id: step.id,
           title: step.title,
           description: step.description,
@@ -559,29 +559,29 @@ function transformWoodStepsPageData(data) {
           img1: step?.img1?.[0]?.url ? getFullImageUrl(step.img1[0].url) : null,
           img2: step?.img2?.url ? getFullImageUrl(step.img2.url) : null,
         })) || [],
-      btnProducts: data.steps?.btnProducts,
-      btnSample: data.steps?.btnSample,
+      btnProducts: data?.steps?.btnProducts,
+      btnSample: data?.steps?.btnSample,
     },
   };
 }
 
 function transformBulkOrderData(data) {
   return {
-    title: data.title || "",
+    title: data?.title || "",
     card1: {
-      title: data.card1.title || "",
-      description: data.card1.description || "",
-      btnText: data.card1.buttonText || "",
-      image: data.card1?.image?.url
-        ? getFullImageUrl(data.card1?.image.url)
+      title: data?.card1.title || "",
+      description: data?.card1.description || "",
+      btnText: data?.card1.buttonText || "",
+      image: data?.card1?.image?.url
+        ? getFullImageUrl(data?.card1?.image.url)
         : null,
     },
     card2: {
-      title: data.card2.title || "",
-      description: data.card2.description || "",
-      btnText: data.card2.buttonText || "",
-      image: data.card2?.image?.url
-        ? getFullImageUrl(data.card2?.image.url)
+      title: data?.card2.title || "",
+      description: data?.card2.description || "",
+      btnText: data?.card2.buttonText || "",
+      image: data?.card2?.image?.url
+        ? getFullImageUrl(data?.card2?.image.url)
         : null,
     },
   };
@@ -591,52 +591,52 @@ function transformBulkOrderData(data) {
 function transformWhaleSalePageData(data) {
   return {
     hero: {
-      title: data.hero?.title || "",
-      description: data.hero?.description || "",
-      image1: data.hero?.image1?.url
-        ? getFullImageUrl(data.hero?.image1.url)
+      title: data?.hero?.title || "",
+      description: data?.hero?.description || "",
+      image1: data?.hero?.image1?.url
+        ? getFullImageUrl(data?.hero?.image1.url)
         : null,
-      image2: data.hero?.image2?.url
-        ? getFullImageUrl(data.hero?.image2.url)
+      image2: data?.hero?.image2?.url
+        ? getFullImageUrl(data?.hero?.image2.url)
         : null,
-      image3: data.hero?.image3?.url
-        ? getFullImageUrl(data.hero?.image3.url)
+      image3: data?.hero?.image3?.url
+        ? getFullImageUrl(data?.hero?.image3.url)
         : null,
     },
     global: {
-      title: data.global?.title || "",
-      description: data.global?.description || "",
+      title: data?.global?.title || "",
+      description: data?.global?.description || "",
       service: {
-        title: data.global?.service?.title || "",
-        description: data.global?.service?.description || "",
-        buttontext: data.global?.service?.buttontext || "",
+        title: data?.global?.service?.title || "",
+        description: data?.global?.service?.description || "",
+        buttontext: data?.global?.service?.buttontext || "",
         list:
-          data.global?.service?.list?.map((item) => ({
+          data?.global?.service?.list?.map((item) => ({
             id: item.id,
             text: item.text,
           })) || [],
-        image1: data.global?.service?.image1?.url
-          ? getFullImageUrl(data.global.service?.image1.url)
+        image1: data?.global?.service?.image1?.url
+          ? getFullImageUrl(data?.global.service?.image1.url)
           : null,
-        image2: data.global?.service?.image2?.url
-          ? getFullImageUrl(data.global.service?.image2.url)
+        image2: data?.global?.service?.image2?.url
+          ? getFullImageUrl(data?.global.service?.image2.url)
           : null,
       },
     },
     local: {
-      title: data.local?.title || "",
-      description: data.local?.description || "",
-      buttontext: data.local?.buttontext || "",
+      title: data?.local?.title || "",
+      description: data?.local?.description || "",
+      buttontext: data?.local?.buttontext || "",
       list:
-        data.local?.list?.map((item) => ({
+        data?.local?.list?.map((item) => ({
           id: item.id,
           text: item.text,
         })) || [],
-      image1: data.local?.image1?.url
-        ? getFullImageUrl(data.local?.image1.url)
+      image1: data?.local?.image1?.url
+        ? getFullImageUrl(data?.local?.image1.url)
         : null,
-      image2: data.local?.image2?.url
-        ? getFullImageUrl(data.local?.image2.url)
+      image2: data?.local?.image2?.url
+        ? getFullImageUrl(data?.local?.image2.url)
         : null,
     },
   };

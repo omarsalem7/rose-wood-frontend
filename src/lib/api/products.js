@@ -39,9 +39,10 @@ export const getAllproducts = async ({
   const list = (json.data || []).map((product) => {
     return {
       ...product,
-      mainImageUrl: getFullImageUrl(product.mainImageUrl.url),
+      mainImageUrl: getFullImageUrl(product?.mainImageUrl?.url),
     };
   });
+
   return {
     items: list,
     totalCount: json.meta.pagination.total,
@@ -59,7 +60,7 @@ export const getProductMetadata = async (id) => {
   );
   return {
     ...json.data,
-    mainImageUrl: json.data.mainImageUrl?.url
+    mainImageUrl: json.data?.mainImageUrl?.url
       ? getFullImageUrl(json.data.mainImageUrl.url)
       : null,
   };
@@ -73,16 +74,16 @@ export const getProductById = async (id) => {
 
   return {
     ...product,
-    mainImageUrl: getFullImageUrl(product.mainImageUrl.url),
-    productDetailsImage: product.productDetailsImage?.url
-      ? getFullImageUrl(product.productDetailsImage.url)
+    mainImageUrl: getFullImageUrl(product?.mainImageUrl?.url),
+    productDetailsImage: product?.productDetailsImage?.url
+      ? getFullImageUrl(product?.productDetailsImage?.url)
       : null,
-    gallery: product.gallery ? transformImages(product.gallery) : [],
-    colors: product.colors
+    gallery: product?.gallery ? transformImages(product.gallery) : [],
+    colors: product?.colors
       ? product.colors.map((color) => {
           return {
             id: color.id,
-            color: color.color,
+            color: color?.color,
             imgUrl: getFullImageUrl(color?.img?.url),
           };
         })
@@ -98,8 +99,8 @@ export const getRelatedProducts = async (categoryId, productId) => {
     .filter((product) => product.documentId !== productId) // Filter out current product
     .map((product) => {
       // Normalize colors with images and color codes
-      const colors = Array.isArray(product.colors)
-        ? product.colors.map((color) => {
+      const colors = Array.isArray(product?.colors)
+        ? product?.colors.map((color) => {
             let imgUrl = null;
             if (color.img && color.img.url) {
               imgUrl = getFullImageUrl(color.img.url);
@@ -112,16 +113,16 @@ export const getRelatedProducts = async (categoryId, productId) => {
           })
         : [];
 
-      const image = getFullImageUrl(product.mainImageUrl.url);
+      const image = getFullImageUrl(product?.mainImageUrl?.url);
 
       return {
         id: product.documentId,
-        name: product.name,
-        description: product.description,
-        features: product.features,
+        name: product?.name,
+        description: product?.description,
+        features: product?.features,
         colors,
         image,
-        category: product.category?.name,
+        category: product?.category?.name,
       };
     });
 };

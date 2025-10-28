@@ -177,7 +177,7 @@ export async function getProductsByTag(tagId = null) {
           })
         : [];
 
-      const image = product.mainImageUrl?.url
+      const image = product?.mainImageUrl?.url
         ? getFullImageUrl(product.mainImageUrl.url)
         : null;
 

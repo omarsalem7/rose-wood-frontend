@@ -62,7 +62,7 @@ export async function fetchCategories({ filters = {}, page, pageSize } = {}) {
     return {
       ...category,
       mainImage: category?.mainImage?.url
-        ? getFullImageUrl(category.mainImage.url)
+        ? getFullImageUrl(category?.mainImage?.url)
         : null,
     };
   });
@@ -80,7 +80,7 @@ export const getCategoriesInAboutPage = async () => {
   return json.data.map((item) => {
     return {
       ...item,
-      mainImageUrl: getFullImageUrl(item.mainImage.url),
+      mainImageUrl: getFullImageUrl(item?.mainImage?.url),
     };
   });
 };
